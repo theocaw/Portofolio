@@ -1,8 +1,8 @@
 export const home = {
-  headline: ['Find patterns.', 'Build clarity.'],
+  headline: ['Making data speak.', 'Building what clicks.'],
   greeting: 'Hi, I’m Osanna Patricia Limbong.',
   intro:
-    'Software Engineering student at IPB University, exploring data analysis and building thoughtful front-end experiences.',
+    'Software Engineering student at IPB University connecting analytical insight with creative front-end craft. I turn complex data into clear stories, and build interactive experiences that feel effortless to use.',
   actions: [
     { label: 'Explore my work', to: '/work', variant: 'primary' },
     { label: 'About me', to: '/about', variant: 'secondary' },
@@ -33,7 +33,14 @@ export const home = {
     footnote: 'ALSO EXPLORING FULL-STACK DEVELOPMENT',
   },
   scrollCue: 'A QUICK INTRODUCTION ↓',
-  marquee: ['Data Analyst', 'Front-End Developer', 'Curious by default', 'Finding patterns', 'Building clarity'],
+  marquee: [
+    'Data Analyst',
+    'Front-End Developer',
+    'Curious by default',
+    'Making data speak',
+    'Building what clicks',
+    'IPB University',
+  ],
   explore: {
     title: 'Three ways to get to know me.',
     link: { label: 'EXPLORE THE DEDICATED PAGES ↗', to: '/about' },
