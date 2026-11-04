@@ -187,85 +187,42 @@ export const work = {
       evidence: [
         {
           title: 'Project Evidence & Visualizations',
-          caption: 'Ames Housing / Eksplorasi siklus Data Mining: Pendahuluan, struktur data, distribusi, korelasi, regresi linear, klasifikasi, dan klastering.',
+          caption: 'Ames Housing / 5 Pilar Analisis Data: Exploratory Data Analysis, Korelasi Fitur, Regresi Linear, Klasifikasi Pohon Keputusan, dan Klastering PCA.',
           images: [
-            // Slide 01: Bab 1 - Pendahuluan & 4 Pilar
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211336.png',
-              alt: '1. Pendahuluan Laporan Analisis Ames Housing',
-              caption: '01. Pendahuluan: Latar belakang dan 4 pilar metodologi (EDA, Regresi, Klasifikasi, Klastering).',
-            },
-            // Slide 02: Ringkasan Struktur Data
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211352.png',
-              alt: '2. Ringkasan Struktur Data Ames Housing',
-              caption: '02. Struktur Data: Skala dataset 2.930 observasi, 81 fitur (35 numerik, 46 kategorik), 0 missing value.',
-            },
-            // Slide 03: Statistik Deskriptif Variabel Target
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211404.png',
-              alt: '3. Statistik Deskriptif Variabel Harga Jual',
-              caption: '03. Statistik Deskriptif: Rentang harga properti Ames ($12.789 - $755.000), median $160k, rata-rata $180k.',
-            },
-            // Slide 04: Distribusi Harga (Histogram)
+            // Slide 01: EDA & Distribusi Harga (Histogram)
             {
               src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
-              alt: '4. Distribusi Harga Penjualan Rumah di Ames',
-              caption: '04. Distribusi Harga: Pola right-skewed dengan konsentrasi transaksi pada rentang $130.000 hingga $200.000.',
+              alt: '01. Distribusi Harga Penjualan Rumah di Ames (Histogram)',
+              caption: '01. EDA & Distribusi: Pola sebaran harga right-skewed dengan konsentrasi transaksi pada rentang $130.000 hingga $200.000.',
+              fit: 'contain',
             },
-            // Slide 05: Deteksi Outlier (Boxplot)
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211436.png',
-              alt: '5. Deteksi Outlier Harga Rumah (Boxplot)',
-              caption: '05. Deteksi Outlier: Boxplot mengonfirmasi kelompok properti mewah ekstrem di angka $500.000 - $755.000.',
-            },
-            // Slide 06: Top 10 Korelasi Fitur (Bar Chart)
+            // Slide 02: Korelasi Fitur / Faktor Penentu Harga (Pearson)
             {
               src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
-              alt: '6. Top 10 Faktor Terkuat Penentu Harga - Korelasi Pearson',
-              caption: '06. Korelasi Pearson: Top 10 faktor penentu harga rumah teratas (Gr_Liv_Area, Garage_Cars, Garage_Area).',
+              alt: '02. Top 10 Faktor Terkuat Penentu Harga - Korelasi Pearson',
+              caption: '02. Korelasi Fitur: Top 10 faktor penentu harga rumah teratas (Gr_Liv_Area, Garage_Cars, Garage_Area).',
+              fit: 'contain',
             },
-            // Slide 07: Rapor Evaluasi Model Regresi Linear
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211509.png',
-              alt: '7. Evaluasi Rapor Prediksi Model Regresi Linear',
-              caption: '07. Evaluasi Regresi Linear: Performa model pada 586 data uji dengan R-Squared 81.94% dan MAE $20.849.',
-            },
-            // Slide 08: Plot Regresi (Harga Asli vs Prediksi Mesin)
+            // Slide 03: Evaluasi Model Regresi Linear (Scatter Plot)
             {
               src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
-              alt: '8. Harga Asli di Lapangan vs Harga Prediksi Model',
-              caption: '08. Scatter Plot Regresi: Sebaran harga aktual vs prediksi mesin terhadap garis ideal akurat 100%.',
+              alt: '03. Harga Asli di Lapangan vs Harga Prediksi Model',
+              caption: '03. Regresi Linear: Performa model prediksi harga properti (R² 81.94%, MAE $20.849) terhadap harga aktual.',
+              fit: 'contain',
             },
-            // Slide 09: Pohon Keputusan Klasifikasi (Decision Tree)
+            // Slide 04: Pohon Keputusan Klasifikasi (Decision Tree)
             {
               src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
-              alt: '9. Pohon Keputusan Pemilahan Kelas Rumah',
-              caption: '09. Klasifikasi (Decision Tree): Pemilahan kelas rumah (Murah, Menengah, Mahal) berbasis fitur utama.',
+              alt: '04. Pohon Keputusan Pemilahan Kelas Rumah',
+              caption: '04. Klasifikasi (Decision Tree): Logika percabangan pemilahan kelas harga rumah (Murah, Menengah, Mahal).',
+              fit: 'contain',
             },
-            // Slide 10: Rapor Confusion Matrix
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211542.png',
-              alt: '10. Rapor Klasifikasi Confusion Matrix',
-              caption: '10. Rapor Klasifikasi: Confusion Matrix dengan total akurasi prediksi kelas sebesar 72.70%.',
-            },
-            // Slide 11: Elbow Method (Penentuan Klaster K-Means)
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211559.png',
-              alt: '11. Elbow Method Penentuan Jumlah Klaster Ideal',
-              caption: '11. Klastering (Elbow Method): Menemukan titik tekukan siku optimal pada k = 3 klaster pasar.',
-            },
-            // Slide 12: Peta Segmentasi Pasar (2D PCA)
+            // Slide 05: Klastering & Segmentasi Pasar (2D PCA)
             {
               src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
-              alt: '12. Peta Segmentasi Pasar Berdasarkan Label',
-              caption: '12. Segmentasi Pasar (PCA): Visualisasi 2D sebaran klaster properti dengan reduksi dimensi.',
-            },
-            // Slide 13: Profil Karakteristik & Persona Segmen
-            {
-              src: '/images/work/ames/Screenshot 2026-11-03 211635.png',
-              alt: '13. Profil Karakteristik & Persona Tiap Segmen Pasar',
-              caption: '13. Persona Pasar: Karakteristik dan target pasar untuk Segmen Ekonomis, Segmen Premium, dan Lahan Ekstrem.',
+              alt: '05. Peta Segmentasi Pasar Berdasarkan Label (PCA)',
+              caption: '05. Klastering (PCA): Visualisasi 2D pemetaan segmentasi pasar menjadi 3 klaster profil properti.',
+              fit: 'contain',
             },
           ],
         },
