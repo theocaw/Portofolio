@@ -9,17 +9,6 @@ export default function Home() {
   const { headline, profilePhotos = [], explore } = home;
   const [photoIndex, setPhotoIndex] = useState(0);
 
-  const currentPhoto = profilePhotos[photoIndex] || {
-    src: '/images/profile/osanna-1.jpg',
-    alt: 'Osanna Patricia Limbong',
-  };
-
-  const nextPose = () => {
-    if (profilePhotos.length > 1) {
-      setPhotoIndex((prev) => (prev + 1) % profilePhotos.length);
-    }
-  };
-
   return (
     <>
       <section className="container home-hero">
@@ -44,39 +33,72 @@ export default function Home() {
             </div>
           </div>
 
-          <aside
-            className="identity-card identity-card--photo"
-            aria-label="Osanna Patricia Limbong profile photo"
-            onClick={nextPose}
-            title="Klik untuk ganti pose! ✨"
-          >
-            <div className="identity-card__media">
-              <img
-                src={currentPhoto.src}
-                alt={currentPhoto.alt}
-                className="identity-card__img"
-                loading="eager"
-                draggable="false"
-              />
-              <div className="identity-card__photo-overlay">
-                <div className="identity-card__photo-info">
-                  <span className="identity-card__photo-name">Osanna Patricia L.</span>
-                  <span className="identity-card__photo-role">IPB University</span>
-                </div>
-                {profilePhotos.length > 1 && (
-                  <button
-                    type="button"
-                    className="identity-card__pose-pill"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      nextPose();
-                    }}
-                    aria-label="Next pose"
-                  >
-                    <span className="pose-sparkle">✦</span> Pose {photoIndex + 1}/{profilePhotos.length}
-                  </button>
-                )}
+          <aside className="hero-photo-deck" aria-label="Osanna Patricia Limbong photos">
+            <div className="hero-photo-deck__stage-wrapper">
+              <div className="hero-photo-deck__pin" title="Klik foto untuk ganti pose! ✨" aria-hidden="true">
+                <span className="hero-photo-deck__star">★</span>
               </div>
+
+              <div className="hero-photo-deck__stage">
+                {profilePhotos.map((photo, idx) => {
+                  let cardState = 'is-active';
+                  if (idx === (photoIndex + 1) % profilePhotos.length) cardState = 'is-right';
+                  else if (idx === (photoIndex + 2) % profilePhotos.length) cardState = 'is-left';
+
+                  return (
+                    <div
+                      key={photo.src}
+                      className={`hero-polaroid ${cardState}`}
+                      onClick={() => setPhotoIndex(idx)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setPhotoIndex(idx);
+                        }
+                      }}
+                      title="Klik untuk bawa pose ini ke depan! ✨"
+                      aria-label={`${photo.label} - Pose ${idx + 1}`}
+                    >
+                      <div className="hero-polaroid__media">
+                        <img
+                          src={photo.src}
+                          alt={photo.alt}
+                          className="hero-polaroid__img"
+                          loading="eager"
+                          draggable="false"
+                        />
+                      </div>
+                      <div className="hero-polaroid__caption">
+                        <span>{photo.caption || photo.label}</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="hero-photo-deck__pills" role="tablist" aria-label="Pilih pose">
+              {profilePhotos.map((photo, idx) => (
+                <button
+                  key={photo.src}
+                  type="button"
+                  role="tab"
+                  aria-selected={photoIndex === idx}
+                  className={`hero-photo-deck__pill ${photoIndex === idx ? 'is-active' : ''}`}
+                  onClick={() => setPhotoIndex(idx)}
+                >
+                  <span className="hero-photo-deck__pill-star">✦</span>
+                  <span>{photo.label}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="hero-photo-deck__profile">
+              <span className="hero-photo-deck__badge">PERSONAL INDEX · 2026</span>
+              <h2 className="hero-photo-deck__name">Osanna Patricia Limbong</h2>
+              <p className="hero-photo-deck__meta">Software Engineering · IPB University</p>
             </div>
           </aside>
         </div>

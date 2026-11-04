@@ -61,101 +61,231 @@
   gap: 10px;
 }
 
-/* Identity photo card */
-.identity-card {
-  width: 330px;
-  height: 420px;
+/* Creative Interactive Photo Deck (Polaroid Fan) */
+.hero-photo-deck {
+  width: 360px;
+  max-width: 100%;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  gap: 14px;
   position: relative;
-  background: var(--paper-2);
-  cursor: pointer;
   user-select: none;
-  padding: 0;
 }
 
-.identity-card__media {
+.hero-photo-deck__stage-wrapper {
   position: relative;
   width: 100%;
-  height: 100%;
-  border-radius: 26px;
-  overflow: hidden;
-  background: #2b334a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
 }
 
-.identity-card__img {
+.hero-photo-deck__pin {
+  position: absolute;
+  top: -4px;
+  left: 20px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  background: #fef08a;
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-photo-deck__pin:hover {
+  transform: scale(1.15) rotate(15deg);
+}
+
+.hero-photo-deck__star {
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink);
+}
+
+.hero-photo-deck__stage {
+  position: relative;
+  width: 270px;
+  height: 345px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-polaroid {
+  position: absolute;
+  width: 240px;
+  height: 326px;
+  background: #ffffff;
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  padding: 10px 10px 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 6px 0 var(--ink);
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1), box-shadow 0.3s ease, opacity 0.35s ease;
+  will-change: transform;
+}
+
+.hero-polaroid.is-active {
+  z-index: 5;
+  transform: translate3d(0, -4px, 0) rotate(0deg) scale(1);
+  box-shadow: 6px 10px 0 var(--ink), 0 16px 24px rgba(15, 23, 42, 0.12);
+}
+
+.hero-polaroid.is-right {
+  z-index: 3;
+  transform: translate3d(36px, 14px, 0) rotate(7.5deg) scale(0.94);
+  box-shadow: 3px 5px 0 var(--ink);
+  opacity: 0.95;
+}
+
+.hero-polaroid.is-left {
+  z-index: 2;
+  transform: translate3d(-36px, 18px, 0) rotate(-7.5deg) scale(0.91);
+  box-shadow: 3px 5px 0 var(--ink);
+  opacity: 0.92;
+}
+
+.hero-polaroid.is-right:hover {
+  transform: translate3d(42px, 6px, 0) rotate(9deg) scale(0.97);
+  opacity: 1;
+}
+
+.hero-polaroid.is-left:hover {
+  transform: translate3d(-42px, 10px, 0) rotate(-9deg) scale(0.94);
+  opacity: 1;
+}
+
+.hero-polaroid.is-active:hover {
+  transform: translate3d(0, -8px, 0) rotate(-1deg) scale(1.02);
+}
+
+.hero-polaroid__media {
+  width: 100%;
+  height: 265px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #1e293b;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+.hero-polaroid__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 20%;
   display: block;
-  transition: transform 0.35s ease;
+  pointer-events: none;
 }
 
-.identity-card:hover .identity-card__img {
-  transform: scale(1.03);
-}
-
-.identity-card__photo-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 24px 16px 16px;
-  background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.45) 60%, transparent 100%);
+.hero-polaroid__caption {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 10px;
-}
-
-.identity-card__photo-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.identity-card__photo-name {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.3px;
-}
-
-.identity-card__photo-role {
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
   font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--lime);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--ink);
   letter-spacing: 0.5px;
+  text-transform: uppercase;
 }
 
-.identity-card__pose-pill {
+.hero-photo-deck__pills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-photo-deck__pill {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 10px;
+  gap: 4px;
+  padding: 4px 10px;
   border-radius: 999px;
   border: 1.5px solid var(--ink);
-  background: var(--lime);
-  color: var(--ink);
+  background: var(--paper);
+  color: var(--muted);
   font-family: var(--font-mono);
   font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  box-shadow: 2px 2px 0 var(--ink);
+  font-weight: 600;
   cursor: pointer;
-  transition: transform var(--transition);
-  white-space: nowrap;
+  transition: all var(--transition);
+  box-shadow: 1px 1.5px 0 var(--ink);
 }
 
-.identity-card__pose-pill:hover {
-  transform: scale(1.06);
+.hero-photo-deck__pill:hover {
+  background: #ffffff;
+  color: var(--ink);
+  transform: translateY(-1px);
 }
 
-.pose-sparkle {
+.hero-photo-deck__pill.is-active {
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: translateY(-1px);
+}
+
+.hero-photo-deck__pill-star {
   color: var(--blue-dark);
+  font-size: 10px;
+}
+
+.hero-photo-deck__profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 4px;
+  padding-top: 2px;
+}
+
+.hero-photo-deck__badge {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(13, 148, 136, 0.2);
+}
+
+.hero-photo-deck__name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+  margin: 0;
+  text-align: center;
+}
+
+.hero-photo-deck__meta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  margin: 0;
+  text-align: center;
 }
 
 .home-hero__meta {
@@ -255,10 +385,36 @@
     gap: 36px;
   }
 
-  .identity-card {
-    width: clamp(260px, 78vw, 320px);
-    height: clamp(340px, 98vw, 410px);
+  .hero-photo-deck {
+    width: 100%;
     margin-inline: auto;
+    padding-top: 8px;
+  }
+
+  .hero-photo-deck__pin {
+    left: calc(50% - 130px);
+  }
+
+  .hero-photo-deck__stage {
+    width: 250px;
+    height: 330px;
+  }
+
+  .hero-polaroid {
+    width: 218px;
+    height: 305px;
+  }
+
+  .hero-polaroid__media {
+    height: 245px;
+  }
+
+  .hero-polaroid.is-right {
+    transform: translate3d(26px, 12px, 0) rotate(7deg) scale(0.94);
+  }
+
+  .hero-polaroid.is-left {
+    transform: translate3d(-26px, 14px, 0) rotate(-7deg) scale(0.91);
   }
 
   .home-explore__heading .home-explore__link {

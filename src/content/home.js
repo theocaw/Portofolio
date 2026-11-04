@@ -11,17 +11,20 @@ export const home = {
     {
       src: '/images/profile/osanna-1.jpg',
       alt: 'Osanna Patricia Limbong - Sweet pose with finger on cheek',
-      label: 'Pose 1 of 3',
+      label: 'Dimple Smile',
+      caption: '✦ pose 01 · smile',
     },
     {
       src: '/images/profile/osanna-2.jpg',
       alt: 'Osanna Patricia Limbong - Cute pout pose in IPB blazer',
-      label: 'Pose 2 of 3',
+      label: 'Soft Pout',
+      caption: '✦ pose 02 · pout',
     },
     {
       src: '/images/profile/osanna-3.jpg',
       alt: 'Osanna Patricia Limbong - Playful tiger roar pose in IPB blazer',
-      label: 'Pose 3 of 3',
+      label: 'Tiger Pose',
+      caption: '✦ pose 03 · roar',
     },
   ],
   identityCard: {
