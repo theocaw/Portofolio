@@ -37,7 +37,7 @@
 .project__overview {
   display: flex;
   gap: 64px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .project__story {
@@ -48,9 +48,18 @@
   gap: 20px;
 }
 
-.project__label {
-  font-size: 10px;
-  line-height: 1.7;
+.project__top-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.project__num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue-dark);
+  letter-spacing: 0.5px;
 }
 
 .project__title {
@@ -313,7 +322,7 @@
 
 /* Completed Academic Projects Section Header */
 .band--completed-header {
-  background: var(--paper);
+  background: transparent;
   padding-block: clamp(32px, 4vw, 44px);
 }
 

@@ -55,7 +55,7 @@
 .internship {
   display: flex;
   gap: 64px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .internship__details {
@@ -151,7 +151,7 @@
 .organization__details {
   display: flex;
   gap: 40px;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .organization__period {

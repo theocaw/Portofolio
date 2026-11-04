@@ -74,29 +74,33 @@ function CompletedSectionHeader({ section }) {
 
         <div className="completed-headline-block">
           <h2 className="completed-main-title">{section.title}</h2>
-          <p className="completed-subtitle">{section.subtitle}</p>
+          {section.subtitle && <p className="completed-subtitle">{section.subtitle}</p>}
         </div>
       </div>
     </section>
   );
 }
 
-function Project({ project }) {
+function Project({ project, index }) {
   const dark = project.tone === 'dark';
+  const numStr = String(index + 1).padStart(2, '0');
 
   return (
     <section className={`band ${dark ? 'band--dark' : ''}`}>
       <article className="container project">
         <div className="project__overview">
           <div className="project__story">
-            <p className="project__label label">{project.label}</p>
+            <div className="project__top-bar">
+              <span className="mono project__num">{numStr}</span>
+              <span className="role-badge">{project.role}</span>
+            </div>
+
             <h2 className={`project__title ${project.longTitle ? 'project__title--long' : ''}`}>
               {project.title}
             </h2>
             <p className="project__tagline">{project.tagline}</p>
 
             <div className="project__metadata">
-              <span className="role-badge">{project.role}</span>
               <p className="mono project__meta">{project.meta}</p>
             </div>
 
@@ -135,9 +139,9 @@ export default function Work() {
       {/* Completed Projects Section Header (styled like Ongoing Projects header) */}
       {completedSection && <CompletedSectionHeader section={completedSection} />}
 
-      {/* Completed Academic Projects Ordered Chronologically (Sep 2025 → May 2026) */}
-      {projects.map((project) => (
-        <Project key={project.id} project={project} />
+      {/* Completed Academic Projects */}
+      {projects.map((project, idx) => (
+        <Project key={project.id} project={project} index={idx} />
       ))}
 
       <Link to={journeyInvitation.to} className="band band--blue journey-invitation">

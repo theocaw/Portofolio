@@ -9,12 +9,12 @@ export const work = {
     label: '02 / WORK · ACADEMIC PROJECTS · 2025—2026',
     headline: ['Questions into', 'working systems.'],
     description:
-      'Academic projects in front-end, full-stack, AR, and data analysis, ordered chronologically from the earliest created to the most recent.',
+      'Academic projects in front-end, full-stack, AR, and data analysis.',
   },
   note: {
     count: '05',
     lines: [
-      'ACADEMIC PROJECTS / ORDERED CHRONOLOGICALLY (2025 → 2026)',
+      'ACADEMIC PROJECTS (2025 → 2026)',
       'From foundational system design to full-stack, AR, and machine learning data analysis.',
     ],
   },
@@ -69,7 +69,7 @@ export const work = {
     badge: 'COMPLETED PROJECTS',
     meta: '2025 — 2026 · 05 PROJECTS',
     title: 'Completed Academic Projects',
-    subtitle: 'Five projects ordered chronologically from earliest exploration to recent work.',
+    subtitle: '',
   },
 
   projects: [
