@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import { Link } from 'react-router-dom';
 import { home } from '../content/home.js';
@@ -5,7 +6,19 @@ import { site } from '../content/site.js';
 import './Home.css';
 
 export default function Home() {
-  const { headline, identityCard, explore } = home;
+  const { headline, profilePhotos = [], explore } = home;
+  const [photoIndex, setPhotoIndex] = useState(0);
+
+  const currentPhoto = profilePhotos[photoIndex] || {
+    src: '/images/profile/osanna-1.jpg',
+    alt: 'Osanna Patricia Limbong',
+  };
+
+  const nextPose = () => {
+    if (profilePhotos.length > 1) {
+      setPhotoIndex((prev) => (prev + 1) % profilePhotos.length);
+    }
+  };
 
   return (
     <>
@@ -31,21 +44,40 @@ export default function Home() {
             </div>
           </div>
 
-          <aside className="identity-card" aria-label="Personal index">
-            <div className="identity-card__header">
-              <span>{identityCard.header}</span>
-              <span className="identity-card__x" aria-hidden="true">
-                ×
-              </span>
+          <aside
+            className="identity-card identity-card--photo"
+            aria-label="Osanna Patricia Limbong profile photo"
+            onClick={nextPose}
+            title="Klik untuk ganti pose! ✨"
+          >
+            <div className="identity-card__media">
+              <img
+                src={currentPhoto.src}
+                alt={currentPhoto.alt}
+                className="identity-card__img"
+                loading="eager"
+                draggable="false"
+              />
+              <div className="identity-card__photo-overlay">
+                <div className="identity-card__photo-info">
+                  <span className="identity-card__photo-name">Osanna Patricia L.</span>
+                  <span className="identity-card__photo-role">IPB University</span>
+                </div>
+                {profilePhotos.length > 1 && (
+                  <button
+                    type="button"
+                    className="identity-card__pose-pill"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      nextPose();
+                    }}
+                    aria-label="Next pose"
+                  >
+                    <span className="pose-sparkle">✦</span> Pose {photoIndex + 1}/{profilePhotos.length}
+                  </button>
+                )}
+              </div>
             </div>
-            <p className="identity-card__mark">{site.monogram}</p>
-            <hr className="identity-card__rule" />
-            <ul className="identity-card__roles">
-              {identityCard.roles.map((r) => (
-                <li key={r}>{r}</li>
-              ))}
-            </ul>
-            <p className="identity-card__footnote">{identityCard.footnote}</p>
           </aside>
         </div>
 

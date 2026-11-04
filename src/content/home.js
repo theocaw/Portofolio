@@ -7,6 +7,23 @@ export const home = {
     { label: 'Explore my work', to: '/work', variant: 'primary' },
     { label: 'About me', to: '/about', variant: 'secondary' },
   ],
+  profilePhotos: [
+    {
+      src: '/images/profile/osanna-1.jpg',
+      alt: 'Osanna Patricia Limbong - Sweet pose with finger on cheek',
+      label: 'Pose 1 of 3',
+    },
+    {
+      src: '/images/profile/osanna-2.jpg',
+      alt: 'Osanna Patricia Limbong - Cute pout pose in IPB blazer',
+      label: 'Pose 2 of 3',
+    },
+    {
+      src: '/images/profile/osanna-3.jpg',
+      alt: 'Osanna Patricia Limbong - Playful tiger roar pose in IPB blazer',
+      label: 'Pose 3 of 3',
+    },
+  ],
   identityCard: {
     header: 'PERSONAL INDEX / 2026',
     roles: ['01 / DATA ANALYST', '02 / FRONT-END DEVELOPER'],

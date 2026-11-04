@@ -163,6 +163,7 @@ body {
   color: var(--ink);
   font-size: 28px;
   animation: spin 12s linear infinite;
+  z-index: 3;
 }
 
 @keyframes float {
