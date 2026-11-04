@@ -196,14 +196,14 @@
 
 /* Achievements */
 .achievements {
-  display: flex;
-  gap: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px 32px;
   align-items: flex-start;
 }
 
 .achievement {
-  flex: 1 0 0;
-  min-width: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -267,7 +267,7 @@
   }
 
   .achievements {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 36px;
   }
 

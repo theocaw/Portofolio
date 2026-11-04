@@ -42,8 +42,8 @@ export const about = {
       {
         icon: '[ ∑ ]',
         title: 'Data & analysis',
-        tools: ['Python · R · SQL', 'Pandas · Matplotlib · Seaborn', 'Google Colab · Excel'],
-        description: 'Preprocessing, EDA, feature correlations, and exploration of predictive modeling.',
+        tools: ['Python · R · SQL', 'Pandas · Matplotlib · Seaborn', 'Google Colab · Google Gemini AI'],
+        description: 'Preprocessing, EDA, feature correlations, predictive modeling, and Google AI competencies.',
       },
       {
         icon: '{ / }',

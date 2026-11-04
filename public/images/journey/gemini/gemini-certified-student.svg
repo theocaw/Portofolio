@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="100%" height="100%">
+  <defs>
+    <!-- Background subtle gradient -->
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fdfdfd" />
+      <stop offset="100%" stop-color="#f8fafc" />
+    </linearGradient>
+
+    <!-- Bottom edge rainbow accent -->
+    <linearGradient id="rainbowAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4285f4" />
+      <stop offset="25%" stop-color="#9333ea" />
+      <stop offset="50%" stop-color="#ec4899" />
+      <stop offset="75%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+
+    <!-- Gemini Star gradient -->
+    <linearGradient id="geminiBlueTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a73e8" />
+      <stop offset="50%" stop-color="#00c4cc" />
+      <stop offset="100%" stop-color="#8ab4f8" />
+    </linearGradient>
+
+    <linearGradient id="geminiStarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4285F4" />
+      <stop offset="35%" stop-color="#34A853" />
+      <stop offset="70%" stop-color="#FBBC05" />
+      <stop offset="100%" stop-color="#EA4335" />
+    </linearGradient>
+
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <style>
+    .font-title { font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .font-body { font-family: 'Space Grotesk', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .font-mono { font-family: 'IBM Plex Mono', 'Space Grotesk', monospace; }
+  </style>
+
+  <!-- Outer Canvas Canvas -->
+  <rect width="1200" height="850" fill="#f1f5f9" />
+
+  <!-- Certificate White Card Container -->
+  <rect x="50" y="45" width="1100" height="760" rx="20" fill="url(#bgGrad)" stroke="#e2e8f0" stroke-width="2" filter="url(#cardShadow)" />
+
+  <!-- Bottom Colorful Strip -->
+  <path d="M 50 785 Q 50 805 70 805 L 1130 805 Q 1150 805 1150 785 L 1150 798 Q 1150 805 1140 805 L 60 805 Q 50 805 50 798 Z" fill="url(#rainbowAccent)" />
+  <rect x="52" y="796" width="1096" height="7" rx="3" fill="url(#rainbowAccent)" opacity="0.95" />
+
+  <!-- Gemini 4-Point Sparkle Icon -->
+  <g transform="translate(600, 150) scale(1.15)">
+    <!-- 4-point astroid star -->
+    <path d="M 0 -38 C 1 -12 12 -1 38 0 C 12 1 1 12 0 38 C -1 12 -12 1 -38 0 C -12 -1 -1 -12 0 -38 Z" fill="url(#geminiStarGrad)" />
+    <!-- Center white glow -->
+    <circle cx="0" cy="0" r="4.5" fill="#ffffff" opacity="0.8" />
+  </g>
+
+  <!-- Main Title: Gemini Certified Student -->
+  <text x="600" y="245" class="font-title" font-size="38" font-weight="600" fill="#202124" text-anchor="middle" letter-spacing="-0.8">Gemini Certified Student</text>
+
+  <!-- University Pill Badge -->
+  <g transform="translate(600, 275)">
+    <rect x="-65" y="0" width="130" height="28" rx="14" fill="#1a73e8" />
+    <text x="0" y="19" class="font-body" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">University</text>
+  </g>
+
+  <!-- Subtitle -->
+  <text x="600" y="355" class="font-body" font-size="16" font-weight="400" fill="#5f6368" text-anchor="middle" letter-spacing="0.2">This qualification is awarded to</text>
+
+  <!-- Candidate Name: Osanna Patricia Limbong -->
+  <text x="600" y="420" class="font-title" font-size="40" font-weight="700" fill="#202124" text-anchor="middle" letter-spacing="-1">Osanna Patricia Limbong</text>
+
+  <!-- Qualification Body Text -->
+  <text x="600" y="485" class="font-body" font-size="17" font-weight="400" fill="#5f6368" text-anchor="middle">for having demonstrated the knowledge, skills, and basic competencies needed</text>
+  <text x="600" y="515" class="font-body" font-size="17" font-weight="400" fill="#5f6368" text-anchor="middle">to use Google AI.</text>
+
+  <!-- Meta Section (Issued & Valid Through) -->
+  <g transform="translate(0, 595)">
+    <!-- Left: Issued -->
+    <text x="440" y="0" class="font-body" font-size="14" font-weight="400" fill="#5f6368" text-anchor="middle">Certificate issued on</text>
+    <text x="440" y="30" class="font-title" font-size="17" font-weight="600" fill="#202124" text-anchor="middle" letter-spacing="0.5">24/09/2026</text>
+
+    <!-- Center Divider Line -->
+    <line x1="600" y1="-8" x2="600" y2="40" stroke="#cbd5e1" stroke-width="1.5" />
+
+    <!-- Right: Valid Through -->
+    <text x="760" y="0" class="font-body" font-size="14" font-weight="400" fill="#5f6368" text-anchor="middle">Certificate valid through</text>
+    <text x="760" y="30" class="font-title" font-size="17" font-weight="600" fill="#202124" text-anchor="middle" letter-spacing="0.5">24/09/2029</text>
+  </g>
+
+  <!-- Google for Education Logo at Bottom -->
+  <g transform="translate(600, 725)">
+    <!-- Google colored text -->
+    <g transform="translate(-140, 0)">
+      <!-- G -->
+      <path d="M 12 11 A 11 11 0 1 1 11.9 11.2 L 12 11 Z" fill="none" />
+      <text x="0" y="0" class="font-title" font-size="24" font-weight="700">
+        <tspan fill="#4285F4">G</tspan><tspan fill="#EA4335">o</tspan><tspan fill="#FBBC05">o</tspan><tspan fill="#4285F4">g</tspan><tspan fill="#34A853">l</tspan><tspan fill="#EA4335">e</tspan>
+      </text>
+    </g>
+    <!-- for Education in subtle dark slate -->
+    <text x="-48" y="0" class="font-body" font-size="22" font-weight="400" fill="#5f6368" letter-spacing="-0.3">for Education</text>
+  </g>
+</svg>

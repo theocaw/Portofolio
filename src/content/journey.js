@@ -153,9 +153,26 @@ export const journey = {
     ],
   },
   achievements: {
-    label: '03 / ACHIEVEMENTS · 2025',
-    title: 'Milestones along the way.',
+    label: '03 / ACHIEVEMENTS & CERTIFICATIONS · 2025—2026',
+    title: 'Recognitions, competitions & credentials.',
     entries: [
+      {
+        result: 'Certified',
+        name: 'Gemini Certified Student',
+        organizer: 'Google for Education / SEP 2026',
+        evidence: {
+          title: 'Gemini Certified Student Certificate',
+          caption: 'Google for Education / Gemini Certified Student (University) · Issued 24/09/2026 · Valid through 24/09/2029.',
+          images: [
+            {
+              src: '/images/journey/gemini/gemini-certified-student.svg',
+              alt: 'Google Gemini Certified Student Certificate - Osanna Patricia Limbong',
+              caption: 'Google for Education / Gemini Certified Student (University) — Demonstrated knowledge and competencies in Google AI.',
+              fit: 'contain',
+            },
+          ],
+        },
+      },
       {
         result: '2nd place',
         name: 'International Short Film Competition',
