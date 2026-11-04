@@ -1,7 +1,7 @@
 /**
  * Work page content.
  *
- * Ordered chronologically from earliest created (Sep 2025) to last created (May 2026).
+ * Ordered in reverse-chronological order: latest created projects first (May 2026 -> Sep 2025).
  * Includes a dedicated On-Going Project section featuring 3 active projects: Medigo, Veriface, and Siren.
  */
 export const work = {
@@ -73,110 +73,11 @@ export const work = {
   },
 
   projects: [
-    // 01: Alumni Portal (September 2025) - Proyek paling awal dibuat
-    {
-      id: 'alumni-portal',
-      tone: 'light',
-      longTitle: true,
-      label: '01 / FRONT-END & SYSTEM DESIGN',
-      title: 'Software Engineering Technology Alumni Information System and Tracer Study Portal',
-      tagline: 'Organizing the connection between alumni and career data.',
-      role: 'System Analyst & Front-End Developer',
-      meta: 'ACADEMIC PROJECT · SEP — DEC 2025',
-      description:
-        'Designed MVC structure, UML, ERD, and wireframes for alumni career records and tracer studies. The portal includes data export and email notifications.',
-      tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-      evidence: [
-        {
-          title: 'Tim Pengembang Web Alumni TPL',
-          caption: 'Alumni Portal / Tim pengembang bersama display web portal Alumni TPL di Sekolah Vokasi IPB.',
-          images: [
-            {
-              src: '/images/work/alumni tpl/tim.jpg',
-              alt: 'Tim Pengembang Web Alumni TPL',
-              caption: 'Tim pengembang bersama display web portal Alumni TPL di Sekolah Vokasi IPB.',
-            },
-          ],
-        },
-      ],
-    },
-
-    // 02: Dthanasha Kost (Februari 2026)
-    {
-      id: 'dthanasha-kost',
-      tone: 'light',
-      label: '02 / FRONT-END & SYSTEM DESIGN',
-      title: 'Dthanasha Kost',
-      tagline: 'Making boarding-house operations easier to navigate.',
-      role: 'System Analyst & Front-End Developer',
-      meta: 'ACADEMIC PROJECT · FEB — JUN 2026',
-      description:
-        'Designed the system architecture and user interface for automated billing, room availability, and financial reports. Connected operational requirements to a structured web application.',
-      tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-      evidence: [
-        {
-          title: 'Tim Pengembang Dthanasha Kost',
-          caption: 'Dthanasha Kost / Tim pengembang aplikasi manajemen dan billing kos otomatis di kampus IPB.',
-          images: [
-            {
-              src: '/images/work/kos/tim.jpg',
-              alt: 'Tim Pengembang Dthanasha Kost',
-              caption: 'Tim pengembang aplikasi manajemen dan billing otomatis Dthanasha Kost di kampus IPB.',
-            },
-          ],
-        },
-      ],
-    },
-
-    // 03: Cafier (Maret 2026)
-    {
-      id: 'cafier',
-      tone: 'light',
-      label: '03 / FULL-STACK DEVELOPMENT',
-      title: 'Cafier',
-      tagline: 'Connecting a mobile experience with the systems behind it.',
-      role: 'Full-Stack Developer',
-      meta: 'ACADEMIC PROJECT · MAR — MAY 2026',
-      description:
-        'Built an authenticated API, an administration interface, and a React Native mobile application with payment integration. Worked across backend, admin, mobile, and payment flows.',
-      tags: ['Laravel 12', 'MongoDB', 'Sanctum', 'Midtrans PHP', 'React Native'],
-      evidence: [
-        {
-          title: 'Add project screenshot',
-          caption: 'Cafier / admin interface, mobile application, or authenticated API flow.',
-          images: [],
-          alt: '',
-        },
-      ],
-    },
-
-    // 04: canvAR (April 2026)
-    {
-      id: 'canvar',
-      tone: 'light',
-      label: '04 / ADDITIONAL EXPLORATION · AR',
-      title: 'canvAR',
-      tagline: 'An interactive way to explore the Business Model Canvas.',
-      role: '3D Modeler & AR Developer',
-      meta: 'ACADEMIC PROJECT · APR — MAY 2026',
-      description:
-        'Developed a 10-chapter BMC learning experience with progress tracking and AR marker scanning. Created 3D models and integrated them into the augmented reality workflow.',
-      tags: ['Unity', 'Blender', 'Vuforia'],
-      evidence: [
-        {
-          title: 'Add project screenshot',
-          caption: 'canvAR / BMC curriculum, 3D model, or AR marker scanning experience.',
-          images: [],
-          alt: '',
-        },
-      ],
-    },
-
-    // 05: Ames Housing (Mei 2026) - Proyek terakhir dibuat
+    // 01: Ames Housing (Mei 2026) - Proyek paling baru / Data Analysis
     {
       id: 'ames-housing',
       tone: 'light',
-      label: '05 / DATA ANALYSIS',
+      label: '01 / DATA ANALYSIS',
       title: 'Ames Housing Price Prediction Analysis',
       tagline: 'Exploring the patterns behind housing prices.',
       role: 'Data Analyst',
@@ -223,6 +124,105 @@ export const work = {
               alt: '05. Peta Segmentasi Pasar Berdasarkan Label (PCA)',
               caption: '05. Klastering (PCA): Visualisasi 2D pemetaan segmentasi pasar menjadi 3 klaster profil properti.',
               fit: 'contain',
+            },
+          ],
+        },
+      ],
+    },
+
+    // 02: canvAR (April 2026)
+    {
+      id: 'canvar',
+      tone: 'light',
+      label: '02 / ADDITIONAL EXPLORATION · AR',
+      title: 'canvAR',
+      tagline: 'An interactive way to explore the Business Model Canvas.',
+      role: '3D Modeler & AR Developer',
+      meta: 'ACADEMIC PROJECT · APR — MAY 2026',
+      description:
+        'Developed a 10-chapter BMC learning experience with progress tracking and AR marker scanning. Created 3D models and integrated them into the augmented reality workflow.',
+      tags: ['Unity', 'Blender', 'Vuforia'],
+      evidence: [
+        {
+          title: 'Add project screenshot',
+          caption: 'canvAR / BMC curriculum, 3D model, or AR marker scanning experience.',
+          images: [],
+          alt: '',
+        },
+      ],
+    },
+
+    // 03: Cafier (Maret 2026)
+    {
+      id: 'cafier',
+      tone: 'light',
+      label: '03 / FULL-STACK DEVELOPMENT',
+      title: 'Cafier',
+      tagline: 'Connecting a mobile experience with the systems behind it.',
+      role: 'Full-Stack Developer',
+      meta: 'ACADEMIC PROJECT · MAR — MAY 2026',
+      description:
+        'Built an authenticated API, an administration interface, and a React Native mobile application with payment integration. Worked across backend, admin, mobile, and payment flows.',
+      tags: ['Laravel 12', 'MongoDB', 'Sanctum', 'Midtrans PHP', 'React Native'],
+      evidence: [
+        {
+          title: 'Add project screenshot',
+          caption: 'Cafier / admin interface, mobile application, or authenticated API flow.',
+          images: [],
+          alt: '',
+        },
+      ],
+    },
+
+    // 04: Dthanasha Kost (Februari 2026)
+    {
+      id: 'dthanasha-kost',
+      tone: 'light',
+      label: '04 / FRONT-END & SYSTEM DESIGN',
+      title: 'Dthanasha Kost',
+      tagline: 'Making boarding-house operations easier to navigate.',
+      role: 'System Analyst & Front-End Developer',
+      meta: 'ACADEMIC PROJECT · FEB — JUN 2026',
+      description:
+        'Designed the system architecture and user interface for automated billing, room availability, and financial reports. Connected operational requirements to a structured web application.',
+      tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
+      evidence: [
+        {
+          title: 'Tim Pengembang Dthanasha Kost',
+          caption: 'Dthanasha Kost / Tim pengembang aplikasi manajemen dan billing kos otomatis di kampus IPB.',
+          images: [
+            {
+              src: '/images/work/kos/tim.jpg',
+              alt: 'Tim Pengembang Dthanasha Kost',
+              caption: 'Tim pengembang aplikasi manajemen dan billing otomatis Dthanasha Kost di kampus IPB.',
+            },
+          ],
+        },
+      ],
+    },
+
+    // 05: Alumni Portal (September 2025)
+    {
+      id: 'alumni-portal',
+      tone: 'light',
+      longTitle: true,
+      label: '05 / FRONT-END & SYSTEM DESIGN',
+      title: 'Software Engineering Technology Alumni Information System and Tracer Study Portal',
+      tagline: 'Organizing the connection between alumni and career data.',
+      role: 'System Analyst & Front-End Developer',
+      meta: 'ACADEMIC PROJECT · SEP — DEC 2025',
+      description:
+        'Designed MVC structure, UML, ERD, and wireframes for alumni career records and tracer studies. The portal includes data export and email notifications.',
+      tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
+      evidence: [
+        {
+          title: 'Tim Pengembang Web Alumni TPL',
+          caption: 'Alumni Portal / Tim pengembang bersama display web portal Alumni TPL di Sekolah Vokasi IPB.',
+          images: [
+            {
+              src: '/images/work/alumni tpl/tim.jpg',
+              alt: 'Tim Pengembang Web Alumni TPL',
+              caption: 'Tim pengembang bersama display web portal Alumni TPL di Sekolah Vokasi IPB.',
             },
           ],
         },

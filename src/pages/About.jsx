@@ -79,7 +79,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Toolkit */}
+      {/* Toolkit & Work invitation */}
       <section className="band band--blue-soft">
         <div className="container section toolkit">
           <p className="label">{toolkit.label}</p>
@@ -102,12 +102,11 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
 
-      {/* Work invitation */}
-      <section className="container work-invitation">
-        <h2 className="work-invitation__title">{workInvitation.title}</h2>
-        <ButtonLink to={workInvitation.action.to}>{workInvitation.action.label}</ButtonLink>
+        <div className="container work-invitation">
+          <h2 className="work-invitation__title">{workInvitation.title}</h2>
+          <ButtonLink to={workInvitation.action.to}>{workInvitation.action.label}</ButtonLink>
+        </div>
       </section>
     </>
   );

@@ -230,10 +230,10 @@
 /* Work invitation */
 .work-invitation {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding-block: 36px;
+  padding-block: 8px 56px;
 }
 
 .work-invitation__title {
