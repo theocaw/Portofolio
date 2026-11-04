@@ -13,7 +13,7 @@ export const site = {
     url: 'https://linkedin.com/in/osannapatricia',
   },
   instagram: {
-    label: '@osannaptricia',
+    label: 'instagram.com/osannaptricia',
     url: 'https://instagram.com/osannaptricia',
   },
 };

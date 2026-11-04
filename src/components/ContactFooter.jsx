@@ -12,13 +12,22 @@ export default function ContactFooter() {
 
           <div className="contact-footer__details">
             <div className="contact-footer__item">
-              <span className="label">EMAIL ↗</span>
+              <a className="contact-footer__label-link" href={`mailto:${site.email}`}>
+                <span className="label">EMAIL ↗</span>
+              </a>
               <a className="contact-footer__email" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
             </div>
             <div className="contact-footer__item">
-              <span className="label">LINKEDIN ↗</span>
+              <a
+                className="contact-footer__label-link"
+                href={site.linkedin.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="label">LINKEDIN ↗</span>
+              </a>
               <a
                 className="contact-footer__linkedin"
                 href={site.linkedin.url}
@@ -29,7 +38,14 @@ export default function ContactFooter() {
               </a>
             </div>
             <div className="contact-footer__item">
-              <span className="label">INSTAGRAM ↗</span>
+              <a
+                className="contact-footer__label-link"
+                href={site.instagram.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="label">INSTAGRAM ↗</span>
+              </a>
               <a
                 className="contact-footer__instagram"
                 href={site.instagram.url}
