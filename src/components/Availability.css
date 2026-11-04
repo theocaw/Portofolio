@@ -1,0 +1,18 @@
+.availability {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: normal;
+}
+
+.availability--blue {
+  gap: 9px;
+  color: var(--blue);
+  letter-spacing: 0.5px;
+}
+
+.availability--lime {
+  gap: 8px;
+  color: var(--lime);
+}

@@ -1,0 +1,289 @@
+/* Profile */
+.profile {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.profile__index {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile__glyph {
+  font-family: var(--font-display);
+  font-size: 144px;
+  line-height: 1;
+  letter-spacing: -12px;
+  color: var(--pink-hot);
+  white-space: nowrap;
+}
+
+.profile__facts {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.profile__narrative {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.profile__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, calc(32px + 12 * (100vw - 390px) / 1050), 44px);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+}
+
+.profile__paragraph {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.profile__focus {
+  display: flex;
+  gap: 20px;
+}
+
+.profile__focus-item {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile__focus-label {
+  font-size: 10px;
+  color: var(--blue-dark);
+}
+
+.profile__focus-item:nth-child(2) .profile__focus-label {
+  color: var(--pink-hot);
+}
+
+.profile__focus-value {
+  font-family: var(--font-display);
+  font-size: clamp(19px, calc(19px + 7 * (100vw - 390px) / 1050), 26px);
+}
+
+/* Education */
+.education {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-block: clamp(48px, calc(48px + 24 * (100vw - 390px) / 1050), 72px);
+}
+
+.education__credentials {
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.education__school {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.education__name {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(38px, calc(38px + 22 * (100vw - 390px) / 1050), 60px);
+  letter-spacing: -2px;
+}
+
+.education__degree {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+.education__languages {
+  display: flex;
+  gap: 24px;
+}
+
+.education__languages li {
+  flex: 1 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.education__language-name {
+  font-size: 14px;
+}
+
+.education__language-level {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.gpa {
+  width: 440px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 36px;
+  color: var(--ink);
+}
+
+.gpa__label {
+  font-size: 11px;
+}
+
+.gpa__value {
+  font-family: var(--font-display);
+  letter-spacing: -5px;
+  white-space: nowrap;
+}
+
+.gpa__number {
+  font-size: 96px;
+  line-height: 1;
+}
+
+.gpa__scale {
+  font-size: 26px;
+  letter-spacing: -1px;
+}
+
+.gpa__note {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Toolkit */
+.toolkit {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.toolkit__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, calc(36px + 20 * (100vw - 390px) / 1050), 56px);
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: var(--ink);
+}
+
+.toolkit__domains {
+  display: flex;
+  gap: 32px;
+}
+
+.toolkit__domain {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.toolkit__icon {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  color: var(--blue-dark);
+}
+
+.toolkit__domain-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 25px;
+  letter-spacing: -0.8px;
+  color: var(--ink);
+}
+
+.toolkit__tools {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 2;
+  color: var(--ink);
+}
+
+.toolkit__description {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* Work invitation */
+.work-invitation {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 36px;
+}
+
+.work-invitation__title {
+  max-width: 700px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(27px, calc(27px + 9 * (100vw - 390px) / 1050), 36px);
+  letter-spacing: -1px;
+}
+
+@media (max-width: 899px) {
+  .profile {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .profile__index {
+    width: 100%;
+  }
+
+  .profile__glyph {
+    font-size: 96px;
+    letter-spacing: -8px;
+  }
+
+  .education__credentials {
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+  }
+
+  .education__school {
+    width: 100%;
+  }
+
+  .gpa {
+    width: 100%;
+    padding: 26px;
+  }
+
+  .gpa__number {
+    font-size: 76px;
+  }
+
+  .toolkit__domains {
+    flex-direction: column;
+  }
+
+  .work-invitation {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

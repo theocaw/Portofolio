@@ -1,0 +1,227 @@
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, calc(28px + 12 * (100vw - 390px) / 1050), 40px);
+  padding-top: clamp(36px, calc(36px + 28 * (100vw - 390px) / 1050), 64px);
+  padding-bottom: clamp(40px, calc(40px + 12 * (100vw - 390px) / 1050), 52px);
+}
+
+.home-hero__composition {
+  display: flex;
+  align-items: flex-end;
+  gap: 48px;
+}
+
+.home-hero__intro {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.home-hero__headline {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(60px, calc(60px + 48 * (100vw - 390px) / 1050), 108px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  color: var(--ink);
+}
+
+.home-hero__headline-accent {
+  color: var(--blue);
+}
+
+.home-hero__person {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-hero__greeting {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(21px, calc(21px + 5 * (100vw - 390px) / 1050), 26px);
+  letter-spacing: -0.7px;
+}
+
+.home-hero__text {
+  max-width: 640px;
+  font-size: clamp(15px, calc(15px + 2 * (100vw - 390px) / 1050), 17px);
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.home-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Identity card */
+.identity-card {
+  width: 340px;
+  height: 360px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 26px;
+  background: var(--blue);
+  color: var(--paper);
+}
+
+.identity-card__header {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.identity-card__x {
+  font-size: 14px;
+  color: var(--lime);
+}
+
+.identity-card__mark {
+  font-family: var(--font-display);
+  font-size: 112px;
+  line-height: 1;
+  letter-spacing: -9px;
+  white-space: nowrap;
+}
+
+.identity-card__rule {
+  width: 100%;
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--white-40);
+}
+
+.identity-card__roles {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--lime);
+}
+
+.identity-card__footnote {
+  font-family: var(--font-mono);
+  font-size: 9px;
+}
+
+.home-hero__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+
+.home-hero__meta a {
+  color: var(--blue);
+}
+
+/* Explore section */
+.home-explore {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.home-explore__heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.home-explore__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(34px, calc(34px + 14 * (100vw - 390px) / 1050), 48px);
+  line-height: 1.1;
+  letter-spacing: -1.6px;
+}
+
+.home-explore__link {
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--blue);
+}
+
+.home-explore__cards {
+  display: flex;
+  gap: 24px;
+}
+
+.page-card {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 24px;
+  background: var(--paper);
+  border: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+
+.page-card:hover {
+  border-color: var(--blue);
+}
+
+.page-card__index {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--blue);
+}
+
+.page-card__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.12;
+  letter-spacing: -1px;
+}
+
+.page-card__description {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.page-card__cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--blue);
+}
+
+@media (max-width: 899px) {
+  .home-hero__composition {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 32px;
+  }
+
+  .identity-card {
+    width: 100%;
+    height: 288px;
+  }
+
+  .home-explore__heading .home-explore__link {
+    display: none;
+  }
+
+  .home-explore__cards {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

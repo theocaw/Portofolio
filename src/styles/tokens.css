@@ -1,0 +1,45 @@
+/*
+ * Design tokens: Y2K Pastel Cute / NewJeans aesthetic.
+ * Baby blue, sweet pastel pink, butter yellow, soft mint green, and retro denim ink.
+ * Bright pastel canvas, absolutely no dark gloomy backgrounds.
+ */
+:root {
+  /* Canvas */
+  --paper: #f8fbff;        /* Soft cloud sky tint */
+  --paper-2: #fffbe8;      /* Pastel butter folder cream */
+  --ink: #1a2744;          /* Retro denim navy ink */
+  --muted: #536482;        /* Soft slate denim */
+  --rule: #d5e5f7;         /* Soft pastel border line */
+
+  /* Y2K NewJeans Pastel Accents */
+  --blue: #38bdf8;         /* Signature sky / baby blue */
+  --blue-dark: #1d72b8;    /* Hover / active blue */
+  --blue-soft: #e0f2fe;    /* Light airy baby blue */
+  --pink: #fbcfe8;         /* Sweet bubblegum pastel pink */
+  --pink-soft: #fdf2f8;    /* Strawberry milk cream */
+  --pink-hot: #f472b6;     /* Cute Y2K pop pink */
+  --lime: #fef08a;         /* Pastel butter yellow (folder/star) */
+  --mint: #a7f3d0;         /* Pastel mint / clover green */
+  --mint-soft: #ecfdf5;    /* Soft mint cream */
+  --lavender: #e0e7ff;     /* Soft periwinkle / cloud */
+
+  /* Pastel Card & Accent Rules */
+  --dark-rule: #c7dcf5;
+  --dark-muted: #536482;
+  --white-40: rgba(255, 255, 255, 0.65);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Layout & Y2K Shapes */
+  --frame-max: 1440px;
+  --gutter: clamp(22px, calc(22px + 50 * (100vw - 390px) / 1050), 72px);
+  --section-y: clamp(44px, calc(44px + 20 * (100vw - 390px) / 1050), 64px);
+  --radius-button: 999px;
+  --radius-card: 24px;
+  --shadow-hard: 5px 5px 0 var(--ink);
+  --shadow-soft: 0 10px 25px -5px rgba(56, 189, 248, 0.18);
+  --transition: 180ms ease;
+}
