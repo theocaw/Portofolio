@@ -1,5 +1,6 @@
 /**
  * Journey page content supporting bilingual EN & ID translations.
+ * 100% genuine data matching Osanna's actual CV, internship, organizations, and achievements.
  */
 export const journeyData = {
   en: {
@@ -90,38 +91,58 @@ export const journeyData = {
           description:
             'Managed IDR 12.64 million and 170+ transactions for an exhibition with approximately 200 visitors.',
           evidence: {
-            title: 'Obscura Exhibition Committee',
-            caption: 'Obscura Exhibition / Photography exhibition committee team (200+ visitors).',
+            title: 'Panitia Obscura Exhibition',
+            caption: 'Obscura Exhibition / Tim kepanitiaan pameran fotografi (200+ pengunjung).',
             images: [
               {
                 src: '/images/journey/obscura exhibition/panitia.jpg',
-                alt: 'Obscura Exhibition Committee',
-                caption: 'Photography exhibition committee team that hosted 200+ visitors.',
-                fit: 'contain',
+                alt: 'Tim Panitia Obscura Exhibition',
+                caption: 'Dokumentasi tim kepanitiaan pameran fotografi Obscura Exhibition.',
               },
             ],
           },
         },
         {
-          period: 'OCT 2024',
-          name: 'Agrirun',
-          role: 'Ticketing Staff',
-          description: 'Handled ticketing distribution and registration for approximately 1,000 participants.',
+          period: 'JUN — JUL 2025',
+          name: 'AIESEC IPB · HealMe 3.0',
+          role: 'Volunteer',
+          description:
+            'Supported 2 educational sessions in 2 locations for 12 children, using 3 educational materials.',
           evidence: {
-            title: 'Add event photo',
-            caption: 'Agrirun / registration or ticketing documentation.',
-            images: [],
-            alt: '',
+            title: 'AIESEC Heal Me 3.0 Social & Education Project',
+            caption: 'Heal Me 3.0 / Series of social initiatives and children’s health education sessions.',
+            images: [
+              {
+                src: '/images/journey/aiesec/sdgs.jpg',
+                alt: 'Heal Me 3.0 Volunteer Team at SDGs IPB Monument',
+                caption: '01. SDGs IPB: Heal Me 3.0 volunteer team in front of the IPB Sustainable Development Goals monument.',
+              },
+              {
+                src: '/images/journey/aiesec/cinta baca.jpg',
+                alt: 'Interactive Learning Session with Children at Cinta Baca',
+                caption: '02. Cinta Baca: Interactive learning and education session with children.',
+              },
+              {
+                src: '/images/journey/aiesec/panti asuhan.jpg',
+                alt: 'Social Visit at Darushsholihat Orphanage',
+                caption: '03. Orphanage: Social visit at Darushsholihat Orphanage.',
+              },
+              {
+                src: '/images/journey/aiesec/presentasi akhir.jpg',
+                alt: 'Final Project Presentation Heal Me 3.0',
+                caption: '04. Final Presentation: Final presentation session on project outcomes.',
+              },
+            ],
           },
         },
         {
-          period: 'SEP 2024',
-          name: 'Gebyar Nusantara',
-          role: 'Costume Division Staff',
-          description: 'Organized and distributed traditional performance costumes for 60 performers.',
+          period: 'FEB — JUN 2025',
+          name: 'Lomba Pendidikan Karya · BEM SV IPB',
+          role: 'Competition Staff',
+          description: 'Supported a competition involving 190+ participants, 48 teams, and 2 judges.',
           evidence: {
             title: 'Add event photo',
-            caption: 'Gebyar Nusantara / costume preparation or performance photo.',
+            caption: 'Lomba Pendidikan Karya / competition or committee documentation.',
             images: [],
             alt: '',
           },
@@ -129,21 +150,23 @@ export const journeyData = {
       ],
     },
     achievements: {
-      label: '03 / RECOGNITION & AWARDS',
-      title: 'Effort acknowledged.',
+      label: '03 / ACHIEVEMENTS & CERTIFICATIONS · 2025—2026',
+      title: 'Recognitions, competitions & credentials.',
       entries: [
         {
-          result: '2nd place',
-          name: 'National Photography Competition',
-          organizer: 'National University / 2025',
+          result: 'Certified',
+          name: 'Gemini Certified Student',
+          organizer: 'Google for Education / SEP 2026',
           evidence: {
-            title: 'National Photography Certificate',
-            caption: 'National University / 2nd Place Winner Certificate for photography.',
+            title: 'Gemini Certified Student Certificate',
+            caption:
+              'Google for Education / Gemini Certified Student (University) · Issued 24/09/2026 · Valid through 24/09/2029.',
             images: [
               {
-                src: '/images/journey/lomba foto/sertif.jpg',
-                alt: 'National Photography Competition Certificate',
-                caption: '2nd Place Winner Certificate in National Photography Competition.',
+                src: '/images/journey/gemini/gemini-certified-student.svg',
+                alt: 'Google Gemini Certified Student Certificate - Osanna Patricia Limbong',
+                caption:
+                  'Google for Education / Gemini Certified Student (University) — Demonstrated knowledge and competencies in Google AI.',
                 fit: 'contain',
               },
             ],
@@ -154,13 +177,13 @@ export const journeyData = {
           name: 'International Short Film Competition',
           organizer: 'Portal 7 / 2025',
           evidence: {
-            title: 'Portal 7 Award',
-            caption: 'Portal 7 / 2nd Place award in the International Short Film Competition with team.',
+            title: 'Penghargaan 2nd Winner Portal 7',
+            caption: 'Portal 7 / Raihan Juara 2 (2nd Winner) International Short Film Competition bersama tim.',
             images: [
               {
                 src: '/images/journey/portal 7/portal.jpg',
-                alt: '2nd Place International Short Film Competition Portal 7',
-                caption: '2nd Place Winner award in International Short Film Competition Portal 7 with team.',
+                alt: 'Juara 2 International Short Film Competition Portal 7',
+                caption: 'Raihan Juara 2 (2nd Winner) International Short Film Competition Portal 7 bersama tim.',
               },
             ],
           },
@@ -266,7 +289,7 @@ export const journeyData = {
           description: 'Memproduksi 10 konten kreatif dengan rata-rata 1.000–4.000 penayangan per unggahan.',
           evidence: {
             title: 'Dokumentasi Konten',
-            caption: 'Obscura / konten yang dipublikasikan dan dokumentasi kegiatan komunitas.',
+            caption: 'Obscura / konten yang dipublikasikan dan dokumentasi organisasi.',
             images: [],
             alt: '',
           },
@@ -283,33 +306,53 @@ export const journeyData = {
             images: [
               {
                 src: '/images/journey/obscura exhibition/panitia.jpg',
-                alt: 'Panitia Obscura Exhibition',
-                caption: 'Tim kepanitiaan pameran fotografi yang menyambut 200+ pengunjung.',
-                fit: 'contain',
+                alt: 'Tim Panitia Obscura Exhibition',
+                caption: 'Dokumentasi tim kepanitiaan pameran fotografi Obscura Exhibition.',
               },
             ],
           },
         },
         {
-          period: 'OKT 2024',
-          name: 'Agrirun',
-          role: 'Staf Ticketing',
-          description: 'Menangani registrasi dan distribusi tiket untuk sekitar 1.000 peserta lari.',
+          period: 'JUN — JUL 2025',
+          name: 'AIESEC IPB · HealMe 3.0',
+          role: 'Relawan (Volunteer)',
+          description:
+            'Mendukung 2 sesi edukasi di 2 lokasi berbeda untuk 12 anak dengan 3 materi ajar interaktif.',
           evidence: {
-            title: 'Dokumentasi Acara',
-            caption: 'Agrirun / dokumentasi registrasi dan layanan tiket peserta.',
-            images: [],
-            alt: '',
+            title: 'Dokumentasi Kegiatan AIESEC Heal Me 3.0',
+            caption: 'Heal Me 3.0 / Rangkaian kegiatan sosial dan edukasi kesehatan anak.',
+            images: [
+              {
+                src: '/images/journey/aiesec/sdgs.jpg',
+                alt: 'Tim Volunteer Heal Me 3.0 di Monumen SDGs IPB',
+                caption: '01. SDGs IPB: Tim volunteer Heal Me 3.0 di depan monumen Sustainable Development Goals IPB.',
+              },
+              {
+                src: '/images/journey/aiesec/cinta baca.jpg',
+                alt: 'Sesi Belajar Bersama Anak di Cinta Baca',
+                caption: '02. Cinta Baca: Sesi belajar dan edukasi interaktif bersama anak-anak.',
+              },
+              {
+                src: '/images/journey/aiesec/panti asuhan.jpg',
+                alt: 'Kunjungan Sosial di Panti Asuhan Darushsholihat',
+                caption: '03. Panti Asuhan: Kunjungan sosial di Panti Asuhan Putri dan Balita Darushsholihat.',
+              },
+              {
+                src: '/images/journey/aiesec/presentasi akhir.jpg',
+                alt: 'Presentasi Akhir Proyek Heal Me 3.0',
+                caption: '04. Final Presentation: Sesi presentasi akhir capaian proyek sosial Heal Me 3.0.',
+              },
+            ],
           },
         },
         {
-          period: 'SEP 2024',
-          name: 'Gebyar Nusantara',
-          role: 'Staf Divisi Kostum',
-          description: 'Menyiapkan, merawat, dan mendistribusikan kostum tari tradisional untuk 60 penampil acara.',
+          period: 'FEB — JUN 2025',
+          name: 'Lomba Pendidikan Karya · BEM SV IPB',
+          role: 'Staf Panitia Lomba',
+          description: 'Mendukung pelaksanaan lomba yang melibatkan 190+ peserta, 48 tim, dan 2 juri penilai.',
           evidence: {
             title: 'Dokumentasi Acara',
-            caption: 'Gebyar Nusantara / persiapan kostum dan dokumentasi penampilan.',
+            caption: 'Lomba Pendidikan Karya / dokumentasi kepanitiaan atau perlombaan.',
             images: [],
             alt: '',
           },
@@ -317,21 +360,23 @@ export const journeyData = {
       ],
     },
     achievements: {
-      label: '03 / PRESTASI & PENGHARGAAN',
-      title: 'Apresiasi atas kerja keras.',
+      label: '03 / PRESTASI & SERTIFIKASI · 2025—2026',
+      title: 'Penghargaan, kompetisi & sertifikasi.',
       entries: [
         {
-          result: 'Juara 2',
-          name: 'Lomba Fotografi Nasional',
-          organizer: 'Universitas Nasional / 2025',
+          result: 'Tersertifikasi',
+          name: 'Gemini Certified Student',
+          organizer: 'Google for Education / SEP 2026',
           evidence: {
-            title: 'Sertifikat Juara 2 Lomba Foto',
-            caption: 'Universitas Nasional / Sertifikat Juara 2 Lomba Fotografi Tingkat Nasional.',
+            title: 'Sertifikat Gemini Certified Student',
+            caption:
+              'Google for Education / Gemini Certified Student (University) · Diterbitkan 24/09/2026 · Berlaku hingga 24/09/2029.',
             images: [
               {
-                src: '/images/journey/lomba foto/sertif.jpg',
-                alt: 'Sertifikat Juara 2 Lomba Foto Universitas Nasional',
-                caption: 'Sertifikat raihan Juara 2 Lomba Fotografi Tingkat Nasional.',
+                src: '/images/journey/gemini/gemini-certified-student.svg',
+                alt: 'Sertifikat Google Gemini Certified Student - Osanna Patricia Limbong',
+                caption:
+                  'Google for Education / Gemini Certified Student (University) — Kompetensi dan pemahaman teruji dalam Google AI.',
                 fit: 'contain',
               },
             ],
