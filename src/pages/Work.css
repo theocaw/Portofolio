@@ -422,35 +422,30 @@
   }
 }
 
-/* Journey invitation */
+/* Journey invitation (matching About's work-invitation) */
 .journey-invitation {
-  display: block;
-  transition: background-color var(--transition);
-}
-
-.journey-invitation:hover {
-  background: var(--blue-dark);
-}
-
-.journey-invitation__inner {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-block: 36px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 44px 64px;
 }
 
 .journey-invitation__title {
+  max-width: 700px;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: clamp(30px, calc(30px + 14 * (100vw - 390px) / 1050), 44px);
-  letter-spacing: -1.4px;
-  color: var(--paper);
+  font-size: clamp(27px, calc(27px + 9 * (100vw - 390px) / 1050), 36px);
+  letter-spacing: -1px;
+  color: var(--ink);
 }
 
-.journey-invitation__cta {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--lime);
+@media (max-width: 899px) {
+  .journey-invitation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 }
 
 @media (max-width: 899px) {

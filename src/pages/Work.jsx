@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import ButtonLink from '../components/ButtonLink.jsx';
 import PageIntro from '../components/PageIntro.jsx';
 import Evidence from '../components/Evidence.jsx';
 import { work } from '../content/work.js';
@@ -144,12 +144,13 @@ export default function Work() {
         <Project key={project.id} project={project} index={idx} />
       ))}
 
-      <Link to={journeyInvitation.to} className="band band--blue journey-invitation">
-        <div className="container journey-invitation__inner">
-          <h2 className="journey-invitation__title">{journeyInvitation.title}</h2>
-          <p className="journey-invitation__cta">{journeyInvitation.cta}</p>
-        </div>
-      </Link>
+      {/* Journey Invitation (styled matching About page invitation) */}
+      <section className="container journey-invitation">
+        <h2 className="journey-invitation__title">{journeyInvitation.title}</h2>
+        <ButtonLink to={journeyInvitation.action?.to || journeyInvitation.to}>
+          {journeyInvitation.action?.label || journeyInvitation.cta || 'Explore my journey ↗'}
+        </ButtonLink>
+      </section>
     </>
   );
 }

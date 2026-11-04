@@ -15,7 +15,6 @@ export const journey = {
   professional: {
     label: '01 / PROFESSIONAL EXPERIENCE',
     title: 'A first step into the workplace.',
-    note: ['WORK EXPERIENCE ONLY', 'ORGANIZATIONS FOLLOW IN A SEPARATE SECTION.'],
     internship: {
       period: 'MAY — JUL 2024',
       company: 'PT Kharisma Citatunggal',

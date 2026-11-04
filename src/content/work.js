@@ -231,7 +231,9 @@ export const work = {
   ],
   journeyInvitation: {
     title: 'There’s learning beyond these projects.',
-    cta: 'EXPLORE MY PROFESSIONAL & ORGANIZATIONAL JOURNEY ↗',
-    to: '/journey',
+    action: {
+      label: 'Explore my journey ↗',
+      to: '/journey',
+    },
   },
 };

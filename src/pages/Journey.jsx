@@ -16,11 +16,13 @@ export default function Journey() {
         <p className="label">{professional.label}</p>
         <div className="journey-heading">
           <h2 className="journey-heading__title">{professional.title}</h2>
-          <p className="mono journey-heading__note">
-            {professional.note.map((line) => (
-              <span key={line}>{line}</span>
-            ))}
-          </p>
+          {professional.note && (
+            <p className="mono journey-heading__note">
+              {professional.note.map((line) => (
+                <span key={line}>{line}</span>
+              ))}
+            </p>
+          )}
         </div>
         <hr className="rule" />
 
