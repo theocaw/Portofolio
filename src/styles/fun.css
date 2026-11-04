@@ -327,15 +327,6 @@ body {
   border-block: 2px solid var(--ink);
 }
 
-.journey-invitation {
-  background: var(--blue);
-  color: #ffffff;
-}
-
-.journey-invitation:hover {
-  background: var(--blue-dark);
-}
-
 /* Toolkit cards: bright white stickers with ink outline */
 .toolkit__domain {
   padding: 24px;
