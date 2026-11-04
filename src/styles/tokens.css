@@ -1,7 +1,7 @@
 /*
  * Design tokens: Y2K Pastel Cute / NewJeans aesthetic.
  * Baby blue, sweet pastel pink, butter yellow, soft mint green, and retro denim ink.
- * Bright pastel canvas, absolutely no dark gloomy backgrounds.
+ * Supports Light mode (cloud pastel) and Dark mode (cyber midnight pastel).
  */
 :root {
   /* Canvas */
@@ -42,4 +42,32 @@
   --shadow-hard: 5px 5px 0 var(--ink);
   --shadow-soft: 0 10px 25px -5px rgba(56, 189, 248, 0.18);
   --transition: 180ms ease;
+}
+
+[data-theme='dark'] {
+  /* Midnight Cyber-Pastel Palette */
+  --paper: #090e1a;        /* Midnight obsidian canvas */
+  --paper-2: #121c2e;      /* Elevated deep navy container */
+  --ink: #f8fafc;          /* Crisp high-contrast white text */
+  --muted: #94a3b8;        /* Clean slate muted text */
+  --rule: #1e2c44;         /* Subtle midnight border line */
+
+  /* Cyber Y2K Accents */
+  --blue: #38bdf8;         /* Electric cyan / baby blue */
+  --blue-dark: #0284c7;    /* Deep sky */
+  --blue-soft: #0e1e36;    /* Dark navy blue band */
+  --pink: #f472b6;         /* Luminescent bubblegum pink */
+  --pink-soft: #241427;    /* Dark berry tint */
+  --pink-hot: #fb7185;     /* Cyber rose */
+  --lime: #fde047;         /* Luminescent butter yellow */
+  --mint: #34d399;         /* Vibrant clover mint */
+  --mint-soft: #0e2621;    /* Deep forest mint band */
+  --lavender: #818cf8;     /* Cyber periwinkle */
+
+  --dark-rule: #334155;
+  --dark-muted: #cbd5e1;
+  --white-40: rgba(18, 28, 46, 0.7);
+
+  --shadow-hard: 4px 4px 0 #000000;
+  --shadow-soft: 0 10px 25px -5px rgba(56, 189, 248, 0.25);
 }

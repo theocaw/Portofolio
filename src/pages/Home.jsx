@@ -1,10 +1,13 @@
 import { useState, useRef } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import { Link } from 'react-router-dom';
-import { home } from '../content/home.js';
+import { useApp } from '../context/AppContext.jsx';
+import { getHomeContent } from '../content/home.js';
 import './Home.css';
 
 export default function Home() {
+  const { lang } = useApp();
+  const home = getHomeContent(lang);
   const { headline, profilePhotos = [], explore } = home;
   const [photoIndex, setPhotoIndex] = useState(0);
 
@@ -98,7 +101,7 @@ export default function Home() {
             >
               <div
                 className="hero-photo-deck__pin"
-                title="Klik foto untuk ganti pose! ✨"
+                title={lang === 'id' ? 'Klik foto untuk ganti pose! ✨' : 'Click photo to switch pose! ✨'}
                 aria-hidden="true"
                 onClick={() => setPhotoIndex((prev) => (prev + 1) % profilePhotos.length)}
               >
@@ -127,7 +130,11 @@ export default function Home() {
                           setPhotoIndex(idx);
                         }
                       }}
-                      title="Geser (swipe) atau klik untuk ganti pose! ✨"
+                      title={
+                        lang === 'id'
+                          ? 'Geser (swipe) atau klik untuk ganti pose! ✨'
+                          : 'Swipe or click to change pose! ✨'
+                      }
                       aria-label={`${photo.label} - Pose ${idx + 1}`}
                     >
                       <div className="hero-polaroid__media">
@@ -148,7 +155,11 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="hero-photo-deck__pills" role="tablist" aria-label="Pilih pose">
+            <div
+              className="hero-photo-deck__pills"
+              role="tablist"
+              aria-label={lang === 'id' ? 'Pilih pose foto' : 'Select photo pose'}
+            >
               {profilePhotos.map((photo, idx) => (
                 <button
                   key={photo.src}

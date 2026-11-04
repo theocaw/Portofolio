@@ -1,9 +1,12 @@
 import PageIntro from '../components/PageIntro.jsx';
 import Evidence from '../components/Evidence.jsx';
-import { journey } from '../content/journey.js';
+import { useApp } from '../context/AppContext.jsx';
+import { getJourneyContent } from '../content/journey.js';
 import './Journey.css';
 
 export default function Journey() {
+  const { lang } = useApp();
+  const journey = getJourneyContent(lang);
   const { intro, professional, organizations, achievements } = journey;
   const { internship } = professional;
 
@@ -68,15 +71,13 @@ export default function Journey() {
               <article key={entry.name} className="organization">
                 <hr className="rule" />
                 <div className="organization__details">
-                  <p className="mono organization__period">{entry.period}</p>
-                  <div className="organization__story">
-                    <h3 className="organization__name">{entry.name}</h3>
-                    <p className="mono organization__role">{entry.role}</p>
-                    <p className="organization__description">{entry.description}</p>
-                  </div>
-                  <div className="organization__evidence">
-                    <Evidence {...entry.evidence} heights={{ desktop: 260, mobile: 210 }} />
-                  </div>
+                  <p className="label">{entry.period}</p>
+                  <h3 className="organization__name">{entry.name}</h3>
+                  <p className="organization__role">{entry.role}</p>
+                  <p className="organization__description">{entry.description}</p>
+                </div>
+                <div className="organization__evidence">
+                  <Evidence {...entry.evidence} heights={{ desktop: 300, mobile: 200 }} />
                 </div>
               </article>
             ))}
@@ -85,25 +86,28 @@ export default function Journey() {
       </section>
 
       {/* Achievements */}
-      <section className="band band--blue-soft">
-        <div className="container section journey-section">
-          <p className="label">{achievements.label}</p>
-          <h2 className="journey-heading__title journey-heading__title--large journey-heading__title--light">
-            {achievements.title}
-          </h2>
-          <div className="achievements">
-            {achievements.entries.map((a) => (
-              <article key={a.name} className="achievement">
-                <hr className="rule" />
-                <p className="achievement__result">{a.result}</p>
+      <section className="container section journey-section">
+        <p className="label">{achievements.label}</p>
+        <h2 className="journey-heading__title journey-heading__title--large">{achievements.title}</h2>
+        <div className="achievements">
+          {achievements.entries.map((a, idx) => (
+            <article key={idx} className="achievement">
+              <hr className="rule" />
+              <div className="achievement__overview">
                 <div className="achievement__details">
+                  <div className="badge badge--achievement">
+                    <span>{a.result}</span>
+                  </div>
                   <h3 className="achievement__name">{a.name}</h3>
-                  <p className="mono achievement__organizer">{a.organizer}</p>
+                  <p className="achievement__organizer">{a.organizer}</p>
                 </div>
-                <Evidence {...a.evidence} heights={{ desktop: 280, mobile: 230 }} tone="light" />
-              </article>
-            ))}
-          </div>
+
+                <div className="achievement__evidence">
+                  <Evidence {...a.evidence} heights={{ desktop: 300, mobile: 200 }} />
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
     </>

@@ -2,22 +2,25 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import SiteHeader from './SiteHeader.jsx';
 import ContactFooter from './ContactFooter.jsx';
-import { site } from '../content/site.js';
-
-const titles = {
-  '/': `${site.name} — Portfolio`,
-  '/about': `About — ${site.name}`,
-  '/work': `Work — ${site.name}`,
-  '/journey': `Journey — ${site.name}`,
-};
+import { useApp } from '../context/AppContext.jsx';
+import { getSiteContent } from '../content/site.js';
 
 export default function Layout() {
   const { pathname, hash } = useLocation();
+  const { lang } = useApp();
+  const site = getSiteContent(lang);
+
+  const titles = {
+    '/': `${site.name} — ${lang === 'id' ? 'Portofolio' : 'Portfolio'}`,
+    '/about': `${lang === 'id' ? 'Tentang' : 'About'} — ${site.name}`,
+    '/work': `${lang === 'id' ? 'Proyek' : 'Work'} — ${site.name}`,
+    '/journey': `${lang === 'id' ? 'Perjalanan' : 'Journey'} — ${site.name}`,
+  };
 
   useEffect(() => {
     document.title = titles[pathname] ?? titles['/'];
     if (!hash) window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname, hash]);
+  }, [pathname, hash, lang]);
 
   // Fade-and-rise animation for blocks as they scroll into view.
   useEffect(() => {

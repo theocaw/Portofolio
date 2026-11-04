@@ -1,12 +1,13 @@
 import ButtonLink from '../components/ButtonLink.jsx';
 import PageIntro from '../components/PageIntro.jsx';
 import Evidence from '../components/Evidence.jsx';
-import { work } from '../content/work.js';
+import { useApp } from '../context/AppContext.jsx';
+import { getWorkContent } from '../content/work.js';
 import './Work.css';
 
 const EVIDENCE_HEIGHT = { desktop: 440, mobile: 280 };
 
-function OngoingSection({ section }) {
+function OngoingSection({ section, lang }) {
   if (!section || !section.items?.length) return null;
 
   return (
@@ -14,9 +15,12 @@ function OngoingSection({ section }) {
       <div className="container ongoing-container">
         <div className="ongoing-header">
           <div className="ongoing-badge">
-            <span className="ongoing-dot" /> {section.badge || 'ON GOING PROJECTS'}
+            <span className="ongoing-dot" />{' '}
+            {section.badge || (lang === 'id' ? 'PROYEK SEDANG BERJALAN' : 'ON GOING PROJECTS')}
           </div>
-          <span className="mono ongoing-meta">2026 · IN ACTIVE DEVELOPMENT</span>
+          <span className="mono ongoing-meta">
+            {section.meta || (lang === 'id' ? '2026 · TAHAP PENGEMBANGAN AKTIF' : '2026 · IN ACTIVE DEVELOPMENT')}
+          </span>
         </div>
 
         <div className="ongoing-headline-block">
@@ -59,7 +63,7 @@ function OngoingSection({ section }) {
   );
 }
 
-function CompletedSectionHeader({ section }) {
+function CompletedSectionHeader({ section, lang }) {
   if (!section) return null;
 
   return (
@@ -67,7 +71,8 @@ function CompletedSectionHeader({ section }) {
       <div className="container completed-container">
         <div className="completed-header">
           <div className="completed-badge">
-            <span className="completed-badge__icon">✦</span> {section.badge || 'COMPLETED PROJECTS'}
+            <span className="completed-badge__icon">✦</span>{' '}
+            {section.badge || (lang === 'id' ? 'PROYEK SELESAI' : 'COMPLETED PROJECTS')}
           </div>
           <span className="mono completed-meta">{section.meta}</span>
         </div>
@@ -117,7 +122,12 @@ function Project({ project, index }) {
 
           <div className="project__evidence">
             {project.evidence.map((item) => (
-              <Evidence key={item.title} {...item} heights={EVIDENCE_HEIGHT} tone={dark ? 'dark' : 'light'} />
+              <Evidence
+                key={item.title}
+                {...item}
+                heights={EVIDENCE_HEIGHT}
+                tone={dark ? 'dark' : 'light'}
+              />
             ))}
           </div>
         </div>
@@ -127,6 +137,8 @@ function Project({ project, index }) {
 }
 
 export default function Work() {
+  const { lang } = useApp();
+  const work = getWorkContent(lang);
   const { intro, ongoingSection, completedSection, projects, journeyInvitation } = work;
 
   return (
@@ -134,10 +146,10 @@ export default function Work() {
       <PageIntro {...intro} />
 
       {/* On-Going Projects Section (3 projects: Medigo, Veriface, Siren) */}
-      {ongoingSection && <OngoingSection section={ongoingSection} />}
+      {ongoingSection && <OngoingSection section={ongoingSection} lang={lang} />}
 
-      {/* Completed Projects Section Header (styled like Ongoing Projects header) */}
-      {completedSection && <CompletedSectionHeader section={completedSection} />}
+      {/* Completed Projects Section Header */}
+      {completedSection && <CompletedSectionHeader section={completedSection} lang={lang} />}
 
       {/* Completed Academic Projects */}
       {projects.map((project, idx) => (
@@ -148,7 +160,9 @@ export default function Work() {
       <section className="container journey-invitation">
         <h2 className="journey-invitation__title">{journeyInvitation.title}</h2>
         <ButtonLink to={journeyInvitation.action?.to || journeyInvitation.to}>
-          {journeyInvitation.action?.label || journeyInvitation.cta || 'Explore my journey ↗'}
+          {journeyInvitation.action?.label ||
+            journeyInvitation.cta ||
+            (lang === 'id' ? 'Jelajahi perjalananku ↗' : 'Explore my journey ↗')}
         </ButtonLink>
       </section>
     </>

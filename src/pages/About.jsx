@@ -1,9 +1,12 @@
 import PageIntro from '../components/PageIntro.jsx';
 import ButtonLink from '../components/ButtonLink.jsx';
-import { about } from '../content/about.js';
+import { useApp } from '../context/AppContext.jsx';
+import { getAboutContent } from '../content/about.js';
 import './About.css';
 
 export default function About() {
+  const { lang } = useApp();
+  const about = getAboutContent(lang);
   const { intro, profile, education, toolkit, workInvitation } = about;
 
   return (
@@ -101,11 +104,11 @@ export default function About() {
               </article>
             ))}
           </div>
-        </div>
 
-        <div className="container work-invitation">
-          <h2 className="work-invitation__title">{workInvitation.title}</h2>
-          <ButtonLink to={workInvitation.action.to}>{workInvitation.action.label}</ButtonLink>
+          <div className="work-invitation">
+            <h3 className="work-invitation__title">{workInvitation.title}</h3>
+            <ButtonLink to={workInvitation.action.to}>{workInvitation.action.label}</ButtonLink>
+          </div>
         </div>
       </section>
     </>

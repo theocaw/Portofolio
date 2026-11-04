@@ -1,7 +1,12 @@
-import { site, contact } from '../content/site.js';
+import { useApp } from '../context/AppContext.jsx';
+import { getSiteContent } from '../content/site.js';
 import './ContactFooter.css';
 
 export default function ContactFooter() {
+  const { lang } = useApp();
+  const site = getSiteContent(lang);
+  const contact = site.contact;
+
   return (
     <footer className="band band--paper-2 contact-footer" id="contact">
       <div className="container contact-footer__inner">
@@ -58,12 +63,14 @@ export default function ContactFooter() {
           </div>
         </div>
 
-        <hr className="rule" />
-
-        <div className="contact-footer__signature">
-          <span className="contact-footer__monogram">{site.monogram}</span>
-          <p className="contact-footer__meta">
-            <span>{site.name.toUpperCase()}</span>
+        <div className="contact-footer__colophon">
+          <p className="mono contact-footer__built">
+            {lang === 'id'
+              ? 'DIDESAIN & DIKEMBANGKAN DENGAN CINTA & PRESISI'
+              : 'DESIGNED & BUILT WITH CARE AND CRAFT'}
+          </p>
+          <p className="contact-footer__copy-mark">
+            © {site.name} · {new Date().getFullYear()}
           </p>
         </div>
       </div>
