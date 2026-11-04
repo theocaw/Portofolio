@@ -6,7 +6,6 @@ export const site = {
   monogram: 'op/l.',
   name: 'Osanna Patricia Limbong',
   nameLines: ['OSANNA PATRICIA', 'LIMBONG'],
-  location: 'Jakarta Pusat, Indonesia',
   email: 'osannapatricia@gmail.com',
   linkedin: {
     label: 'linkedin.com/in/osannapatricia',

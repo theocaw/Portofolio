@@ -8,7 +8,7 @@ export const about = {
   profile: {
     label: 'THE PERSON / THE DIRECTION',
     glyph: '{×}',
-    facts: ['OSANNA PATRICIA LIMBONG', 'JAKARTA PUSAT, INDONESIA', 'SOFTWARE ENGINEERING STUDENT'],
+    facts: ['OSANNA PATRICIA LIMBONG', 'SOFTWARE ENGINEERING STUDENT'],
     title: 'An analytical mindset. A practical approach to building.',
     paragraphs: [
       'I’m a Software Engineering student at IPB University, seeking an internship as a Data Analyst or Front-End Developer. My academic work spans exploratory data analysis, system design, and web and mobile applications.',

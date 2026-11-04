@@ -2,7 +2,6 @@ import { useState } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import { Link } from 'react-router-dom';
 import { home } from '../content/home.js';
-import { site } from '../content/site.js';
 import './Home.css';
 
 export default function Home() {
@@ -94,19 +93,12 @@ export default function Home() {
                 </button>
               ))}
             </div>
-
-            <div className="hero-photo-deck__profile">
-              <span className="hero-photo-deck__badge">PERSONAL INDEX · 2026</span>
-              <h2 className="hero-photo-deck__name">Osanna Patricia Limbong</h2>
-              <p className="hero-photo-deck__meta">Software Engineering · IPB University</p>
-            </div>
           </aside>
         </div>
 
         <hr className="rule" />
 
         <div className="home-hero__meta">
-          <span>{site.location.toUpperCase()}</span>
           <a href="#explore">{home.scrollCue}</a>
         </div>
       </section>

@@ -63,7 +63,6 @@ export default function ContactFooter() {
         <div className="contact-footer__signature">
           <span className="contact-footer__monogram">{site.monogram}</span>
           <p className="contact-footer__meta">
-            <span>{site.location.toUpperCase()}</span>
             <span>{site.name.toUpperCase()}</span>
           </p>
         </div>
