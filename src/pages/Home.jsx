@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import { Link } from 'react-router-dom';
 import { home } from '../content/home.js';
@@ -7,6 +7,56 @@ import './Home.css';
 export default function Home() {
   const { headline, profilePhotos = [], explore } = home;
   const [photoIndex, setPhotoIndex] = useState(0);
+
+  const swipeStartX = useRef(null);
+  const swipeStartY = useRef(null);
+  const didSwipe = useRef(false);
+
+  const onSwipeStart = (clientX, clientY) => {
+    swipeStartX.current = clientX;
+    swipeStartY.current = clientY;
+    didSwipe.current = false;
+  };
+
+  const onSwipeMove = (clientX, clientY) => {
+    if (swipeStartX.current === null) return;
+    const deltaX = clientX - swipeStartX.current;
+    const deltaY = clientY - swipeStartY.current;
+    if (Math.abs(deltaX) > 10 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      didSwipe.current = true;
+    }
+  };
+
+  const onSwipeEnd = (clientX, clientY) => {
+    if (swipeStartX.current === null) return;
+    const deltaX = clientX - swipeStartX.current;
+    const deltaY = clientY - swipeStartY.current;
+
+    // Minimum swipe threshold: 30px horizontally, dominant over vertical scroll
+    if (Math.abs(deltaX) > 30 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      didSwipe.current = true;
+      if (deltaX < 0) {
+        // Swiped left -> next photo
+        setPhotoIndex((prev) => (prev + 1) % profilePhotos.length);
+      } else {
+        // Swiped right -> previous photo
+        setPhotoIndex((prev) => (prev - 1 + profilePhotos.length) % profilePhotos.length);
+      }
+    }
+
+    swipeStartX.current = null;
+    swipeStartY.current = null;
+
+    setTimeout(() => {
+      didSwipe.current = false;
+    }, 120);
+  };
+
+  const onSwipeCancel = () => {
+    swipeStartX.current = null;
+    swipeStartY.current = null;
+    didSwipe.current = false;
+  };
 
   return (
     <>
@@ -33,8 +83,25 @@ export default function Home() {
           </div>
 
           <aside className="hero-photo-deck" aria-label="Osanna Patricia Limbong photos">
-            <div className="hero-photo-deck__stage-wrapper">
-              <div className="hero-photo-deck__pin" title="Klik foto untuk ganti pose! ✨" aria-hidden="true">
+            <div
+              className="hero-photo-deck__stage-wrapper"
+              onTouchStart={(e) => onSwipeStart(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchMove={(e) => onSwipeMove(e.touches[0].clientX, e.touches[0].clientY)}
+              onTouchEnd={(e) => onSwipeEnd(e.changedTouches[0].clientX, e.changedTouches[0].clientY)}
+              onTouchCancel={onSwipeCancel}
+              onMouseDown={(e) => onSwipeStart(e.clientX, e.clientY)}
+              onMouseMove={(e) => {
+                if (e.buttons === 1) onSwipeMove(e.clientX, e.clientY);
+              }}
+              onMouseUp={(e) => onSwipeEnd(e.clientX, e.clientY)}
+              onMouseLeave={onSwipeCancel}
+            >
+              <div
+                className="hero-photo-deck__pin"
+                title="Klik foto untuk ganti pose! ✨"
+                aria-hidden="true"
+                onClick={() => setPhotoIndex((prev) => (prev + 1) % profilePhotos.length)}
+              >
                 <span className="hero-photo-deck__star">★</span>
               </div>
 
@@ -48,7 +115,10 @@ export default function Home() {
                     <div
                       key={photo.src}
                       className={`hero-polaroid ${cardState}`}
-                      onClick={() => setPhotoIndex(idx)}
+                      onClick={() => {
+                        if (didSwipe.current) return;
+                        setPhotoIndex(idx);
+                      }}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(e) => {
@@ -57,7 +127,7 @@ export default function Home() {
                           setPhotoIndex(idx);
                         }
                       }}
-                      title="Klik untuk bawa pose ini ke depan! ✨"
+                      title="Geser (swipe) atau klik untuk ganti pose! ✨"
                       aria-label={`${photo.label} - Pose ${idx + 1}`}
                     >
                       <div className="hero-polaroid__media">
