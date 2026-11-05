@@ -1,0 +1,399 @@
+/* Pinyo Companion (Hirono Little Monster Plush Pendant) */
+:root {
+  --pinyo-ring: #251a16;
+  --pinyo-beanie: #47525d;
+  --pinyo-beanie-crown: #4e5b68;
+  --pinyo-beanie-rib: #333d47;
+  --pinyo-tassel: #38434e;
+  --pinyo-body: #4c372c;
+  --pinyo-fluff: #ffffff;
+  --pinyo-skin: #feddc9;
+  --pinyo-blush: #f87171;
+  --pinyo-hair: #f78585;
+  --pinyo-hair-stroke: #2e1915;
+}
+
+[data-theme='dark'] {
+  --pinyo-ring: #0f172a;
+  --pinyo-beanie: #334155;
+  --pinyo-beanie-crown: #3b4c63;
+  --pinyo-beanie-rib: #1e293b;
+  --pinyo-tassel: #2e3a4b;
+  --pinyo-body: #3c2920;
+  --pinyo-fluff: #e2e8f0;
+  --pinyo-skin: #fcd5c1;
+  --pinyo-blush: #fb7185;
+  --pinyo-hair: #fb7185;
+  --pinyo-hair-stroke: #1e0d0b;
+}
+
+/* Floating Container (Bottom Right) */
+.pinyo-widget-container {
+  position: fixed;
+  bottom: 20px;
+  right: 22px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none; /* Let empty space click through */
+  user-select: none;
+  font-family: var(--font-mono);
+}
+
+/* Speech Bubble */
+.pinyo-speech-bubble {
+  pointer-events: auto;
+  max-width: 240px;
+  background: var(--paper, #ffffff);
+  color: var(--ink, #1a2744);
+  border: 2px solid var(--ink, #1a2744);
+  border-radius: 14px;
+  padding: 8px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  box-shadow: 3px 3px 0 var(--ink, #1a2744);
+  margin-bottom: 8px;
+  margin-right: 12px;
+  position: relative;
+  animation: pinyoBubblePop 220ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  word-break: break-word;
+}
+
+.pinyo-speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  right: 28px;
+  width: 10px;
+  height: 10px;
+  background: var(--paper, #ffffff);
+  border-right: 2px solid var(--ink, #1a2744);
+  border-bottom: 2px solid var(--ink, #1a2744);
+  transform: rotate(45deg);
+}
+
+@keyframes pinyoBubblePop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Floating Sparkles & Treats */
+.pinyo-floating-sparkle {
+  position: absolute;
+  bottom: 100px;
+  right: 50px;
+  font-size: 20px;
+  pointer-events: none;
+  animation: pinyoSparkleFloat 1.2s ease-out forwards;
+}
+
+@keyframes pinyoSparkleFloat {
+  0% {
+    opacity: 1;
+    transform: translate(var(--offset-x, 0), 0) scale(0.6);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(calc(var(--offset-x, 0) * 1.5), -35px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(var(--offset-x, 0) * 2), -70px) scale(1);
+  }
+}
+
+/* Main Pinyo Card Container */
+.pinyo-card {
+  pointer-events: auto;
+  position: relative;
+  background: var(--paper-2, #fffbe8);
+  border: 2px solid var(--ink, #1a2744);
+  border-radius: 20px;
+  padding: 8px 8px 6px 8px;
+  box-shadow: 4px 4px 0 var(--ink, #1a2744);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  width: 110px;
+}
+
+.pinyo-card:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 5px 6px 0 var(--ink, #1a2744);
+}
+
+.pinyo-card:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 2px 2px 0 var(--ink, #1a2744);
+}
+
+/* Plush Keychain Assembly & Swing Physics */
+.pinyo-assembly {
+  transform-origin: 50% 10%;
+  animation: pinyoAmbientBob 3.8s ease-in-out infinite;
+  display: block;
+  width: 100%;
+}
+
+.pinyo-assembly.is-swinging {
+  animation: pinyoDollSwing 2.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes pinyoDollSwing {
+  0% { transform: rotate(0deg); }
+  18% { transform: rotate(14deg); }
+  38% { transform: rotate(-11deg); }
+  58% { transform: rotate(6deg); }
+  78% { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pinyoAmbientBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+/* SVG Rendering */
+.pinyo-svg {
+  width: 96px;
+  height: 122px;
+  display: block;
+  overflow: visible;
+  margin: 0 auto;
+}
+
+/* Ring Clickable zone */
+.pinyo-ring-group {
+  cursor: grab;
+  transition: transform 140ms ease;
+}
+.pinyo-ring-group:hover {
+  transform: scale(1.1);
+  transform-origin: 110px 18px;
+}
+
+/* Tassel Sway */
+.pinyo-tassel-left {
+  transform-origin: 58px 136px;
+  animation: pinyoTasselL 3s ease-in-out infinite;
+}
+.pinyo-tassel-right {
+  transform-origin: 162px 136px;
+  animation: pinyoTasselR 3s ease-in-out infinite 0.4s;
+}
+
+@keyframes pinyoTasselL {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-5deg); }
+}
+@keyframes pinyoTasselR {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+/* Wings Flapping */
+.pinyo-wing-left {
+  transform-origin: 76px 164px;
+  transition: transform 200ms ease;
+}
+.pinyo-wing-right {
+  transform-origin: 144px 164px;
+  transition: transform 200ms ease;
+}
+
+.pinyo-card.is-flapping .pinyo-wing-left {
+  animation: pinyoFlapL 300ms ease infinite alternate;
+}
+.pinyo-card.is-flapping .pinyo-wing-right {
+  animation: pinyoFlapR 300ms ease infinite alternate;
+}
+
+@keyframes pinyoFlapL {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-18deg) translateY(-2px); }
+}
+@keyframes pinyoFlapR {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(18deg) translateY(-2px); }
+}
+
+/* Sleep State */
+.pinyo-card.is-napping .pinyo-assembly {
+  animation: pinyoBreathe 3s ease-in-out infinite;
+}
+
+@keyframes pinyoBreathe {
+  0%, 100% { transform: scale(1) translateY(0); }
+  50% { transform: scale(0.98) translateY(1.5px); }
+}
+
+.pinyo-sleep-z {
+  font-family: var(--font-display, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  fill: var(--blue, #38bdf8);
+  animation: pinyoZFloat 2s ease-in-out infinite;
+}
+
+.pinyo-sleep-z--lg {
+  font-size: 14px;
+  animation-delay: 0.6s;
+}
+
+@keyframes pinyoZFloat {
+  0% { opacity: 0; transform: translateY(2px); }
+  50% { opacity: 0.9; transform: translateY(-3px); }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+
+/* Controls Tray */
+.pinyo-tray {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4px;
+  padding-top: 4px;
+  border-top: 1px dashed var(--rule, #d5e5f7);
+  gap: 4px;
+}
+
+.pinyo-counter-tag {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--ink, #1a2744);
+  background: var(--lime, #fef08a);
+  border: 1px solid var(--ink, #1a2744);
+  border-radius: 999px;
+  padding: 1px 6px;
+  line-height: 1.3;
+}
+
+[data-theme='dark'] .pinyo-counter-tag {
+  background: var(--lime, #fde047);
+  color: #090e1a;
+}
+
+.pinyo-action-btn {
+  background: var(--pink, #fbcfe8);
+  border: 1px solid var(--ink, #1a2744);
+  border-radius: 999px;
+  font-size: 11px;
+  padding: 1px 6px;
+  cursor: pointer;
+  line-height: 1.2;
+  transition: transform 120ms ease;
+}
+
+.pinyo-action-btn:hover {
+  transform: scale(1.15);
+  background: var(--pink-hot, #f472b6);
+}
+
+.pinyo-close-dot {
+  background: transparent;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted, #536482);
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 120ms ease;
+}
+
+.pinyo-close-dot:hover {
+  color: var(--ink, #1a2744);
+}
+
+/* Minimized Floating Pill Button */
+.pinyo-minimized-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 22px;
+  z-index: 100;
+  background: var(--paper-2, #fffbe8);
+  border: 2px solid var(--ink, #1a2744);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink, #1a2744);
+  box-shadow: 3px 3px 0 var(--ink, #1a2744);
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pinyo-minimized-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 4px 4px 0 var(--ink, #1a2744);
+}
+
+.pinyo-minimized-btn:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 0 var(--ink, #1a2744);
+}
+
+.pinyo-mini-icon {
+  display: inline-block;
+  animation: pinyoMiniWiggle 3s ease-in-out infinite;
+}
+
+.pinyo-mini-counter {
+  background: var(--pink, #fbcfe8);
+  border: 1px solid var(--ink, #1a2744);
+  border-radius: 999px;
+  padding: 0 5px;
+  font-size: 10px;
+}
+
+@keyframes pinyoMiniWiggle {
+  0%, 80%, 100% { transform: rotate(0deg); }
+  85% { transform: rotate(-10deg); }
+  95% { transform: rotate(10deg); }
+}
+
+/* Mobile Viewport adjustments */
+@media (max-width: 640px) {
+  .pinyo-widget-container {
+    bottom: 14px;
+    right: 14px;
+  }
+
+  .pinyo-minimized-btn {
+    bottom: 14px;
+    right: 14px;
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .pinyo-card {
+    width: 92px;
+    padding: 6px 5px 4px 5px;
+  }
+
+  .pinyo-svg {
+    width: 82px;
+    height: 104px;
+  }
+
+  .pinyo-speech-bubble {
+    max-width: 190px;
+    font-size: 10.5px;
+    margin-right: 6px;
+  }
+}

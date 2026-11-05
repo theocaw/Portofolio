@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import SiteHeader from './SiteHeader.jsx';
 import ContactFooter from './ContactFooter.jsx';
-import InteractivePet from './InteractivePet.jsx';
+import PinyoCompanion from './PinyoCompanion.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
@@ -64,7 +64,7 @@ export default function Layout() {
         <Outlet />
       </main>
       <ContactFooter />
-      <InteractivePet />
+      <PinyoCompanion />
     </>
   );
 }
