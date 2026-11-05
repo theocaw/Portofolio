@@ -37,7 +37,7 @@ export const workData = {
           status: 'In Progress',
           metrics: [
             { label: 'Domain', value: 'Healthcare' },
-            { label: 'Role', value: 'Data Analytics' },
+            { label: 'Platform', value: 'Web Portal' },
             { label: 'Status', value: 'Active R&D' },
           ],
           tags: ['Healthcare', 'Web Platform', 'System Design', 'Data Flow'],
@@ -290,7 +290,7 @@ export const workData = {
           status: 'Sedang Berjalan',
           metrics: [
             { label: 'Bidang', value: 'Layanan Medis' },
-            { label: 'Peran', value: 'Analisis Data' },
+            { label: 'Platform', value: 'Portal Web' },
             { label: 'Status', value: 'R&D Aktif' },
           ],
           tags: ['Healthcare', 'Web Platform', 'System Design', 'Alur Data'],
