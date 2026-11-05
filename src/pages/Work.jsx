@@ -1,11 +1,10 @@
+import { useState } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import PageIntro from '../components/PageIntro.jsx';
-import Evidence from '../components/Evidence.jsx';
+import EvidenceModal from '../components/EvidenceModal.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getWorkContent } from '../content/work.js';
 import './Work.css';
-
-const EVIDENCE_HEIGHT = { desktop: 440, mobile: 280 };
 
 function OngoingSection({ section, lang }) {
   if (!section || !section.items?.length) return null;
@@ -46,6 +45,17 @@ function OngoingSection({ section, lang }) {
                 </div>
                 <p className="ongoing-card__tagline">{item.tagline}</p>
                 <p className="ongoing-card__description">{item.description}</p>
+
+                {item.metrics && (
+                  <div className="ongoing-card__metrics">
+                    {item.metrics.map((m) => (
+                      <div key={m.label} className="ongoing-mini-metric">
+                        <span className="mono mini-label">{m.label}</span>
+                        <span className="mini-val">{m.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <ul className="ongoing-card__tags" aria-label="Technologies">
@@ -86,53 +96,76 @@ function CompletedSectionHeader({ section, lang }) {
   );
 }
 
-function Project({ project, index }) {
-  const dark = project.tone === 'dark';
-  const numStr = String(index + 1).padStart(2, '0');
-
+function ProjectCard({ project, onOpenGallery }) {
   return (
-    <section className={`band ${dark ? 'band--dark' : ''}`}>
-      <article className="container project">
-        <div className="project__overview">
-          <div className="project__story">
-            <div className="project__top-bar">
-              <span className="mono project__num">{numStr}</span>
-              <span className="role-badge">{project.role}</span>
-            </div>
-
-            <h2 className={`project__title ${project.longTitle ? 'project__title--long' : ''}`}>
-              {project.title}
-            </h2>
-            <p className="project__tagline">{project.tagline}</p>
-
-            <div className="project__metadata">
-              <p className="mono project__meta">{project.meta}</p>
-            </div>
-
-            <p className="project__description">{project.description}</p>
-
-            <ul className="project__tags" aria-label="Technologies">
-              {project.tags.map((tag) => (
-                <li key={tag} className="tag">
-                  {tag}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="project__evidence">
-            {project.evidence.map((item) => (
-              <Evidence
-                key={item.title}
-                {...item}
-                heights={EVIDENCE_HEIGHT}
-                tone={dark ? 'dark' : 'light'}
-              />
-            ))}
-          </div>
+    <article className="project-card">
+      <div className="project-card__top">
+        <div className="project-card__badges">
+          <span className="mono project-card__num">{project.num}</span>
+          <span className="mono project-card__category">{project.label}</span>
         </div>
-      </article>
-    </section>
+        <div className="project-card__meta-group">
+          <span className="role-badge">{project.role}</span>
+          <span className="mono project-card__period">{project.meta}</span>
+        </div>
+      </div>
+
+      <div className="project-card__main">
+        <h2 className={`project-card__title ${project.longTitle ? 'project-card__title--long' : ''}`}>
+          {project.title}
+        </h2>
+        <p className="project-card__tagline">{project.tagline}</p>
+        <p className="project-card__description">{project.description}</p>
+      </div>
+
+      {project.metrics && (
+        <div className="project-metrics-grid">
+          {project.metrics.map((m) => (
+            <div key={m.label} className="project-metric-pill">
+              <span className="mono project-metric-label">{m.label}</span>
+              <span className="project-metric-val">{m.value}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {project.highlights && (
+        <div className="project-highlights-box">
+          <span className="mono project-highlights-title">
+            ✦ {project.role.toUpperCase()} SCOPE & ARCHITECTURE
+          </span>
+          <ul className="project-highlights-list">
+            {project.highlights.map((h, i) => (
+              <li key={i}>
+                <span className="highlight-bullet">✓</span>
+                <span>{h}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="project-card__footer">
+        <ul className="project-card__tags" aria-label="Technologies">
+          {project.tags.map((tag) => (
+            <li key={tag} className="tag">
+              {tag}
+            </li>
+          ))}
+        </ul>
+
+        {project.hasGallery && project.evidence?.length > 0 && (
+          <button
+            type="button"
+            className="project-gallery-btn"
+            onClick={() => onOpenGallery(project)}
+            aria-label={`Open charts for ${project.title}`}
+          >
+            📊 {project.galleryLabel || 'View Analysis Charts ↗'}
+          </button>
+        )}
+      </div>
+    </article>
   );
 }
 
@@ -140,6 +173,8 @@ export default function Work() {
   const { lang } = useApp();
   const work = getWorkContent(lang);
   const { intro, ongoingSection, completedSection, projects, journeyInvitation } = work;
+
+  const [activeModalProject, setActiveModalProject] = useState(null);
 
   return (
     <>
@@ -151,12 +186,28 @@ export default function Work() {
       {/* Completed Projects Section Header */}
       {completedSection && <CompletedSectionHeader section={completedSection} lang={lang} />}
 
-      {/* Completed Academic Projects */}
-      {projects.map((project, idx) => (
-        <Project key={project.id} project={project} index={idx} />
-      ))}
+      {/* Completed Academic Projects List */}
+      <section className="container projects-container">
+        <div className="projects-grid">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onOpenGallery={(proj) => setActiveModalProject(proj)}
+            />
+          ))}
+        </div>
+      </section>
 
-      {/* Journey Invitation (styled matching About page invitation) */}
+      {/* Evidence Modal for visual analysis charts (optional click, zero placeholder clutter) */}
+      <EvidenceModal
+        isOpen={Boolean(activeModalProject)}
+        onClose={() => setActiveModalProject(null)}
+        title={activeModalProject?.title || ''}
+        images={activeModalProject?.evidence || []}
+      />
+
+      {/* Journey Invitation */}
       <section className="container journey-invitation">
         <h2 className="journey-invitation__title">{journeyInvitation.title}</h2>
         <ButtonLink to={journeyInvitation.action?.to || journeyInvitation.to}>

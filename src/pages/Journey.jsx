@@ -1,5 +1,4 @@
 import PageIntro from '../components/PageIntro.jsx';
-import Evidence from '../components/Evidence.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getJourneyContent } from '../content/journey.js';
 import './Journey.css';
@@ -14,99 +13,195 @@ export default function Journey() {
     <>
       <PageIntro {...intro} />
 
-      {/* Professional experience */}
-      <section className="container section journey-section">
-        <p className="label">{professional.label}</p>
+      {/* 01: Professional Experience Dossier */}
+      <section className="container journey-section">
+        <div className="section-meta-header">
+          <p className="label">{professional.label}</p>
+          <span className="mono section-meta-tag">
+            {lang === 'id' ? 'PENGALAMAN KERJA INDUSTRI' : 'WORKPLACE IMMERSION'}
+          </span>
+        </div>
+
         <div className="journey-heading">
           <h2 className="journey-heading__title">{professional.title}</h2>
-          {professional.note && (
-            <p className="mono journey-heading__note">
-              {professional.note.map((line) => (
-                <span key={line}>{line}</span>
-              ))}
-            </p>
-          )}
         </div>
-        <hr className="rule" />
 
-        <div className="internship">
-          <div className="internship__details">
-            <p className="label">{internship.period}</p>
-            <h3 className="internship__company">{internship.company}</h3>
-            <p className="internship__role">{internship.role}</p>
-            <p className="internship__description">{internship.description}</p>
+        <article className="experience-dossier">
+          <div className="experience-dossier__header">
+            <div className="experience-dossier__main">
+              <span className="mono experience-dossier__period">{internship.period}</span>
+              <h3 className="experience-dossier__company">{internship.company}</h3>
+              <div className="experience-dossier__role-wrap">
+                <span className="role-badge">{internship.role}</span>
+                <span className="experience-dossier__location">📍 {internship.location}</span>
+              </div>
+            </div>
+
             <a
-              className="text-link internship__website"
+              className="experience-dossier__link-btn"
               href={internship.website.url}
               target="_blank"
               rel="noreferrer"
             >
               {internship.website.label}
             </a>
-            <div className="internship__highlights">
-              {internship.highlights.map((h) => (
-                <div key={h.label} className={`highlight highlight--${h.tone}`}>
-                  <span className="highlight__value">{h.value}</span>
-                  <span className="mono highlight__label">{h.label}</span>
-                </div>
-              ))}
-            </div>
           </div>
 
-          <div className="internship__evidence">
-            <Evidence {...internship.evidence[0]} heights={{ desktop: 360, mobile: 240 }} />
+          <p className="experience-dossier__description">{internship.description}</p>
+
+          {/* 3 Metric Highlight Cards */}
+          <div className="experience-metrics-grid">
+            {internship.metrics.map((m) => (
+              <div key={m.label} className="experience-metric-card">
+                <span className="mono metric-card-label">{m.label}</span>
+                <span className="metric-card-val">{m.value}</span>
+                <span className="metric-card-note">{m.note}</span>
+              </div>
+            ))}
           </div>
-        </div>
+
+          {/* Deliverables Checklist */}
+          <div className="experience-deliverables">
+            <span className="mono deliverables-title">
+              ✦ {lang === 'id' ? 'TANGGUNG JAWAB & KONTRIBUSI UTAMA' : 'KEY RESPONSIBILITIES & DELIVERABLES'}
+            </span>
+            <ul className="deliverables-list">
+              {internship.deliverables.map((item, idx) => (
+                <li key={idx}>
+                  <span className="deliverable-check">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Competency Tag Cloud */}
+          <div className="experience-skills-wrap">
+            <span className="mono skills-title">
+              {lang === 'id' ? 'KOMPETENSI TERAPAN:' : 'APPLIED COMPETENCIES:'}
+            </span>
+            <ul className="experience-skills-list">
+              {internship.skills.map((skill) => (
+                <li key={skill} className="tag tag--skill">
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
       </section>
 
-      {/* Organizations */}
+      {/* 02: Organizations & Leadership Bento Grid */}
       <section className="band band--paper-2">
-        <div className="container section journey-section journey-section--organizations">
-          <p className="label">{organizations.label}</p>
+        <div className="container section journey-section">
+          <div className="section-meta-header">
+            <p className="label">{organizations.label}</p>
+            <span className="mono section-meta-tag">
+              {lang === 'id' ? 'REKAM JEJAK KEPEMIMPINAN' : 'LEADERSHIP TRACK'}
+            </span>
+          </div>
+
           <h2 className="journey-heading__title journey-heading__title--large">{organizations.title}</h2>
           <p className="journey-section__description">{organizations.description}</p>
 
-          <div className="organizations">
+          <div className="organizations-bento">
             {organizations.entries.map((entry) => (
-              <article key={entry.name} className="organization">
-                <hr className="rule" />
-                <div className="organization__details">
-                  <p className="mono organization__period">{entry.period}</p>
-                  <div className="organization__story">
-                    <h3 className="organization__name">{entry.name}</h3>
-                    <p className="mono organization__role">{entry.role}</p>
-                    <p className="organization__description">{entry.description}</p>
-                  </div>
-                  <div className="organization__evidence">
-                    <Evidence {...entry.evidence} heights={{ desktop: 260, mobile: 210 }} />
+              <article key={entry.name} className="org-bento-card">
+                <div className="org-bento-card__top">
+                  <span className="mono org-bento-period">{entry.period}</span>
+                  <span className="mono org-bento-badge">{entry.badge}</span>
+                </div>
+
+                <div className="org-bento-card__identity">
+                  <h3 className="org-bento-name">{entry.name}</h3>
+                  <div className="role-badge-wrap">
+                    <span className="role-badge">{entry.role}</span>
                   </div>
                 </div>
+
+                <p className="org-bento-description">{entry.description}</p>
+
+                {entry.metrics && (
+                  <div className="org-bento-metrics">
+                    {entry.metrics.map((m) => (
+                      <div key={m.label} className="org-mini-stat">
+                        <span className="mono org-stat-label">{m.label}</span>
+                        <span className="org-stat-val">{m.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {entry.highlights && (
+                  <ul className="org-bento-highlights">
+                    {entry.highlights.map((h, i) => (
+                      <li key={i}>
+                        <span className="org-bullet">✦</span>
+                        <span>{h}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Achievements & Certifications */}
-      <section className="band band--blue-soft">
-        <div className="container section journey-section">
+      {/* 03: Achievements & Certifications Showcase */}
+      <section className="container section journey-section">
+        <div className="section-meta-header">
           <p className="label">{achievements.label}</p>
-          <h2 className="journey-heading__title journey-heading__title--large journey-heading__title--light">
-            {achievements.title}
-          </h2>
-          <div className="achievements">
-            {achievements.entries.map((a) => (
-              <article key={a.name} className="achievement">
-                <hr className="rule" />
-                <p className="achievement__result">{a.result}</p>
-                <div className="achievement__details">
-                  <h3 className="achievement__name">{a.name}</h3>
-                  <p className="mono achievement__organizer">{a.organizer}</p>
+          <span className="mono section-meta-tag">
+            {lang === 'id' ? 'PRESTASI & SERTIFIKASI RESMI' : 'CREDENTIALS & HONORS'}
+          </span>
+        </div>
+
+        <div className="journey-heading-block">
+          <h2 className="journey-heading__title journey-heading__title--large">{achievements.title}</h2>
+          <p className="journey-section__description">{achievements.subtitle}</p>
+        </div>
+
+        <div className="achievements-showcase-grid">
+          {achievements.entries.map((a, idx) => {
+            const isCertified = a.badgeType === 'verified';
+            const isAward = a.badgeType === 'award';
+
+            return (
+              <article key={idx} className="achievement-showcase-card">
+                <div className="achievement-card__top">
+                  <span
+                    className={`achievement-ribbon ${
+                      isCertified ? 'ribbon--verified' : isAward ? 'ribbon--award' : 'ribbon--milestone'
+                    }`}
+                  >
+                    {isCertified ? '✦ ' : isAward ? '🏆 ' : '★ '}
+                    {a.result}
+                  </span>
+                  <span className="mono achievement-category">{a.category}</span>
                 </div>
-                <Evidence {...a.evidence} heights={{ desktop: 280, mobile: 230 }} tone="light" />
+
+                <div className="achievement-card__body">
+                  <h3 className="achievement-name">{a.name}</h3>
+                  <p className="mono achievement-organizer">{a.organizer}</p>
+                  <p className="achievement-description">{a.description}</p>
+                </div>
+
+                <div className="achievement-card__footer">
+                  <span className="mono achievement-validity">{a.validity}</span>
+                  {a.tags && (
+                    <ul className="achievement-tags" aria-label="Tags">
+                      {a.tags.map((t) => (
+                        <li key={t} className="tag tag--achievement">
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               </article>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </section>
     </>

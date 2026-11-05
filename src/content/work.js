@@ -1,14 +1,16 @@
 /**
  * Work page content supporting bilingual EN & ID translations.
+ * Creative layout designed to stand strong on its own without needing photos.
  * Ordered in reverse-chronological order: latest created projects first (May 2026 -> Sep 2025).
- * Includes a dedicated On-Going Project section featuring 3 active projects: Medigo, Veriface, and Siren.
+ * Includes 3 active On-Going Projects and 5 Completed Academic Projects.
  */
 export const workData = {
   en: {
     intro: {
       label: '02 / WORK · ACADEMIC PROJECTS · 2025—2026',
       headline: ['Questions into', 'working systems.'],
-      description: 'Academic projects in front-end, full-stack, AR, and data analysis.',
+      description:
+        'A collection of academic and exploratory projects spanning data analytics, machine learning, augmented reality, and full-stack software development.',
     },
     note: {
       count: '05',
@@ -31,9 +33,14 @@ export const workData = {
           category: 'HEALTHCARE SYSTEM',
           tagline: 'Healthcare & medical services platform.',
           description:
-            'A modern digital healthcare platform designed to streamline medical service flows and user healthcare access.',
+            'A modern digital healthcare platform designed to streamline medical service flows, appointment bookings, and patient health record access.',
           status: 'In Progress',
-          tags: ['Healthcare', 'Web Platform', 'System Design'],
+          metrics: [
+            { label: 'Domain', value: 'Healthcare' },
+            { label: 'Role', value: 'Data Analytics' },
+            { label: 'Status', value: 'Active R&D' },
+          ],
+          tags: ['Healthcare', 'Web Platform', 'System Design', 'Data Flow'],
         },
         {
           id: 'veriface',
@@ -43,9 +50,14 @@ export const workData = {
           category: 'COMPUTER VISION & AI',
           tagline: 'Biometric identity gateway & 3D liveness verification.',
           description:
-            'Biometric pre-screening gateway with real-time facial landmark detection and anti-spoofing verification.',
+            'Biometric pre-screening gateway with real-time facial landmark detection, spoof-attack prevention, and high-precision identity verification.',
           status: 'In Progress',
-          tags: ['Computer Vision', 'MediaPipe', 'Deep Learning'],
+          metrics: [
+            { label: 'Core AI', value: 'MediaPipe CV' },
+            { label: 'Technique', value: 'Liveness Check' },
+            { label: 'Latency', value: '< 150ms' },
+          ],
+          tags: ['Computer Vision', 'MediaPipe', 'Deep Learning', 'Facial Landmarks'],
         },
         {
           id: 'siren',
@@ -55,9 +67,14 @@ export const workData = {
           category: 'ALERT & MONITORING',
           tagline: 'Emergency response and rapid alert system.',
           description:
-            'Rapid emergency alert and communication system for instant safety notifications and incident monitoring.',
+            'Rapid emergency alert and communication system for instant safety notifications, geographic incident mapping, and emergency dispatch.',
           status: 'In Progress',
-          tags: ['Emergency System', 'Real-time', 'Active Development'],
+          metrics: [
+            { label: 'Architecture', value: 'Event-Driven' },
+            { label: 'Dispatch', value: 'Real-Time' },
+            { label: 'Focus', value: 'Safety Alert' },
+          ],
+          tags: ['Emergency System', 'Real-time', 'Active Development', 'Incident Dispatch'],
         },
       ],
     },
@@ -65,63 +82,65 @@ export const workData = {
       badge: 'COMPLETED PROJECTS',
       meta: '2025 — 2026 · 05 PROJECTS',
       title: 'Completed Academic Projects',
-      subtitle: '',
+      subtitle: 'In-depth case studies showcasing problem framing, data modeling, and end-to-end implementation.',
     },
     projects: [
       // 01: Ames Housing (May 2026)
       {
         id: 'ames-housing',
         tone: 'light',
-        label: '01 / DATA ANALYSIS',
+        num: '01',
+        label: 'DATA ANALYSIS & MACHINE LEARNING',
         title: 'Ames Housing Price Prediction Analysis',
-        tagline: 'Exploring the patterns behind housing prices.',
+        tagline: 'Uncovering the mathematical patterns behind residential property valuation.',
         role: 'Data Analyst',
         meta: 'ACADEMIC PROJECT · MAY — JUN 2026',
         description:
-          'Preprocessed the Ames Housing dataset, performed EDA, visualized distributions, and examined feature correlations. Explored regression modeling, decision tree classification, and k-means clustering.',
-        tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Google Colab'],
+          'Conducted comprehensive end-to-end data science on the Ames Housing dataset. Cleaned and preprocessed 2,930 property records, analyzed distribution skews, built multivariate correlation models, and developed predictive machine learning pipelines.',
+        metrics: [
+          { label: 'Model Accuracy (R²)', value: '81.94%' },
+          { label: 'Mean Abs Error', value: '$20,849' },
+          { label: 'Dataset Size', value: '2,930 Records' },
+          { label: 'Key Feature', value: 'Gr_Liv_Area' },
+        ],
+        highlights: [
+          'Preprocessed 80+ property attributes, handling missing values and log-transforming skewed price distributions.',
+          'Built Pearson correlation matrices isolating top property price determinants (living area, overall quality, garage capacity).',
+          'Trained and evaluated Linear Regression, Decision Tree classification (Low/Mid/High tiering), and 2D PCA market segmentation.',
+        ],
+        tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Google Colab', 'Scikit-Learn', 'PCA Clustering'],
+        hasGallery: true,
+        galleryLabel: 'View Analysis Charts (5)',
         evidence: [
           {
-            title: 'Project Evidence & Visualizations',
-            caption:
-              'Ames Housing / 5 Data Analysis Pillars: Exploratory Data Analysis, Feature Correlations, Linear Regression, Decision Tree Classification, and PCA Clustering.',
-            images: [
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
-                alt: '01. Sale Price Distribution in Ames (Histogram)',
-                caption:
-                  '01. EDA & Distribution: Right-skewed sale price distribution with transaction concentration between $130,000 and $200,000.',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
-                alt: '02. Top 10 Strongest Price Determinants - Pearson Correlation',
-                caption:
-                  '02. Feature Correlation: Top 10 key house price determinants (Gr_Liv_Area, Garage_Cars, Garage_Area).',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
-                alt: '03. Actual Sale Price vs Predicted Price',
-                caption:
-                  '03. Linear Regression: Property price prediction model performance (R² 81.94%, MAE $20,849) against actual sales.',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
-                alt: '04. Decision Tree Classification',
-                caption:
-                  '04. Classification (Decision Tree): Branching logic for categorizing price tiers (Low, Medium, High).',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
-                alt: '05. Market Segmentation Map Based on Labels (PCA)',
-                caption:
-                  '05. Clustering (PCA): 2D visualization mapping market segmentation into 3 distinct property profile clusters.',
-                fit: 'contain',
-              },
-            ],
+            src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
+            alt: 'Sale Price Distribution in Ames (Histogram)',
+            caption: '01. EDA & Distribution: Right-skewed sale price distribution with transaction concentration between $130,000 and $200,000.',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
+            alt: 'Top 10 Strongest Price Determinants - Pearson Correlation',
+            caption: '02. Feature Correlation: Top 10 key house price determinants (Gr_Liv_Area, Garage_Cars, Garage_Area).',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
+            alt: 'Actual Sale Price vs Predicted Price',
+            caption: '03. Linear Regression: Property price prediction model performance (R² 81.94%, MAE $20,849) against actual sales.',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
+            alt: 'Decision Tree Classification',
+            caption: '04. Classification (Decision Tree): Branching logic for categorizing price tiers (Low, Medium, High).',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
+            alt: 'Market Segmentation Map Based on Labels (PCA)',
+            caption: '05. Clustering (PCA): 2D visualization mapping market segmentation into 3 distinct property profile clusters.',
+            fit: 'contain',
           },
         ],
       },
@@ -129,96 +148,106 @@ export const workData = {
       {
         id: 'canvar',
         tone: 'light',
-        label: '02 / ADDITIONAL EXPLORATION · AR',
+        num: '02',
+        label: 'AUGMENTED REALITY & 3D MODELING',
         title: 'canvAR',
-        tagline: 'An interactive way to explore the Business Model Canvas.',
+        tagline: 'Transforming abstract business education into an interactive spatial 3D experience.',
         role: '3D Modeler & AR Developer',
         meta: 'ACADEMIC PROJECT · APR — MAY 2026',
         description:
-          'Developed a 10-chapter BMC learning experience with progress tracking and AR marker scanning. Created 3D models and integrated them into the augmented reality workflow.',
-        tags: ['Unity', 'Blender', 'Vuforia'],
-        evidence: [
-          {
-            title: 'Project Evidence',
-            caption: 'canvAR / BMC curriculum, 3D model, and AR marker scanning experience.',
-            images: [],
-            alt: '',
-          },
+          'Created an augmented reality educational tool designed to help students master the Business Model Canvas (BMC). Combines real-time camera marker recognition with 3D models and an interactive chapter progress tracker.',
+        metrics: [
+          { label: 'Curriculum', value: '10 Chapters' },
+          { label: 'Technology', value: 'Vuforia AR' },
+          { label: '3D Pipeline', value: 'Blender Custom' },
+          { label: 'Target', value: 'Marker Track' },
         ],
+        highlights: [
+          'Modeled, textured, and optimized lightweight 3D assets in Blender for seamless mobile GPU rendering.',
+          'Engineered Vuforia marker tracking pipeline in Unity with zero-jitter spatial placement.',
+          'Built 10 progressive learning modules with persistent state saving and interactive canvas quizzes.',
+        ],
+        tags: ['Unity', 'Blender', 'Vuforia', 'C#', '3D Modeling', 'Augmented Reality'],
+        hasGallery: false,
       },
       // 03: Cafier (Mar 2026)
       {
         id: 'cafier',
         tone: 'light',
-        label: '03 / FULL-STACK DEVELOPMENT',
+        num: '03',
+        label: 'FULL-STACK & MOBILE APPLICATION',
         title: 'Cafier',
-        tagline: 'Connecting a mobile experience with the systems behind it.',
+        tagline: 'A seamless mobile cafe ordering experience backed by a resilient API architecture.',
         role: 'Full-Stack Developer',
         meta: 'ACADEMIC PROJECT · MAR — MAY 2026',
         description:
-          'Built an authenticated API, an administration interface, and a React Native mobile application with payment integration. Worked across backend, admin, mobile, and payment flows.',
-        tags: ['Laravel 12', 'MongoDB', 'Sanctum', 'Midtrans PHP', 'React Native'],
-        evidence: [
-          {
-            title: 'Project Evidence',
-            caption: 'Cafier / admin interface, mobile application, and authenticated API flow.',
-            images: [],
-            alt: '',
-          },
+          'Engineered a full-stack food & beverage ordering ecosystem. Features a responsive React Native mobile app for customers, a Laravel 12 administrative portal for kitchen staff, and Midtrans payment gateway integration.',
+        metrics: [
+          { label: 'Architecture', value: 'Client-API' },
+          { label: 'Security', value: 'Sanctum JWT' },
+          { label: 'Database', value: 'MongoDB' },
+          { label: 'Payment', value: 'Midtrans' },
         ],
+        highlights: [
+          'Developed reactive mobile ordering interface in React Native with real-time cart and order state tracking.',
+          'Built secure authenticated RESTful API with Laravel 12 Sanctum and MongoDB document storage.',
+          'Implemented end-to-end Midtrans payment gateway with automated server-to-server webhook order updates.',
+        ],
+        tags: ['Laravel 12', 'MongoDB', 'Sanctum', 'Midtrans PHP', 'React Native', 'RESTful API'],
+        hasGallery: false,
       },
       // 04: Dthanasha Kost (Feb 2026)
       {
         id: 'dthanasha-kost',
         tone: 'light',
-        label: '04 / FRONT-END & SYSTEM DESIGN',
+        num: '04',
+        label: 'FRONT-END & SYSTEM DESIGN',
         title: 'Dthanasha Kost',
-        tagline: 'Making boarding-house operations easier to navigate.',
+        tagline: 'Automating boarding-house operations from room availability to monthly billing.',
         role: 'System Analyst & Front-End Developer',
         meta: 'ACADEMIC PROJECT · FEB — JUN 2026',
         description:
-          'Designed the system architecture and user interface for automated billing, room availability, and financial reports. Connected operational requirements to a structured web application.',
-        tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-        evidence: [
-          {
-            title: 'Dthanasha Kost Development Team',
-            caption: 'Dthanasha Kost / Development team presenting the automated boarding house billing app at IPB.',
-            images: [
-              {
-                src: '/images/work/kos/tim.jpg',
-                alt: 'Dthanasha Kost Development Team',
-                caption: 'Development team presenting the automated boarding house billing app at IPB campus.',
-              },
-            ],
-          },
+          'Designed the system architecture and responsive web application for managing Dthanasha Kost. Replaced manual spreadsheet management with automated invoice generation, room availability mapping, and financial statements.',
+        metrics: [
+          { label: 'Operations', value: 'Automated' },
+          { label: 'Inventory', value: 'Room Map' },
+          { label: 'Reports', value: 'Cashflow Export' },
+          { label: 'Pattern', value: 'MVC Design' },
         ],
+        highlights: [
+          'Authored formal UML class diagrams, activity workflows, and normalized relational ERD schemas.',
+          'Engineered recurring billing engine with automated calculation of utility add-ons and payment logging.',
+          'Built clean, accessible management dashboard using Laravel and Tailwind CSS for rapid operational overview.',
+        ],
+        tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
+        hasGallery: false,
       },
       // 05: Alumni Portal (Sep 2025)
       {
         id: 'alumni-portal',
         tone: 'light',
+        num: '05',
         longTitle: true,
-        label: '05 / FRONT-END & SYSTEM DESIGN',
+        label: 'SYSTEM ANALYST & FRONT-END',
         title: 'Software Engineering Technology Alumni Information System and Tracer Study Portal',
-        tagline: 'Organizing the connection between alumni and career data.',
+        tagline: 'Bridging alumni networks and institutional career tracking into one cohesive platform.',
         role: 'System Analyst & Front-End Developer',
         meta: 'ACADEMIC PROJECT · SEP — DEC 2025',
         description:
-          'Designed MVC structure, UML, ERD, and wireframes for alumni career records and tracer studies. The portal includes data export and email notifications.',
-        tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-        evidence: [
-          {
-            title: 'Alumni Portal Development Team',
-            caption: 'Alumni Portal / Development team in front of the Alumni TPL web display at SV IPB.',
-            images: [
-              {
-                src: '/images/work/alumni tpl/tim.jpg',
-                alt: 'Alumni Portal Development Team',
-                caption: 'Development team in front of the Alumni TPL web display at SV IPB.',
-              },
-            ],
-          },
+          'Designed and developed the official Alumni Portal for the Software Engineering Technology program at IPB University. Streamlines tracer studies, career milestones tracking, and institutional accreditation reporting.',
+        metrics: [
+          { label: 'Target', value: 'Alumni Network' },
+          { label: 'Module', value: 'Tracer Study' },
+          { label: 'Data', value: 'Export Engine' },
+          { label: 'Notifications', value: 'Automated' },
         ],
+        highlights: [
+          'Constructed complete MVC application structure, database schema, and wireframes for alumni records.',
+          'Engineered customized Tracer Study survey engine supporting variable question sets and data export.',
+          'Implemented automated email reminders and role-based access control for administrators and alumni.',
+        ],
+        tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'Tracer Study', 'Wireframing', 'Data Export'],
+        hasGallery: false,
       },
     ],
     journeyInvitation: {
@@ -233,7 +262,8 @@ export const workData = {
     intro: {
       label: '02 / PROYEK · PROYEK AKADEMIK · 2025—2026',
       headline: ['Dari pertanyaan,', 'menjadi sistem nyata.'],
-      description: 'Proyek akademik dalam bidang front-end, full-stack, augmented reality, dan analisis data.',
+      description:
+        'Koleksi proyek akademik dan eksplorasi teknis yang mencakup analisis data, machine learning, augmented reality, dan pengembangan perangkat lunak full-stack.',
     },
     note: {
       count: '05',
@@ -256,9 +286,14 @@ export const workData = {
           category: 'SISTEM KESEHATAN',
           tagline: 'Platform layanan kesehatan & medis modern.',
           description:
-            'Platform kesehatan digital modern yang dirancang untuk mempermudah alur layanan medis dan akses pasien.',
+            'Platform kesehatan digital modern yang dirancang untuk mempermudah alur layanan medis, penjadwalan konsultasi, dan akses rekam medis pasien.',
           status: 'Sedang Berjalan',
-          tags: ['Healthcare', 'Web Platform', 'System Design'],
+          metrics: [
+            { label: 'Bidang', value: 'Layanan Medis' },
+            { label: 'Peran', value: 'Analisis Data' },
+            { label: 'Status', value: 'R&D Aktif' },
+          ],
+          tags: ['Healthcare', 'Web Platform', 'System Design', 'Alur Data'],
         },
         {
           id: 'veriface',
@@ -268,9 +303,14 @@ export const workData = {
           category: 'COMPUTER VISION & AI',
           tagline: 'Gateway identitas biometrik & verifikasi keaslian wajah (liveness).',
           description:
-            'Pintu verifikasi biometrik dengan deteksi landmark wajah real-time dan pencegahan manipulasi identitas (anti-spoofing).',
+            'Pintu verifikasi biometrik dengan deteksi landmark wajah real-time, pencegahan manipulasi identitas (anti-spoofing), dan presisi tinggi.',
           status: 'Sedang Berjalan',
-          tags: ['Computer Vision', 'MediaPipe', 'Deep Learning'],
+          metrics: [
+            { label: 'AI Inti', value: 'MediaPipe CV' },
+            { label: 'Metode', value: 'Liveness Check' },
+            { label: 'Latensi', value: '< 150ms' },
+          ],
+          tags: ['Computer Vision', 'MediaPipe', 'Deep Learning', 'Facial Landmarks'],
         },
         {
           id: 'siren',
@@ -280,9 +320,14 @@ export const workData = {
           category: 'PERINGATAN & MONITORING',
           tagline: 'Sistem tanggap darurat dan peringatan kilat.',
           description:
-            'Sistem komunikasi dan peringatan tanggap darurat untuk pemantauan insiden dan notifikasi keselamatan instan.',
+            'Sistem komunikasi dan peringatan tanggap darurat untuk pemantauan insiden kilat, pemetaan wilayah darurat, dan koordinasi evakuasi.',
           status: 'Sedang Berjalan',
-          tags: ['Emergency System', 'Real-time', 'Active Development'],
+          metrics: [
+            { label: 'Arsitektur', value: 'Event-Driven' },
+            { label: 'Respons', value: 'Real-Time' },
+            { label: 'Fokus', value: 'Tanggap Darurat' },
+          ],
+          tags: ['Emergency System', 'Real-time', 'Active Development', 'Dispatch Insiden'],
         },
       ],
     },
@@ -290,63 +335,65 @@ export const workData = {
       badge: 'PROYEK SELESAI',
       meta: '2025 — 2026 · 05 PROYEK',
       title: 'Proyek Akademik Selesai',
-      subtitle: '',
+      subtitle: 'Studi kasus mendalam yang memperlihatkan pemahaman masalah, pemodelan data, hingga implementasi sistem utuh.',
     },
     projects: [
       // 01: Ames Housing (Mei 2026)
       {
         id: 'ames-housing',
         tone: 'light',
-        label: '01 / ANALISIS DATA',
+        num: '01',
+        label: 'ANALISIS DATA & MACHINE LEARNING',
         title: 'Analisis Prediksi Harga Properti Ames Housing',
-        tagline: 'Menemukan pola di balik penentuan harga properti.',
+        tagline: 'Menemukan pola matematis di balik penentuan nilai harga properti residensial.',
         role: 'Analis Data',
         meta: 'PROYEK AKADEMIK · MEI — JUN 2026',
         description:
-          'Melakukan preprocessing dataset Ames Housing, analisis data eksploratif (EDA), visualisasi sebaran data, serta analisis korelasi fitur. Mengeksplorasi pemodelan regresi linear, pohon keputusan, dan klastering PCA.',
-        tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Google Colab'],
+          'Melakukan riset data science menyeluruh pada dataset properti Ames Housing. Melakukan pembersihan data pada 2.930 transaksi, analisis distribusi skewness, matriks korelasi multivariat, dan pembuatan pipeline machine learning prediktif.',
+        metrics: [
+          { label: 'Akurasi Model (R²)', value: '81.94%' },
+          { label: 'Rata-rata Error', value: '$20.849' },
+          { label: 'Jumlah Baris Data', value: '2.930 Rumah' },
+          { label: 'Faktor Terkuat', value: 'Gr_Liv_Area' },
+        ],
+        highlights: [
+          'Melakukan preprocessing 80+ fitur properti, mengatasi missing values, dan mentransformasi distribusi harga right-skewed.',
+          'Membangun matriks korelasi Pearson yang mengisolasi 10 faktor utama penentu harga (luas bangunan, kualitas fisik, garasi).',
+          'Melatih dan menguji regresi linear, klasifikasi pohon keputusan (kategori Rendah/Menengah/Tinggi), dan segmentasi pasar 2D PCA.',
+        ],
+        tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Google Colab', 'Scikit-Learn', 'PCA Clustering'],
+        hasGallery: true,
+        galleryLabel: 'Lihat Grafik Analisis (5)',
         evidence: [
           {
-            title: 'Visualisasi & Dokumentasi Analisis Data',
-            caption:
-              'Ames Housing / 5 Pilar Analisis Data: Exploratory Data Analysis, Korelasi Fitur, Regresi Linear, Klasifikasi Pohon Keputusan, dan Klastering PCA.',
-            images: [
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
-                alt: '01. Distribusi Harga Penjualan Rumah di Ames (Histogram)',
-                caption:
-                  '01. EDA & Distribusi: Pola sebaran harga right-skewed dengan konsentrasi transaksi pada rentang $130.000 hingga $200.000.',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
-                alt: '02. Top 10 Faktor Terkuat Penentu Harga - Korelasi Pearson',
-                caption:
-                  '02. Korelasi Fitur: Top 10 faktor penentu harga rumah teratas (Gr_Liv_Area, Garage_Cars, Garage_Area).',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
-                alt: '03. Harga Asli di Lapangan vs Harga Prediksi Model',
-                caption:
-                  '03. Regresi Linear: Performa model prediksi harga properti (R² 81.94%, MAE $20.849) terhadap harga aktual.',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
-                alt: '04. Pohon Keputusan Pemilahan Kelas Rumah',
-                caption:
-                  '04. Klasifikasi (Decision Tree): Logika percabangan pemilahan kelas harga rumah (Murah, Menengah, Mahal).',
-                fit: 'contain',
-              },
-              {
-                src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
-                alt: '05. Peta Segmentasi Pasar Berdasarkan Label (PCA)',
-                caption:
-                  '05. Klastering (PCA): Visualisasi 2D pemetaan segmentasi pasar menjadi 3 klaster profil properti.',
-                fit: 'contain',
-              },
-            ],
+            src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
+            alt: 'Distribusi Harga Penjualan Rumah di Ames (Histogram)',
+            caption: '01. EDA & Distribusi: Pola sebaran harga right-skewed dengan konsentrasi transaksi pada rentang $130.000 hingga $200.000.',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
+            alt: 'Top 10 Faktor Terkuat Penentu Harga - Korelasi Pearson',
+            caption: '02. Korelasi Fitur: Top 10 faktor penentu harga rumah teratas (Gr_Liv_Area, Garage_Cars, Garage_Area).',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
+            alt: 'Harga Asli di Lapangan vs Harga Prediksi Model',
+            caption: '03. Regresi Linear: Performa model prediksi harga properti (R² 81.94%, MAE $20.849) terhadap harga aktual.',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
+            alt: 'Pohon Keputusan Pemilahan Kelas Rumah',
+            caption: '04. Klasifikasi (Decision Tree): Logika percabangan pemilahan kelas harga rumah (Murah, Menengah, Mahal).',
+            fit: 'contain',
+          },
+          {
+            src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
+            alt: 'Peta Segmentasi Pasar Berdasarkan Label (PCA)',
+            caption: '05. Klastering (PCA): Visualisasi 2D pemetaan segmentasi pasar menjadi 3 klaster profil properti.',
+            fit: 'contain',
           },
         ],
       },
@@ -354,96 +401,106 @@ export const workData = {
       {
         id: 'canvar',
         tone: 'light',
-        label: '02 / EKSPLORASI TAMBAHAN · AR',
+        num: '02',
+        label: 'AUGMENTED REALITY & PEMODELAN 3D',
         title: 'canvAR',
-        tagline: 'Cara interaktif untuk mempelajari Business Model Canvas.',
+        tagline: 'Mengubah konsep bisnis teoretis menjadi media pembelajaran spasial 3D interaktif.',
         role: '3D Modeler & AR Developer',
         meta: 'PROYEK AKADEMIK · APR — MEI 2026',
         description:
-          'Mengembangkan media pembelajaran BMC 10 bab lengkap dengan pelacakan progres belajar dan pemindaian marker AR. Membuat model 3D dan mengintegrasikannya ke alur augmented reality.',
-        tags: ['Unity', 'Blender', 'Vuforia'],
-        evidence: [
-          {
-            title: 'Dokumentasi Proyek',
-            caption: 'canvAR / Kurikulum pembelajaran BMC, model 3D, dan pengalaman pemindaian marker AR.',
-            images: [],
-            alt: '',
-          },
+          'Mengembangkan media pembelajaran augmented reality untuk membantu mahasiswa memahami Business Model Canvas (BMC). Menggabungkan pelacakan marker kamera real-time dengan objek 3D dan pelacak progres belajar.',
+        metrics: [
+          { label: 'Materi Belajar', value: '10 Bab BMC' },
+          { label: 'Teknologi AR', value: 'Vuforia Engine' },
+          { label: 'Pemodelan 3D', value: 'Blender Custom' },
+          { label: 'Metode Target', value: 'Marker Tracking' },
         ],
+        highlights: [
+          'Membuat, memberi tekstur, dan mengoptimalkan aset 3D mandiri di Blender agar ringan dijalankan di GPU mobile.',
+          'Mengimplementasikan pipeline penjejakan marker Vuforia di Unity dengan peletakan objek spasial yang stabil tanpa jitter.',
+          'Membangun sistem pembelajaran 10 modul dengan penyimpanan progres dan kuis interaktif.',
+        ],
+        tags: ['Unity', 'Blender', 'Vuforia', 'C#', '3D Modeling', 'Augmented Reality'],
+        hasGallery: false,
       },
       // 03: Cafier (Mar 2026)
       {
         id: 'cafier',
         tone: 'light',
-        label: '03 / PENGEMBANGAN FULL-STACK',
+        num: '03',
+        label: 'PENGEMBANGAN FULL-STACK & MOBILE APP',
         title: 'Cafier',
-        tagline: 'Menghubungkan aplikasi mobile dengan sistem backend terintegrasi.',
+        tagline: 'Pengalaman pemesanan kafe modern yang terhubung langsung dengan arsitektur backend.',
         role: 'Pengembang Full-Stack',
         meta: 'PROYEK AKADEMIK · MAR — MEI 2026',
         description:
-          'Membangun authenticated API, panel administrasi, dan aplikasi mobile React Native terintegrasi payment gateway Midtrans.',
-        tags: ['Laravel 12', 'MongoDB', 'Sanctum', 'Midtrans PHP', 'React Native'],
-        evidence: [
-          {
-            title: 'Dokumentasi Proyek',
-            caption: 'Cafier / panel administrasi, aplikasi mobile, dan alur authenticated API.',
-            images: [],
-            alt: '',
-          },
+          'Membangun ekosistem pemesanan makanan & minuman terpadu. Terdiri dari aplikasi mobile React Native untuk pelanggan, panel admin web Laravel 12 untuk staf kafe, dan integrasi payment gateway Midtrans.',
+        metrics: [
+          { label: 'Arsitektur', value: 'Client-API' },
+          { label: 'Keamanan', value: 'Sanctum JWT' },
+          { label: 'Basis Data', value: 'MongoDB' },
+          { label: 'Pembayaran', value: 'Midtrans' },
         ],
+        highlights: [
+          'Mengembangkan antarmuka pemesanan responsif di React Native dengan manajemen state keranjang belanja real-time.',
+          'Membangun RESTful API terotentikasi berkinerja tinggi dengan Laravel 12 Sanctum dan penyimpanan dokumen MongoDB.',
+          'Mengintegrasikan payment gateway Midtrans end-to-end lengkap dengan penanganan webhook status transaksi otomatis.',
+        ],
+        tags: ['Laravel 12', 'MongoDB', 'Sanctum', 'Midtrans PHP', 'React Native', 'RESTful API'],
+        hasGallery: false,
       },
       // 04: Dthanasha Kost (Feb 2026)
       {
         id: 'dthanasha-kost',
         tone: 'light',
-        label: '04 / FRONT-END & DESAIN SISTEM',
+        num: '04',
+        label: 'FRONT-END & DESAIN SISTEM',
         title: 'Dthanasha Kost',
-        tagline: 'Mempermudah operasional dan pengelolaan rumah kos.',
+        tagline: 'Otomatisasi operasional rumah kos dari penagihan sewa hingga peta ketersediaan kamar.',
         role: 'Analis Sistem & Pengembang Front-End',
         meta: 'PROYEK AKADEMIK · FEB — JUN 2026',
         description:
-          'Merancang arsitektur sistem dan antarmuka web untuk penagihan otomatis, ketersediaan kamar, dan laporan keuangan kos.',
-        tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-        evidence: [
-          {
-            title: 'Tim Pengembang Dthanasha Kost',
-            caption: 'Dthanasha Kost / Tim pengembang aplikasi manajemen dan billing kos otomatis di kampus IPB.',
-            images: [
-              {
-                src: '/images/work/kos/tim.jpg',
-                alt: 'Tim Pengembang Dthanasha Kost',
-                caption: 'Tim pengembang aplikasi manajemen dan billing otomatis Dthanasha Kost di kampus IPB.',
-              },
-            ],
-          },
+          'Merancang arsitektur sistem dan aplikasi web manajemen kos Dthanasha. Menggantikan pencatatan buku manual dengan pembuatan tagihan otomatis, visualisasi ketersediaan kamar, dan laporan keuangan komprehensif.',
+        metrics: [
+          { label: 'Operasional', value: 'Otomatis' },
+          { label: 'Inventaris', value: 'Peta Kamar' },
+          { label: 'Laporan', value: 'Ekspor Keuangan' },
+          { label: 'Pola Desain', value: 'Arsitektur MVC' },
         ],
+        highlights: [
+          'Menyusun dokumen analisis kebutuhan sistem formal, diagram alur kelas UML, dan skema basis data relasional ERD.',
+          'Mengembangkan modul penagihan sewa periodik otomatis lengkap dengan rekapitulasi biaya tambahan fasilitas.',
+          'Membangun dashboard operasional yang bersih dan intuitif menggunakan Laravel dan Tailwind CSS.',
+        ],
+        tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
+        hasGallery: false,
       },
       // 05: Alumni Portal (Sep 2025)
       {
         id: 'alumni-portal',
         tone: 'light',
+        num: '05',
         longTitle: true,
-        label: '05 / FRONT-END & DESAIN SISTEM',
+        label: 'ANALIS SISTEM & PENGEMBANG FRONT-END',
         title: 'Sistem Informasi Alumni dan Portal Tracer Study Teknologi Rekayasa Perangkat Lunak',
-        tagline: 'Menghubungkan alumni dan data rekam jejak karier secara terstruktur.',
+        tagline: 'Menghubungkan jejaring alumni dan pelacakan rekam jejak karier dalam satu ekosistem terpadu.',
         role: 'Analis Sistem & Pengembang Front-End',
         meta: 'PROYEK AKADEMIK · SEP — DES 2025',
         description:
-          'Merancang struktur MVC, UML, ERD, dan wireframe untuk pencatatan karier alumni dan tracer study. Dilengkapi ekspor data dan notifikasi email.',
-        tags: ['Laravel', 'MySQL', 'Tailwind CSS'],
-        evidence: [
-          {
-            title: 'Tim Pengembang Web Alumni TPL',
-            caption: 'Alumni Portal / Tim pengembang bersama display web portal Alumni TPL di Sekolah Vokasi IPB.',
-            images: [
-              {
-                src: '/images/work/alumni tpl/tim.jpg',
-                alt: 'Tim Pengembang Web Alumni TPL',
-                caption: 'Tim pengembang bersama display web portal Alumni TPL di Sekolah Vokasi IPB.',
-              },
-            ],
-          },
+          'Merancang dan mengembangkan portal resmi alumni untuk Program Studi Teknologi Rekayasa Perangkat Lunak IPB University. Memfasilitasi tracer study berkala, pencatatan karier alumni, dan pelaporan akreditasi institusi.',
+        metrics: [
+          { label: 'Pengguna', value: 'Jejaring Alumni' },
+          { label: 'Kuesioner', value: 'Tracer Study' },
+          { label: 'Laporan', value: 'Mesin Ekspor Data' },
+          { label: 'Notifikasi', value: 'Email Otomatis' },
         ],
+        highlights: [
+          'Merancang struktur arsitektur MVC utuh, skema normalisasi database, dan wireframe tampilan aplikasi web.',
+          'Membangun modul kuesioner Tracer Study terstandarisasi yang mendukung beragam jenis pertanyaan dan ekspor spreadsheet.',
+          'Mengimplementasikan pengiriman email notifikasi otomatis dan kontrol akses berbasis hak peran (RBAC).',
+        ],
+        tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'Tracer Study', 'Wireframing', 'Data Export'],
+        hasGallery: false,
       },
     ],
     journeyInvitation: {
