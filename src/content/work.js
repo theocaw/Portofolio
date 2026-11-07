@@ -329,33 +329,154 @@ export const workData = {
         tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
         hasGallery: false,
       },
-      // 05: Alumni Portal (Sep 2025)
+            // 05: Alumni Portal (Sep 2025)
       {
         id: 'alumni-portal',
         tone: 'light',
         num: '05',
         longTitle: true,
-        label: 'SYSTEM ANALYST & FRONT-END',
-        title: 'Software Engineering Technology Alumni Information System and Tracer Study Portal',
-        tagline: 'Bridging alumni networks and institutional career tracking into one cohesive platform.',
+        label: 'SYSTEM ARCHITECTURE & SOFTWARE DESIGN',
+        title: 'AlumniTPL: Software Engineering Technology Alumni Information System & Tracer Study',
+        tagline: 'Architecting an N-Tier centralized alumni information and institutional career-tracking ecosystem.',
         role: 'System Analyst & Front-End Developer',
-        meta: 'ACADEMIC PROJECT · SEP — DEC 2025',
+        meta: 'ACADEMIC PROJECT · DPPL / SDD · SEP — DEC 2025',
         description:
-          'Designed and developed the official Alumni Portal for the Software Engineering Technology program at IPB University. Streamlines tracer studies, career milestones tracking, and institutional accreditation reporting.',
+          'Authored the Software Design Description (Deskripsi Perancangan Perangkat Lunak / DPPL) and designed the full-stack system architecture for Website Alumni TPL IPB. Developed by team "Turu Dulu Bang" (Osanna Patricia Limbong, Husnul Khotimah, M. Akbar Rafliansyah Lubis, Rizal Hadi Musthofani) under the Software Engineering Technology program at IPB University. Engineered a rigorous N-Tier Layered Architecture spanning 7 core functional requirements (DPPL-FR01 to FR07), a comprehensive Requirements Traceability Matrix (RTM), normalized relational ERD schemas, and 12 high-fidelity responsive user interface specifications.',
         metrics: [
-          { label: 'Target', value: 'Alumni Network' },
-          { label: 'Module', value: 'Tracer Study' },
-          { label: 'Data', value: 'Export Engine' },
-          { label: 'Notifications', value: 'Automated' },
+          { label: 'Architecture', value: '4-Tier Layered' },
+          { label: 'Requirements', value: '7 Core FRs (RTM)' },
+          { label: 'UI Specifications', value: '12 Screen Layouts' },
+          { label: 'Data Baseline', value: '5,000 Alumni Scale' },
         ],
         highlights: [
-          'Constructed complete MVC application structure, database schema, and wireframes for alumni records.',
-          'Engineered customized Tracer Study survey engine supporting variable question sets and data export.',
-          'Implemented automated email reminders and role-based access control for administrators and alumni.',
+          'Layered Architecture (N-Tier): Structured into Presentation (Blade, Tailwind CSS, JS), Business Logic (Controllers & Services), Data Access (Repository & ORM), and Data Layer (Models & MySQL) ensuring strict separation of concerns.',
+          'Requirements Traceability Matrix (RTM): Mapped SRS requirements to technical DPPL specifications across 7 core functional modules (DPPL-FR01 through FR07).',
+          'Two-Step Student/Alumni Authentication: Engineered initial identity verification against prodi databases (IPB email and NIM) followed by secure encrypted password configuration.',
+          'Administrative Analytics Dashboard: Designed real-time Area Chart visualizations with yearly dropdown filters, headline statistic cards (5,000 alumni baseline with 8.5% annual growth trend), and instant Excel/PDF export pipelines.',
+          'Public Discovery & Tracer Study Engine: Created public-facing landing showcases for outstanding alumni alongside survey distribution tools with automated email notifications.',
         ],
-        tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'Tracer Study', 'Wireframing', 'Data Export'],
-        hasGallery: false,
+        tags: [
+          'System Architecture',
+          'UML Modeling',
+          'ERD & Data Schema',
+          'DPPL / SDD Document',
+          'N-Tier Layered Design',
+          'Laravel Blade',
+          'Tailwind CSS',
+          'MySQL / ORM',
+        ],
+        hasGallery: true,
+        galleryLabel: 'View System Evidence (1)',
+        evidence: [
+          {
+            src: '/images/work/alumni tpl/tim.jpg',
+            alt: 'AlumniTPL Development Team - Turu Dulu Bang',
+            caption:
+              'Development Team "Turu Dulu Bang" — Software Engineering Technology, IPB University (Osanna Patricia Limbong, Husnul Khotimah, M. Akbar Rafliansyah Lubis, Rizal Hadi Musthofani).',
+            fit: 'contain',
+          },
+        ],
+        caseStudy: {
+          courseInfo: {
+            course: 'Deskripsi Perancangan Perangkat Lunak (DPPL / SDD)',
+            institution: 'Sekolah Vokasi IPB University — Software Engineering Technology',
+            author: 'Tim "Turu Dulu Bang" (Osanna Patricia Limbong, Husnul Khotimah, M. Akbar Rafliansyah Lubis, Rizal Hadi Musthofani)',
+            date: 'Odd Semester 2025 · IEEE 830 Standards',
+            dataset: 'Dokumen DPPL & SRS Website Alumni TPL IPB (11 Pages)',
+            scope: '12 UI Specifications · 7 Functional Modules (DPPL-FR01 to FR07) · N-Tier Architecture & ERD Schemas',
+          },
+          pillarsTitle: 'Core Software Design & Architectural Pillars',
+          pillars: [
+            {
+              index: '01',
+              title: 'Layered N-Tier System Architecture',
+              category: 'SYSTEM ARCHITECTURE',
+              metricBadge: '4 Horizontal Layers',
+              summary:
+                'Engineered an N-Tier layered architecture to ensure strict separation of concerns, long-term maintainability, and testing isolation.',
+              details: [
+                'Presentation Layer: Manages user requests, view rendering, and client interactions using Laravel Blade, Tailwind CSS, and vanilla JavaScript.',
+                'Business Logic Layer: Encapsulates prodi business rules, career tracking workflows, and operational permissions inside isolated Controllers and Services.',
+                'Data Access Layer: Uses the Repository Pattern and Object-Relational Mapping (ORM) to abstract data persistence from business workflows.',
+                'Data Layer: Enforces relational database integrity across MySQL and phpMyAdmin storage models.',
+              ],
+            },
+            {
+              index: '02',
+              title: 'Requirements Traceability Matrix (DPPL-FR01 to FR07)',
+              category: 'ENGINEERING SPECIFICATION',
+              metricBadge: '7 Functional Modules',
+              summary:
+                'Formulated an end-to-end Requirements Traceability Matrix linking SRS business needs to exact DPPL software components.',
+              details: [
+                'DPPL-FR01: Multi-role authentication (Admin & Alumni) with encrypted credential storage.',
+                'DPPL-FR02: Independent alumni profile, educational background, and employment history updates.',
+                'DPPL-FR03: Centralized administrative CRUD management (verify, edit, delete alumni records).',
+                'DPPL-FR04: Interactive analytics dashboard displaying area trend charts and KPI summary cards.',
+                'DPPL-FR05: Filtered alumni records export engine supporting Microsoft Excel (.xlsx) and Adobe PDF.',
+                'DPPL-FR06: Information broadcast and tracer study survey engine with automated email dispatch.',
+                'DPPL-FR07: Public catalog allowing prospective students and partners to discover outstanding alumni without logging in.',
+              ],
+            },
+            {
+              index: '03',
+              title: 'Comprehensive Relational Data Decomposition (ERD)',
+              category: 'DATABASE DESIGN',
+              metricBadge: 'Normalized Relational Schema',
+              summary:
+                'Designed a fully normalized relational schema mapping entity lifecycles, foreign keys, and career progressions.',
+              details: [
+                'Core User & Identity: User entity partitioned by role (Admin vs Alumni) with verification flags and bcrypt password encryption.',
+                'Career & Education Tracking: Dedicated RiwayatKarir and RiwayatPendidikan entities capturing company name, job level, entry year, and graduation year.',
+                'Information & Surveys: InformasiUmum, KontenGambarInformasi, and Notifikasi entities supporting multimedia announcements and automated email dispatches.',
+                'Outstanding Honors: AlumniBerprestasi entity highlighting award titles and public accolades.',
+              ],
+            },
+            {
+              index: '04',
+              title: '12 Screen Interface Design System & User Journeys',
+              category: 'UI/UX SPECIFICATION',
+              metricBadge: '12 UI Specifications',
+              summary:
+                'Crafted 12 comprehensive interface specifications in an elegant deep purple color palette (#5B45B0) adhering to responsive design guidelines.',
+              details: [
+                'Admin Management: Login, Analytics Dashboard (5,000 alumni baseline, 8.5% YoY growth), Data Alumni table with row actions, Tambah Alumni form, and Berprestasi management.',
+                'Public Portal & Landing: Sticky navbar, hero showcase, featured outstanding alumni card, and 3-column information feed.',
+                'Alumni Onboarding: 2-step registration verifying @apps.ipb.ac.id and NIM against prodi databases before setting passwords.',
+                'Resilient Error States: Standardized "Gagal Memuat" error dialog with single-click return actions for connection interruptions.',
+              ],
+            },
+          ],
+          recommendationsTitle: 'Engineering Standards & Key Deliverables',
+          recommendations: [
+            {
+              index: '01',
+              title: 'IEEE 830 Standards & Requirements Traceability',
+              takeaway:
+                'Every user story from the SRS document was traced directly to technical DPPL modules, ensuring 100% testable implementation coverage with zero architectural ambiguity.',
+            },
+            {
+              index: '02',
+              title: 'Strict Separation of Concerns (N-Tier Architecture)',
+              takeaway:
+                'Separating presentation, business logic, data access, and storage prevents code entanglement, allowing frontend components to evolve independently from database migrations.',
+            },
+            {
+              index: '03',
+              title: 'Two-Stage Verified Identity Pipeline',
+              takeaway:
+                'Restricting alumni registration to institutional @apps.ipb.ac.id emails and NIM validation safeguards directory integrity against fraudulent accounts.',
+            },
+            {
+              index: '04',
+              title: 'Accreditation-Ready Data Export Engine',
+              takeaway:
+                'Built-in PDF and Excel export capabilities empower academic administrators to generate instant statistical reports for national accreditation audits.',
+            },
+          ],
+        },
       },
+
     ],
     journeyInvitation: {
       title: 'There’s learning beyond these projects.',
@@ -689,33 +810,154 @@ export const workData = {
         tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
         hasGallery: false,
       },
-      // 05: Alumni Portal (Sep 2025)
+            // 05: Alumni Portal (Sep 2025)
       {
         id: 'alumni-portal',
         tone: 'light',
         num: '05',
         longTitle: true,
-        label: 'ANALIS SISTEM & PENGEMBANG FRONT-END',
-        title: 'Sistem Informasi Alumni dan Portal Tracer Study Teknologi Rekayasa Perangkat Lunak',
-        tagline: 'Menghubungkan jejaring alumni dan pelacakan rekam jejak karier dalam satu ekosistem terpadu.',
+        label: 'ARSITEKTUR SISTEM & PERANCANGAN PERANGKAT LUNAK',
+        title: 'AlumniTPL: Sistem Informasi Alumni dan Portal Tracer Study Teknologi Rekayasa Perangkat Lunak IPB',
+        tagline: 'Merancang arsitektur berlapis (N-Tier) untuk sistem informasi alumni terpusat dan pelacakan tracer study berkala.',
         role: 'Analis Sistem & Pengembang Front-End',
-        meta: 'PROYEK AKADEMIK · SEP — DES 2025',
+        meta: 'PROYEK AKADEMIK · DOKUMEN DPPL / SDD · SEP — DES 2025',
         description:
-          'Merancang dan mengembangkan portal resmi alumni untuk Program Studi Teknologi Rekayasa Perangkat Lunak IPB University. Memfasilitasi tracer study berkala, pencatatan karier alumni, dan pelaporan akreditasi institusi.',
+          'Menyusun Dokumen Deskripsi Perancangan Perangkat Lunak (DPPL / Software Design Description - SDD) dan merancang arsitektur sistem utuh Website Alumni TPL IPB. Dikerjakan oleh tim "Turu Dulu Bang" (Osanna Patricia Limbong, Husnul Khotimah, M. Akbar Rafliansyah Lubis, Rizal Hadi Musthofani) pada Program Studi Teknologi Rekayasa Perangkat Lunak, Sekolah Vokasi IPB University. Merancang Arsitektur Berlapis (N-Tier Layered Architecture) yang mencakup 7 kebutuhan fungsional (DPPL-FR01 s.d. FR07), Matriks Keterurutan Kebutuhan (RTM), skema relasi database (ERD), serta 12 spesifikasi antarmuka layar pengguna responsif.',
         metrics: [
-          { label: 'Pengguna', value: 'Jejaring Alumni' },
-          { label: 'Kuesioner', value: 'Tracer Study' },
-          { label: 'Laporan', value: 'Mesin Ekspor Data' },
-          { label: 'Notifikasi', value: 'Email Otomatis' },
+          { label: 'Arsitektur', value: '4 Lapisan N-Tier' },
+          { label: 'Kebutuhan Sistem', value: '7 Modul (RTM)' },
+          { label: 'Spesifikasi UI', value: '12 Desain Layar' },
+          { label: 'Skala Basis Data', value: '5.000 Data Alumni' },
         ],
         highlights: [
-          'Merancang struktur arsitektur MVC utuh, skema normalisasi database, dan wireframe tampilan aplikasi web.',
-          'Membangun modul kuesioner Tracer Study terstandarisasi yang mendukung beragam jenis pertanyaan dan ekspor spreadsheet.',
-          'Mengimplementasikan pengiriman email notifikasi otomatis dan kontrol akses berbasis hak peran (RBAC).',
+          'Arsitektur Berlapis (Layered Architecture): Membagi sistem ke dalam Lapisan Presentation (Blade, Tailwind CSS, JS), Business Logic (Controllers & Services), Akses Data (Repository & ORM), dan Data Layer (Models & MySQL) untuk pemisahan tanggung jawab (Separation of Concerns).',
+          'Matriks Keterurutan Kebutuhan (RTM): Memetakan seluruh kebutuhan SRS ke dalam rancangan teknis DPPL pada 7 kebutuhan fungsional utama (DPPL-FR01 hingga FR07).',
+          'Registrasi 2-Tahap Alumni: Memvalidasi Email IPB (@apps.ipb.ac.id) dan NIM ke basis data prodi sebelum alumni dapat menyetel kata sandi terenkripsi (bcrypt).',
+          'Dasbor Eksekutif & Visualisasi Data: Merancang grafik area pemantauan alumni dengan filter tahun (misal: 2024), kartu total 5.000 alumni dengan tren kenaikan tahunan 8.5%, serta mesin ekspor Excel & PDF.',
+          'Pusat Informasi & Showcase Alumni Berprestasi: Menyediakan etalase publik profil alumni sukses tanpa login, formulir survei tracer study, serta pengiriman notifikasi otomatis ke email alumni.',
         ],
-        tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'Tracer Study', 'Wireframing', 'Data Export'],
-        hasGallery: false,
+        tags: [
+          'Arsitektur Sistem',
+          'Pemodelan UML',
+          'ERD & Skema Data',
+          'Dokumen DPPL / SDD',
+          'Arsitektur Berlapis N-Tier',
+          'Laravel Blade',
+          'Tailwind CSS',
+          'MySQL / ORM',
+        ],
+        hasGallery: true,
+        galleryLabel: 'Lihat Dokumentasi Sistem (1)',
+        evidence: [
+          {
+            src: '/images/work/alumni tpl/tim.jpg',
+            alt: 'Tim Pengembang Sistem AlumniTPL - Turu Dulu Bang',
+            caption:
+              'Tim Pengembang "Turu Dulu Bang" — Teknologi Rekayasa Perangkat Lunak Sekolah Vokasi IPB (Osanna Patricia Limbong, Husnul Khotimah, Muhammad Akbar Rafliansyah Lubis, Rizal Hadi Musthofani).',
+            fit: 'contain',
+          },
+        ],
+        caseStudy: {
+          courseInfo: {
+            course: 'Deskripsi Perancangan Perangkat Lunak (DPPL / SDD)',
+            institution: 'Sekolah Vokasi IPB University — Teknologi Rekayasa Perangkat Lunak',
+            author: 'Tim "Turu Dulu Bang" (Osanna Patricia Limbong, Husnul Khotimah, M. Akbar Rafliansyah Lubis, Rizal Hadi Musthofani)',
+            date: 'Semester Ganjil 2025 · Standar IEEE 830',
+            dataset: 'Dokumen DPPL & SRS Website Alumni TPL IPB (11 Halaman)',
+            scope: '12 Spesifikasi Layar UI · 7 Kebutuhan Fungsional (DPPL-FR01 s.d. FR07) · Arsitektur N-Tier & ERD Normalisasi',
+          },
+          pillarsTitle: 'Pilar Perancangan & Arsitektur Perangkat Lunak',
+          pillars: [
+            {
+              index: '01',
+              title: 'Perancangan Arsitektur Berlapis (Layered N-Tier Architecture)',
+              category: 'ARSITEKTUR SISTEM',
+              metricBadge: '4 Lapisan Horizontal',
+              summary:
+                'Menerapkan pola arsitektur berlapis untuk memastikan pemisahan tanggung jawab (Separation of Concerns), stabilitas tinggi, dan kemudahan pengujian.',
+              details: [
+                'Lapisan Presentation: Menangani request, validasi tampilan, dan rendering komponen menggunakan Laravel Blade, Tailwind CSS, dan JavaScript.',
+                'Lapisan Business Logic: Memusatkan seluruh aturan bisnis, alur kerja verifikasi, dan proses tracer study di dalam Controllers dan Services.',
+                'Lapisan Akses Data: Menggunakan Repository Pattern dan Object-Relational Mapping (ORM) sebagai abstraksi antara logika bisnis dan data fisik.',
+                'Lapisan Data: Menjamin integritas struktur fisik data menggunakan MySQL DBMS dan phpMyAdmin.',
+              ],
+            },
+            {
+              index: '02',
+              title: 'Matriks Keterurutan Kebutuhan (DPPL-FR01 s.d. DPPL-FR07)',
+              category: 'SPESIFIKASI REKAYASA',
+              metricBadge: '7 Kebutuhan Fungsional',
+              summary:
+                'Menyusun Requirements Traceability Matrix (RTM) yang menghubungkan analisis kebutuhan SRS dengan komponen teknis DPPL.',
+              details: [
+                'DPPL-FR01: Fitur autentikasi multi-peran (Admin & Alumni) dengan kata sandi terenkripsi dan Remember Me.',
+                'DPPL-FR02: Fitur pembaruan mandiri data pribadi, riwayat pendidikan, dan rekam jejak karier alumni.',
+                'DPPL-FR03: Pengelolaan data alumni oleh admin mencakup validasi status akun, edit data, dan konfirmasi hapus.',
+                'DPPL-FR04: Tampilan dasbor visualisasi grafik area jumlah alumni terhadap periode dan statistik card ringkas.',
+                'DPPL-FR05: Mesin ekspor data alumni terfilter ke format file Microsoft Excel (.xlsx) atau Adobe PDF.',
+                'DPPL-FR06: Modul pembuatan survei tracer study dan pengumuman umum dengan notifikasi email otomatis.',
+                'DPPL-FR07: Akses publik terbuka tanpa login untuk melihat profil alumni berprestasi di landing page.',
+              ],
+            },
+            {
+              index: '03',
+              title: 'Dekomposisi Data & Relasi Entitas (ERD)',
+              category: 'PERANCANGAN BASIS DATA',
+              metricBadge: 'Skema Relasional Ternormalisasi',
+              summary:
+                'Membongkar struktur data kompleks menjadi entitas-entitas terisolasi dengan relasi relasional yang kokoh.',
+              details: [
+                'Entitas User & Alumni: Pemisahan data autentikasi (id_user, username, password terenkripsi, id_role) dan profil alumni (angkatan, pekerjaan, perusahaan, domisili).',
+                'Rekam Jejak Karier & Pendidikan: Entitas RiwayatKarir dan RiwayatPendidikan yang mencatat nama perusahaan, tingkat jabatan, nama instansi, tahun masuk, dan kelulusan.',
+                'Informasi & Komunikasi: Entitas InformasiUmum, KontenGambarInformasi, dan Notifikasi untuk publikasi berita, banner gambar, dan log pengiriman pesan.',
+                'Alumni Berprestasi: Entitas AlumniBerprestasi untuk pelabelan prestasi khusus yang ditampilkan di beranda publik.',
+              ],
+            },
+            {
+              index: '04',
+              title: '12 Spesifikasi Desain Antarmuka & Skema Warna Ungu',
+              category: 'SPESIFIKASI UI/UX',
+              metricBadge: '12 Rancangan Layar',
+              summary:
+                'Merancang 12 tata letak layar antarmuka pengguna berbasis palet warna ungu (#5B45B0) yang terbagi atas zona otorisasi admin dan portal publik.',
+              details: [
+                'Zona Admin: Layar Login Admin, Dasbor Analitik (grafik area & total 5.000 alumni tren 8.5%), Tabel Data Alumni dengan aksi per baris, Form Tambah Alumni, dan Kelola Berprestasi.',
+                'Zona Publik & Alumni: Sticky navigation bar, hero sambutan kampus SV IPB, kartu sorotan alumni berprestasi, dan 3 kolom warta terkini.',
+                'Alur Registrasi 2-Tahap: Verifikasi awal Email IPB (@apps.ipb.ac.id) & NIM sebelum membuka form pembuatan kata sandi.',
+                'Layar Pesan Gagal Memuat: Layar penanganan kendala teknis terstandarisasi dengan satu tombol aksi Kembali ke layar sebelumnya.',
+              ],
+            },
+          ],
+          recommendationsTitle: 'Prinsip Rekayasa & Standar Implementasi',
+          recommendations: [
+            {
+              index: '01',
+              title: 'Kepatuhan Standar IEEE 830 & Ketertelusuran RTM',
+              takeaway:
+                'Seluruh kebutuhan sistem dari dokumen SRS dipetakan secara presisi ke dokumen DPPL, menghasilkan acuan pengembangan yang 100% teruji dan minim ambiguitas teknis.',
+            },
+            {
+              index: '02',
+              title: 'Pemisahan Tanggung Jawab (Arsitektur Berlapis)',
+              takeaway:
+                'Pemisahan tegas antara lapisan presentation, logika bisnis, akses data, dan database mencegah ketergantungan kode yang rumit dan mempermudah pengujian unit.',
+            },
+            {
+              index: '03',
+              title: 'Autentikasi Terverifikasi 2-Tahap Berbasis Domain IPB',
+              takeaway:
+                'Validasi email resmi @apps.ipb.ac.id dan NIM ke database prodi sebelum pembuatan akun menjamin keaslian identitas alumni dan mencegah manipulasi data survei.',
+            },
+            {
+              index: '04',
+              title: 'Ekspor Data Laporan Akreditasi Otomatis',
+              takeaway:
+                'Dukungan ekspor instan ke format Excel dan PDF memudahkan program studi dalam mengolah rekap data karier alumni untuk keperluan audit akreditasi nasional.',
+            },
+          ],
+        },
       },
+
     ],
     journeyInvitation: {
       title: 'Ada banyak pembelajaran di luar proyek-proyek ini.',

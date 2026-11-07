@@ -171,14 +171,15 @@ export default function ProjectDetail() {
           </section>
         )}
 
-        {/* Section: Four Pillars of Data Mining Analysis (if caseStudy.pillars exist) */}
+        {/* Section: Core Engineering & Analysis Pillars (if caseStudy.pillars exist) */}
         {project.caseStudy?.pillars && (
           <section className="detail-card detail-card--pillars">
             <div className="detail-section-header">
               <span className="mono section-index">{nextSectionIndex()}</span>
               <div className="detail-evidence-title-group">
                 <h2 className="detail-section-title">
-                  {lang === 'id' ? 'Empat Pilar Analisis Data Mining' : 'Four Pillars of the Data Mining Cycle'}
+                  {project.caseStudy.pillarsTitle ||
+                    (lang === 'id' ? 'Pilar Analisis & Rekayasa Sistem' : 'Core Analysis & Engineering Pillars')}
                 </h2>
                 <span className="mono evidence-counter">
                   {project.caseStudy.pillars.length} {lang === 'id' ? 'PILAR' : 'PILLARS'}
@@ -216,19 +217,20 @@ export default function ProjectDetail() {
           </section>
         )}
 
-        {/* Section: Executive Summary & Actionable Recommendations (if caseStudy.recommendations exist) */}
+        {/* Section: Executive Summary & Recommendations (if caseStudy.recommendations exist) */}
         {project.caseStudy?.recommendations && (
           <section className="detail-card detail-card--recommendations">
             <div className="detail-section-header">
               <span className="mono section-index">{nextSectionIndex()}</span>
               <div className="detail-evidence-title-group">
                 <h2 className="detail-section-title">
-                  {lang === 'id'
-                    ? 'Kesimpulan Eksekutif & Rekomendasi Bisnis Terapan'
-                    : 'Executive Summary & Actionable Business Insights'}
+                  {project.caseStudy.recommendationsTitle ||
+                    (lang === 'id'
+                      ? 'Kesimpulan Eksekutif & Rekomendasi Terapan'
+                      : 'Executive Summary & Key Deliverables')}
                 </h2>
                 <span className="mono evidence-counter">
-                  {project.caseStudy.recommendations.length} {lang === 'id' ? 'AKSI' : 'ACTIONS'}
+                  {project.caseStudy.recommendations.length} {lang === 'id' ? 'POIN' : 'ITEMS'}
                 </span>
               </div>
             </div>
@@ -239,7 +241,7 @@ export default function ProjectDetail() {
                   <div className="case-rec-badge">
                     <span className="mono case-rec-num">{rec.index}</span>
                     <span className="mono case-rec-tag">
-                      {lang === 'id' ? 'REKOMENDASI STRATEGIS' : 'ACTIONABLE INSIGHT'}
+                      {rec.badge || (lang === 'id' ? 'REKOMENDASI STRATEGIS' : 'ACTIONABLE INSIGHT')}
                     </span>
                   </div>
                   <h3 className="case-rec-title">{rec.title}</h3>
