@@ -85,66 +85,173 @@ export const workData = {
       subtitle: 'In-depth case studies showcasing problem framing, data modeling, and end-to-end implementation.',
     },
     projects: [
-      // 01: Ames Housing (May 2026)
+            // 01: Ames Housing (Jun 2026)
       {
         id: 'ames-housing',
         tone: 'light',
         num: '01',
-        label: 'DATA ANALYSIS & MACHINE LEARNING',
-        title: 'Ames Housing Price Prediction Analysis',
-        tagline: 'Uncovering the mathematical patterns behind residential property valuation.',
+        label: 'DATA MINING & PREDICTIVE ANALYTICS',
+        title: 'Ames Housing: Property Valuation & Market Segmentation',
+        tagline: 'Translating 2,930 residential property records into automated valuation models and precision marketing segments.',
         role: 'Data Analyst',
-        meta: 'ACADEMIC PROJECT · MAY — JUN 2026',
+        meta: 'ACADEMIC PROJECT · SEMESTER 4 · JUN 2026',
         description:
-          'Conducted comprehensive end-to-end data science on the Ames Housing dataset. Cleaned and preprocessed 2,930 property records, analyzed distribution skews, built multivariate correlation models, and developed predictive machine learning pipelines.',
+          'Conducted a comprehensive academic data mining project on the Ames Housing dataset (2,930 properties, 81 attributes) for the Data Mining (Teknik Penambangan Data) coursework at IPB University under Osanna Patricia Limbong (NIM: J0403241049). Executed a rigorous four-pillar analytics cycle: Exploratory Data Analysis & skew profiling, continuous price prediction via Multiple Linear Regression, discrete price tiering via Decision Tree (rpart), and unsupervised market segmentation using K-Means clustering with feature standardization.',
         metrics: [
-          { label: 'Model Accuracy (R²)', value: '81.94%' },
-          { label: 'Mean Abs Error', value: '$20,849' },
-          { label: 'Dataset Size', value: '2,930 Records' },
-          { label: 'Key Feature', value: 'Gr_Liv_Area' },
+          { label: 'Linear Regression (R²)', value: '81.94%' },
+          { label: 'Mean Abs Error (MAE)', value: '$20,849' },
+          { label: 'Classification Acc.', value: '72.7%' },
+          { label: 'Dataset Scale', value: '2,930 / 81 Vars' },
         ],
         highlights: [
-          'Preprocessed 80+ property attributes, handling missing values and log-transforming skewed price distributions.',
-          'Built Pearson correlation matrices isolating top property price determinants (living area, overall quality, garage capacity).',
-          'Trained and evaluated Linear Regression, Decision Tree classification (Low/Mid/High tiering), and 2D PCA market segmentation.',
+          'Exploratory Data Analysis: Examined 2,930 observations across 81 features (35 numerical, 46 categorical, 0 missing values). The target Sale_Price exhibited a right-skewed distribution (Min $12,789, Median $160,000, Mean $180,796, Max $755,000, SD $79,886.69).',
+          'Physical Dimension Trio: Correlation analysis proved property value is overwhelmingly determined by Above-Grade Living Area (Gr_Liv_Area), Basement Area (Total_Bsmt_SF), and Garage Capacity (Garage_Cars), complemented by Overall Material Quality (Overall_Qual).',
+          'Continuous Predictive Modeling: Multiple Linear Regression trained on an 80/20 train-test split (2,344 / 586 properties) achieved R² = 81.94%, MAE = $20,849.18, and RMSE = $32,692.76, establishing a reliable automated property appraisal engine.',
+          'Discrete Price Tiering (Decision Tree): Segmented target prices into balanced quantile classes (Low ≤ $139k, Mid $139k–$189k, High > $189k). Built an interpretable white-box rpart model with 72.7% accuracy, splitting primarily on Overall_Qual (≥ 6.5) and Year_Built (1982).',
+          'Unsupervised Market Segmentation: Applied scale() Z-score standardization on numerical features and determined 3 optimal market clusters using the Elbow Method (WSS): Segmen Ekonomis (1,261 units), Segmen Premium (1,200 units), and Segmen Lahan Ekstrem (469 units).',
         ],
-        tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Google Colab', 'Scikit-Learn', 'PCA Clustering'],
+        tags: [
+          'R Language',
+          'RStudio',
+          'AmesHousing Dataset',
+          'Linear Regression',
+          'rpart (Decision Tree)',
+          'K-Means Clustering',
+          'ggplot2',
+          'Elbow Method (WSS)',
+        ],
         hasGallery: true,
         galleryLabel: 'View Analysis Charts (5)',
         evidence: [
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
             alt: 'Sale Price Distribution in Ames (Histogram)',
-            caption: '01. EDA & Distribution: Right-skewed sale price distribution with transaction concentration between $130,000 and $200,000.',
+            caption:
+              '01. EDA & Distribution: Positively skewed distribution of Sale_Price (Median $160k, Mean $180.8k, Max $755k) reflecting the pull of high-end luxury properties.',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
             alt: 'Top 10 Strongest Price Determinants - Pearson Correlation',
-            caption: '02. Feature Correlation: Top 10 key house price determinants (Gr_Liv_Area, Garage_Cars, Garage_Area).',
+            caption:
+              '02. Feature Correlation: Unveiling the "Physical Dimension Trio" (Gr_Liv_Area, Total_Bsmt_SF, Garage_Cars/Area) alongside Overall_Qual as primary price determinants.',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
             alt: 'Actual Sale Price vs Predicted Price',
-            caption: '03. Linear Regression: Property price prediction model performance (R² 81.94%, MAE $20,849) against actual sales.',
+            caption:
+              '03. Linear Regression: Evaluation on 586 test samples showing solid predictive accuracy with R² = 81.94%, MAE = $20,849.18, and RMSE = $32,692.76.',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
             alt: 'Decision Tree Classification',
-            caption: '04. Classification (Decision Tree): Branching logic for categorizing price tiers (Low, Medium, High).',
+            caption:
+              '04. Classification (Decision Tree): Transparent white-box rpart tree achieving 72.7% accuracy across 3 price quantiles (Low ≤ $139k, Mid $139k–$189k, High > $189k).',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
             alt: 'Market Segmentation Map Based on Labels (PCA)',
-            caption: '05. Clustering (PCA): 2D visualization mapping market segmentation into 3 distinct property profile clusters.',
+            caption:
+              '05. Market Segmentation (K-Means & PCA): 3 distinct clusters (Segmen Ekonomis, Segmen Premium, Segmen Lahan Ekstrem) derived from standardized spatial features.',
             fit: 'contain',
           },
         ],
+        caseStudy: {
+          courseInfo: {
+            course: 'Teknik Penambangan Data (Data Mining)',
+            institution: 'Sekolah Vokasi IPB University — Software Engineering Technology',
+            author: 'Osanna Patricia Limbong (NIM: J0403241049)',
+            date: 'June 18, 2026',
+            dataset: 'Ames Housing Dataset (Dean De Cock, Truman State University)',
+            scope: '2,930 Properties · 81 Features (35 Numeric, 46 Categorical) · 0 Missing Values',
+          },
+          pillars: [
+            {
+              index: '01',
+              title: 'Exploratory Data Analysis & Target Distribution',
+              category: 'FOUNDATIONAL EDA',
+              metricBadge: '2,930 Rows · 0 Nulls',
+              summary:
+                'Audited dataset completeness and characterized target variable behavior. With zero missing values, the dataset was immediately ready for ML modeling without imputation.',
+              details: [
+                'Sale_Price distribution is right-skewed with Min = $12,789, Median = $160,000, Mean = $180,796, Max = $755,000, and Standard Deviation = $79,886.69.',
+                'The difference between mean and median highlights the upward pull of luxury outliers above $350k–$400k.',
+                'Pearson correlation isolated the "Physical Dimension Trio" (Gr_Liv_Area, Total_Bsmt_SF, Garage_Cars) as dominant factors over purely cosmetic traits.',
+              ],
+            },
+            {
+              index: '02',
+              title: 'Continuous Price Prediction (Linear Regression)',
+              category: 'SUPERVISED REGRESSION',
+              metricBadge: 'R² 81.94% · MAE $20,849',
+              summary:
+                'Built a multiple linear regression model to predict exact property valuation for real-world automated property appraisal platforms.',
+              details: [
+                'Data split into 80% train (2,344 properties) and 20% test (586 properties).',
+                'Model achieved R² = 81.94% (0.8194) variance explanation on unseen test records.',
+                'Mean Absolute Error (MAE) of $20,849.18 and Root Mean Squared Error (RMSE) of $32,692.76, proving strong consistency across mid-market housing.',
+              ],
+            },
+            {
+              index: '03',
+              title: 'Discrete Price Tiering (Decision Tree / rpart)',
+              category: 'SUPERVISED CLASSIFICATION',
+              metricBadge: '72.7% Acc · 3 Quantiles',
+              summary:
+                'Constructed an interpretable white-box classification tree to auto-route property listings into budget, mid-range, and premium tiers.',
+              details: [
+                'Discretized target prices into 3 balanced quantiles: Murah (≤ $139,000), Menengah ($139,000–$189,000), and Mahal (> $189,000).',
+                'Overall classification accuracy reached 72.7%, with high precision on extreme classes (Murah predicted correctly 154 times, Mahal 149 times).',
+                'Root decision splits utilize Overall_Qual (threshold ≥ 6.5) and Year_Built (1982), creating transparent business rules that can be codified directly into database queries.',
+              ],
+            },
+            {
+              index: '04',
+              title: 'Market Segmentation & Persona Profiling (K-Means)',
+              category: 'UNSUPERVISED CLUSTERING',
+              metricBadge: '3 Clusters · Elbow Method',
+              summary:
+                'Grouped properties by physical characteristics alone (excluding Sale_Price) using standardized Euclidean distance to generate actionable marketing segments.',
+              details: [
+                'All numeric variables standardized with scale() to prevent large-magnitude features (lot area) from dwarfing compact features (garage capacity).',
+                'Segmen Ekonomis (1,261 homes): Avg lot 8,822 sqft, living 1,226 sqft, built 1946, quality score 5.04. Ideal for young professionals and first-time buyers.',
+                'Segmen Premium (1,200 homes): Avg lot 9,622 sqft, living 1,527 sqft, built 1989, quality score 6.46. Ideal for established families and modern living.',
+                'Segmen Lahan Ekstrem (469 homes): Avg lot 15,059 sqft, living 2,166 sqft, built 1996, quality score 8.02. Target for luxury investors and commercial developers.',
+              ],
+            },
+          ],
+          recommendations: [
+            {
+              index: '01',
+              title: 'Renovation Priority (House Flipping Strategy)',
+              takeaway:
+                'Physical dimensions drive value more than cosmetic surface finishes. Renovations should prioritize expanding garage capacity, basement finishing, or living area extensions to exponentially boost resale profit margins.',
+            },
+            {
+              index: '02',
+              title: 'AI Automated Valuation Tool (AVM)',
+              takeaway:
+                'Deploy the Multiple Linear Regression model (R² 81.94%, MAE $20,849) as an instant interactive appraisal calculator on property portals to drive user engagement and fast listing estimates.',
+            },
+            {
+              index: '03',
+              title: 'Automated Catalog & Inventory Sorting',
+              takeaway:
+                'Embed the Decision Tree branching logic into backend databases to auto-categorize incoming listings into "Discount Catalog" or "Premium Showcase" within seconds, eliminating manual inspection delays.',
+            },
+            {
+              index: '04',
+              title: 'Sniper Marketing Strategy (Not Shotgun)',
+              takeaway:
+                'Replace costly mass marketing with hyper-targeted cluster campaigns: promote luxury lifestyle visuals to Segmen Premium, and down-payment subsidies / affordable mortgage plans to Segmen Ekonomis.',
+            },
+          ],
+        },
       },
-      // 02: canvAR (Apr 2026)
+// 02: canvAR (Apr 2026)
       {
         id: 'canvar',
         tone: 'light',
@@ -338,66 +445,173 @@ export const workData = {
       subtitle: 'Studi kasus mendalam yang memperlihatkan pemahaman masalah, pemodelan data, hingga implementasi sistem utuh.',
     },
     projects: [
-      // 01: Ames Housing (Mei 2026)
+            // 01: Ames Housing (Jun 2026)
       {
         id: 'ames-housing',
         tone: 'light',
         num: '01',
-        label: 'ANALISIS DATA & MACHINE LEARNING',
-        title: 'Analisis Prediksi Harga Properti Ames Housing',
-        tagline: 'Menemukan pola matematis di balik penentuan nilai harga properti residensial.',
+        label: 'DATA MINING & PREDICTIVE ANALYTICS',
+        title: 'Analisis Prediksi Harga Properti & Segmentasi Pasar Ames Housing',
+        tagline: 'Menerjemahkan 2.930 data properti residensial menjadi mesin taksir valuasi otomatis dan segmentasi pemasaran presisi.',
         role: 'Analis Data',
-        meta: 'PROYEK AKADEMIK · MEI — JUN 2026',
+        meta: 'PROYEK AKADEMIK · SEMESTER 4 · JUN 2026',
         description:
-          'Melakukan riset data science menyeluruh pada dataset properti Ames Housing. Melakukan pembersihan data pada 2.930 transaksi, analisis distribusi skewness, matriks korelasi multivariat, dan pembuatan pipeline machine learning prediktif.',
+          'Melaksanakan proyek data mining akademik komprehensif pada dataset Ames Housing (2.930 unit properti, 81 atribut) dalam mata kuliah Teknik Penambangan Data di Sekolah Vokasi IPB University oleh Osanna Patricia Limbong (NIM: J0403241049). Menjalankan siklus data mining 4 pilar lengkap: Analisis Distribusi & Skewness EDA, isolasi faktor penggerak valuasi ("Trio Dimensi Fisik"), prediksi harga kontinu via Regresi Linear Berganda, pemilahan kelas harga diskrit via Pohon Keputusan (rpart), serta segmentasi persona pasar tanpa supervisi via Klastering K-Means berstandarisasi.',
         metrics: [
-          { label: 'Akurasi Model (R²)', value: '81.94%' },
-          { label: 'Rata-rata Error', value: '$20.849' },
-          { label: 'Jumlah Baris Data', value: '2.930 Rumah' },
-          { label: 'Faktor Terkuat', value: 'Gr_Liv_Area' },
+          { label: 'Regresi Linear (R²)', value: '81.94%' },
+          { label: 'Rata-rata Error (MAE)', value: '$20.849' },
+          { label: 'Akurasi Decision Tree', value: '72.7%' },
+          { label: 'Skala Dataset', value: '2.930 / 81 Kolom' },
         ],
         highlights: [
-          'Melakukan preprocessing 80+ fitur properti, mengatasi missing values, dan mentransformasi distribusi harga right-skewed.',
-          'Membangun matriks korelasi Pearson yang mengisolasi 10 faktor utama penentu harga (luas bangunan, kualitas fisik, garasi).',
-          'Melatih dan menguji regresi linear, klasifikasi pohon keputusan (kategori Rendah/Menengah/Tinggi), dan segmentasi pasar 2D PCA.',
+          'Exploratory Data Analysis (EDA): Membedah 2.930 observasi pada 81 fitur (35 numerik, 46 kategorik, 0 missing values). Variabel target Sale_Price berdistribusi right-skewed (Min $12.789, Median $160.000, Mean $180.796, Max $755.000, SD $79.886,69).',
+          'Trio Dimensi Fisik: Matriks korelasi Pearson membuktikan valuasi properti dikendalikan Luas Hunian Atas (Gr_Liv_Area), Luas Basemen (Total_Bsmt_SF), dan Kapasitas Garasi (Garage_Cars), didukung skor kualitas material (Overall_Qual).',
+          'Prediksi Harga Kontinu: Model Regresi Linear Berganda dilatih pada 80% train (2.344) dan diuji pada 20% test (586), mencatatkan performa R² = 81.94%, MAE = $20.849,18, dan RMSE = $32.692,76 sebagai fondasi penaksir valuasi otomatis.',
+          'Pemilahan Kelas Harga (Decision Tree): Mengelompokkan target harga ke 3 kelas kuantil berimbang (Murah ≤ $139k, Menengah $139k–$189k, Mahal > $189k). Model rpart white-box meraih akurasi 72.7% dengan cabang utama pada Overall_Qual (≥ 6.5) dan Year_Built (1982).',
+          'Segmentasi Pasar (Klastering K-Means): Menstandarisasi variabel numerik via scale() dan menetapkan 3 klaster optimal melalui Elbow Method (WSS): Segmen Ekonomis (1.261 unit), Segmen Premium (1.200 unit), dan Segmen Lahan Ekstrem (469 unit).',
         ],
-        tags: ['Python', 'Pandas', 'Matplotlib', 'Seaborn', 'Google Colab', 'Scikit-Learn', 'PCA Clustering'],
+        tags: [
+          'R Language',
+          'RStudio',
+          'AmesHousing Dataset',
+          'Linear Regression',
+          'rpart (Decision Tree)',
+          'K-Means Clustering',
+          'ggplot2',
+          'Elbow Method (WSS)',
+        ],
         hasGallery: true,
         galleryLabel: 'Lihat Grafik Analisis (5)',
         evidence: [
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211421.png',
             alt: 'Distribusi Harga Penjualan Rumah di Ames (Histogram)',
-            caption: '01. EDA & Distribusi: Pola sebaran harga right-skewed dengan konsentrasi transaksi pada rentang $130.000 hingga $200.000.',
+            caption:
+              '01. EDA & Distribusi: Pola sebaran harga Sale_Price right-skewed (Median $160.000, Rata-rata $180.796, Tertinggi $755.000) yang ditarik oleh segelintir rumah mewah.',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211456.png',
             alt: 'Top 10 Faktor Terkuat Penentu Harga - Korelasi Pearson',
-            caption: '02. Korelasi Fitur: Top 10 faktor penentu harga rumah teratas (Gr_Liv_Area, Garage_Cars, Garage_Area).',
+            caption:
+              '02. Korelasi Fitur: Menemukan "Trio Dimensi Fisik" (Gr_Liv_Area, Total_Bsmt_SF, Garage_Cars/Area) bersama Overall_Qual sebagai penentu valuasi terkuat.',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211518.png',
             alt: 'Harga Asli di Lapangan vs Harga Prediksi Model',
-            caption: '03. Regresi Linear: Performa model prediksi harga properti (R² 81.94%, MAE $20.849) terhadap harga aktual.',
+            caption:
+              '03. Regresi Linear: Evaluasi pada 586 data uji menunjukkan akurasi solid dengan R² = 81.94%, MAE = $20.849,18, dan RMSE = $32.692,76.',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211528.png',
             alt: 'Pohon Keputusan Pemilahan Kelas Rumah',
-            caption: '04. Klasifikasi (Decision Tree): Logika percabangan pemilahan kelas harga rumah (Murah, Menengah, Mahal).',
+            caption:
+              '04. Klasifikasi (Decision Tree): Pohon rpart white-box transparan dengan akurasi 72.7% membagi 3 kuantil harga (Murah ≤ $139k, Menengah $139k–$189k, Mahal > $189k).',
             fit: 'contain',
           },
           {
             src: '/images/work/ames/Screenshot 2026-11-03 211619.png',
             alt: 'Peta Segmentasi Pasar Berdasarkan Label (PCA)',
-            caption: '05. Klastering (PCA): Visualisasi 2D pemetaan segmentasi pasar menjadi 3 klaster profil properti.',
+            caption:
+              '05. Segmentasi Pasar (K-Means & PCA): 3 segmen pasar terpisah (Segmen Ekonomis, Segmen Premium, Segmen Lahan Ekstrem) dari fitur fisik terstandarisasi.',
             fit: 'contain',
           },
         ],
+        caseStudy: {
+          courseInfo: {
+            course: 'Teknik Penambangan Data (Data Mining)',
+            institution: 'Sekolah Vokasi IPB University — Teknologi Rekayasa Perangkat Lunak',
+            author: 'Osanna Patricia Limbong (NIM: J0403241049)',
+            date: '18 Juni 2026',
+            dataset: 'Ames Housing Dataset (Dean De Cock, Truman State University)',
+            scope: '2.930 Rumah · 81 Variabel (35 Numerik, 46 Kategorik) · 0 Missing Value',
+          },
+          pillars: [
+            {
+              index: '01',
+              title: 'Exploratory Data Analysis & Karakteristik Distribusi',
+              category: 'EDA DASAR',
+              metricBadge: '2.930 Baris · 0 Data Kosong',
+              summary:
+                'Memvalidasi kelengkapan data dan membedah perilaku variabel target harga jual rumah. Tanpa adanya missing values, dataset siap diproses langsung ke algoritma ML.',
+              details: [
+                'Distribusi Sale_Price bersifat right-skewed dengan Nilai Minimum = $12.789, Median = $160.000, Rata-rata = $180.796, Maksimum = $755.000, dan Standar Deviasi = $79.886,69.',
+                'Selisih nilai rata-rata yang lebih tinggi dibanding median mengindikasikan efek tarikan rumah-rumah mewah di atas $350k–$400k.',
+                'Korelasi Pearson membuktikan "Trio Dimensi Fisik" (Gr_Liv_Area, Total_Bsmt_SF, Garage_Cars) mendominasi nilai jual dibandingkan sekadar faktor kosmetik permukaan.',
+              ],
+            },
+            {
+              index: '02',
+              title: 'Prediksi Harga Kontinu (Regresi Linear Berganda)',
+              category: 'REGRESI SUPERVISED',
+              metricBadge: 'R² 81.94% · MAE $20.849',
+              summary:
+                'Membangun model regresi linear berganda untuk memprediksi angka pasti harga jual rumah sebagai penaksir valuasi otomatis di platform properti.',
+              details: [
+                'Data dibagi secara acak menjadi 80% data latih (2.344 rumah) dan 20% data uji (586 rumah).',
+                'Model mencatatkan R² = 81.94% (0.8194) pada data uji yang belum pernah dilihat sebelumnya.',
+                'Mean Absolute Error (MAE) sebesar $20.849,18 dan RMSE sebesar $32.692,76, membuktikan konsistensi prediksi yang stabil untuk hunian kelas umum.',
+              ],
+            },
+            {
+              index: '03',
+              title: 'Pemilahan Kelas Harga (Pohon Keputusan / rpart)',
+              category: 'KLASIFIKASI SUPERVISED',
+              metricBadge: 'Akurasi 72.7% · 3 Kuantil',
+              summary:
+                'Menyusun model klasifikasi pohon keputusan (white-box) untuk menyortir listing baru secara otomatis ke dalam etalase diskon, reguler, atau premium.',
+              details: [
+                'Harga dibagi menjadi 3 kelas kuantil berimbang: Murah (≤ $139.000), Menengah ($139.000–$189.000), dan Mahal (> $189.000).',
+                'Akurasi klasifikasi keseluruhan mencapai 72.7%, dengan keakuratan sangat tinggi pada kelas ekstrem (Murah tepat 154 kali, Mahal tepat 149 kali).',
+                'Titik percabangan utama memanfaatkan Overall_Qual (threshold ≥ 6.5) dan Year_Built (1982), menghasilkan aturan if-then yang transparan dan dapat ditanamkan ke database.',
+              ],
+            },
+            {
+              index: '04',
+              title: 'Segmentasi Pasar & Pelabelan Profil (K-Means)',
+              category: 'KLASTERING UNSUPERVISED',
+              metricBadge: '3 Klaster · Elbow Method',
+              summary:
+                'Mengelompokkan data berdasarkan karakteristik fisik properti tanpa melibatkan variabel harga untuk menyusun target pasar marketing.',
+              details: [
+                'Seluruh variabel numerik distandarisasi menggunakan scale() untuk mencegah variabel luas tanah mendominasi perhitungan jarak Euclidean.',
+                'Segmen Ekonomis (1.261 unit): Rata-rata tanah 8.822 sqft, hunian 1.226 sqft, dibangun 1946, skor kualitas 5.04. Sangat cocok untuk pekerja muda dan first-time buyers.',
+                'Segmen Premium (1.200 unit): Rata-rata tanah 9.622 sqft, hunian 1.527 sqft, dibangun 1989, skor kualitas 6.46. Target keluarga mapan dan gaya hidup modern.',
+                'Segmen Lahan Ekstrem (469 unit): Rata-rata tanah 15.059 sqft, hunian 2.166 sqft, dibangun 1996, skor kualitas 8.02. Diincar pengembang properti dan investor mewah.',
+              ],
+            },
+          ],
+          recommendations: [
+            {
+              index: '01',
+              title: 'Prioritas Renovasi (Strategi House Flipping)',
+              takeaway:
+                'Dimensi fisik properti mendikte valuasi jauh lebih besar daripada cat kosmetik. Renovasi sebaiknya difokuskan pada perombakan garasi, renovasi basemen, atau perluasan ruang keluarga untuk mendongkrak marjin keuntungan secara eksponensial.',
+            },
+            {
+              index: '02',
+              title: 'Kalkulator Valuasi AI (Automated Appraisal Engine)',
+              takeaway:
+                'Tanamkan model Regresi Linear (R² 81.94%, MAE $20.849) sebagai alat penaksir harga instan di website properti perusahaan guna meningkatkan keterlibatan calon pembeli dan penjual.',
+            },
+            {
+              index: '03',
+              title: 'Otomasi Sortir Inventori Katalog Listing',
+              takeaway:
+                'Integrasikan logika percabangan Decision Tree ke database listing baru agar sistem secara instan mengarahkan properti ke "Etalase Diskon" atau "Etalase Premium" tanpa pemeriksaan manual.',
+            },
+            {
+              index: '04',
+              title: 'Strategi Pemasaran Sniper (Bukan Mass-Marketing)',
+              takeaway:
+                'Gantikan kampanye massal yang boros biaya dengan iklan tertarget berdasarkan persona klaster: sajikan visual lifestyle mewah untuk Segmen Premium, dan tawarkan promo subsidi DP/KPR untuk Segmen Ekonomis.',
+            },
+          ],
+        },
       },
-      // 02: canvAR (Apr 2026)
+// 02: canvAR (Apr 2026)
       {
         id: 'canvar',
         tone: 'light',

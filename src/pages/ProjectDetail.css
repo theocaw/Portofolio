@@ -500,3 +500,301 @@
     text-align: left;
   }
 }
+
+
+/* =========================================================
+   Academic Coursework Dossier Strip
+   ========================================================= */
+.detail-academic-strip {
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+[data-theme='dark'] .detail-academic-strip {
+  background: #0d1527;
+  border-color: var(--rule);
+  box-shadow: 4px 4px 0 #000000;
+}
+
+.academic-strip-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-bottom: 12px;
+  border-bottom: 1.5px dashed var(--rule);
+}
+
+.academic-strip-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid var(--blue);
+}
+
+[data-theme='dark'] .academic-strip-tag {
+  background: #102647;
+  color: #8ec5fc;
+  border-color: #2b5490;
+}
+
+.academic-strip-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.academic-strip-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.academic-strip-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.academic-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+
+.academic-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.academic-strip-footer {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+
+.academic-scope-text {
+  font-size: 12.5px;
+  color: var(--ink);
+  font-family: var(--font-mono);
+}
+
+/* =========================================================
+   Four Pillars Analysis Grid
+   ========================================================= */
+.case-pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.case-pillar-card {
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.case-pillar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+[data-theme='dark'] .case-pillar-card {
+  background: #0d1527;
+  border-color: var(--rule);
+  box-shadow: 3.5px 3.5px 0 #000000;
+}
+
+[data-theme='dark'] .case-pillar-card:hover {
+  border-color: var(--blue);
+  box-shadow: 5px 5px 0 #000000;
+}
+
+.case-pillar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.case-pillar-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.case-pillar-idx {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+[data-theme='dark'] .case-pillar-idx {
+  background: var(--blue);
+  color: #090e1a;
+}
+
+.case-pillar-category {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  color: var(--blue-dark);
+}
+
+[data-theme='dark'] .case-pillar-category {
+  color: var(--blue);
+}
+
+.case-pillar-metric {
+  display: inline-flex;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  border: 1px solid var(--ink);
+}
+
+[data-theme='dark'] .case-pillar-metric {
+  color: #090e1a;
+}
+
+.case-pillar-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.case-pillar-summary {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.case-pillar-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--rule);
+}
+
+.case-pillar-bullets li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+/* =========================================================
+   Executive Summary & Actionable Recommendations Grid
+   ========================================================= */
+.case-recommendations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.case-recommendation-card {
+  background: var(--paper-2);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 3.5px 3.5px 0 var(--ink);
+}
+
+[data-theme='dark'] .case-recommendation-card {
+  background: #0d1527;
+  border-color: var(--rule);
+  box-shadow: 3.5px 3.5px 0 #000000;
+}
+
+.case-rec-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.case-rec-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--pink);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid var(--ink);
+}
+
+[data-theme='dark'] .case-rec-num {
+  color: #090e1a;
+}
+
+.case-rec-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+}
+
+.case-rec-title {
+  font-family: var(--font-display);
+  font-size: 15.5px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.case-rec-takeaway {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--ink);
+}
