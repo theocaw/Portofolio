@@ -19,7 +19,11 @@ export default function Layout() {
   };
 
   useEffect(() => {
-    document.title = titles[pathname] ?? titles['/'];
+    let pageTitle = titles[pathname];
+    if (!pageTitle && pathname.startsWith('/work/')) {
+      pageTitle = `${lang === 'id' ? 'Detail Proyek' : 'Project Detail'} — ${site.name}`;
+    }
+    document.title = pageTitle ?? titles['/'];
     if (!hash) window.scrollTo({ top: 0, behavior: 'instant' });
   }, [pathname, hash, lang]);
 
