@@ -402,8 +402,8 @@
 
 .project-detail-pager {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
   gap: 16px;
 }
 
@@ -418,6 +418,15 @@
   gap: 4px;
   text-decoration: none;
   transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.project-pager-card.is-disabled {
+  visibility: hidden;
+  pointer-events: none;
+  opacity: 0;
+  border: none;
+  box-shadow: none;
+  background: transparent;
 }
 
 .project-pager-card:hover {
@@ -460,41 +469,10 @@
   width: 100%;
 }
 
-.project-pager-all-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 10px 20px;
-  border-radius: 999px;
-  background: var(--lime);
-  border: 2px solid var(--ink);
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: transform var(--transition), box-shadow var(--transition);
-  white-space: nowrap;
-}
-
-.project-pager-all-btn:hover {
-  transform: scale(1.04);
-  background: var(--pink);
-}
-
-[data-theme='dark'] .project-pager-all-btn {
-  color: #090e1a;
-}
-
 @media (max-width: 768px) {
   .project-detail-pager {
     grid-template-columns: 1fr;
     gap: 12px;
-  }
-  .project-pager-all-btn {
-    order: -1;
-    justify-content: center;
   }
   .project-pager-card--next {
     text-align: left;

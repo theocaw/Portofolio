@@ -357,13 +357,8 @@ export default function ProjectDetail() {
               <span className="pager-title">{prevProject.title}</span>
             </Link>
           ) : (
-            <div className="project-pager-card is-disabled" />
+            <div className="project-pager-card is-disabled" aria-hidden="true" />
           )}
-
-          <Link to="/work" className="project-pager-all-btn">
-            <span>▦</span>
-            <span>{lang === 'id' ? 'Semua Proyek' : 'All Projects'}</span>
-          </Link>
 
           {nextProject ? (
             <Link to={`/work/${nextProject.id}`} className="project-pager-card project-pager-card--next">
@@ -373,7 +368,7 @@ export default function ProjectDetail() {
               <span className="pager-title">{nextProject.title}</span>
             </Link>
           ) : (
-            <div className="project-pager-card is-disabled" />
+            <div className="project-pager-card is-disabled" aria-hidden="true" />
           )}
         </div>
       </footer>
