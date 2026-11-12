@@ -650,18 +650,106 @@ body {
   border-color: #000000;
 }
 
-/* ---------- Reveal on scroll ---------- */
-.reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 600ms ease,
-    transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+/* ---------- Scroll Jump-In / Jump-Out Animations ---------- */
+.jump-target {
+  will-change: opacity, translate, scale;
 }
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
+.jump-target[data-jump='idle'] {
+  opacity: 0;
+  translate: 0 38px;
+  scale: 0.92;
+  pointer-events: none;
+}
+
+.jump-target[data-jump='in-bottom'] {
+  animation: jumpInFromBottom 620ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--jump-delay, 0ms) both;
+}
+
+.jump-target[data-jump='in-top'] {
+  animation: jumpInFromTop 620ms cubic-bezier(0.34, 1.56, 0.64, 1) var(--jump-delay, 0ms) both;
+}
+
+.jump-target[data-jump='out-top'] {
+  animation: jumpOutToTop 380ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
+}
+
+.jump-target[data-jump='out-bottom'] {
+  animation: jumpOutToBottom 380ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
+}
+
+@keyframes jumpInFromBottom {
+  0% {
+    opacity: 0;
+    translate: 0 42px;
+    scale: 0.9;
+  }
+  65% {
+    opacity: 1;
+    translate: 0 -7px;
+    scale: 1.02;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes jumpInFromTop {
+  0% {
+    opacity: 0;
+    translate: 0 -42px;
+    scale: 0.9;
+  }
+  65% {
+    opacity: 1;
+    translate: 0 7px;
+    scale: 1.02;
+  }
+  100% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes jumpOutToTop {
+  0% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  30% {
+    opacity: 0.85;
+    translate: 0 4px;
+    scale: 1.015;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 -34px;
+    scale: 0.9;
+  }
+}
+
+@keyframes jumpOutToBottom {
+  0% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+  30% {
+    opacity: 0.85;
+    translate: 0 -4px;
+    scale: 1.015;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 36px;
+    scale: 0.9;
+  }
 }
 
 ::selection {
@@ -687,8 +775,12 @@ body {
     animation: none;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
+  .jump-target,
+  .jump-target[data-jump] {
+    opacity: 1 !important;
+    translate: none !important;
+    scale: none !important;
+    animation: none !important;
+    pointer-events: auto !important;
   }
 }

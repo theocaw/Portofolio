@@ -16,6 +16,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
+  overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
