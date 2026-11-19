@@ -4,6 +4,7 @@ import SiteHeader from './SiteHeader.jsx';
 import ContactFooter from './ContactFooter.jsx';
 import PinyoCompanion from './PinyoCompanion.jsx';
 import CustomCursor from './CustomCursor.jsx';
+import ScrollComet from './ScrollComet.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
@@ -208,6 +209,7 @@ export default function Layout() {
       <ContactFooter />
       <PinyoCompanion />
       <CustomCursor />
+      <ScrollComet />
     </>
   );
 }
