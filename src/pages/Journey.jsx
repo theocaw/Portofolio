@@ -1,17 +1,47 @@
+import { useState } from 'react';
 import PageIntro from '../components/PageIntro.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getJourneyContent } from '../content/journey.js';
 import './Journey.css';
+
+const ACHIEVEMENT_FILTERS = {
+  en: [
+    { id: 'all', label: 'All Credentials' },
+    { id: 'award', label: '🏆 Competition Awards' },
+    { id: 'verified', label: '✦ Certifications' },
+  ],
+  id: [
+    { id: 'all', label: 'Semua Pencapaian' },
+    { id: 'award', label: '🏆 Juara Kompetisi' },
+    { id: 'verified', label: '✦ Sertifikasi Resmi' },
+  ],
+};
 
 export default function Journey() {
   const { lang } = useApp();
   const journey = getJourneyContent(lang);
   const { intro, professional, organizations, achievements } = journey;
   const { internship } = professional;
+  const [achFilter, setAchFilter] = useState('all');
+
+  const filterList = ACHIEVEMENT_FILTERS[lang] || ACHIEVEMENT_FILTERS.en;
+
+  const counts = {
+    all: achievements.entries.length,
+    award: achievements.entries.filter((a) => a.badgeType !== 'verified').length,
+    verified: achievements.entries.filter((a) => a.badgeType === 'verified').length,
+  };
+
+  const visibleAchievements =
+    achFilter === 'all'
+      ? achievements.entries
+      : achFilter === 'verified'
+        ? achievements.entries.filter((a) => a.badgeType === 'verified')
+        : achievements.entries.filter((a) => a.badgeType !== 'verified');
 
   return (
     <>
-      <PageIntro {...intro} />
+      <PageIntro {...intro} variant="fireflies" />
 
       {/* 01: Professional Experience Dossier */}
       <section className="container journey-section">
@@ -162,13 +192,29 @@ export default function Journey() {
           <p className="journey-section__description">{achievements.subtitle}</p>
         </div>
 
+        <div className="journey-filter-bar" role="tablist" aria-label="Filter achievements">
+          {filterList.map((f) => (
+            <button
+              key={f.id}
+              type="button"
+              role="tab"
+              aria-selected={achFilter === f.id}
+              className={`work-filter-pill ${achFilter === f.id ? 'is-active' : ''}`}
+              onClick={() => setAchFilter(f.id)}
+            >
+              <span>{f.label}</span>
+              <span className="mono work-filter-count">{counts[f.id] ?? 0}</span>
+            </button>
+          ))}
+        </div>
+
         <div className="achievements-showcase-grid">
-          {achievements.entries.map((a, idx) => {
+          {visibleAchievements.map((a) => {
             const isCertified = a.badgeType === 'verified';
             const isAward = a.badgeType === 'award';
 
             return (
-              <article key={idx} className="achievement-showcase-card">
+              <article key={`${a.name}-${a.organizer}`} className="achievement-showcase-card">
                 <div className="achievement-card__top">
                   <span
                     className={`achievement-ribbon ${

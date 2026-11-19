@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { useApp } from '../context/AppContext.jsx';
 import { getWorkContent } from '../content/work.js';
 import EvidenceModal from '../components/EvidenceModal.jsx';
+import PageBackdrop from '../components/PageBackdrop.jsx';
 import './ProjectDetail.css';
 
 export default function ProjectDetail() {
@@ -43,36 +44,39 @@ export default function ProjectDetail() {
 
   return (
     <article className="project-detail-page">
-      {/* 1. Top Breadcrumb Bar */}
-      <nav className="container project-detail-nav" aria-label="Breadcrumbs">
-        <Link to="/work" className="project-detail-back-link">
-          <span className="back-arrow">←</span>
-          <span>{lang === 'id' ? 'Kembali ke Semua Proyek' : 'Back to All Projects'}</span>
-        </Link>
+      <div className="page-intro-stage">
+        <PageBackdrop variant="network" />
+        {/* 1. Top Breadcrumb Bar */}
+        <nav className="container project-detail-nav" aria-label="Breadcrumbs">
+          <Link to="/work" className="project-detail-back-link">
+            <span className="back-arrow">←</span>
+            <span>{lang === 'id' ? 'Kembali ke Semua Proyek' : 'Back to All Projects'}</span>
+          </Link>
 
-        <div className="project-detail-nav-meta">
-          <span className="mono nav-index">{project.num} / 05</span>
-          <span className="mono nav-cat">{project.label}</span>
-        </div>
-      </nav>
+          <div className="project-detail-nav-meta">
+            <span className="mono nav-index">{project.num} / 05</span>
+            <span className="mono nav-cat">{project.label}</span>
+          </div>
+        </nav>
 
-      {/* 2. Hero Dossier Header */}
-      <header className="container project-detail-hero">
-        <div className="project-detail-hero__top">
-          <div className="project-detail-hero__badges">
-            <span className="mono hero-num-badge">{project.num}</span>
-            <span className="mono hero-cat-badge">{project.label}</span>
+        {/* 2. Hero Dossier Header */}
+        <header className="container project-detail-hero">
+          <div className="project-detail-hero__top">
+            <div className="project-detail-hero__badges">
+              <span className="mono hero-num-badge">{project.num}</span>
+              <span className="mono hero-cat-badge">{project.label}</span>
+            </div>
+
+            <div className="project-detail-hero__meta">
+              <span className="role-badge">{project.role}</span>
+              <span className="mono hero-period">{project.meta}</span>
+            </div>
           </div>
 
-          <div className="project-detail-hero__meta">
-            <span className="role-badge">{project.role}</span>
-            <span className="mono hero-period">{project.meta}</span>
-          </div>
-        </div>
-
-        <h1 className="project-detail-hero__title">{project.title}</h1>
-        <p className="project-detail-hero__tagline">{project.tagline}</p>
-      </header>
+          <h1 className="project-detail-hero__title">{project.title}</h1>
+          <p className="project-detail-hero__tagline">{project.tagline}</p>
+        </header>
+      </div>
 
       {/* 3. Main Case Study Content */}
       <main className="container project-detail-body">

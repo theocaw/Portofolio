@@ -13,6 +13,7 @@ const JUMP_SELECTOR = [
   '.page-intro__label',
   '.page-intro__headline',
   '.page-intro__description',
+  '.page-intro__theme-pill',
   '.contact-footer__copy',
   '.contact-footer__details',
   '.contact-footer__colophon',
@@ -38,6 +39,7 @@ const JUMP_SELECTOR = [
   '.ongoing-grid > .ongoing-card',
   '.completed-header',
   '.completed-headline-block',
+  '.work-filter-bar',
   '.projects-grid > .project-card',
   '.journey-invitation',
   // Project Detail
@@ -54,12 +56,16 @@ const JUMP_SELECTOR = [
   '.journey-heading',
   '.journey-heading__title--large',
   '.journey-heading-block',
+  '.journey-filter-bar',
   '.journey-section__description',
   '.experience-dossier',
   '.experience-metrics-grid > .experience-metric-card',
   '.organizations-bento > .org-bento-card',
   '.achievements-showcase-grid > .achievement-showcase-card',
 ].join(', ');
+
+const TILT_SELECTOR =
+  '.page-card, .toolkit__domain, .gpa, .ongoing-card, .project-card, .org-bento-card, .achievement-showcase-card, .case-pillar-card, .case-recommendation-card';
 
 function getDocumentBounds(el) {
   const height = el.offsetHeight;
@@ -180,10 +186,23 @@ export default function Layout() {
     window.addEventListener('resize', scheduleEvaluate, { passive: true });
 
     let resizeObserver = null;
+    let mutationObserver = null;
     const mainEl = document.querySelector('main');
     if ('ResizeObserver' in window && mainEl) {
       resizeObserver = new ResizeObserver(scheduleEvaluate);
       resizeObserver.observe(mainEl);
+    }
+    if ('MutationObserver' in window && mainEl) {
+      mutationObserver = new MutationObserver(() => {
+        document.querySelectorAll(JUMP_SELECTOR).forEach((el) => {
+          if (!targets.includes(el)) {
+            el.classList.add('jump-target');
+            targets.push(el);
+          }
+        });
+        scheduleEvaluate();
+      });
+      mutationObserver.observe(mainEl, { childList: true, subtree: true });
     }
 
     return () => {
@@ -192,6 +211,7 @@ export default function Layout() {
       window.removeEventListener('scroll', scheduleEvaluate);
       window.removeEventListener('resize', scheduleEvaluate);
       if (resizeObserver) resizeObserver.disconnect();
+      if (mutationObserver) mutationObserver.disconnect();
       targets.forEach((el) => {
         el.classList.remove('jump-target');
         delete el.dataset.jump;
@@ -199,6 +219,59 @@ export default function Layout() {
       });
     };
   }, [pathname, lang]);
+
+  // Interactive 3D tilt & cursor spotlight glare for cards across all pages.
+  useEffect(() => {
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!fine || reduced) return undefined;
+
+    let activeCard = null;
+
+    const clearCard = (card) => {
+      if (!card) return;
+      card.classList.remove('is-tilting');
+      card.style.removeProperty('--tilt-x');
+      card.style.removeProperty('--tilt-y');
+      card.style.removeProperty('--spot-x');
+      card.style.removeProperty('--spot-y');
+    };
+
+    const onPointerMove = (e) => {
+      const target = e.target instanceof Element ? e.target.closest(TILT_SELECTOR) : null;
+      if (target !== activeCard) {
+        clearCard(activeCard);
+        activeCard = target;
+      }
+      if (!activeCard) return;
+
+      const rect = activeCard.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / (rect.width || 1);
+      const py = (e.clientY - rect.top) / (rect.height || 1);
+      const tiltX = ((0.5 - py) * 7).toFixed(2);
+      const tiltY = ((px - 0.5) * 7).toFixed(2);
+
+      activeCard.classList.add('is-tilting');
+      activeCard.style.setProperty('--tilt-x', `${tiltX}deg`);
+      activeCard.style.setProperty('--tilt-y', `${tiltY}deg`);
+      activeCard.style.setProperty('--spot-x', `${(px * 100).toFixed(1)}%`);
+      activeCard.style.setProperty('--spot-y', `${(py * 100).toFixed(1)}%`);
+    };
+
+    const onPointerLeave = () => {
+      clearCard(activeCard);
+      activeCard = null;
+    };
+
+    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    document.documentElement.addEventListener('pointerleave', onPointerLeave);
+
+    return () => {
+      clearCard(activeCard);
+      window.removeEventListener('pointermove', onPointerMove);
+      document.documentElement.removeEventListener('pointerleave', onPointerLeave);
+    };
+  }, []);
 
   return (
     <>

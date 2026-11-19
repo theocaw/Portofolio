@@ -649,6 +649,24 @@ body {
   border-color: #000000;
 }
 
+/* ---------- 3D Card Tilt & Cursor Spotlight ---------- */
+.is-tilting {
+  transform: perspective(950px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-4px) !important;
+  background-image: radial-gradient(
+    360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(37, 99, 235, 0.1),
+    transparent 70%
+  );
+}
+
+[data-theme='dark'] .is-tilting {
+  background-image: radial-gradient(
+    360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(96, 165, 250, 0.16),
+    transparent 70%
+  );
+}
+
 /* ---------- Scroll Jump-In / Jump-Out Animations ---------- */
 .jump-target {
   will-change: opacity, translate, scale;

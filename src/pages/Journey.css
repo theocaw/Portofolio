@@ -41,6 +41,13 @@
   gap: 8px;
 }
 
+.journey-filter-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .journey-heading__title {
   font-family: var(--font-display);
   font-size: clamp(34px, calc(34px + 16 * (100vw - 390px) / 1050), 52px);

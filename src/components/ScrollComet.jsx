@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useApp } from '../context/AppContext.jsx';
 import './ScrollComet.css';
 
-const SECTION_SELECTOR = 'main > section, main > .hero-stage, #contact';
+const SECTION_SELECTOR = 'main > section, main > .hero-stage, main > .page-intro-stage, #contact';
 
 /**
  * Scroll companion: a comet rides a vertical track as you scroll, lighting up a

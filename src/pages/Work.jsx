@@ -1,9 +1,33 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ButtonLink from '../components/ButtonLink.jsx';
 import PageIntro from '../components/PageIntro.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getWorkContent } from '../content/work.js';
 import './Work.css';
+
+const PROJECT_CATEGORIES = {
+  'ames-housing': 'data',
+  canvar: 'ar',
+  cafier: 'system',
+  'dthanasha-kost': 'system',
+  'alumni-portal': 'system',
+};
+
+const FILTERS = {
+  en: [
+    { id: 'all', label: 'All Projects' },
+    { id: 'data', label: '📊 Data & ML' },
+    { id: 'system', label: '🧩 Full-Stack & System' },
+    { id: 'ar', label: '🕶️ AR & 3D' },
+  ],
+  id: [
+    { id: 'all', label: 'Semua Proyek' },
+    { id: 'data', label: '📊 Data & ML' },
+    { id: 'system', label: '🧩 Full-Stack & Sistem' },
+    { id: 'ar', label: '🕶️ AR & 3D' },
+  ],
+};
 
 /**
  * On-Going Projects Section:
@@ -76,8 +100,9 @@ function OngoingSection({ section, lang }) {
   );
 }
 
-function CompletedSectionHeader({ section, lang }) {
+function CompletedSectionHeader({ section, lang, activeFilter, setActiveFilter, counts }) {
   if (!section) return null;
+  const filterItems = FILTERS[lang] || FILTERS.en;
 
   return (
     <section className="band band--completed-header">
@@ -93,6 +118,22 @@ function CompletedSectionHeader({ section, lang }) {
         <div className="completed-headline-block">
           <h2 className="completed-main-title">{section.title}</h2>
           {section.subtitle && <p className="completed-subtitle">{section.subtitle}</p>}
+        </div>
+
+        <div className="work-filter-bar" role="tablist" aria-label="Filter projects by category">
+          {filterItems.map((f) => (
+            <button
+              key={f.id}
+              type="button"
+              role="tab"
+              aria-selected={activeFilter === f.id}
+              className={`work-filter-pill ${activeFilter === f.id ? 'is-active' : ''}`}
+              onClick={() => setActiveFilter(f.id)}
+            >
+              <span>{f.label}</span>
+              <span className="mono work-filter-count">{counts[f.id] ?? 0}</span>
+            </button>
+          ))}
         </div>
       </div>
     </section>
@@ -160,21 +201,42 @@ export default function Work() {
   const { lang } = useApp();
   const work = getWorkContent(lang);
   const { intro, ongoingSection, completedSection, projects, journeyInvitation } = work;
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const counts = {
+    all: projects.length,
+    data: projects.filter((p) => PROJECT_CATEGORIES[p.id] === 'data').length,
+    system: projects.filter((p) => PROJECT_CATEGORIES[p.id] === 'system').length,
+    ar: projects.filter((p) => PROJECT_CATEGORIES[p.id] === 'ar').length,
+  };
+
+  const visibleProjects =
+    activeFilter === 'all'
+      ? projects
+      : projects.filter((p) => PROJECT_CATEGORIES[p.id] === activeFilter);
 
   return (
     <>
-      <PageIntro {...intro} />
+      <PageIntro {...intro} variant="network" />
 
       {/* On-Going Projects Section (Original full view) */}
       {ongoingSection && <OngoingSection section={ongoingSection} lang={lang} />}
 
       {/* Completed Projects Section Header */}
-      {completedSection && <CompletedSectionHeader section={completedSection} lang={lang} />}
+      {completedSection && (
+        <CompletedSectionHeader
+          section={completedSection}
+          lang={lang}
+          activeFilter={activeFilter}
+          setActiveFilter={setActiveFilter}
+          counts={counts}
+        />
+      )}
 
       {/* Completed Academic Projects List (Compact previews with links to separate pages) */}
       <section className="container projects-container">
         <div className="projects-grid">
-          {projects.map((project) => (
+          {visibleProjects.map((project) => (
             <ProjectCard key={project.id} project={project} lang={lang} />
           ))}
         </div>
