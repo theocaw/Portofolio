@@ -481,7 +481,7 @@ export const workData = {
     journeyInvitation: {
       title: 'There’s learning beyond these projects.',
       action: {
-        label: 'Explore my journey ↗',
+        label: 'Explore my journey',
         to: '/journey',
       },
     },
@@ -962,7 +962,7 @@ export const workData = {
     journeyInvitation: {
       title: 'Ada banyak pembelajaran di luar proyek-proyek ini.',
       action: {
-        label: 'Jelajahi perjalananku ↗',
+        label: 'Jelajahi perjalananku',
         to: '/journey',
       },
     },

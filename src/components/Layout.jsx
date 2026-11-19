@@ -13,7 +13,6 @@ const JUMP_SELECTOR = [
   '.page-intro__label',
   '.page-intro__headline',
   '.page-intro__description',
-  '.page-intro__theme-pill',
   '.contact-footer__copy',
   '.contact-footer__details',
   '.contact-footer__colophon',

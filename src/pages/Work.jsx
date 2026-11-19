@@ -248,7 +248,7 @@ export default function Work() {
         <ButtonLink to={journeyInvitation.action?.to || journeyInvitation.to}>
           {journeyInvitation.action?.label ||
             journeyInvitation.cta ||
-            (lang === 'id' ? 'Jelajahi perjalananku ↗' : 'Explore my journey ↗')}
+            (lang === 'id' ? 'Jelajahi perjalananku' : 'Explore my journey')}
         </ButtonLink>
       </section>
     </>
