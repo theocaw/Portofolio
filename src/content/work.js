@@ -327,16 +327,7 @@ export const workData = {
           'Built clean, accessible management dashboard using Laravel and Tailwind CSS for rapid operational overview.',
         ],
         tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
-        hasGallery: true,
-        galleryLabel: 'View Project Documentation (1)',
-        evidence: [
-          {
-            src: '/images/work/kos/tim.jpg',
-            alt: 'Dthanasha Kost Development Team',
-            caption: 'Dthanasha Kost System Architecture & Front-End Development Team — IPB University.',
-            fit: 'contain',
-          },
-        ],
+        hasGallery: false,
       },
             // 05: Alumni Portal (Sep 2025)
       {
@@ -374,17 +365,7 @@ export const workData = {
           'Tailwind CSS',
           'MySQL / ORM',
         ],
-        hasGallery: true,
-        galleryLabel: 'View System Evidence (1)',
-        evidence: [
-          {
-            src: '/images/work/alumni tpl/tim.jpg',
-            alt: 'AlumniTPL Development Team - Turu Dulu Bang',
-            caption:
-              'Development Team "Turu Dulu Bang" — Software Engineering Technology, IPB University (Osanna Patricia Limbong, Husnul Khotimah, M. Akbar Rafliansyah Lubis, Rizal Hadi Musthofani).',
-            fit: 'contain',
-          },
-        ],
+        hasGallery: false,
         caseStudy: {
           courseInfo: {
             course: 'Deskripsi Perancangan Perangkat Lunak (DPPL / SDD)',
@@ -817,16 +798,7 @@ export const workData = {
           'Membangun dashboard operasional yang bersih dan intuitif menggunakan Laravel dan Tailwind CSS.',
         ],
         tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
-        hasGallery: true,
-        galleryLabel: 'Lihat Dokumentasi Proyek (1)',
-        evidence: [
-          {
-            src: '/images/work/kos/tim.jpg',
-            alt: 'Tim Pengembang Dthanasha Kost',
-            caption: 'Tim Pengembang Sistem Informasi & Aplikasi Web Manajemen Dthanasha Kost — IPB University.',
-            fit: 'contain',
-          },
-        ],
+        hasGallery: false,
       },
             // 05: Alumni Portal (Sep 2025)
       {
@@ -864,17 +836,7 @@ export const workData = {
           'Tailwind CSS',
           'MySQL / ORM',
         ],
-        hasGallery: true,
-        galleryLabel: 'Lihat Dokumentasi Sistem (1)',
-        evidence: [
-          {
-            src: '/images/work/alumni tpl/tim.jpg',
-            alt: 'Tim Pengembang Sistem AlumniTPL - Turu Dulu Bang',
-            caption:
-              'Tim Pengembang "Turu Dulu Bang" — Teknologi Rekayasa Perangkat Lunak Sekolah Vokasi IPB (Osanna Patricia Limbong, Husnul Khotimah, Muhammad Akbar Rafliansyah Lubis, Rizal Hadi Musthofani).',
-            fit: 'contain',
-          },
-        ],
+        hasGallery: false,
         caseStudy: {
           courseInfo: {
             course: 'Deskripsi Perancangan Perangkat Lunak (DPPL / SDD)',
