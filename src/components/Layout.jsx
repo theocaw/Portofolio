@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import SiteHeader from './SiteHeader.jsx';
 import ContactFooter from './ContactFooter.jsx';
 import PinyoCompanion from './PinyoCompanion.jsx';
+import CustomCursor from './CustomCursor.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
@@ -206,6 +207,7 @@ export default function Layout() {
       </main>
       <ContactFooter />
       <PinyoCompanion />
+      <CustomCursor />
     </>
   );
 }

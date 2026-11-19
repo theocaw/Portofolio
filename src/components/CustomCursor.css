@@ -1,0 +1,134 @@
+/* Hide the native cursor only when the custom one is active (fine pointers). */
+html.has-custom-cursor,
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [role='button'],
+html.has-custom-cursor [role='tab'] {
+  cursor: none;
+}
+
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  will-change: transform;
+}
+
+.cursor-dot.is-visible,
+.cursor-ring.is-visible {
+  opacity: 1;
+}
+
+/* Sparkle star that follows the pointer instantly */
+.cursor-dot__star {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  font-size: 18px;
+  line-height: 1;
+  color: var(--pink-hot);
+  text-shadow:
+    -1px 0 var(--ink),
+    1px 0 var(--ink),
+    0 -1px var(--ink),
+    0 1px var(--ink);
+  animation: cursorTwinkle 2.4s ease-in-out infinite;
+}
+
+/* Trailing ring */
+.cursor-ring {
+  width: 0;
+  height: 0;
+}
+
+.cursor-ring::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  background: transparent;
+  transform: translate(-50%, -50%) scale(1);
+  transition:
+    width 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 200ms ease,
+    border-color 200ms ease,
+    transform 160ms ease;
+}
+
+.cursor-ring.is-link::before {
+  width: 52px;
+  height: 52px;
+  background: color-mix(in srgb, var(--pink) 55%, transparent);
+  border-color: var(--pink-hot);
+}
+
+.cursor-ring.has-label::before {
+  width: 74px;
+  height: 74px;
+  background: var(--lime);
+  border-color: var(--ink);
+}
+
+.cursor-ring.is-down::before {
+  transform: translate(-50%, -50%) scale(0.82);
+}
+
+.cursor-ring__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1a2744;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 160ms ease;
+}
+
+.cursor-ring.has-label .cursor-ring__label {
+  opacity: 1;
+}
+
+[data-theme='dark'] .cursor-ring::before {
+  border-color: var(--blue);
+}
+
+[data-theme='dark'] .cursor-ring.is-link::before {
+  border-color: var(--pink);
+}
+
+[data-theme='dark'] .cursor-dot__star {
+  text-shadow: none;
+  color: var(--lime);
+}
+
+@keyframes cursorTwinkle {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.25) rotate(20deg);
+  }
+}
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
+  }
+}
