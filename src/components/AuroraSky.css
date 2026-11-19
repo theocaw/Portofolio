@@ -1,0 +1,19 @@
+.hero-stage {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.aurora-sky {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* Fade the sky into the page so there is no hard edge. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 70%, transparent 100%);
+}
+
+[data-theme='dark'] .hero-stage {
+  background: linear-gradient(180deg, rgba(9, 14, 26, 0.55) 0%, transparent 100%);
+}

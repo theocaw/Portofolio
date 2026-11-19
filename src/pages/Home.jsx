@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import { Link } from 'react-router-dom';
+import AuroraSky from '../components/AuroraSky.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getHomeContent } from '../content/home.js';
 import './Home.css';
@@ -63,6 +64,8 @@ export default function Home() {
 
   return (
     <>
+      <div className="hero-stage">
+      <AuroraSky />
       <section className="container home-hero">
         <div className="home-hero__composition">
           <div className="home-hero__intro">
@@ -183,6 +186,7 @@ export default function Home() {
           <a href="#explore">{home.scrollCue}</a>
         </div>
       </section>
+      </div>
 
       <div className="marquee" aria-hidden="true">
         <div className="marquee__track">
