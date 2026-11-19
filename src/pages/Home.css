@@ -17,7 +17,49 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 26px;
+  gap: 24px;
+}
+
+.home-hero__status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 2px solid var(--ink);
+  background: var(--paper-2);
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition:
+    transform var(--transition),
+    background-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.home-hero__status-pill:hover {
+  transform: translate(-1px, -2px);
+  background: var(--lime);
+  color: #14234a;
+  box-shadow: 4px 5px 0 var(--ink);
+}
+
+[data-theme='dark'] .home-hero__status-pill {
+  background: var(--paper-2);
+  border-color: var(--rule);
+  box-shadow: 3px 3px 0 #000000;
+}
+
+.home-hero__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.85);
+  flex-shrink: 0;
 }
 
 .home-hero__headline {

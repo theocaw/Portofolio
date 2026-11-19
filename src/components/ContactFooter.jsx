@@ -24,6 +24,26 @@ export default function ContactFooter() {
                 {site.email}
               </a>
             </div>
+            {site.github && (
+              <div className="contact-footer__item">
+                <a
+                  className="contact-footer__label-link"
+                  href={site.github.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <span className="label">GITHUB ↗</span>
+                </a>
+                <a
+                  className="contact-footer__github"
+                  href={site.github.url}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  {site.github.label}
+                </a>
+              </div>
+            )}
             <div className="contact-footer__item">
               <a
                 className="contact-footer__label-link"

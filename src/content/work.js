@@ -327,7 +327,16 @@ export const workData = {
           'Built clean, accessible management dashboard using Laravel and Tailwind CSS for rapid operational overview.',
         ],
         tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
-        hasGallery: false,
+        hasGallery: true,
+        galleryLabel: 'View Project Documentation (1)',
+        evidence: [
+          {
+            src: '/images/work/kos/tim.jpg',
+            alt: 'Dthanasha Kost Development Team',
+            caption: 'Dthanasha Kost System Architecture & Front-End Development Team — IPB University.',
+            fit: 'contain',
+          },
+        ],
       },
             // 05: Alumni Portal (Sep 2025)
       {
@@ -808,7 +817,16 @@ export const workData = {
           'Membangun dashboard operasional yang bersih dan intuitif menggunakan Laravel dan Tailwind CSS.',
         ],
         tags: ['Laravel', 'MySQL', 'Tailwind CSS', 'UML Modeling', 'ERD', 'System Architecture'],
-        hasGallery: false,
+        hasGallery: true,
+        galleryLabel: 'Lihat Dokumentasi Proyek (1)',
+        evidence: [
+          {
+            src: '/images/work/kos/tim.jpg',
+            alt: 'Tim Pengembang Dthanasha Kost',
+            caption: 'Tim Pengembang Sistem Informasi & Aplikasi Web Manajemen Dthanasha Kost — IPB University.',
+            fit: 'contain',
+          },
+        ],
       },
             // 05: Alumni Portal (Sep 2025)
       {

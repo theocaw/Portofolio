@@ -1,5 +1,6 @@
 export const homeData = {
   en: {
+    availability: 'Open for Data Analyst & Front-End Internship',
     headline: ['Turning complex data into', 'meaningful experiences.'],
     greeting: 'Hi, I’m Osanna Patricia Limbong.',
     intro:
@@ -74,6 +75,7 @@ export const homeData = {
     },
   },
   id: {
+    availability: 'Terbuka untuk Magang Data Analyst & Front-End',
     headline: ['Mengubah data rumit jadi', 'pengalaman bermakna.'],
     greeting: 'Halo, aku Osanna Patricia Limbong.',
     intro:

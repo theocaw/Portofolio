@@ -125,8 +125,8 @@ export default function Layout() {
       const viewBottom = viewTop + window.innerHeight;
       const docBottom = document.documentElement.scrollHeight;
       const atPageBottom = viewBottom >= docBottom - 6;
-      const topCutoff = viewTop + 44;
-      const bottomCutoff = viewBottom - 24;
+      const topCutoff = viewTop + 6;
+      const bottomCutoff = viewBottom - 10;
 
       // Batch all DOM layout reads before writing styles/attributes.
       const measurements = targets.map((el) => ({

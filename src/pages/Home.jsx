@@ -69,6 +69,12 @@ export default function Home() {
       <section className="container home-hero">
         <div className="home-hero__composition">
           <div className="home-hero__intro">
+            {home.availability && (
+              <a href="#contact" className="home-hero__status-pill mono">
+                <span className="home-hero__status-dot" aria-hidden="true" />
+                <span>{home.availability}</span>
+              </a>
+            )}
             <h1 className="home-hero__headline">
               <span>{headline[0]}</span>
               <span className="home-hero__headline-accent">{headline[1]}</span>

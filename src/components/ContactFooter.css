@@ -73,6 +73,7 @@
   transition: color var(--transition);
 }
 
+.contact-footer__github,
 .contact-footer__linkedin,
 .contact-footer__instagram {
   font-size: 13px;
@@ -85,6 +86,7 @@
 }
 
 .contact-footer__email:hover,
+.contact-footer__github:hover,
 .contact-footer__linkedin:hover,
 .contact-footer__instagram:hover {
   color: var(--blue-dark);

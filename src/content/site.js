@@ -8,6 +8,10 @@ export const siteData = {
     name: 'Osanna Patricia Limbong',
     nameLines: ['OSANNA PATRICIA', 'LIMBONG'],
     email: 'osannapatricia@gmail.com',
+    github: {
+      label: 'github.com/theocaw',
+      url: 'https://github.com/theocaw',
+    },
     linkedin: {
       label: 'linkedin.com/in/osannapatricia',
       url: 'https://linkedin.com/in/osannapatricia',
@@ -32,6 +36,10 @@ export const siteData = {
     name: 'Osanna Patricia Limbong',
     nameLines: ['OSANNA PATRICIA', 'LIMBONG'],
     email: 'osannapatricia@gmail.com',
+    github: {
+      label: 'github.com/theocaw',
+      url: 'https://github.com/theocaw',
+    },
     linkedin: {
       label: 'linkedin.com/in/osannapatricia',
       url: 'https://linkedin.com/in/osannapatricia',
