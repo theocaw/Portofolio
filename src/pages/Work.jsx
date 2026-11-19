@@ -14,6 +14,14 @@ const PROJECT_CATEGORIES = {
   'alumni-portal': 'system',
 };
 
+const PROJECT_THEMES = {
+  'ames-housing': { accent: 'cobalt', icon: '📊' },
+  canvar: { accent: 'rose', icon: '🕶️' },
+  cafier: { accent: 'amber', icon: '☕' },
+  'dthanasha-kost': { accent: 'mint', icon: '🏠' },
+  'alumni-portal': { accent: 'violet', icon: '🎓' },
+};
+
 const FILTERS = {
   en: [
     { id: 'all', label: 'All Projects' },
@@ -30,8 +38,7 @@ const FILTERS = {
 };
 
 /**
- * On-Going Projects Section:
- * Restored to the clean original view (title, role, tagline, description, metrics, and tags shown directly).
+ * On-Going Projects Section
  */
 function OngoingSection({ section, lang }) {
   if (!section || !section.items?.length) return null;
@@ -141,17 +148,26 @@ function CompletedSectionHeader({ section, lang, activeFilter, setActiveFilter, 
 }
 
 /**
- * Completed Project Card:
- * Clean, compact preview on the main page.
- * Features a small stylish button linking to the project's dedicated page.
+ * Completed Project Bento Dossier Card:
+ * Rich two-column preview with per-project color personality, 2x2 impact metrics scorecard,
+ * and a single unified click action to open the full case study.
  */
 function ProjectCard({ project, lang }) {
+  const themeInfo = PROJECT_THEMES[project.id] || { accent: 'cobalt', icon: '✦' };
+
   return (
-    <article className="project-card project-card--preview-mode">
-      {/* 1. Header Information */}
+    <Link
+      to={`/work/${project.id}`}
+      className={`project-card project-card--bento project-card--${themeInfo.accent}`}
+      aria-label={`${project.title} — ${lang === 'id' ? 'Lihat Studi Kasus' : 'Explore Case Study'}`}
+    >
+      {/* Top Folder Header */}
       <div className="project-card__top">
         <div className="project-card__badges">
           <span className="mono project-card__num">{project.num}</span>
+          <span className="project-card__icon" aria-hidden="true">
+            {themeInfo.icon}
+          </span>
           <span className="mono project-card__category">{project.label}</span>
         </div>
         <div className="project-card__meta-group">
@@ -160,40 +176,61 @@ function ProjectCard({ project, lang }) {
         </div>
       </div>
 
-      {/* 2. Main Title & Short Tagline Preview */}
-      <div className="project-card__main">
-        <h2 className={`project-card__title ${project.longTitle ? 'project-card__title--long' : ''}`}>
-          <Link to={`/work/${project.id}`} className="project-card__title-link">
+      {/* Two-Column Bento Body */}
+      <div className="project-card__bento-body">
+        {/* Left: Narrative & Tech Stack */}
+        <div className="project-card__story-col">
+          <h2 className={`project-card__title ${project.longTitle ? 'project-card__title--long' : ''}`}>
             {project.title}
-          </Link>
-        </h2>
-        <p className="project-card__tagline">{project.tagline}</p>
-      </div>
+          </h2>
+          <p className="project-card__tagline">{project.tagline}</p>
+          <p className="project-card__excerpt">{project.description}</p>
 
-      {/* 3. Preview Action Bar with Small Link Button to Dedicated Page */}
-      <div className="project-card__preview-bar">
-        <div className="project-card__preview-tags">
-          {project.tags.slice(0, 3).map((tag) => (
-            <span key={tag} className="tag tag--preview">
-              {tag}
-            </span>
-          ))}
-          {project.tags.length > 3 && (
-            <span className="mono tag-more-count">+{project.tags.length - 3}</span>
-          )}
+          <div className="project-card__preview-tags">
+            {project.tags.slice(0, 5).map((tag) => (
+              <span key={tag} className="tag tag--preview">
+                {tag}
+              </span>
+            ))}
+            {project.tags.length > 5 && (
+              <span className="mono tag-more-count">+{project.tags.length - 5}</span>
+            )}
+          </div>
         </div>
 
-        {/* Small button linking to dedicated case-study page */}
-        <Link
-          to={`/work/${project.id}`}
-          className="project-small-page-link"
-          title={lang === 'id' ? `Lihat detail lengkap untuk ${project.title}` : `View full details for ${project.title}`}
-        >
-          <span>✦</span>
-          <span>{lang === 'id' ? 'Lihat Detail ↗' : 'View Details ↗'}</span>
-        </Link>
+        {/* Right: 2x2 Key Metrics Scorecard & Single CTA */}
+        <div className="project-card__scorecard">
+          <div className="project-card__scorecard-head">
+            <span className="mono project-card__scorecard-label">
+              ✦ {lang === 'id' ? 'METRIK & HASIL KUNCI' : 'KEY METRICS & IMPACT'}
+            </span>
+            {project.hasGallery && (
+              <span className="mono project-card__chart-tag">
+                {lang === 'id' ? '📊 +Grafik' : '📊 +Charts'}
+              </span>
+            )}
+          </div>
+
+          {project.metrics && (
+            <div className="project-card__scorecard-grid">
+              {project.metrics.map((m) => (
+                <div key={m.label} className="project-card__score-item">
+                  <span className="mono project-card__score-key">{m.label}</span>
+                  <span className="project-card__score-val">{m.value}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div className="project-card__cta-bar">
+            <span>{lang === 'id' ? 'Buka Studi Kasus Lengkap' : 'Explore Full Case Study'}</span>
+            <span className="project-card__cta-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+        </div>
       </div>
-    </article>
+    </Link>
   );
 }
 
@@ -219,7 +256,7 @@ export default function Work() {
     <>
       <PageIntro {...intro} variant="network" />
 
-      {/* On-Going Projects Section (Original full view) */}
+      {/* On-Going Projects Section */}
       {ongoingSection && <OngoingSection section={ongoingSection} lang={lang} />}
 
       {/* Completed Projects Section Header */}
@@ -233,7 +270,7 @@ export default function Work() {
         />
       )}
 
-      {/* Completed Academic Projects List (Compact previews with links to separate pages) */}
+      {/* Completed Academic Projects Bento Dossier List */}
       <section className="container projects-container">
         <div className="projects-grid">
           {visibleProjects.map((project) => (

@@ -55,7 +55,6 @@ export default function ProjectDetail() {
 
           <div className="project-detail-nav-meta">
             <span className="mono nav-index">{project.num} / 05</span>
-            <span className="mono nav-cat">{project.label}</span>
           </div>
         </nav>
 

@@ -1,26 +1,15 @@
 import { useEffect, useRef } from 'react';
-import { useApp } from '../context/AppContext.jsx';
 import './CustomCursor.css';
 
-// Context labels shown inside the cursor ring. First match wins.
-const CONTEXTS = [
-  { selector: '.hero-polaroid, .hero-photo-deck__pin', label: '' },
-  { selector: '.project-card', label: 'OPEN ↗' },
-  { selector: '.page-card', label: 'GO →' },
-  { selector: '.achievement-showcase-card, .org-bento-card', label: '✦' },
-  { selector: '.evidence-nav-btn, .evidence-dot, .evidence-fullscreen-btn', label: '' },
-];
 const INTERACTIVE = 'a, button, [role="button"], [role="tab"], summary';
 
 /**
- * Context-aware cursor: a dot that follows instantly and a ring that trails.
- * Hidden on touch devices and when reduced motion is requested.
+ * Clean custom cursor: a sparkle star that follows instantly and a subtle ring that trails.
+ * No text labels or solid circles that duplicate buttons on the page.
  */
 export default function CustomCursor() {
-  const { lang } = useApp();
   const dotRef = useRef(null);
   const ringRef = useRef(null);
-  const labelRef = useRef(null);
 
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -29,7 +18,6 @@ export default function CustomCursor() {
 
     const dot = dotRef.current;
     const ring = ringRef.current;
-    const label = labelRef.current;
     const root = document.documentElement;
     root.classList.add('has-custom-cursor');
 
@@ -42,13 +30,8 @@ export default function CustomCursor() {
     const setState = (target) => {
       if (target === lastTarget) return;
       lastTarget = target;
-
-      const ctx = target ? CONTEXTS.find((c) => target.closest(c.selector)) : null;
       const interactive = target ? target.closest(INTERACTIVE) : null;
-
-      ring.classList.toggle('is-link', Boolean(interactive || ctx));
-      ring.classList.toggle('has-label', Boolean(ctx && ctx.label));
-      label.textContent = ctx ? ctx.label : '';
+      ring.classList.toggle('is-link', Boolean(interactive));
     };
 
     const onMove = (e) => {
@@ -95,13 +78,11 @@ export default function CustomCursor() {
       window.removeEventListener('pointerup', onUp);
       document.documentElement.removeEventListener('pointerleave', onLeave);
     };
-  }, [lang]);
+  }, []);
 
   return (
     <>
-      <div ref={ringRef} className="cursor-ring" aria-hidden="true">
-        <span ref={labelRef} className="cursor-ring__label" />
-      </div>
+      <div ref={ringRef} className="cursor-ring" aria-hidden="true" />
       <div ref={dotRef} className="cursor-dot" aria-hidden="true">
         <span className="cursor-dot__star">✦</span>
       </div>

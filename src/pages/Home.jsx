@@ -210,9 +210,6 @@ export default function Home() {
         <div className="container section home-explore">
           <div className="home-explore__heading">
             <h2 className="home-explore__title">{explore.title}</h2>
-            <Link to={explore.link.to} className="home-explore__link">
-              {explore.link.label}
-            </Link>
           </div>
 
           <div className="home-explore__cards">

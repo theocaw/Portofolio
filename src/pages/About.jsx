@@ -114,7 +114,7 @@ export default function About() {
           >
             <div className="gpa__top-row">
               <p className="mono gpa__label">{education.gpa.label}</p>
-              <span className="mono gpa__cheer-pill">{cheers[cheerIdx]}</span>
+              {cheerIdx > 0 && <span className="mono gpa__cheer-pill">{cheers[cheerIdx]}</span>}
             </div>
             <p className="gpa__value">
               <span className="gpa__number">{education.gpa.value}</span>
