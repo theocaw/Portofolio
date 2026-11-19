@@ -1,30 +1,29 @@
-/* Playful layer: Y2K Pastel Cute / NewJeans aesthetic */
-/* Colors: Baby Sky Blue, Pastel Strawberry Pink, Butter Yellow, Soft Mint, Retro Denim Ink */
+/* Playful layer: Editorial Oat + Cobalt + Y2K Pop / Aurora aesthetic */
 
-/* Dreamy soft pastel sky-pink cloud background */
+/* Soft editorial oat, sky cobalt & pastel rose cloud mist */
 body {
   background-color: var(--paper);
   background-image:
-    radial-gradient(at 5% 10%, #e0f2fe 0px, transparent 45%),
-    radial-gradient(at 95% 10%, #fef9c3 0px, transparent 40%),
-    radial-gradient(at 95% 85%, #fce7f3 0px, transparent 45%),
-    radial-gradient(at 10% 85%, #fdf2f8 0px, transparent 40%),
-    radial-gradient(at 50% 50%, #fce7f3 0px, transparent 50%);
+    radial-gradient(at 6% 10%, rgba(37, 99, 235, 0.1) 0px, transparent 46%),
+    radial-gradient(at 94% 12%, rgba(254, 240, 138, 0.45) 0px, transparent 42%),
+    radial-gradient(at 92% 85%, rgba(255, 141, 199, 0.22) 0px, transparent 46%),
+    radial-gradient(at 10% 85%, rgba(110, 231, 183, 0.16) 0px, transparent 42%),
+    radial-gradient(at 50% 50%, rgba(255, 236, 245, 0.45) 0px, transparent 52%);
   background-attachment: fixed;
   transition:
     background-color var(--transition),
     color var(--transition);
 }
 
-/* Dark mode dreamy midnight cyber cloud background */
+/* Dark mode deep Nordic midnight aurora sky */
 [data-theme='dark'] body {
-  background-color: #090e1a;
+  background-color: var(--paper);
   background-image:
-    radial-gradient(at 5% 10%, #1e1b4b 0px, transparent 50%),
-    radial-gradient(at 95% 10%, #0f2b48 0px, transparent 45%),
-    radial-gradient(at 95% 85%, #2a1130 0px, transparent 45%),
-    radial-gradient(at 10% 85%, #082138 0px, transparent 45%),
-    radial-gradient(at 50% 50%, #0e172a 0px, transparent 50%);
+    radial-gradient(at 5% 10%, #172554 0px, transparent 50%),
+    radial-gradient(at 95% 10%, #0d3242 0px, transparent 45%),
+    radial-gradient(at 95% 85%, #301334 0px, transparent 45%),
+    radial-gradient(at 10% 85%, #0b243f 0px, transparent 45%),
+    radial-gradient(at 50% 50%, #111b33 0px, transparent 50%);
   background-attachment: fixed;
   color: var(--ink);
 }

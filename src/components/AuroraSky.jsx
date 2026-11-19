@@ -28,17 +28,17 @@ export default function AuroraSky() {
     const flakes = [];
     const sparks = [];
 
-    // Light mode: soft pastel aurora; dark mode: vivid polar aurora.
+    // Light mode: editorial cobalt, rose-pink & aurora mint; dark mode: vivid polar aurora.
     const ribbons = dark
       ? [
           { c: [52, 211, 153], a: 0.3, y: 0.3, amp: 46, sp: 0.5, ph: 0 },
-          { c: [56, 189, 248], a: 0.26, y: 0.4, amp: 58, sp: 0.38, ph: 2 },
-          { c: [168, 85, 247], a: 0.22, y: 0.5, amp: 52, sp: 0.3, ph: 4 },
+          { c: [96, 165, 250], a: 0.28, y: 0.4, amp: 58, sp: 0.38, ph: 2 },
+          { c: [244, 114, 182], a: 0.2, y: 0.5, amp: 52, sp: 0.3, ph: 4 },
         ]
       : [
-          { c: [125, 211, 252], a: 0.34, y: 0.3, amp: 46, sp: 0.5, ph: 0 },
-          { c: [244, 167, 208], a: 0.3, y: 0.42, amp: 58, sp: 0.38, ph: 2 },
-          { c: [167, 243, 208], a: 0.3, y: 0.52, amp: 52, sp: 0.3, ph: 4 },
+          { c: [59, 130, 246], a: 0.24, y: 0.3, amp: 46, sp: 0.5, ph: 0 },
+          { c: [244, 114, 182], a: 0.24, y: 0.42, amp: 58, sp: 0.38, ph: 2 },
+          { c: [110, 231, 183], a: 0.26, y: 0.52, amp: 52, sp: 0.3, ph: 4 },
         ];
 
     const resize = () => {

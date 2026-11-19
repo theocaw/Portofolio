@@ -1,32 +1,32 @@
 /*
- * Design tokens: Y2K Pastel Cute / NewJeans aesthetic.
- * Baby blue, sweet pastel pink, butter yellow, soft mint green, and retro denim ink.
- * Supports Light mode (cloud pastel) and Dark mode (cyber midnight pastel).
+ * Design tokens: Editorial Oat + Cobalt + Y2K Pop / Aurora aesthetic.
+ * Light mode: Warm Oat canvas, Midnight Cobalt Navy ink, Royal Cobalt, Pop Pink, Butter Cream, Aurora Mint.
+ * Dark mode: Deep Nordic Midnight canvas, Warm Oat ink, Electric Sky Cobalt, Rose Pink, Aurora Mint.
  */
 :root {
   /* Canvas */
-  --paper: #f8fbff;        /* Soft cloud sky tint */
-  --paper-2: #fffbe8;      /* Pastel butter folder cream */
-  --ink: #1a2744;          /* Retro denim navy ink */
-  --muted: #536482;        /* Soft slate denim */
-  --rule: #d5e5f7;         /* Soft pastel border line */
+  --paper: #faf6ef;        /* Warm editorial oat canvas */
+  --paper-2: #f3ede2;      /* Soft toasted oat container */
+  --ink: #14234a;          /* Deep cobalt-navy ink */
+  --muted: #4b5a78;        /* Balanced slate-navy muted text */
+  --rule: #ddd4c4;         /* Warm oat border hairline */
 
-  /* Y2K NewJeans Pastel Accents */
-  --blue: #38bdf8;         /* Signature sky / baby blue */
-  --blue-dark: #1d72b8;    /* Hover / active blue */
-  --blue-soft: #e0f2fe;    /* Light airy baby blue */
-  --pink: #fbcfe8;         /* Sweet bubblegum pastel pink */
-  --pink-soft: #fdf2f8;    /* Strawberry milk cream */
-  --pink-hot: #f472b6;     /* Cute Y2K pop pink */
-  --lime: #fef08a;         /* Pastel butter yellow (folder/star) */
-  --mint: #a7f3d0;         /* Pastel mint / clover green */
+  /* Cobalt, Pop Pink & Pastel Accents */
+  --blue: #2563eb;         /* Editorial cobalt royal blue */
+  --blue-dark: #1d4ed8;    /* Deep cobalt hover / active */
+  --blue-soft: #e6eeff;    /* Soft periwinkle-cobalt tint */
+  --pink: #ff8dc7;         /* Playful bubblegum pastel pink */
+  --pink-soft: #ffecf5;    /* Strawberry oat milk cream */
+  --pink-hot: #e11d48;     /* Crisp cherry-rose pop */
+  --lime: #fef08a;         /* Soft butter cream yellow */
+  --mint: #6ee7b7;         /* Aurora arctic mint */
   --mint-soft: #ecfdf5;    /* Soft mint cream */
-  --lavender: #e0e7ff;     /* Soft periwinkle / cloud */
+  --lavender: #e0e7ff;     /* Soft periwinkle cloud */
 
-  /* Pastel Card & Accent Rules */
-  --dark-rule: #c7dcf5;
-  --dark-muted: #536482;
-  --white-40: rgba(255, 255, 255, 0.65);
+  /* Card & Accent Rules */
+  --dark-rule: #d0c6b4;
+  --dark-muted: #4b5a78;
+  --white-40: rgba(255, 255, 255, 0.72);
 
   /* Typography */
   --font-display: 'Space Grotesk', system-ui, sans-serif;
@@ -40,34 +40,34 @@
   --radius-button: 999px;
   --radius-card: 24px;
   --shadow-hard: 5px 5px 0 var(--ink);
-  --shadow-soft: 0 10px 25px -5px rgba(56, 189, 248, 0.18);
+  --shadow-soft: 0 10px 25px -5px rgba(37, 99, 235, 0.16);
   --transition: 180ms ease;
 }
 
 [data-theme='dark'] {
-  /* Midnight Cyber-Pastel Palette */
-  --paper: #090e1a;        /* Midnight obsidian canvas */
-  --paper-2: #121c2e;      /* Elevated deep navy container */
-  --ink: #f8fafc;          /* Crisp high-contrast white text */
-  --muted: #94a3b8;        /* Clean slate muted text */
-  --rule: #1e2c44;         /* Subtle midnight border line */
+  /* Deep Nordic Aurora Midnight Palette */
+  --paper: #0b1020;        /* Nordic midnight sky canvas */
+  --paper-2: #131c33;      /* Elevated midnight cobalt container */
+  --ink: #f8f5ee;          /* Crisp warm oat-white text */
+  --muted: #9aa7c2;        /* Clean cool-slate muted text */
+  --rule: #233050;         /* Subtle midnight navy border */
 
-  /* Cyber Y2K Accents */
-  --blue: #38bdf8;         /* Electric cyan / baby blue */
-  --blue-dark: #0284c7;    /* Deep sky */
-  --blue-soft: #0e1e36;    /* Dark navy blue band */
-  --pink: #f472b6;         /* Luminescent bubblegum pink */
-  --pink-soft: #241427;    /* Dark berry tint */
-  --pink-hot: #fb7185;     /* Cyber rose */
+  /* Electric Arctic & Aurora Accents */
+  --blue: #60a5fa;         /* Electric sky cobalt */
+  --blue-dark: #3b82f6;    /* Rich cobalt */
+  --blue-soft: #101e3c;    /* Deep cobalt band */
+  --pink: #f472b6;         /* Luminescent rose pink */
+  --pink-soft: #291428;    /* Dark berry tint */
+  --pink-hot: #fb7185;     /* Warm coral-rose pop */
   --lime: #fde047;         /* Luminescent butter yellow */
-  --mint: #34d399;         /* Vibrant clover mint */
-  --mint-soft: #0e2621;    /* Deep forest mint band */
+  --mint: #34d399;         /* Vibrant northern lights mint */
+  --mint-soft: #0d2621;    /* Deep forest mint band */
   --lavender: #818cf8;     /* Cyber periwinkle */
 
   --dark-rule: #334155;
   --dark-muted: #cbd5e1;
-  --white-40: rgba(18, 28, 46, 0.7);
+  --white-40: rgba(19, 28, 51, 0.72);
 
   --shadow-hard: 4px 4px 0 #000000;
-  --shadow-soft: 0 10px 25px -5px rgba(56, 189, 248, 0.25);
+  --shadow-soft: 0 10px 25px -5px rgba(96, 165, 250, 0.22);
 }
