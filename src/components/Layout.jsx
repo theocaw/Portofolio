@@ -23,8 +23,8 @@ const JUMP_SELECTOR = [
   '.home-explore__heading',
   '.home-explore__cards > .page-card',
   // About
-  '.profile__index',
   '.profile__narrative',
+  '.profile__focus',
   '.education > .label',
   '.education__school',
   '.gpa',

@@ -28,17 +28,6 @@ export default function About() {
   const [cheerIdx, setCheerIdx] = useState(0);
   const [gpaBurst, setGpaBurst] = useState(false);
   const [selectedTool, setSelectedTool] = useState(null);
-  const [copiedEmail, setCopiedEmail] = useState(false);
-
-  const copyQuickEmail = async () => {
-    try {
-      await navigator.clipboard.writeText('osannapatricia@gmail.com');
-      setCopiedEmail(true);
-      window.setTimeout(() => setCopiedEmail(false), 2000);
-    } catch {
-      window.location.href = 'mailto:osannapatricia@gmail.com';
-    }
-  };
 
   const triggerGpaCheer = () => {
     setCheerIdx((prev) => (prev + 1) % GPA_CHEERS[lang].length);
@@ -55,72 +44,23 @@ export default function About() {
       {/* Profile */}
       <section className="band band--paper-2">
         <div className="container section profile">
-          <div className="profile__index">
-            <p className="label">{profile.label}</p>
-            <aside className="profile-passport" aria-label="Quick Dossier">
-              <div className="profile-passport__head">
-                <span className="mono profile-passport__tag">
-                  ✦ {lang === 'id' ? 'DOSIR SINGKAT' : 'QUICK DOSSIER'}
-                </span>
-                <span className="mono profile-passport__status">
-                  <span className="profile-passport__dot" />
-                  {lang === 'id' ? 'SIAP MAGANG' : 'OPEN 2026'}
-                </span>
-              </div>
-
-              <dl className="profile-passport__list">
-                <div className="profile-passport__row">
-                  <dt className="mono">{lang === 'id' ? 'KAMPUS' : 'CAMPUS'}</dt>
-                  <dd>IPB University</dd>
-                </div>
-                <div className="profile-passport__row">
-                  <dt className="mono">{lang === 'id' ? 'PROGRAM' : 'MAJOR'}</dt>
-                  <dd>{lang === 'id' ? 'Teknologi Rekayasa Perangkat Lunak' : 'Software Engineering (TPL)'}</dd>
-                </div>
-                <div className="profile-passport__row">
-                  <dt className="mono">{lang === 'id' ? 'FOKUS' : 'ROLES'}</dt>
-                  <dd>Data Analyst · Front-End</dd>
-                </div>
-                <div className="profile-passport__row">
-                  <dt className="mono">{lang === 'id' ? 'DOMISILI' : 'LOCATION'}</dt>
-                  <dd>Bogor / Jakarta, ID</dd>
-                </div>
-              </dl>
-
-              <button
-                type="button"
-                className={`mono profile-passport__copy ${copiedEmail ? 'is-copied' : ''}`}
-                onClick={copyQuickEmail}
-              >
-                <span>
-                  {copiedEmail
-                    ? lang === 'id'
-                      ? '✓ Email Tersalin!'
-                      : '✓ Email Copied!'
-                    : lang === 'id'
-                      ? '📋 Salin Email Cepat'
-                      : '📋 Quick Copy Email'}
-                </span>
-              </button>
-            </aside>
-          </div>
-
           <div className="profile__narrative">
+            <p className="label">{profile.label}</p>
             <h2 className="profile__title">{profile.title}</h2>
             {profile.paragraphs.map((p) => (
               <p key={p} className="profile__paragraph">
                 {p}
               </p>
             ))}
-            <hr className="rule" />
-            <div className="profile__focus">
-              {profile.focus.map((f) => (
-                <div key={f.label} className="profile__focus-item">
-                  <span className="mono profile__focus-label">{f.label}</span>
-                  <span className="profile__focus-value">{f.value}</span>
-                </div>
-              ))}
-            </div>
+          </div>
+
+          <div className="profile__focus">
+            {profile.focus.map((f, idx) => (
+              <div key={f.label} className={`profile__focus-card profile__focus-card--${idx + 1}`}>
+                <span className="mono profile__focus-label">{f.label}</span>
+                <span className="profile__focus-value">{f.value}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
