@@ -4,7 +4,7 @@ import './CustomCursor.css';
 
 // Context labels shown inside the cursor ring. First match wins.
 const CONTEXTS = [
-  { selector: '.hero-polaroid, .hero-photo-deck__pin', label: 'SWAP' },
+  { selector: '.hero-polaroid, .hero-photo-deck__pin', label: '' },
   { selector: '.project-card', label: 'OPEN ↗' },
   { selector: '.page-card', label: 'GO →' },
   { selector: '.achievement-showcase-card, .org-bento-card', label: '✦' },

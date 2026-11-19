@@ -67,9 +67,9 @@ html.has-custom-cursor [role='tab'] {
 }
 
 .cursor-ring.is-link::before {
-  width: 52px;
-  height: 52px;
-  background: color-mix(in srgb, var(--pink) 55%, transparent);
+  width: 48px;
+  height: 48px;
+  background: color-mix(in srgb, var(--pink) 28%, transparent);
   border-color: var(--pink-hot);
 }
 
