@@ -142,6 +142,7 @@ export const journeyData = {
           validity: 'Valid: 24/09/2026 — 24/09/2029',
           description:
             'Demonstrated knowledge and competencies in Google AI, Large Language Models (LLMs), prompt engineering, and modern AI productivity workflows.',
+          certificateUrl: '/images/journey/gemini/gemini-certified-student.pdf',
           tags: ['Google AI', 'LLM Competencies', 'Prompt Engineering', 'Generative AI'],
         },
         {
@@ -318,6 +319,7 @@ export const journeyData = {
           validity: 'Berlaku: 24/09/2026 — 24/09/2029',
           description:
             'Kompetensi teruji dalam pemahaman Google AI, Large Language Models (LLM), teknik prompt engineering, dan pemanfaatan generative AI untuk alur kerja modern.',
+          certificateUrl: '/images/journey/gemini/gemini-certified-student.pdf',
           tags: ['Google AI', 'Kompetensi LLM', 'Prompt Engineering', 'Generative AI'],
         },
         {

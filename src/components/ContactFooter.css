@@ -53,6 +53,47 @@
   gap: 8px;
 }
 
+.contact-footer__email-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.contact-footer__copy-btn {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition:
+    transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.contact-footer__copy-btn:hover {
+  transform: translateY(-1px);
+  background: var(--lime);
+  color: #14234a;
+}
+
+.contact-footer__copy-btn.is-copied {
+  background: #6ee7b7;
+  color: #064e3b;
+  border-color: #064e3b;
+}
+
+[data-theme='dark'] .contact-footer__copy-btn {
+  background: var(--paper);
+  border-color: var(--rule);
+  box-shadow: 2px 2px 0 #000000;
+}
+
 .contact-footer__label-link {
   display: inline-block;
   width: fit-content;

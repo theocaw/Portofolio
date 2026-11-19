@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 import './ContactFooter.css';
@@ -6,6 +7,18 @@ export default function ContactFooter() {
   const { lang } = useApp();
   const site = getSiteContent(lang);
   const contact = site.contact;
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(site.email);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback if clipboard permission is denied
+      window.location.href = `mailto:${site.email}`;
+    }
+  };
 
   return (
     <footer className="band band--paper-2 contact-footer" id="contact">
@@ -17,9 +30,24 @@ export default function ContactFooter() {
 
           <div className="contact-footer__details">
             <div className="contact-footer__item">
-              <a className="contact-footer__label-link" href={`mailto:${site.email}`}>
-                <span className="label">EMAIL ↗</span>
-              </a>
+              <div className="contact-footer__email-head">
+                <a className="contact-footer__label-link" href={`mailto:${site.email}`}>
+                  <span className="label">EMAIL ↗</span>
+                </a>
+                <button
+                  type="button"
+                  className={`mono contact-footer__copy-btn ${copied ? 'is-copied' : ''}`}
+                  onClick={copyEmail}
+                >
+                  {copied
+                    ? lang === 'id'
+                      ? '✓ Tersalin!'
+                      : '✓ Copied!'
+                    : lang === 'id'
+                      ? 'Salin Email'
+                      : 'Copy Email'}
+                </button>
+              </div>
               <a className="contact-footer__email" href={`mailto:${site.email}`}>
                 {site.email}
               </a>

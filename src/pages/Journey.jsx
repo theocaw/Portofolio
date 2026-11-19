@@ -234,7 +234,19 @@ export default function Journey() {
                 </div>
 
                 <div className="achievement-card__footer">
-                  <span className="mono achievement-validity">{a.validity}</span>
+                  <div className="achievement-card__meta-row">
+                    <span className="mono achievement-validity">{a.validity}</span>
+                    {a.certificateUrl && (
+                      <a
+                        href={a.certificateUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mono achievement-cert-link"
+                      >
+                        {lang === 'id' ? '📄 Lihat Sertifikat (PDF) ↗' : '📄 View Certificate (PDF) ↗'}
+                      </a>
+                    )}
+                  </div>
                   {a.tags && (
                     <ul className="achievement-tags" aria-label="Tags">
                       {a.tags.map((t) => (

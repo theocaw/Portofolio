@@ -28,6 +28,17 @@ export default function About() {
   const [cheerIdx, setCheerIdx] = useState(0);
   const [gpaBurst, setGpaBurst] = useState(false);
   const [selectedTool, setSelectedTool] = useState(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const copyQuickEmail = async () => {
+    try {
+      await navigator.clipboard.writeText('osannapatricia@gmail.com');
+      setCopiedEmail(true);
+      window.setTimeout(() => setCopiedEmail(false), 2000);
+    } catch {
+      window.location.href = 'mailto:osannapatricia@gmail.com';
+    }
+  };
 
   const triggerGpaCheer = () => {
     setCheerIdx((prev) => (prev + 1) % GPA_CHEERS[lang].length);
@@ -46,14 +57,52 @@ export default function About() {
         <div className="container section profile">
           <div className="profile__index">
             <p className="label">{profile.label}</p>
-            <p className="profile__glyph" aria-hidden="true">
-              {profile.glyph}
-            </p>
-            <ul className="profile__facts">
-              {profile.facts.map((f) => (
-                <li key={f}>{f}</li>
-              ))}
-            </ul>
+            <aside className="profile-passport" aria-label="Quick Dossier">
+              <div className="profile-passport__head">
+                <span className="mono profile-passport__tag">
+                  ✦ {lang === 'id' ? 'DOSIR SINGKAT' : 'QUICK DOSSIER'}
+                </span>
+                <span className="mono profile-passport__status">
+                  <span className="profile-passport__dot" />
+                  {lang === 'id' ? 'SIAP MAGANG' : 'OPEN 2026'}
+                </span>
+              </div>
+
+              <dl className="profile-passport__list">
+                <div className="profile-passport__row">
+                  <dt className="mono">{lang === 'id' ? 'KAMPUS' : 'CAMPUS'}</dt>
+                  <dd>IPB University</dd>
+                </div>
+                <div className="profile-passport__row">
+                  <dt className="mono">{lang === 'id' ? 'PROGRAM' : 'MAJOR'}</dt>
+                  <dd>{lang === 'id' ? 'Teknologi Rekayasa Perangkat Lunak' : 'Software Engineering (TPL)'}</dd>
+                </div>
+                <div className="profile-passport__row">
+                  <dt className="mono">{lang === 'id' ? 'FOKUS' : 'ROLES'}</dt>
+                  <dd>Data Analyst · Front-End</dd>
+                </div>
+                <div className="profile-passport__row">
+                  <dt className="mono">{lang === 'id' ? 'DOMISILI' : 'LOCATION'}</dt>
+                  <dd>Bogor / Jakarta, ID</dd>
+                </div>
+              </dl>
+
+              <button
+                type="button"
+                className={`mono profile-passport__copy ${copiedEmail ? 'is-copied' : ''}`}
+                onClick={copyQuickEmail}
+              >
+                <span>
+                  {copiedEmail
+                    ? lang === 'id'
+                      ? '✓ Email Tersalin!'
+                      : '✓ Email Copied!'
+                    : lang === 'id'
+                      ? '📋 Salin Email Cepat'
+                      : '📋 Quick Copy Email'}
+                </span>
+              </button>
+            </aside>
           </div>
 
           <div className="profile__narrative">
