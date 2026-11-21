@@ -24,16 +24,16 @@ const PROJECT_THEMES = {
 
 const FILTERS = {
   en: [
-    { id: 'all', label: 'All Projects' },
-    { id: 'data', label: '📊 Data & ML' },
-    { id: 'system', label: '🧩 Full-Stack & System' },
-    { id: 'ar', label: '🕶️ AR & 3D' },
+    { id: 'all', label: '💿 All Tracks' },
+    { id: 'data', label: 'SIDE A · Data & ML' },
+    { id: 'system', label: 'SIDE B · System & Web' },
+    { id: 'ar', label: 'BONUS · AR & 3D' },
   ],
   id: [
-    { id: 'all', label: 'Semua Proyek' },
-    { id: 'data', label: '📊 Data & ML' },
-    { id: 'system', label: '🧩 Full-Stack & Sistem' },
-    { id: 'ar', label: '🕶️ AR & 3D' },
+    { id: 'all', label: '💿 Semua Track' },
+    { id: 'data', label: 'SIDE A · Data & ML' },
+    { id: 'system', label: 'SIDE B · Sistem & Web' },
+    { id: 'ar', label: 'BONUS · AR & 3D' },
   ],
 };
 
@@ -155,16 +155,25 @@ function CompletedSectionHeader({ section, lang, activeFilter, setActiveFilter, 
 function ProjectCard({ project, lang }) {
   const themeInfo = PROJECT_THEMES[project.id] || { accent: 'cobalt', icon: '✦' };
 
+  const setVinylPlaying = (playing) => {
+    document.documentElement.classList.toggle('is-vinyl-playing', playing);
+  };
+
   return (
     <Link
       to={`/work/${project.id}`}
       className={`project-card project-card--bento project-card--${themeInfo.accent}`}
+      onMouseEnter={() => setVinylPlaying(true)}
+      onMouseLeave={() => setVinylPlaying(false)}
+      onClick={() => setVinylPlaying(false)}
       aria-label={`${project.title} — ${lang === 'id' ? 'Lihat Studi Kasus' : 'Explore Case Study'}`}
     >
       {/* Top Folder Header */}
       <div className="project-card__top">
         <div className="project-card__badges">
-          <span className="mono project-card__num">{project.num}</span>
+          <span className="mono project-card__num" title={`Track ${project.num}`}>
+            ♫ {project.num}
+          </span>
           <span className="project-card__icon" aria-hidden="true">
             {themeInfo.icon}
           </span>

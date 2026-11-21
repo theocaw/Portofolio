@@ -1,10 +1,92 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import ButtonLink from '../components/ButtonLink.jsx';
 import { Link } from 'react-router-dom';
 import AuroraSky from '../components/AuroraSky.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getHomeContent } from '../content/home.js';
 import './Home.css';
+
+const IMPACT_COUNTERS = {
+  en: [
+    { target: 2930, decimals: 0, suffix: '', formatThousands: true, label: 'PROPERTY RECORDS ANALYZED', note: 'Ames Housing Data Mining' },
+    { target: 81.94, decimals: 2, suffix: '%', formatThousands: false, label: 'PREDICTIVE ACCURACY (R²)', note: 'Multiple Linear Regression' },
+    { target: 5, decimals: 0, prefix: '0', suffix: '', formatThousands: false, label: 'SHIPPED CASE STUDIES', note: 'Data, AR, Web & System Design' },
+    { target: 280, decimals: 0, suffix: '+', formatThousands: false, label: 'AUDITED TRANSACTIONS', note: 'Rp 26.19M Budget · SITE 2025' },
+  ],
+  id: [
+    { target: 2930, decimals: 0, suffix: '', formatThousands: true, label: 'DATA PROPERTI DIANALISIS', note: 'Data Mining Ames Housing' },
+    { target: 81.94, decimals: 2, suffix: '%', formatThousands: false, label: 'AKURASI PREDIKSI (R²)', note: 'Regresi Linear Berganda' },
+    { target: 5, decimals: 0, prefix: '0', suffix: '', formatThousands: false, label: 'STUDI KASUS AKADEMIK', note: 'Data, AR, Web & Arsitektur Sistem' },
+    { target: 280, decimals: 0, suffix: '+', formatThousands: false, label: 'TRANSAKSI TERAUDIT', note: 'Anggaran Rp 26,19 Juta · SITE 2025' },
+  ],
+};
+
+function ImpactCounterStrip({ lang }) {
+  const items = IMPACT_COUNTERS[lang] || IMPACT_COUNTERS.en;
+  const stripRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const el = stripRef.current;
+    if (!el) return undefined;
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) {
+      setProgress(1);
+      return undefined;
+    }
+
+    let raf = 0;
+    let started = false;
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          const t0 = performance.now();
+          const dur = 1150;
+          const tick = (now) => {
+            const p = Math.min(1, (now - t0) / dur);
+            const eased = 1 - Math.pow(1 - p, 3);
+            setProgress(eased);
+            if (p < 1) raf = requestAnimationFrame(tick);
+          };
+          raf = requestAnimationFrame(tick);
+        }
+      },
+      { threshold: 0.15 },
+    );
+
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  const formatVal = (item) => {
+    const cur = item.target * progress;
+    if (item.decimals > 0) {
+      return `${item.prefix || ''}${cur.toFixed(item.decimals)}${item.suffix || ''}`;
+    }
+    const rounded = Math.round(cur);
+    const numStr = item.formatThousands
+      ? rounded.toLocaleString(lang === 'id' ? 'id-ID' : 'en-US')
+      : String(rounded);
+    return `${item.prefix || ''}${numStr}${item.suffix || ''}`;
+  };
+
+  return (
+    <div ref={stripRef} className="home-counters" aria-label="Measured Impact Highlights">
+      {items.map((item) => (
+        <div key={item.label} className="home-counter-card">
+          <span className="mono home-counter-card__label">{item.label}</span>
+          <span className="home-counter-card__value">{formatVal(item)}</span>
+          <span className="home-counter-card__note">{item.note}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   const { lang } = useApp();
@@ -208,6 +290,8 @@ export default function Home() {
 
       <section className="band band--paper-2" id="explore">
         <div className="container section home-explore">
+          <ImpactCounterStrip lang={lang} />
+
           <div className="home-explore__heading">
             <h2 className="home-explore__title">{explore.title}</h2>
           </div>

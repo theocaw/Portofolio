@@ -4,11 +4,13 @@ const AppContext = createContext();
 
 export function AppProvider({ children }) {
   // Theme state: 'light' or 'dark'
+  // Defaults to time-of-day (06:00–17:59 -> light, 18:00–05:59 -> dark) if user hasn't manually toggled yet.
   const [theme, setTheme] = useState(() => {
     try {
       const saved = localStorage.getItem('portfolio_theme');
       if (saved === 'light' || saved === 'dark') return saved;
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const hour = new Date().getHours();
+      return hour >= 18 || hour < 6 ? 'dark' : 'light';
     } catch {
       return 'light';
     }
@@ -19,7 +21,6 @@ export function AppProvider({ children }) {
     try {
       const saved = localStorage.getItem('portfolio_lang');
       if (saved === 'en' || saved === 'id') return saved;
-      // Default to English as standard international portfolio default
       return 'en';
     } catch {
       return 'en';
@@ -28,11 +29,6 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('portfolio_theme', theme);
-    } catch {
-      // storage unavailable
-    }
   }, [theme]);
 
   useEffect(() => {
@@ -45,7 +41,15 @@ export function AppProvider({ children }) {
   }, [lang]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    setTheme((prev) => {
+      const next = prev === 'light' ? 'dark' : 'light';
+      try {
+        localStorage.setItem('portfolio_theme', next);
+      } catch {
+        // storage unavailable
+      }
+      return next;
+    });
   };
 
   const toggleLang = () => {

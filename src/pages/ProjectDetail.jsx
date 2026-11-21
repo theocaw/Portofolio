@@ -4,6 +4,7 @@ import { useApp } from '../context/AppContext.jsx';
 import { getWorkContent } from '../content/work.js';
 import EvidenceModal from '../components/EvidenceModal.jsx';
 import PageBackdrop from '../components/PageBackdrop.jsx';
+import AmesExplorer from '../components/AmesExplorer.jsx';
 import './ProjectDetail.css';
 
 export default function ProjectDetail() {
@@ -171,6 +172,24 @@ export default function ProjectDetail() {
                 ))}
               </ul>
             </div>
+          </section>
+        )}
+
+        {/* Interactive Ames Segment & Price Simulator (specifically for ames-housing) */}
+        {project.id === 'ames-housing' && (
+          <section className="detail-card detail-card--simulator">
+            <div className="detail-section-header">
+              <span className="mono section-index">{nextSectionIndex()}</span>
+              <div className="detail-evidence-title-group">
+                <h2 className="detail-section-title">
+                  {lang === 'id'
+                    ? 'Simulator Interaktif Valuasi & Klaster Pasar Ames'
+                    : 'Interactive Ames Valuation & Market Cluster Simulator'}
+                </h2>
+                <span className="mono evidence-counter">LIVE SANDBOX</span>
+              </div>
+            </div>
+            <AmesExplorer lang={lang} />
           </section>
         )}
 

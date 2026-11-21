@@ -1,6 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useApp } from '../context/AppContext.jsx';
 import './PinyoCompanion.css';
+
+const PAGE_GUIDES = {
+  id: {
+    '/': 'Selamat datang! Coba klik langit aurora atau tekan Ctrl+K! 🌌✨',
+    '/about': 'Di sini kamu bisa klik kartu IPK atau pilih pill skill Osanna! 🌸',
+    '/work': 'Pilih Side A / Side B buat dengerin track proyek Osanna! 💿',
+    '/work/ames-housing': 'Coba geser slider simulator prediksi rumah Ames di bawah! 📊',
+    '/work/alumni-portal': 'Arsitektur 4-Tier & 12 desain layar AlumniTPL lengkap di sini! 🎓',
+    '/journey': 'Klik langit kunang-kunang buat luncurkan bintang jatuh! ✨',
+  },
+  en: {
+    '/': 'Welcome! Click the aurora sky or press Ctrl+K anytime! 🌌✨',
+    '/about': 'Try clicking the GPA card or exploring Osanna’s skill pills! 🌸',
+    '/work': 'Pick Side A or Side B to spin through Osanna’s project tracks! 💿',
+    '/work/ames-housing': 'Try the live Ames Housing segment simulator below! 📊',
+    '/work/alumni-portal': 'Full 4-Tier architecture & 12 UI specs for AlumniTPL inside! 🎓',
+    '/journey': 'Click the firefly sky to launch a shooting star! ✨',
+  },
+};
 
 const DIALOGUES = {
   id: {
@@ -57,6 +77,7 @@ const DIALOGUES = {
 
 export default function PinyoCompanion() {
   const { lang, theme } = useApp();
+  const { pathname } = useLocation();
   const [moodCount, setMoodCount] = useState(() => {
     try {
       return parseInt(localStorage.getItem('portfolio_pinyo_mood') || '0', 10);
@@ -137,6 +158,23 @@ export default function PinyoCompanion() {
       setBubble(null);
     }, duration);
   };
+
+  // Context-aware tour guide bubble when visitor navigates between pages
+  useEffect(() => {
+    const guideMap = PAGE_GUIDES[lang] || PAGE_GUIDES.en;
+    const msg =
+      guideMap[pathname] ||
+      (pathname.startsWith('/work/')
+        ? lang === 'id'
+          ? 'Studi kasus lengkap! Scroll ke bawah buat lihat metriknya 🧸'
+          : 'Full case study dossier! Scroll down to inspect the metrics 🧸'
+        : null);
+    if (!msg) return undefined;
+    const timer = setTimeout(() => {
+      triggerBubble(msg, 3600);
+    }, 700);
+    return () => clearTimeout(timer);
+  }, [pathname, lang]);
 
   const updateMood = (increment = 1) => {
     const newCount = moodCount + increment;

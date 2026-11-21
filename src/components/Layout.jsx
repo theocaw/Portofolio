@@ -5,6 +5,7 @@ import ContactFooter from './ContactFooter.jsx';
 import PinyoCompanion from './PinyoCompanion.jsx';
 import CustomCursor from './CustomCursor.jsx';
 import ScrollComet from './ScrollComet.jsx';
+import CommandPalette from './CommandPalette.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
@@ -20,6 +21,7 @@ const JUMP_SELECTOR = [
   '.home-hero__intro',
   '.hero-photo-deck',
   '.home-hero__meta',
+  '.home-counters > .home-counter-card',
   '.home-explore__heading',
   '.home-explore__cards > .page-card',
   // About
@@ -282,6 +284,7 @@ export default function Layout() {
       <PinyoCompanion />
       <CustomCursor />
       <ScrollComet />
+      <CommandPalette />
     </>
   );
 }
