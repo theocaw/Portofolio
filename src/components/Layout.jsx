@@ -6,6 +6,7 @@ import PinyoCompanion from './PinyoCompanion.jsx';
 import CustomCursor from './CustomCursor.jsx';
 import ScrollComet from './ScrollComet.jsx';
 import CommandPalette from './CommandPalette.jsx';
+import SplashIntro from './SplashIntro.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
@@ -276,6 +277,7 @@ export default function Layout() {
 
   return (
     <>
+      <SplashIntro />
       <SiteHeader />
       <main>
         <Outlet />
