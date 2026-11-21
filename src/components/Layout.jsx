@@ -12,38 +12,27 @@ import { getSiteContent } from '../content/site.js';
 
 const JUMP_SELECTOR = [
   // Shared across pages
-  '.page-intro__label',
-  '.page-intro__headline',
-  '.page-intro__description',
-  '.contact-footer__copy',
+  '.slowbar-checkout__pitch',
   '.contact-footer__details',
   '.contact-footer__colophon',
-  // Home
-  '.home-hero__intro',
-  '.hero-photo-deck',
-  '.home-hero__meta',
-  '.home-counters > .home-counter-card',
-  '.home-explore__heading',
-  '.home-explore__cards > .page-card',
-  // About
-  '.profile__narrative',
-  '.profile__focus',
-  '.education > .label',
-  '.education__school',
-  '.gpa',
-  '.toolkit > .label',
-  '.toolkit__title',
-  '.toolkit__domains > .toolkit__domain',
+  // Home (Slowbar Counter, Picker Lamp & Unboxing Crate)
+  '.slowbar-booth',
+  '.slowbar-reading-desk',
+  '.slowbar-crate-header',
+  '.slowbar-wooden-crate',
+  // About (Open Hardcover Book & Wooden Card Catalog Drawers)
+  '.library-header-bar',
+  '.library-hardcover-book',
+  '.library-catalog-header',
+  '.library-drawers-grid > .library-drawer',
   '.work-invitation',
-  // Work
-  '.ongoing-header',
-  '.ongoing-headline-block',
+  // Work (Vinyl Jukebox & Record Crates)
+  '.jukebox-header-bar',
+  '.jukebox-deck',
+  '.vinyl-crate-browse__header',
+  '.vinyl-sleeves-grid > .vinyl-record-card',
+  '.slowbar-brewing-header',
   '.ongoing-grid > .ongoing-card',
-  '.completed-header',
-  '.completed-headline-block',
-  '.work-filter-bar',
-  '.projects-grid > .project-card',
-  '.journey-invitation',
   // Project Detail
   '.project-detail-nav',
   '.project-detail-hero',
@@ -53,21 +42,17 @@ const JUMP_SELECTOR = [
   '.case-pillars-grid > .case-pillar-card',
   '.case-recommendations-grid > .case-recommendation-card',
   '.project-pager-card:not(.is-disabled)',
-  // Journey
-  '.journey-section > .section-meta-header',
-  '.journey-heading',
-  '.journey-heading__title--large',
-  '.journey-heading-block',
-  '.journey-filter-bar',
-  '.journey-section__description',
-  '.experience-dossier',
-  '.experience-metrics-grid > .experience-metric-card',
+  // Journey (Field Ticket, Masking-Tape Bulletin Board & Trophy Shelf)
+  '.logbook-header-bar',
+  '.dispatch-ticket',
+  '.bulletin-board-header',
   '.organizations-bento > .org-bento-card',
+  '.trophy-shelf-header',
   '.achievements-showcase-grid > .achievement-showcase-card',
 ].join(', ');
 
 const TILT_SELECTOR =
-  '.page-card, .toolkit__domain, .gpa, .ongoing-card, .project-card, .org-bento-card, .achievement-showcase-card, .case-pillar-card, .case-recommendation-card';
+  '.library-drawer, .gpa, .ongoing-card, .vinyl-record-card, .org-bento-card, .achievement-showcase-card, .case-pillar-card, .case-recommendation-card';
 
 function getDocumentBounds(el) {
   const height = el.offsetHeight;

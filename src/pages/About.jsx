@@ -1,22 +1,22 @@
 import { useState } from 'react';
-import PageIntro from '../components/PageIntro.jsx';
-import ButtonLink from '../components/ButtonLink.jsx';
+import { Link } from 'react-router-dom';
+import PageBackdrop from '../components/PageBackdrop.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getAboutContent } from '../content/about.js';
 import './About.css';
 
 const GPA_CHEERS = {
   en: [
-    '✨ Click to celebrate!',
-    '🎓 Cum Laude Track · IPB University!',
-    '📊 Consistent across Data & Software Engineering!',
-    '🔥 Academic & Organizational Balance!',
+    '✦ OFFICIAL SEAL · IPB UNIVERSITY',
+    '🎓 Cum Laude Track · Software Engineering!',
+    '📊 Consistent across Data Mining & System Design!',
+    '☕ Balanced Academic & Slowbar Craft!',
   ],
   id: [
-    '✨ Klik untuk rayakan!',
-    '🎓 Jalur Cum Laude · IPB University!',
-    '📊 Konsisten di Data & Rekayasa Perangkat Lunak!',
-    '🔥 Seimbang Akademik & Organisasi!',
+    '✦ STEMPEL RESMI · IPB UNIVERSITY',
+    '🎓 Jalur Cum Laude · Rekayasa Perangkat Lunak!',
+    '📊 Konsisten di Data Mining & Arsitektur Sistem!',
+    '☕ Seimbang Akademik & Organisasi!',
   ],
 };
 
@@ -25,6 +25,7 @@ export default function About() {
   const about = getAboutContent(lang);
   const { intro, profile, education, toolkit, workInvitation } = about;
 
+  const [activeChapter, setActiveChapter] = useState('all'); // 'all' | 'story' | 'transcript' | 'catalog'
   const [cheerIdx, setCheerIdx] = useState(0);
   const [gpaBurst, setGpaBurst] = useState(false);
   const [selectedTool, setSelectedTool] = useState(null);
@@ -37,97 +38,180 @@ export default function About() {
 
   const cheers = GPA_CHEERS[lang] || GPA_CHEERS.en;
 
+  const bookmarks = [
+    {
+      id: 'all',
+      label: lang === 'id' ? '📖 Buka Semua Halaman' : '📖 Open Full Book',
+    },
+    {
+      id: 'story',
+      label: lang === 'id' ? '🔖 Bab I · Profil & Fokus' : '🔖 Ch. I · Reader Profile',
+    },
+    {
+      id: 'transcript',
+      label: lang === 'id' ? '🔖 Bab II · Transkrip IPB (3.63)' : '🔖 Ch. II · IPB Transcript (3.63)',
+    },
+    {
+      id: 'catalog',
+      label: lang === 'id' ? '🗂️ Bab III · Laci Katalog Skill' : '🗂️ Ch. III · Card Catalog Toolkit',
+    },
+  ];
+
   return (
-    <>
-      <PageIntro {...intro} variant="sakura" />
+    <div className="slowbar-library-page">
+      {/* =========================================================
+          TOP READING ROOM STAGE & BOOKMARK RIBBON TABS
+         ========================================================= */}
+      <section className="library-hero">
+        <PageBackdrop variant="sakura" />
 
-      {/* Profile */}
-      <section className="band band--paper-2">
-        <div className="container section profile">
-          <div className="profile__narrative">
-            <p className="label">{profile.label}</p>
-            <h2 className="profile__title">{profile.title}</h2>
-            {profile.paragraphs.map((p) => (
-              <p key={p} className="profile__paragraph">
-                {p}
-              </p>
-            ))}
-          </div>
-
-          <div className="profile__focus">
-            {profile.focus.map((f, idx) => (
-              <div key={f.label} className={`profile__focus-card profile__focus-card--${idx + 1}`}>
-                <span className="mono profile__focus-label">{f.label}</span>
-                <span className="profile__focus-value">{f.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Education */}
-      <section className="container education">
-        <p className="label">{education.label}</p>
-        <div className="education__credentials">
-          <div className="education__school">
-            <p className="label">{education.period}</p>
-            <h2 className="education__name">{education.school}</h2>
-            <p className="education__degree">
-              {education.degree.map((d) => (
-                <span key={d}>{d}</span>
-              ))}
-            </p>
-            <hr className="rule" />
-            <ul className="education__languages">
-              {education.languages.map((l) => (
-                <li key={l.name}>
-                  <span className="education__language-name">{l.name}</span>
-                  <span className="mono education__language-level">{l.level}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div
-            className={`gpa band--lime ${gpaBurst ? 'is-bursting' : ''}`}
-            onClick={triggerGpaCheer}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                triggerGpaCheer();
-              }
-            }}
-            role="button"
-            tabIndex={0}
-            aria-label={`${education.gpa.label}: ${education.gpa.value} ${education.gpa.scale}`}
-          >
-            <div className="gpa__top-row">
-              <p className="mono gpa__label">{education.gpa.label}</p>
-              {cheerIdx > 0 && <span className="mono gpa__cheer-pill">{cheers[cheerIdx]}</span>}
-            </div>
-            <p className="gpa__value">
-              <span className="gpa__number">{education.gpa.value}</span>
-              <span className="gpa__scale">{education.gpa.scale}</span>
-            </p>
-            <p className="gpa__note">{education.gpa.note}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Toolkit & Work invitation */}
-      <section className="band band--blue-soft">
-        <div className="container section toolkit">
-          <div className="toolkit__header-row">
+        <div className="container library-hero__container">
+          <div className="library-header-bar">
             <div>
-              <p className="label">{toolkit.label}</p>
-              <h2 className="toolkit__title">{toolkit.title}</h2>
+              <span className="mono library-eyebrow">
+                📚 {lang === 'id' ? 'RUANG BACA PERPUSTAKAAN SLOWBAR' : 'SLOWBAR READING ROOM & CARD CATALOG'}
+              </span>
+              <h1 className="library-main-title">{intro.headline}</h1>
+              <p className="library-sub-desc">{intro.description}</p>
             </div>
+
+            {/* Hanging Ribbon Bookmark Switcher */}
+            <div className="library-bookmarks" role="tablist" aria-label="Book Chapters">
+              {bookmarks.map((bm) => (
+                <button
+                  key={bm.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeChapter === bm.id}
+                  className={`library-bookmark-btn ${activeChapter === bm.id ? 'is-active' : ''}`}
+                  onClick={() => setActiveChapter(bm.id)}
+                >
+                  <span>{bm.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* =========================================================
+              OPEN HARDCOVER BOOK SPREAD (Chapters I & II)
+             ========================================================= */}
+          {(activeChapter === 'all' || activeChapter === 'story' || activeChapter === 'transcript') && (
+            <div className="library-hardcover-book">
+              {/* Left Page: Chapter I — The Reader's Narrative & Focus */}
+              <div
+                className={`library-page library-page--left ${
+                  activeChapter === 'transcript' ? 'is-dimmed' : ''
+                }`}
+              >
+                <div className="mono library-page__head">
+                  <span>CHAPTER I · {profile.label}</span>
+                  <span>PAGE 01</span>
+                </div>
+
+                <h2 className="library-page__title">{profile.title}</h2>
+
+                <div className="library-page__paragraphs">
+                  {profile.paragraphs.map((p) => (
+                    <p key={p}>{p}</p>
+                  ))}
+                </div>
+
+                {/* Stamped Focus Cards at Bottom of Left Page */}
+                <div className="library-focus-stamps">
+                  {profile.focus.map((f, idx) => (
+                    <div
+                      key={f.label}
+                      className={`library-focus-stamp library-focus-stamp--${idx + 1}`}
+                    >
+                      <span className="mono library-focus-stamp__k">{f.label}</span>
+                      <strong className="library-focus-stamp__v">{f.value}</strong>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Center Book Spine Fold */}
+              <div className="library-book-spine-fold" aria-hidden="true">
+                <span className="library-ribbon-thread" />
+              </div>
+
+              {/* Right Page: Chapter II — Academic Credentials & Interactive GPA Stamp */}
+              <div
+                className={`library-page library-page--right ${
+                  activeChapter === 'story' ? 'is-dimmed' : ''
+                }`}
+              >
+                <div className="mono library-page__head">
+                  <span>CHAPTER II · {education.label}</span>
+                  <span>PAGE 02</span>
+                </div>
+
+                <div className="library-school-card">
+                  <span className="mono library-school-card__period">{education.period}</span>
+                  <h2 className="library-school-card__name">{education.school}</h2>
+                  <p className="library-school-card__degree">
+                    {education.degree.join(' · ')}
+                  </p>
+
+                  <div className="library-languages-row">
+                    {education.languages.map((l) => (
+                      <div key={l.name} className="library-lang-chip">
+                        <strong>{l.name}</strong>
+                        <span className="mono">{l.level}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Interactive Library Wax-Seal GPA Card */}
+                <div
+                  className={`library-gpa-seal gpa ${gpaBurst ? 'is-bursting' : ''}`}
+                  onClick={triggerGpaCheer}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      triggerGpaCheer();
+                    }
+                  }}
+                >
+                  <div className="library-gpa-seal__top">
+                    <span className="mono">{education.gpa.label}</span>
+                    <span className="mono library-gpa-seal__stamp">{cheers[cheerIdx]}</span>
+                  </div>
+
+                  <div className="library-gpa-seal__val">
+                    <span className="library-gpa-seal__num">{education.gpa.value}</span>
+                    <span className="library-gpa-seal__scale">{education.gpa.scale}</span>
+                  </div>
+
+                  <p className="library-gpa-seal__note">{education.gpa.note}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* =========================================================
+          CHAPTER III: WOODEN LIBRARY CARD CATALOG DRAWERS (TOOLKIT)
+         ========================================================= */}
+      {(activeChapter === 'all' || activeChapter === 'catalog') && (
+        <section className="container library-catalog-section">
+          <div className="library-catalog-header">
+            <div>
+              <span className="mono library-eyebrow">
+                🗂️ CHAPTER III · {toolkit.label}
+              </span>
+              <h2 className="library-catalog-title">{toolkit.title}</h2>
+            </div>
+
             {selectedTool && (
-              <div className="toolkit__active-badge mono">
+              <div className="mono library-active-tool-pill">
                 <span>✦ {selectedTool}</span>
                 <button
                   type="button"
-                  className="toolkit__clear-btn"
                   onClick={() => setSelectedTool(null)}
                   aria-label="Clear selected tool"
                 >
@@ -137,44 +221,61 @@ export default function About() {
             )}
           </div>
 
-          <div className="toolkit__domains">
-            {toolkit.domains.map((d) => {
+          <div className="library-drawers-grid">
+            {toolkit.domains.map((d, idx) => {
               const hasActive = d.tools.includes(selectedTool);
+              const drawerCode = `DRAWER 0${idx + 1}`;
               return (
                 <article
                   key={d.title}
-                  className={`toolkit__domain ${hasActive ? 'is-highlighted' : ''}`}
+                  className={`library-drawer toolkit__domain ${hasActive ? 'is-highlighted' : ''}`}
                 >
-                  <hr className="rule" />
-                  <p className="toolkit__icon" aria-hidden="true">
-                    {d.icon}
-                  </p>
-                  <h3 className="toolkit__domain-title">{d.title}</h3>
-                  <ul className="toolkit__tools toolkit__tools--pills">
-                    {d.tools.map((t) => (
-                      <li key={t}>
+                  {/* Brass Drawer Pull Handle & Index Tag */}
+                  <div className="library-drawer__handle-bar">
+                    <span className="mono library-drawer__brass-tag">{drawerCode}</span>
+                    <span className="library-drawer__pull" aria-hidden="true" />
+                    <span className="mono library-drawer__icon">{d.icon}</span>
+                  </div>
+
+                  {/* Ruled Library Index Card inside the Drawer */}
+                  <div className="library-drawer__card">
+                    <h3 className="library-drawer__title">{d.title}</h3>
+                    <p className="library-drawer__desc">{d.description}</p>
+
+                    <div className="toolkit__tools--pills">
+                      {d.tools.map((tool) => (
                         <button
+                          key={tool}
                           type="button"
-                          className={`toolkit__tool-pill ${selectedTool === t ? 'is-selected' : ''}`}
-                          onClick={() => setSelectedTool((prev) => (prev === t ? null : t))}
+                          className={`toolkit__tool-pill ${
+                            selectedTool === tool ? 'is-selected' : ''
+                          }`}
+                          onClick={() =>
+                            setSelectedTool((prev) => (prev === tool ? null : tool))
+                          }
                         >
-                          {t}
+                          {tool}
                         </button>
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="toolkit__description">{d.description}</p>
+                      ))}
+                    </div>
+                  </div>
                 </article>
               );
             })}
           </div>
 
-          <div className="work-invitation">
-            <h3 className="work-invitation__title">{workInvitation.title}</h3>
-            <ButtonLink to={workInvitation.action.to}>{workInvitation.action.label}</ButtonLink>
+          {/* Bottom Invitation to Vinyl Jukebox */}
+          <div className="library-checkout-bar work-invitation">
+            <div className="library-checkout-bar__text">
+              <span className="mono">✦ NEXT ROOM IN THE SLOWBAR</span>
+              <h3>{workInvitation.title}</h3>
+            </div>
+            <Link to={workInvitation.action.to} className="mono library-checkout-bar__btn">
+              {workInvitation.action.label} ↗
+            </Link>
           </div>
-        </div>
-      </section>
-    </>
+        </section>
+      )}
+    </div>
   );
 }
