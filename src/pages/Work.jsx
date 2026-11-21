@@ -76,7 +76,7 @@ export default function Work() {
         <div className="kissa-work-hero__head">
           <div>
             <span className="mono kissa-eyebrow">
-              {lang === 'id' ? '02 / ARSIP KASET & STUDI KASUS' : '02 / CASSETTE TAPE ARCHIVE & CASE STUDIES'}
+              {lang === 'id' ? '03 / PROYEK · ARSIP KASET & STUDI KASUS' : '03 / WORK · CASSETTE TAPE ARCHIVE'}
             </span>
             <h1 className="kissa-work-hero__title">
               {lang === 'id'
@@ -185,16 +185,20 @@ export default function Work() {
                 >
                   <div
                     className="kissa-tape-card__shell-wrap"
-                    onClick={() => setSelectedIdx(origIdx)}
+                    onClick={() => {
+                      setSelectedIdx(origIdx);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         setSelectedIdx(origIdx);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
                       }
                     }}
-                    title={lang === 'id' ? 'Klik untuk muat ke Deck Stereo' : 'Click to load into Stereo Deck'}
+                    title={lang === 'id' ? 'Klik kaset untuk muat ke Deck Stereo' : 'Click cassette to load into Stereo Deck'}
                   >
                     <CassetteShell
                       code={`TAPE ${project.num}`}
@@ -229,25 +233,8 @@ export default function Work() {
                     )}
 
                     <div className="kissa-tape-card__actions">
-                      <button
-                        type="button"
-                        className="mono kissa-tape-card__load-btn"
-                        onClick={() => {
-                          setSelectedIdx(origIdx);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                      >
-                        {isLoaded
-                          ? lang === 'id'
-                            ? 'Sedang di Deck'
-                            : 'Loaded on Deck'
-                          : lang === 'id'
-                            ? 'Muat ke Deck'
-                            : 'Load on Deck'}
-                      </button>
-
                       <Link to={`/work/${project.id}`} className="mono kissa-tape-card__open-btn">
-                        {lang === 'id' ? 'Buka Studi Kasus ↗' : 'Open Case Study ↗'}
+                        {lang === 'id' ? 'Buka Studi Kasus Lengkap ↗' : 'Open Full Case Study ↗'}
                       </Link>
                     </div>
                   </div>

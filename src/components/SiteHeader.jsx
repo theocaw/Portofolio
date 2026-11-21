@@ -9,10 +9,10 @@ export default function SiteHeader() {
   const site = getSiteContent(lang);
 
   const navItems = [
-    { to: '/', index: '01', label: lang === 'id' ? 'Beranda' : 'Listening Room' },
-    { to: '/work', index: '02', label: lang === 'id' ? 'Arsip Kaset' : 'Tape Archive' },
-    { to: '/about', index: '03', label: lang === 'id' ? 'Perpustakaan' : 'Library' },
-    { to: '/journey', index: '04', label: lang === 'id' ? 'Logbook' : 'Logbook' },
+    { to: '/', index: '01', label: lang === 'id' ? 'Beranda' : 'Home' },
+    { to: '/about', index: '02', label: lang === 'id' ? 'Tentang' : 'About' },
+    { to: '/work', index: '03', label: lang === 'id' ? 'Proyek' : 'Work' },
+    { to: '/journey', index: '04', label: lang === 'id' ? 'Perjalanan' : 'Journey' },
   ];
 
   return (

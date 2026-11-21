@@ -12,10 +12,10 @@ const JUMP_SELECTOR = [
   '.kissa-footer__pitch',
   '.kissa-footer__directory',
   // Home
-  '.kissa-hero__left',
-  '.kissa-hero__right',
+  '.kissa-cabinet',
+  '.kissa-reading-spread',
   '.kissa-ledger__item',
-  '.kissa-volumes > .kissa-volume',
+  '.kissa-author-copy',
   '.kissa-portrait',
   // Work
   '.kissa-work-hero__head',

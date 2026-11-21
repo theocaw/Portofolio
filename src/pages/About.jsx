@@ -18,7 +18,7 @@ export default function About() {
          ========================================================= */}
       <section className="container kissa-about-hero">
         <span className="mono kissa-eyebrow">
-          {lang === 'id' ? '03 / PERPUSTAKAAN & PROFIL' : '03 / THE ARCHIVAL LIBRARY & PROFILE'}
+          {lang === 'id' ? '02 / TENTANG · PERPUSTAKAAN & PROFIL' : '02 / ABOUT · THE ARCHIVAL LIBRARY'}
         </span>
         <h1 className="kissa-about-hero__title">{intro.headline}</h1>
         <p className="kissa-about-hero__desc">{intro.description}</p>

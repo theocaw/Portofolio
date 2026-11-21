@@ -5,23 +5,12 @@ import './SplashIntro.css';
 
 export default function SplashIntro() {
   const { lang } = useApp();
-  const [visible, setVisible] = useState(() => {
-    try {
-      return !sessionStorage.getItem('portfolio_splash_done');
-    } catch {
-      return false;
-    }
-  });
+  const [visible, setVisible] = useState(true);
   const [progress, setProgress] = useState(0);
   const [exiting, setExiting] = useState(false);
 
   const finishSplash = useCallback(() => {
     setExiting(true);
-    try {
-      sessionStorage.setItem('portfolio_splash_done', '1');
-    } catch {
-      // ignore
-    }
   }, []);
 
   useEffect(() => {
