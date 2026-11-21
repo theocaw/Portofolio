@@ -238,32 +238,12 @@ export default function Home() {
                         />
                       </div>
                       <div className="hero-polaroid__caption">
-                        <span>{photo.caption || photo.label}</span>
+                        <span>✦ {photo.label}</span>
                       </div>
                     </div>
                   );
                 })}
               </div>
-            </div>
-
-            <div
-              className="hero-photo-deck__pills"
-              role="tablist"
-              aria-label={lang === 'id' ? 'Pilih pose foto' : 'Select photo pose'}
-            >
-              {profilePhotos.map((photo, idx) => (
-                <button
-                  key={photo.src}
-                  type="button"
-                  role="tab"
-                  aria-selected={photoIndex === idx}
-                  className={`hero-photo-deck__pill ${photoIndex === idx ? 'is-active' : ''}`}
-                  onClick={() => setPhotoIndex(idx)}
-                >
-                  <span className="hero-photo-deck__pill-star">✦</span>
-                  <span>{photo.label}</span>
-                </button>
-              ))}
             </div>
           </aside>
         </div>

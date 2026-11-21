@@ -14,19 +14,16 @@ export const homeData = {
         src: '/images/profile/osanna-1.jpg',
         alt: 'Osanna Patricia Limbong - Sweet pose with finger on cheek',
         label: 'Dimple Smile',
-        caption: '✦ pose 01 · smile',
       },
       {
         src: '/images/profile/osanna-2.jpg',
         alt: 'Osanna Patricia Limbong - Cute pout pose in IPB blazer',
         label: 'Soft Pout',
-        caption: '✦ pose 02 · pout',
       },
       {
         src: '/images/profile/osanna-3.jpg',
         alt: 'Osanna Patricia Limbong - Playful tiger roar pose in IPB blazer',
         label: 'Tiger Pose',
-        caption: '✦ pose 03 · roar',
       },
     ],
     identityCard: {
@@ -89,19 +86,16 @@ export const homeData = {
         src: '/images/profile/osanna-1.jpg',
         alt: 'Osanna Patricia Limbong - Pose manis dengan jari di pipi',
         label: 'Senyum Lesung',
-        caption: '✦ pose 01 · senyum',
       },
       {
         src: '/images/profile/osanna-2.jpg',
         alt: 'Osanna Patricia Limbong - Pose cemberut lucu mengenakan jas almamater IPB',
         label: 'Pose Cemberut',
-        caption: '✦ pose 02 · cemberut',
       },
       {
         src: '/images/profile/osanna-3.jpg',
         alt: 'Osanna Patricia Limbong - Pose harimau ceria mengenakan jas almamater IPB',
         label: 'Pose Harimau',
-        caption: '✦ pose 03 · aum',
       },
     ],
     identityCard: {

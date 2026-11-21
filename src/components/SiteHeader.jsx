@@ -151,7 +151,6 @@ export default function SiteHeader() {
               }
             >
               <span>⚡ {lang === 'id' ? 'Ringkasan HR' : '30s Scan'}</span>
-              <kbd className="site-header__kbd">⌘K</kbd>
             </button>
 
             {/* Language Switcher */}
