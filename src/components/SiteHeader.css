@@ -6,12 +6,76 @@
   height: 100px;
 }
 
-.site-header__identity {
+.site-header__brand-cluster {
   grid-area: identity;
+  justify-self: start;
   display: inline-flex;
   align-items: center;
-  justify-self: start;
+  gap: 12px;
+}
+
+.site-header__identity {
+  display: inline-flex;
+  align-items: center;
   position: relative;
+}
+
+/* Slowbar Ambient FM Tuner Pill */
+.site-vinyl__tuner {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1.5px solid var(--ink);
+  background: var(--paper-2);
+  color: var(--ink);
+  font-size: 10.5px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 var(--ink);
+  white-space: nowrap;
+  transition:
+    transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.site-vinyl__tuner:hover {
+  transform: translateY(-1px);
+  background: var(--pink-soft);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.site-vinyl__tuner.is-playing {
+  background: var(--lime);
+  color: #231914;
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+[data-theme='dark'] .site-vinyl__tuner {
+  background: var(--paper-2);
+  border-color: var(--rule);
+  box-shadow: 2px 2px 0 #070504;
+}
+
+[data-theme='dark'] .site-vinyl__tuner.is-playing {
+  background: var(--lime);
+  color: #130f0c;
+  border-color: #070504;
+}
+
+.site-vinyl__tuner-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: background-color 180ms ease, box-shadow 180ms ease;
+}
+
+.site-vinyl__tuner.is-playing .site-vinyl__tuner-dot {
+  background: var(--pink-hot);
+  box-shadow: 0 0 7px var(--pink-hot);
 }
 
 /* Interactive Mini Vinyl Turntable Logo */
@@ -34,7 +98,7 @@
 [data-theme='dark'] .site-vinyl__deck {
   background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 3px 3px 0 #000000;
+  box-shadow: 3px 3px 0 #070504;
 }
 
 .site-vinyl:hover .site-vinyl__deck,
@@ -46,8 +110,8 @@ html.is-vinyl-playing .site-vinyl__deck {
 
 [data-theme='dark'] .site-vinyl:hover .site-vinyl__deck,
 [data-theme='dark'].is-vinyl-playing .site-vinyl__deck {
-  border-color: var(--blue);
-  box-shadow: 5px 5px 0 #000000;
+  border-color: var(--lime);
+  box-shadow: 5px 5px 0 #070504;
 }
 
 .site-vinyl__led {
@@ -57,8 +121,8 @@ html.is-vinyl-playing .site-vinyl__deck {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 6px #22c55e;
+  background: var(--blue);
+  box-shadow: 0 0 6px var(--blue);
   z-index: 2;
 }
 
@@ -227,12 +291,12 @@ html.is-vinyl-playing .site-vinyl__note--2 {
 
 .site-header__lang-btn.is-active {
   background: var(--blue);
-  color: #ffffff;
+  color: #fbf7ef;
 }
 
 [data-theme='dark'] .site-header__lang-btn.is-active {
   background: var(--blue);
-  color: #090e1a;
+  color: #130f0c;
 }
 
 .site-header__lang-sep {
@@ -346,6 +410,15 @@ html.is-vinyl-playing .site-vinyl__note--2 {
     padding-block: 12px 8px;
   }
 
+  .site-header__brand-cluster {
+    gap: 8px;
+  }
+
+  .site-vinyl__tuner {
+    font-size: 9.5px;
+    padding: 4px 8px;
+  }
+
   .site-header__actions {
     gap: 6px;
   }
@@ -353,13 +426,5 @@ html.is-vinyl-playing .site-vinyl__note--2 {
   .site-header__contact {
     padding: 5px 10px;
     font-size: 9.5px;
-  }
-
-  .site-header__monogram {
-    font-size: 26px;
-  }
-
-  .site-header__name {
-    font-size: 8px;
   }
 }

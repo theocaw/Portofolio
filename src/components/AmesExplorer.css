@@ -45,18 +45,18 @@
 
 .ames-preset-btn.is-active {
   background: var(--lime);
-  color: #14234a;
+  color: #231914;
 }
 
 [data-theme='dark'] .ames-preset-btn {
-  background: #0b1020;
+  background: #140f0c;
   border-color: var(--rule);
-  box-shadow: 2px 2px 0 #000000;
+  box-shadow: 2px 2px 0 #070504;
 }
 
 [data-theme='dark'] .ames-preset-btn.is-active {
   background: var(--lime);
-  color: #0b1020;
+  color: #130f0c;
 }
 
 .ames-explorer__grid {
@@ -79,9 +79,9 @@
 }
 
 [data-theme='dark'] .ames-explorer__controls {
-  background: #0b1020;
+  background: #140f0c;
   border-color: var(--rule);
-  box-shadow: 3.5px 3.5px 0 #000000;
+  box-shadow: 3.5px 3.5px 0 #070504;
 }
 
 .ames-slider-row {
@@ -109,7 +109,7 @@
   padding: 2px 9px;
   border-radius: 999px;
   background: var(--lime);
-  color: #14234a;
+  color: #231914;
   border: 1px solid var(--ink);
 }
 
@@ -128,8 +128,8 @@
 
 /* Output Panel */
 .ames-explorer__output {
-  --out-tint: #e8f0fe;
-  --out-accent: #2563eb;
+  --out-tint: #dfece3;
+  --out-accent: #355e47;
   background: var(--out-tint);
   border: 2px solid var(--ink);
   border-top: 6px solid var(--out-accent);
@@ -143,25 +143,25 @@
 }
 
 .ames-explorer__output--amber {
-  --out-tint: #fef3c7;
-  --out-accent: #d97706;
+  --out-tint: #f7ebd2;
+  --out-accent: #b46914;
 }
 
 .ames-explorer__output--cobalt {
-  --out-tint: #e8f0fe;
-  --out-accent: #2563eb;
+  --out-tint: #dfece3;
+  --out-accent: #355e47;
 }
 
 .ames-explorer__output--violet {
-  --out-tint: #ede9fe;
-  --out-accent: #7c3aed;
+  --out-tint: #f8eae3;
+  --out-accent: #c24928;
 }
 
 [data-theme='dark'] .ames-explorer__output {
-  background: #0d1527;
+  background: #1c1511;
   border-color: var(--rule);
   border-top: 6px solid var(--out-accent);
-  box-shadow: 3.5px 3.5px 0 #000000;
+  box-shadow: 3.5px 3.5px 0 #070504;
 }
 
 .ames-output-header {
@@ -227,7 +227,7 @@
 }
 
 [data-theme='dark'] .ames-mini-card {
-  background: #0b1020;
+  background: #140f0c;
   border-color: var(--rule);
 }
 
@@ -260,8 +260,8 @@
 }
 
 [data-theme='dark'] .ames-output-strategy {
-  background: #172554;
-  color: #f8f5ee;
+  background: #243328;
+  color: #f5ecdc;
 }
 
 @media (max-width: 899px) {

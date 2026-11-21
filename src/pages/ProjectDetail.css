@@ -53,7 +53,7 @@
 
 [data-theme='dark'] .project-detail-back-link:hover {
   border-color: var(--blue);
-  background: #0e223d;
+  background: #1b2820;
 }
 
 .project-detail-nav-meta {
@@ -176,7 +176,7 @@
 }
 
 .detail-card {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard);
@@ -295,9 +295,9 @@
 }
 
 [data-theme='dark'] .detail-evidence-frame {
-  background: #090e1a;
+  background: #140f0c;
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 .detail-evidence-img {
@@ -408,7 +408,7 @@
 }
 
 .project-pager-card {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: 18px;
   padding: 16px 20px;
@@ -438,12 +438,12 @@
 [data-theme='dark'] .project-pager-card {
   background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 3px 3px 0 #000000;
+  box-shadow: 3px 3px 0 #070504;
 }
 
 [data-theme='dark'] .project-pager-card:hover {
   border-color: var(--blue);
-  background: #0e223d;
+  background: #1b2820;
 }
 
 .pager-direction {
@@ -495,9 +495,9 @@
 }
 
 [data-theme='dark'] .detail-academic-strip {
-  background: #0d1527;
+  background: #1a1410;
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 .academic-strip-header {
@@ -524,9 +524,9 @@
 }
 
 [data-theme='dark'] .academic-strip-tag {
-  background: #102647;
-  color: #8ec5fc;
-  border-color: #2b5490;
+  background: #1b2820;
+  color: var(--blue);
+  border-color: var(--blue);
 }
 
 .academic-strip-date {
@@ -603,14 +603,14 @@
 }
 
 [data-theme='dark'] .case-pillar-card {
-  background: #0d1527;
+  background: #1a1410;
   border-color: var(--rule);
-  box-shadow: 3.5px 3.5px 0 #000000;
+  box-shadow: 3.5px 3.5px 0 #070504;
 }
 
 [data-theme='dark'] .case-pillar-card:hover {
   border-color: var(--blue);
-  box-shadow: 5px 5px 0 #000000;
+  box-shadow: 5px 5px 0 #070504;
 }
 
 .case-pillar-header {
@@ -727,9 +727,9 @@
 }
 
 [data-theme='dark'] .case-recommendation-card {
-  background: #0d1527;
+  background: #1a1410;
   border-color: var(--rule);
-  box-shadow: 3.5px 3.5px 0 #000000;
+  box-shadow: 3.5px 3.5px 0 #070504;
 }
 
 .case-rec-badge {

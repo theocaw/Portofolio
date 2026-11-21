@@ -36,7 +36,7 @@
 }
 
 .profile__focus-card {
-  background: var(--paper);
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: 20px;
   padding: 22px 24px;
@@ -55,9 +55,9 @@
 }
 
 [data-theme='dark'] .profile__focus-card {
-  background: #0b1020;
+  background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 [data-theme='dark'] .profile__focus-card--1 {
@@ -291,7 +291,7 @@
   border-radius: 999px;
   border: 2px solid var(--ink);
   background: var(--lime);
-  color: #14234a;
+  color: #231914;
   font-size: 12px;
   font-weight: 700;
   box-shadow: 3px 3px 0 var(--ink);
@@ -345,13 +345,13 @@
 
 .toolkit__tool-pill.is-selected {
   background: var(--blue);
-  color: #ffffff;
+  color: #fbf7ef;
   box-shadow: 2px 2px 0 var(--ink);
   transform: translateY(-2px) scale(1.04);
 }
 
 [data-theme='dark'] .toolkit__tool-pill.is-selected {
-  color: #0b1020;
+  color: #130f0c;
 }
 
 .toolkit__description {

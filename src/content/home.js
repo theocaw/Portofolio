@@ -45,7 +45,7 @@ export const homeData = {
       link: { label: 'EXPLORE THE DEDICATED PAGES ↗', to: '/about' },
       cards: [
         {
-          index: '01 / ABOUT',
+          index: '01 / ABOUT · THE READING ROOM',
           title: 'The person behind the process.',
           description:
             'My profile, Software Engineering education, and the toolkit I’m developing through practice.',
@@ -53,7 +53,7 @@ export const homeData = {
           to: '/about',
         },
         {
-          index: '02 / WORK',
+          index: '02 / WORK · THE VINYL CATALOG',
           title: 'From questions to working systems.',
           description:
             'Five academic projects, led by Ames Housing analysis and front-end work for Dthanasha Kost.',
@@ -61,7 +61,7 @@ export const homeData = {
           to: '/work',
         },
         {
-          index: '03 / JOURNEY',
+          index: '03 / JOURNEY · THE LOGBOOK',
           title: 'Learning beyond the classroom.',
           description:
             'A logistics internship, organizational responsibilities, and achievements—each in its own chapter.',
@@ -117,7 +117,7 @@ export const homeData = {
       link: { label: 'JELAJAHI HALAMAN LENGKAP ↗', to: '/about' },
       cards: [
         {
-          index: '01 / TENTANG',
+          index: '01 / TENTANG · RUANG BACA',
           title: 'Sosok di balik proses berkarya.',
           description:
             'Profil pribadiku, pendidikan Rekayasa Perangkat Lunak, dan keahlian yang terus diasah lewat praktik.',
@@ -125,7 +125,7 @@ export const homeData = {
           to: '/about',
         },
         {
-          index: '02 / PROYEK',
+          index: '02 / PROYEK · KATALOG VINYL',
           title: 'Dari pertanyaan menjadi sistem nyata.',
           description:
             'Lima proyek akademik, diawali analisis data Ames Housing dan pengembangan web Dthanasha Kost.',
@@ -133,7 +133,7 @@ export const homeData = {
           to: '/work',
         },
         {
-          index: '03 / PERJALANAN',
+          index: '03 / PERJALANAN · LOGBOOK ARSIP',
           title: 'Belajar melampaui ruang kelas.',
           description:
             'Magang logistik, keterlibatan aktif di organisasi, dan prestasi yang diraih—masing-masing punya ceritanya.',

@@ -26,9 +26,9 @@
 }
 
 [data-theme='dark'] .cmd-modal {
-  background: #0d1527;
+  background: #1c1511;
   border-color: var(--rule);
-  box-shadow: 8px 10px 0 #000000;
+  box-shadow: 8px 10px 0 #070504;
 }
 
 .cmd-tabs {
@@ -136,7 +136,7 @@
 }
 
 [data-theme='dark'] .cmd-item.is-selected {
-  background: #172554;
+  background: #243328;
   border-color: var(--blue);
 }
 

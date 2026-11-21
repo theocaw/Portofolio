@@ -5,20 +5,20 @@ import './PinyoCompanion.css';
 
 const PAGE_GUIDES = {
   id: {
-    '/': 'Selamat datang! Coba klik langit aurora atau tekan Ctrl+K! 🌌✨',
-    '/about': 'Di sini kamu bisa klik kartu IPK atau pilih pill skill Osanna! 🌸',
-    '/work': 'Pilih Side A / Side B buat dengerin track proyek Osanna! 💿',
+    '/': 'Selamat datang di Slowbar Osanna! Klik ♪ Slowbar FM di kiri atas buat nyalain vinyl! ☕💿',
+    '/about': 'Ruang baca: coba klik kartu IPK atau filter pill keahlian Osanna! 📖✨',
+    '/work': 'Rak Vinyl & Katalog Arsip: pilih Side A / Side B buat jelajahi studi kasus! 💿',
     '/work/ames-housing': 'Coba geser slider simulator prediksi rumah Ames di bawah! 📊',
     '/work/alumni-portal': 'Arsitektur 4-Tier & 12 desain layar AlumniTPL lengkap di sini! 🎓',
-    '/journey': 'Klik langit kunang-kunang buat luncurkan bintang jatuh! ✨',
+    '/journey': 'Logbook perjalanan: klik langit kunang-kunang buat luncurkan bintang! ✨',
   },
   en: {
-    '/': 'Welcome! Click the aurora sky or press Ctrl+K anytime! 🌌✨',
-    '/about': 'Try clicking the GPA card or exploring Osanna’s skill pills! 🌸',
-    '/work': 'Pick Side A or Side B to spin through Osanna’s project tracks! 💿',
+    '/': 'Welcome to Osanna’s Slowbar! Click ♪ Slowbar FM top-left for lo-fi vinyl vibes! ☕💿',
+    '/about': 'The Reading Room: click the GPA card or filter Osanna’s skill pills! 📖✨',
+    '/work': 'Vinyl Crate & Archive Catalog: pick Side A or Side B to explore tracks! 💿',
     '/work/ames-housing': 'Try the live Ames Housing segment simulator below! 📊',
     '/work/alumni-portal': 'Full 4-Tier architecture & 12 UI specs for AlumniTPL inside! 🎓',
-    '/journey': 'Click the firefly sky to launch a shooting star! ✨',
+    '/journey': 'The Logbook: click the firefly sky to launch a shooting star! ✨',
   },
 };
 

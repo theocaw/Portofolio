@@ -43,7 +43,7 @@
 .home-hero__status-pill:hover {
   transform: translate(-1px, -2px);
   background: var(--lime);
-  color: #14234a;
+  color: #231914;
   box-shadow: 4px 5px 0 var(--ink);
 }
 
@@ -136,7 +136,7 @@
   width: 36px;
   height: 36px;
   border-radius: 999px;
-  background: #fef08a;
+  background: var(--lime);
   border: 2px solid var(--ink);
   box-shadow: 2px 2px 0 var(--ink);
   display: flex;
@@ -175,7 +175,7 @@
   position: absolute;
   width: 240px;
   height: 326px;
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: 18px;
   padding: 10px 10px 12px;
@@ -326,7 +326,7 @@
 }
 
 .home-counter-card {
-  background: var(--paper);
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: 20px;
   padding: 20px 22px;
@@ -345,17 +345,17 @@
 }
 
 .home-counter-card:nth-child(3) {
-  border-top: 5px solid #d97706;
+  border-top: 5px solid #b46914;
 }
 
 .home-counter-card:nth-child(4) {
-  border-top: 5px solid #059669;
+  border-top: 5px solid #2f6f5e;
 }
 
 [data-theme='dark'] .home-counter-card {
-  background: #0b1020;
+  background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 .home-counter-card__label {

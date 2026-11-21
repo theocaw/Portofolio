@@ -52,7 +52,7 @@ export default function PageBackdrop({ variant = 'sakura' }) {
           vy: Math.sin(ang) * sp - 0.6,
           size: 3 + Math.random() * 3.5,
           life: 1,
-          color: i % 2 === 0 ? '#fde047' : '#f472b6',
+          color: i % 2 === 0 ? '#f3d285' : '#e3886b',
         });
       }
     };
@@ -78,8 +78,8 @@ export default function PageBackdrop({ variant = 'sakura' }) {
 
       if (variant === 'sakura') {
         const petalColors = dark
-          ? ['#f472b6', '#fb7185', '#fbcfe8', '#c084fc', '#fde047']
-          : ['#ff8dc7', '#f43f5e', '#f9a8d4', '#fda4af', '#eab308'];
+          ? ['#e3886b', '#f2cc7e', '#83b697', '#cab89e', '#f0714d']
+          : ['#e6a387', '#c24928', '#769e86', '#d97706', '#355e47'];
         const petalCount = Math.round(Math.min(55, Math.max(26, (w * h) / 13000)));
         for (let i = 0; i < petalCount; i += 1) {
           items.push({
@@ -108,8 +108,8 @@ export default function PageBackdrop({ variant = 'sakura' }) {
         }
       } else if (variant === 'network') {
         const nodeColors = dark
-          ? ['#60a5fa', '#34d399', '#f472b6', '#fde047']
-          : ['#2563eb', '#e11d48', '#059669', '#1d4ed8'];
+          ? ['#83b697', '#f2cc7e', '#e3886b', '#f0714d']
+          : ['#355e47', '#c24928', '#b46914', '#244231'];
         const nodeCount = Math.round(Math.min(62, Math.max(28, (w * h) / 11000)));
         for (let i = 0; i < nodeCount; i += 1) {
           items.push({
@@ -125,16 +125,16 @@ export default function PageBackdrop({ variant = 'sakura' }) {
       } else if (variant === 'fireflies') {
         const flyColors = dark
           ? [
-              [253, 224, 71],
-              [244, 114, 182],
-              [52, 211, 153],
-              [96, 165, 250],
+              [242, 204, 126],
+              [227, 136, 107],
+              [131, 182, 151],
+              [240, 113, 77],
             ]
           : [
-              [234, 179, 8],
-              [225, 29, 72],
-              [37, 99, 235],
-              [16, 185, 129],
+              [217, 119, 6],
+              [194, 73, 40],
+              [53, 94, 71],
+              [118, 158, 134],
             ];
         const flyCount = Math.round(Math.min(60, Math.max(28, (w * h) / 11500)));
         for (let i = 0; i < flyCount; i += 1) {
@@ -215,11 +215,11 @@ export default function PageBackdrop({ variant = 'sakura' }) {
       );
       grad.addColorStop(
         0,
-        dark ? 'rgba(244, 114, 182, 0.16)' : 'rgba(255, 141, 199, 0.22)',
+        dark ? 'rgba(227, 136, 107, 0.16)' : 'rgba(230, 163, 135, 0.24)',
       );
       grad.addColorStop(
         0.5,
-        dark ? 'rgba(96, 165, 250, 0.08)' : 'rgba(37, 99, 235, 0.07)',
+        dark ? 'rgba(131, 182, 151, 0.08)' : 'rgba(53, 94, 71, 0.08)',
       );
       grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = grad;
@@ -249,11 +249,11 @@ export default function PageBackdrop({ variant = 'sakura' }) {
         ctx.beginPath();
         ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
         ctx.strokeStyle = dark
-          ? 'rgba(244, 114, 182, 0.45)'
-          : 'rgba(37, 99, 235, 0.32)';
+          ? 'rgba(242, 204, 126, 0.42)'
+          : 'rgba(53, 94, 71, 0.32)';
         ctx.fillStyle = dark
-          ? 'rgba(255, 255, 255, 0.05)'
-          : 'rgba(255, 255, 255, 0.45)';
+          ? 'rgba(242, 204, 126, 0.06)'
+          : 'rgba(251, 247, 239, 0.5)';
         ctx.lineWidth = 1.4;
         ctx.fill();
         ctx.stroke();
@@ -354,8 +354,8 @@ export default function PageBackdrop({ variant = 'sakura' }) {
           if (d < linkDist) {
             const alpha = (1 - d / linkDist) * (dark ? 0.35 : 0.25);
             ctx.strokeStyle = dark
-              ? `rgba(96, 165, 250, ${alpha})`
-              : `rgba(37, 99, 235, ${alpha})`;
+              ? `rgba(131, 182, 151, ${alpha})`
+              : `rgba(53, 94, 71, ${alpha})`;
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -370,8 +370,8 @@ export default function PageBackdrop({ variant = 'sakura' }) {
           if (dm < 175) {
             const alpha = (1 - dm / 175) * 0.7;
             ctx.strokeStyle = dark
-              ? `rgba(244, 114, 182, ${alpha})`
-              : `rgba(225, 29, 72, ${alpha})`;
+              ? `rgba(242, 204, 126, ${alpha})`
+              : `rgba(194, 73, 40, ${alpha})`;
             ctx.lineWidth = 1.4;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
@@ -395,7 +395,7 @@ export default function PageBackdrop({ variant = 'sakura' }) {
         ctx.save();
         ctx.beginPath();
         ctx.arc(mouse.x, mouse.y, 18 + Math.sin(t * 4) * 3, 0, Math.PI * 2);
-        ctx.strokeStyle = dark ? 'rgba(253, 224, 71, 0.45)' : 'rgba(37, 99, 235, 0.35)';
+        ctx.strokeStyle = dark ? 'rgba(242, 204, 126, 0.45)' : 'rgba(53, 94, 71, 0.35)';
         ctx.lineWidth = 1.5;
         ctx.stroke();
         ctx.restore();
@@ -466,8 +466,8 @@ export default function PageBackdrop({ variant = 'sakura' }) {
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.strokeStyle = dark
-            ? `rgba(52, 211, 153, ${p.life * 0.65})`
-            : `rgba(37, 99, 235, ${p.life * 0.55})`;
+            ? `rgba(131, 182, 151, ${p.life * 0.65})`
+            : `rgba(53, 94, 71, ${p.life * 0.55})`;
           ctx.lineWidth = 2;
           ctx.stroke();
           ctx.restore();
@@ -485,9 +485,9 @@ export default function PageBackdrop({ variant = 'sakura' }) {
           const grad = ctx.createLinearGradient(p.x, p.y, tailX, tailY);
           grad.addColorStop(
             0,
-            dark ? `rgba(253, 224, 71, ${p.life})` : `rgba(225, 29, 72, ${p.life})`,
+            dark ? `rgba(242, 204, 126, ${p.life})` : `rgba(194, 73, 40, ${p.life})`,
           );
-          grad.addColorStop(1, 'rgba(253, 224, 71, 0)');
+          grad.addColorStop(1, 'rgba(242, 204, 126, 0)');
           ctx.strokeStyle = grad;
           ctx.lineWidth = 2.4;
           ctx.lineCap = 'round';
@@ -496,7 +496,7 @@ export default function PageBackdrop({ variant = 'sakura' }) {
           ctx.lineTo(tailX, tailY);
           ctx.stroke();
 
-          ctx.fillStyle = dark ? '#fde047' : '#e11d48';
+          ctx.fillStyle = dark ? '#f2cc7e' : '#c24928';
           ctx.beginPath();
           ctx.arc(p.x, p.y, 2.6, 0, Math.PI * 2);
           ctx.fill();

@@ -1,39 +1,39 @@
-/* Playful layer: Editorial Oat + Cobalt + Y2K Pop / Aurora aesthetic */
+/* Analog Slowbar Layer: Vinyl Listening Room & Editorial Reading Library */
 
-/* Soft editorial oat, sky cobalt & pastel rose cloud mist */
+/* Warm library parchment, matcha latte mist, terracotta & honey lamp glow */
 body {
   background-color: var(--paper);
   background-image:
-    radial-gradient(at 6% 10%, rgba(37, 99, 235, 0.1) 0px, transparent 46%),
-    radial-gradient(at 94% 12%, rgba(254, 240, 138, 0.45) 0px, transparent 42%),
-    radial-gradient(at 92% 85%, rgba(255, 141, 199, 0.22) 0px, transparent 46%),
-    radial-gradient(at 10% 85%, rgba(110, 231, 183, 0.16) 0px, transparent 42%),
-    radial-gradient(at 50% 50%, rgba(255, 236, 245, 0.45) 0px, transparent 52%);
+    radial-gradient(at 6% 10%, rgba(53, 94, 71, 0.11) 0px, transparent 46%),
+    radial-gradient(at 94% 12%, rgba(243, 210, 133, 0.38) 0px, transparent 42%),
+    radial-gradient(at 92% 85%, rgba(230, 163, 135, 0.24) 0px, transparent 46%),
+    radial-gradient(at 10% 85%, rgba(118, 158, 134, 0.16) 0px, transparent 42%),
+    radial-gradient(at 50% 50%, rgba(248, 234, 227, 0.42) 0px, transparent 52%);
   background-attachment: fixed;
   transition:
     background-color var(--transition),
     color var(--transition);
 }
 
-/* Dark mode deep Nordic midnight aurora sky */
+/* Dark mode: Midnight vinyl listening lounge & warm tube-amp glow */
 [data-theme='dark'] body {
   background-color: var(--paper);
   background-image:
-    radial-gradient(at 5% 10%, #172554 0px, transparent 50%),
-    radial-gradient(at 95% 10%, #0d3242 0px, transparent 45%),
-    radial-gradient(at 95% 85%, #301334 0px, transparent 45%),
-    radial-gradient(at 10% 85%, #0b243f 0px, transparent 45%),
-    radial-gradient(at 50% 50%, #111b33 0px, transparent 50%);
+    radial-gradient(at 6% 10%, #241913 0px, transparent 50%),
+    radial-gradient(at 94% 10%, #19241d 0px, transparent 45%),
+    radial-gradient(at 95% 85%, #2b1813 0px, transparent 45%),
+    radial-gradient(at 10% 85%, #1f1912 0px, transparent 45%),
+    radial-gradient(at 50% 50%, #18120e 0px, transparent 50%);
   background-attachment: fixed;
   color: var(--ink);
 }
 
-/* ---------- Sticky, friendlier header ---------- */
+/* ---------- Sticky Slowbar Header ---------- */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  background: color-mix(in srgb, var(--paper) 90%, transparent);
   backdrop-filter: blur(12px);
   border-bottom: 2px solid var(--rule);
   transition:
@@ -42,7 +42,7 @@ body {
 }
 
 [data-theme='dark'] .site-header {
-  background: color-mix(in srgb, #090e1a 88%, transparent);
+  background: color-mix(in srgb, #130f0c 90%, transparent);
   border-bottom: 2px solid var(--rule);
 }
 
@@ -64,13 +64,13 @@ body {
 
 .site-header__link.active {
   background: var(--blue);
-  color: #ffffff;
+  color: #fbf7ef;
   text-decoration: none;
 }
 
 [data-theme='dark'] .site-header__link.active {
   background: var(--blue);
-  color: #090e1a;
+  color: #130f0c;
 }
 
 .site-header__link.active:hover {
@@ -94,7 +94,7 @@ body {
   border-radius: 999px;
   background: var(--lime);
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
   box-shadow: 3px 3px 0 var(--ink);
   transition:
     transform var(--transition),
@@ -104,9 +104,9 @@ body {
 
 [data-theme='dark'] .site-header__contact {
   background: var(--lime);
-  color: #090e1a;
-  border-color: #000000;
-  box-shadow: 3px 3px 0 #000000;
+  color: #130f0c;
+  border-color: #070504;
+  box-shadow: 3px 3px 0 #070504;
   font-weight: 700;
 }
 
@@ -119,8 +119,8 @@ body {
 
 [data-theme='dark'] .site-header__contact:hover {
   background: var(--pink);
-  color: #090e1a;
-  box-shadow: 1px 1px 0 #000000;
+  color: #130f0c;
+  box-shadow: 1px 1px 0 #070504;
 }
 
 /* ---------- Buttons ---------- */
@@ -128,7 +128,7 @@ body {
   border-width: 2px;
   border-color: var(--ink);
   box-shadow: 4px 4px 0 var(--ink);
-  font-weight: 500;
+  font-weight: 600;
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -142,7 +142,7 @@ body {
 
 .button-link--primary {
   background: var(--blue);
-  color: #ffffff;
+  color: #fbf7ef;
 }
 
 .button-link--primary:hover {
@@ -165,23 +165,23 @@ body {
 }
 
 [data-theme='dark'] .button-link {
-  border-color: #000000;
-  box-shadow: 3px 3px 0 #000000;
+  border-color: #070504;
+  box-shadow: 3px 3px 0 #070504;
 }
 
 [data-theme='dark'] .button-link:hover {
-  box-shadow: 1px 1px 0 #000000;
+  box-shadow: 1px 1px 0 #070504;
 }
 
 [data-theme='dark'] .button-link--primary {
   background: var(--blue);
-  color: #090e1a;
+  color: #130f0c;
   font-weight: 700;
 }
 
 [data-theme='dark'] .button-link--primary:hover {
-  background: #7dd3fc;
-  border-color: #000000;
+  background: var(--lime);
+  border-color: #070504;
 }
 
 [data-theme='dark'] .button-link--secondary {
@@ -196,21 +196,21 @@ body {
 
 [data-theme='dark'] .button-link--secondary:hover {
   background: var(--pink);
-  color: #090e1a;
+  color: #130f0c;
 }
 
 /* ---------- Home hero ---------- */
 .home-hero__headline-accent {
   color: var(--blue);
   text-decoration: underline wavy var(--pink-hot);
-  text-decoration-thickness: 0.1em;
+  text-decoration-thickness: 0.09em;
   text-underline-offset: 0.12em;
   text-decoration-skip-ink: none;
 }
 
 .identity-card {
   position: relative;
-  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #f472b6 100%);
+  background: linear-gradient(135deg, #355e47 0%, #c24928 55%, #f3d285 100%);
   border: 2px solid var(--ink);
   border-radius: 28px;
   box-shadow: 8px 8px 0 var(--ink);
@@ -258,7 +258,7 @@ body {
   }
 }
 
-/* ---------- Marquee ---------- */
+/* ---------- Marquee (Slowbar Tape Ribbon) ---------- */
 .marquee {
   overflow: hidden;
   border-block: 2px solid var(--ink);
@@ -268,7 +268,7 @@ body {
 }
 
 [data-theme='dark'] .marquee {
-  background: #1e1b4b;
+  background: #211812;
   border-color: var(--rule);
   color: var(--ink);
 }
@@ -317,12 +317,12 @@ body {
   }
 }
 
-/* ---------- Cards & blocks ---------- */
+/* ---------- Cards & Library Index Blocks ---------- */
 .page-card {
   border: 2px solid var(--ink);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard);
-  background: #ffffff;
+  background: var(--card-bg);
   transition:
     transform var(--transition),
     box-shadow var(--transition),
@@ -342,29 +342,29 @@ body {
 }
 
 .page-card:nth-child(3):hover {
-  background: var(--pink);
+  background: var(--pink-soft);
 }
 
 [data-theme='dark'] .page-card {
   background: var(--paper-2);
   border-color: var(--rule);
   color: var(--ink);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 [data-theme='dark'] .page-card:hover {
   border-color: var(--blue);
-  background: #172847;
-  box-shadow: 6px 8px 0 #000000;
+  background: #1b2820;
+  box-shadow: 6px 8px 0 #070504;
 }
 
 [data-theme='dark'] .page-card:nth-child(2):hover {
-  background: #2b2512;
+  background: #2b2213;
   border-color: var(--lime);
 }
 
 [data-theme='dark'] .page-card:nth-child(3):hover {
-  background: #31182d;
+  background: #2b1a15;
   border-color: var(--pink);
 }
 
@@ -382,14 +382,14 @@ body {
 }
 
 [data-theme='dark'] .gpa {
-  background: #1c2616;
+  background: #241d12;
   border-color: var(--lime);
-  box-shadow: 4px 4px 0 #000000;
-  color: #fef08a;
+  box-shadow: 4px 4px 0 #070504;
+  color: var(--lime);
 }
 
 [data-theme='dark'] .gpa .gpa__note {
-  color: #cbd5e1;
+  color: var(--muted);
 }
 
 .highlight {
@@ -418,25 +418,25 @@ body {
 }
 
 [data-theme='dark'] .highlight {
-  border-color: #000000;
-  box-shadow: 3px 3px 0 #000000;
+  border-color: #070504;
+  box-shadow: 3px 3px 0 #070504;
 }
 
 [data-theme='dark'] .highlight--lime {
-  background: #23220f;
+  background: #241d12;
   color: var(--lime);
   border-color: var(--lime);
 }
 
 [data-theme='dark'] .highlight--blue {
-  background: #2a1426;
+  background: #2b1a15;
   color: var(--pink);
   border-color: var(--pink);
 }
 
 .tag {
   border: 2px solid var(--ink);
-  background: #ffffff;
+  background: var(--card-bg);
   color: var(--ink);
   transition:
     background-color var(--transition),
@@ -460,7 +460,7 @@ body {
 }
 
 .tag:nth-child(4n):hover {
-  background: var(--mint);
+  background: var(--mint-soft);
 }
 
 [data-theme='dark'] .tag {
@@ -480,10 +480,10 @@ body {
   border-block: 2px solid var(--ink);
 }
 
-/* Toolkit cards: bright stickers with ink outline */
+/* Toolkit cards: Library Index Cards */
 .toolkit__domain {
   padding: 24px;
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: var(--radius-card);
   box-shadow: 4px 4px 0 var(--ink);
@@ -521,11 +521,11 @@ body {
   background: var(--paper-2);
   border-color: var(--rule);
   color: var(--ink);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 [data-theme='dark'] .toolkit__domain:hover {
-  box-shadow: 6px 6px 0 #000000;
+  box-shadow: 6px 6px 0 #070504;
   border-color: var(--blue);
 }
 
@@ -553,7 +553,7 @@ body {
   transform-origin: left center;
 }
 
-/* Evidence frame Y2K touches */
+/* Evidence frame analog touches */
 .evidence__nav {
   background: var(--lime);
   border: 2px solid var(--ink);
@@ -573,8 +573,8 @@ body {
 
 [data-theme='dark'] .evidence__frame--filled {
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #000000;
-  background: #000000;
+  box-shadow: 4px 4px 0 #070504;
+  background: #0d0a08;
 }
 
 [data-theme='dark'] .evidence__frame--empty {
@@ -584,77 +584,64 @@ body {
 
 [data-theme='dark'] .evidence__nav {
   background: var(--lime);
-  color: #090e1a;
-  border-color: #000000;
-  box-shadow: 2px 2px 0 #000000;
+  color: #130f0c;
+  border-color: #070504;
+  box-shadow: 2px 2px 0 #070504;
 }
 
 /* On-going project cards in dark mode */
 [data-theme='dark'] .ongoing-card {
   background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #000000;
+  box-shadow: 4px 4px 0 #070504;
 }
 
 [data-theme='dark'] .ongoing-card:hover {
   border-color: var(--blue);
-  box-shadow: 6px 6px 0 #000000;
+  box-shadow: 6px 6px 0 #070504;
 }
 
 [data-theme='dark'] .tag--ongoing {
-  background: #090e1a;
+  background: #130f0c;
   border-color: var(--rule);
   color: var(--muted);
 }
 
 [data-theme='dark'] .role-badge {
-  background: #090e1a;
+  background: #130f0c;
   border-color: var(--blue);
   color: var(--blue);
 }
 
 [data-theme='dark'] .completed-badge {
-  background: #2b2512;
+  background: #241d12;
   border-color: var(--lime);
   color: var(--lime);
-  box-shadow: 2px 2px 0 #000000;
+  box-shadow: 2px 2px 0 #070504;
 }
 
 /* Polaroid Deck in dark mode */
 [data-theme='dark'] .hero-polaroid {
-  background: #ffffff;
-  color: #1a2744;
-  border-color: #000000;
-  box-shadow: 4px 6px 0 #000000;
+  background: #fbf7ef;
+  color: #231914;
+  border-color: #070504;
+  box-shadow: 4px 6px 0 #070504;
 }
 
 [data-theme='dark'] .hero-polaroid.is-active {
-  box-shadow: 6px 10px 0 #000000, 0 16px 24px rgba(0, 0, 0, 0.45);
+  box-shadow: 6px 10px 0 #070504, 0 16px 24px rgba(0, 0, 0, 0.5);
 }
 
 [data-theme='dark'] .hero-polaroid__caption {
-  color: #1a2744;
+  color: #231914;
 }
 
-[data-theme='dark'] .hero-photo-deck__pill {
-  background: var(--paper-2);
-  border-color: var(--rule);
-  color: var(--ink);
-  box-shadow: 2px 2px 0 #000000;
-}
-
-[data-theme='dark'] .hero-photo-deck__pill.is-active {
-  background: var(--lime);
-  color: #090e1a;
-  border-color: #000000;
-}
-
-/* ---------- 3D Card Tilt & Cursor Spotlight ---------- */
+/* ---------- 3D Card Tilt & Warm Lamp Spotlight ---------- */
 .is-tilting {
   transform: perspective(950px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) translateY(-4px) !important;
   background-image: radial-gradient(
     360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    rgba(37, 99, 235, 0.1),
+    rgba(243, 210, 133, 0.24),
     transparent 70%
   );
 }
@@ -662,7 +649,7 @@ body {
 [data-theme='dark'] .is-tilting {
   background-image: radial-gradient(
     360px circle at var(--spot-x, 50%) var(--spot-y, 50%),
-    rgba(96, 165, 250, 0.16),
+    rgba(242, 204, 126, 0.14),
     transparent 70%
   );
 }
@@ -770,7 +757,7 @@ body {
 }
 
 ::selection {
-  background: var(--pink);
+  background: var(--lime);
   color: var(--ink);
 }
 

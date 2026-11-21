@@ -73,7 +73,7 @@
    ========================================================= */
 
 .experience-dossier {
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard);
@@ -208,9 +208,9 @@
 }
 
 [data-theme='dark'] .experience-metric-card {
-  background: #090e1a;
+  background: #140f0c;
   border-color: var(--rule);
-  box-shadow: 2px 2px 0 #000000;
+  box-shadow: 2px 2px 0 #070504;
 }
 
 .metric-card-label {
@@ -247,8 +247,8 @@
 }
 
 [data-theme='dark'] .experience-deliverables {
-  background: #0c1628;
-  border-color: #243656;
+  background: #17120e;
+  border-color: var(--rule);
 }
 
 .deliverables-title {
@@ -327,7 +327,7 @@
 
 .org-bento-card {
   position: relative;
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard);
@@ -382,7 +382,7 @@
 }
 
 [data-theme='dark'] .org-bento-badge {
-  background: #0e223d;
+  background: #1b2820;
   color: var(--blue);
 }
 
@@ -417,8 +417,8 @@
 }
 
 [data-theme='dark'] .org-bento-metrics {
-  background: #090e1a;
-  border-color: #1e2c44;
+  background: #140f0c;
+  border-color: var(--rule);
 }
 
 .org-mini-stat {
@@ -477,7 +477,7 @@
 
 .achievement-showcase-card {
   position: relative;
-  background: #ffffff;
+  background: var(--card-bg);
   border: 2px solid var(--ink);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard);
@@ -626,7 +626,7 @@
   border-radius: 999px;
   border: 1.5px solid var(--ink);
   background: var(--lime);
-  color: #14234a;
+  color: #231914;
   box-shadow: 2px 2px 0 var(--ink);
   transition:
     transform 160ms cubic-bezier(0.34, 1.56, 0.64, 1),

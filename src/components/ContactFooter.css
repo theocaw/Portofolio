@@ -79,13 +79,13 @@
 .contact-footer__copy-btn:hover {
   transform: translateY(-1px);
   background: var(--lime);
-  color: #14234a;
+  color: #231914;
 }
 
 .contact-footer__copy-btn.is-copied {
-  background: #6ee7b7;
-  color: #064e3b;
-  border-color: #064e3b;
+  background: var(--blue-soft);
+  color: var(--blue-dark);
+  border-color: var(--blue-dark);
 }
 
 [data-theme='dark'] .contact-footer__copy-btn {

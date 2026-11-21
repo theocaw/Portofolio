@@ -1,73 +1,75 @@
 /*
- * Design tokens: Editorial Oat + Cobalt + Y2K Pop / Aurora aesthetic.
- * Light mode: Warm Oat canvas, Midnight Cobalt Navy ink, Royal Cobalt, Pop Pink, Butter Cream, Aurora Mint.
- * Dark mode: Deep Nordic Midnight canvas, Warm Oat ink, Electric Sky Cobalt, Rose Pink, Aurora Mint.
+ * Design tokens: "Slowbar" — Analog Vinyl Listening Bar & Editorial Reading Library.
+ * Light mode (Daylight Slowbar): Aged Library Parchment, Roasted Espresso Ink, Kyoto Matcha, Terracotta Vinyl, Tube-Amp Honey Gold.
+ * Dark mode (Midnight Listening Room): Deep Mahogany Espresso, Walnut Bookshelf, Parchment Cream, Luminous Matcha Sage & Tube-Amp Amber.
  */
 :root {
-  /* Canvas */
-  --paper: #faf6ef;        /* Warm editorial oat canvas */
-  --paper-2: #f3ede2;      /* Soft toasted oat container */
-  --ink: #14234a;          /* Deep cobalt-navy ink */
-  --muted: #4b5a78;        /* Balanced slate-navy muted text */
-  --rule: #ddd4c4;         /* Warm oat border hairline */
+  /* Canvas & Library Paper Stock */
+  --paper: #f5efe3;        /* Aged library parchment / steamed oat milk */
+  --paper-2: #eae0ce;      /* Kraft library catalog card / biscuit cream */
+  --card-bg: #fbf7ef;      /* Warm ivory index card surface */
+  --ink: #231914;          /* Deep roasted espresso ink */
+  --muted: #6b5848;        /* Warm walnut / toasted hazelnut muted text */
+  --rule: #d4c4ac;         /* Library catalog card hairline */
 
-  /* Cobalt, Pop Pink & Pastel Accents */
-  --blue: #2563eb;         /* Editorial cobalt royal blue */
-  --blue-dark: #1d4ed8;    /* Deep cobalt hover / active */
-  --blue-soft: #e6eeff;    /* Soft periwinkle-cobalt tint */
-  --pink: #ff8dc7;         /* Playful bubblegum pastel pink */
-  --pink-soft: #ffecf5;    /* Strawberry oat milk cream */
-  --pink-hot: #e11d48;     /* Crisp cherry-rose pop */
-  --lime: #fef08a;         /* Soft butter cream yellow */
-  --mint: #6ee7b7;         /* Aurora arctic mint */
-  --mint-soft: #ecfdf5;    /* Soft mint cream */
-  --lavender: #e0e7ff;     /* Soft periwinkle cloud */
+  /* Slowbar Accents: Kyoto Matcha, Terracotta Vinyl & Tube-Amp Brass */
+  --blue: #355e47;         /* Kyoto ceremonial matcha / library banker's lamp green */
+  --blue-dark: #244231;    /* Deep forest archive green */
+  --blue-soft: #dfece3;    /* Soft matcha latte foam tint */
+  --pink: #e6a387;         /* Warm terracotta blush / vinyl sleeve clay */
+  --pink-soft: #f8eae3;    /* Soft terracotta cream */
+  --pink-hot: #c24928;     /* Terracotta wax stamp / vinyl record label rust */
+  --lime: #f3d285;         /* Tube-amp brass / honey reading-lamp gold */
+  --mint: #769e86;         /* Sage bookmark ribbon */
+  --mint-soft: #e6f0e9;    /* Soft sage paper */
+  --lavender: #e4d9c8;     /* Warm linen book spine */
 
   /* Card & Accent Rules */
-  --dark-rule: #d0c6b4;
-  --dark-muted: #4b5a78;
-  --white-40: rgba(255, 255, 255, 0.72);
+  --dark-rule: #c8b79e;
+  --dark-muted: #6b5848;
+  --white-40: rgba(251, 247, 239, 0.76);
 
   /* Typography */
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Layout & Y2K Shapes */
+  /* Layout & Tactile Shapes */
   --frame-max: 1440px;
   --gutter: clamp(22px, calc(22px + 50 * (100vw - 390px) / 1050), 72px);
   --section-y: clamp(44px, calc(44px + 20 * (100vw - 390px) / 1050), 64px);
   --radius-button: 999px;
   --radius-card: 24px;
   --shadow-hard: 5px 5px 0 var(--ink);
-  --shadow-soft: 0 10px 25px -5px rgba(37, 99, 235, 0.16);
+  --shadow-soft: 0 10px 25px -5px rgba(35, 25, 20, 0.14);
   --transition: 180ms ease;
 }
 
 [data-theme='dark'] {
-  /* Deep Nordic Aurora Midnight Palette */
-  --paper: #0b1020;        /* Nordic midnight sky canvas */
-  --paper-2: #131c33;      /* Elevated midnight cobalt container */
-  --ink: #f8f5ee;          /* Crisp warm oat-white text */
-  --muted: #9aa7c2;        /* Clean cool-slate muted text */
-  --rule: #233050;         /* Subtle midnight navy border */
+  /* Midnight Listening Room & Mahogany Library Palette */
+  --paper: #130f0c;        /* Deep roasted espresso / mahogany listening room */
+  --paper-2: #1e1713;      /* Warm walnut bookshelf / acoustic wood panel */
+  --card-bg: #1a1410;      /* Elevated walnut dossier surface */
+  --ink: #f5ecdc;          /* Warm parchment cream text */
+  --muted: #a89784;        /* Smoky cappuccino / aged paper muted text */
+  --rule: #362a22;         /* Walnut wood grain divider */
 
-  /* Electric Arctic & Aurora Accents */
-  --blue: #60a5fa;         /* Electric sky cobalt */
-  --blue-dark: #3b82f6;    /* Rich cobalt */
-  --blue-soft: #101e3c;    /* Deep cobalt band */
-  --pink: #f472b6;         /* Luminescent rose pink */
-  --pink-soft: #291428;    /* Dark berry tint */
-  --pink-hot: #fb7185;     /* Warm coral-rose pop */
-  --lime: #fde047;         /* Luminescent butter yellow */
-  --mint: #34d399;         /* Vibrant northern lights mint */
-  --mint-soft: #0d2621;    /* Deep forest mint band */
-  --lavender: #818cf8;     /* Cyber periwinkle */
+  /* Luminous Matcha Sage, Tube-Amp Amber & Vinyl Terracotta */
+  --blue: #83b697;         /* Luminous ceremonial matcha sage */
+  --blue-dark: #639678;    /* Rich sage green */
+  --blue-soft: #1b2820;    /* Deep library green shelf */
+  --pink: #e3886b;         /* Warm terracotta vinyl coral */
+  --pink-soft: #2c1b16;    /* Dark terracotta wood tint */
+  --pink-hot: #f0714d;     /* Glowing tube-amp filament orange-red */
+  --lime: #f2cc7e;         /* Tube-amp honey gold */
+  --mint: #83b697;         /* Matcha sage */
+  --mint-soft: #18241d;    /* Deep forest sage band */
+  --lavender: #cab89e;     /* Warm antique brass */
 
-  --dark-rule: #334155;
-  --dark-muted: #cbd5e1;
-  --white-40: rgba(19, 28, 51, 0.72);
+  --dark-rule: #423329;
+  --dark-muted: #cbbba8;
+  --white-40: rgba(30, 23, 19, 0.78);
 
-  --shadow-hard: 4px 4px 0 #000000;
-  --shadow-soft: 0 10px 25px -5px rgba(96, 165, 250, 0.22);
+  --shadow-hard: 4px 4px 0 #070504;
+  --shadow-soft: 0 10px 25px -5px rgba(242, 204, 126, 0.16);
 }

@@ -38,7 +38,7 @@ export default function SplashIntro() {
 
     let raf = 0;
     const t0 = performance.now();
-    const loadDuration = 1250; // ms for 0 -> 100%
+    const loadDuration = 1280; // ms for 0 -> 100%
 
     const tick = (now) => {
       const elapsed = now - t0;
@@ -61,7 +61,7 @@ export default function SplashIntro() {
 
     const exitTimer = window.setTimeout(() => {
       finishSplash();
-    }, 1550);
+    }, 1580);
 
     return () => {
       cancelAnimationFrame(raf);
@@ -80,17 +80,17 @@ export default function SplashIntro() {
   if (!visible) return null;
 
   const statusText =
-    progress < 40
+    progress < 38
       ? lang === 'id'
-        ? 'MEMUAT PIRINGAN VINYL...'
-        : 'MOUNTING VINYL RECORD...'
+        ? 'MENYEDUH KOPI & MENATA KATALOG ARSIP...'
+        : 'BREWING POUR-OVER & INDEXING ARCHIVE...'
       : progress < 88
         ? lang === 'id'
-          ? 'MENURUNKAN JARUM · SIDE A & B...'
+          ? 'MENURUNKAN JARUM VINYL · SIDE A & B...'
           : 'DROPPING TONEARM · SIDE A & B...'
         : lang === 'id'
-          ? '✦ SIAP DIPUTAR'
-          : '✦ READY TO PLAY';
+          ? '✦ SELAMAT DATANG DI SLOWBAR'
+          : '✦ WELCOME TO THE SLOWBAR';
 
   return (
     <div
@@ -99,9 +99,9 @@ export default function SplashIntro() {
       }`}
       onClick={finishSplash}
       role="status"
-      aria-label="Opening Osanna Patricia Limbong Portfolio"
+      aria-label="Opening Osanna Patricia Limbong Slowbar Portfolio"
     >
-      {/* Ambient Aurora Glow Orbs */}
+      {/* Ambient Slowbar Glow Orbs */}
       <div className="splash-intro__orb splash-intro__orb--blue" aria-hidden="true" />
       <div className="splash-intro__orb splash-intro__orb--pink" aria-hidden="true" />
       <div className="splash-intro__orb splash-intro__orb--mint" aria-hidden="true" />
@@ -111,9 +111,9 @@ export default function SplashIntro() {
         <div className="mono splash-intro__top-bar">
           <span className="splash-intro__badge">
             <span className="splash-intro__dot" />
-            PORTFOLIO EDITION · 2026
+            SLOWBAR · VINYL &amp; LIBRARY ARCHIVE
           </span>
-          <span className="splash-intro__rpm">45 RPM · STEREO</span>
+          <span className="splash-intro__rpm">45 RPM · HI-FI</span>
         </div>
 
         {/* Center Turntable Deck */}
@@ -126,17 +126,17 @@ export default function SplashIntro() {
               height="124"
               aria-hidden="true"
             >
-              {/* Outer Vinyl Record */}
-              <circle cx="60" cy="60" r="56" fill="#111729" stroke="#070a14" strokeWidth="3" />
+              {/* Outer Espresso Vinyl Record */}
+              <circle cx="60" cy="60" r="56" fill="#1b1410" stroke="#0d0907" strokeWidth="3" />
 
-              {/* Vinyl Iridescent Reflections */}
+              {/* Warm Amber & Terracotta Reflections */}
               <path
                 d="M60 6 A54 54 0 0 1 110 38 L60 60 Z"
-                fill="rgba(96, 165, 250, 0.25)"
+                fill="rgba(243, 210, 133, 0.25)"
               />
               <path
                 d="M60 114 A54 54 0 0 1 10 82 L60 60 Z"
-                fill="rgba(244, 114, 182, 0.24)"
+                fill="rgba(230, 163, 135, 0.25)"
               />
 
               {/* Concentric Grooves */}
@@ -145,7 +145,7 @@ export default function SplashIntro() {
                 cy="60"
                 r="47"
                 fill="none"
-                stroke="rgba(255, 255, 255, 0.14)"
+                stroke="rgba(255, 248, 235, 0.14)"
                 strokeWidth="1.2"
                 strokeDasharray="16 10"
               />
@@ -154,7 +154,7 @@ export default function SplashIntro() {
                 cy="60"
                 r="39"
                 fill="none"
-                stroke="rgba(255, 255, 255, 0.18)"
+                stroke="rgba(255, 248, 235, 0.18)"
                 strokeWidth="1.2"
                 strokeDasharray="12 8"
               />
@@ -163,18 +163,18 @@ export default function SplashIntro() {
                 cy="60"
                 r="31"
                 fill="none"
-                stroke="rgba(255, 255, 255, 0.15)"
+                stroke="rgba(255, 248, 235, 0.15)"
                 strokeWidth="1.2"
               />
 
-              {/* Center Y2K Label */}
-              <circle cx="60" cy="60" r="22" fill="#ff8dc7" stroke="#070a14" strokeWidth="2.4" />
+              {/* Center Slowbar Terracotta & Honey Gold Label */}
+              <circle cx="60" cy="60" r="22" fill="#e6a387" stroke="#0d0907" strokeWidth="2.4" />
               <path
                 d="M60 38 A22 22 0 0 1 82 60 L38 60 A22 22 0 0 1 60 38 Z"
-                fill="#fef08a"
+                fill="#f3d285"
               />
-              <circle cx="60" cy="60" r="11" fill="#2563eb" />
-              <circle cx="60" cy="60" r="4.2" fill="#faf6ef" stroke="#070a14" strokeWidth="1.8" />
+              <circle cx="60" cy="60" r="11" fill="#355e47" />
+              <circle cx="60" cy="60" r="4.2" fill="#f5efe3" stroke="#0d0907" strokeWidth="1.8" />
             </svg>
           </div>
 
@@ -186,11 +186,11 @@ export default function SplashIntro() {
             height="58"
             aria-hidden="true"
           >
-            <circle cx="50" cy="14" r="7.5" fill="#fef08a" stroke="#14234a" strokeWidth="3" />
+            <circle cx="50" cy="14" r="7.5" fill="#f3d285" stroke="#231914" strokeWidth="3" />
             <path
               d="M50 14 L38 40 L23 48"
               fill="none"
-              stroke="#f8fafc"
+              stroke="#fbf7ef"
               strokeWidth="5.5"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -198,7 +198,7 @@ export default function SplashIntro() {
             <path
               d="M50 14 L38 40 L23 48"
               fill="none"
-              stroke="#14234a"
+              stroke="#231914"
               strokeWidth="3.2"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -210,8 +210,8 @@ export default function SplashIntro() {
               height="7"
               rx="2"
               transform="rotate(-28 22.5 47.5)"
-              fill="#e11d48"
-              stroke="#14234a"
+              fill="#c24928"
+              stroke="#231914"
               strokeWidth="2.2"
             />
           </svg>
@@ -247,7 +247,7 @@ export default function SplashIntro() {
         </div>
 
         <span className="mono splash-intro__skip">
-          {lang === 'id' ? 'Klik di mana saja untuk lewati ↗' : 'Click anywhere to skip ↗'}
+          {lang === 'id' ? 'Klik di mana saja untuk masuk ↗' : 'Click anywhere to enter ↗'}
         </span>
       </div>
     </div>

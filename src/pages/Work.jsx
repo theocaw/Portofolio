@@ -24,13 +24,13 @@ const PROJECT_THEMES = {
 
 const FILTERS = {
   en: [
-    { id: 'all', label: '💿 All Tracks' },
+    { id: 'all', label: '💿 Full Catalog' },
     { id: 'data', label: 'SIDE A · Data & ML' },
     { id: 'system', label: 'SIDE B · System & Web' },
     { id: 'ar', label: 'BONUS · AR & 3D' },
   ],
   id: [
-    { id: 'all', label: '💿 Semua Track' },
+    { id: 'all', label: '💿 Katalog Lengkap' },
     { id: 'data', label: 'SIDE A · Data & ML' },
     { id: 'system', label: 'SIDE B · Sistem & Web' },
     { id: 'ar', label: 'BONUS · AR & 3D' },
@@ -211,7 +211,7 @@ function ProjectCard({ project, lang }) {
         <div className="project-card__scorecard">
           <div className="project-card__scorecard-head">
             <span className="mono project-card__scorecard-label">
-              ✦ {lang === 'id' ? 'METRIK & HASIL KUNCI' : 'KEY METRICS & IMPACT'}
+              ✦ {lang === 'id' ? 'ARSIP KATALOG · METRIK KUNCI' : 'ARCHIVE RECORD · KEY METRICS'}
             </span>
             {project.hasGallery && (
               <span className="mono project-card__chart-tag">
