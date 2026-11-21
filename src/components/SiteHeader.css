@@ -11,6 +11,19 @@
   border-bottom: 1px solid var(--rule);
 }
 
+/* Smooth Brass Scroll-Progress Hairline reacting to Scroll Down & Up */
+.kissa-header::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: var(--scroll-progress, 0%);
+  background: linear-gradient(90deg, var(--blue) 0%, var(--pink-hot) 60%, var(--lime) 100%);
+  transition: width 90ms linear;
+  pointer-events: none;
+}
+
 .kissa-header__inner {
   display: grid;
   grid-template-columns: 1fr auto 1fr;

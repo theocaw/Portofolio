@@ -85,34 +85,76 @@ body::before {
   color: var(--ink);
 }
 
-/* Subtle Architectural Entrance Animations */
+/* Bidirectional Editorial Scroll Animations (Scroll Down & Scroll Up) */
 .jump-target {
   will-change: opacity, transform;
 }
 
 .jump-target[data-jump='idle'] {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translate3d(0, 34px, 0) scale(0.96);
+  pointer-events: none;
 }
 
-.jump-target[data-jump='in-bottom'],
+.jump-target[data-jump='in-bottom'] {
+  animation: kissaGlideInBottom 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--jump-delay, 0ms) both;
+}
+
 .jump-target[data-jump='in-top'] {
-  animation: kissaFadeIn 540ms cubic-bezier(0.22, 1, 0.36, 1) var(--jump-delay, 0ms) both;
+  animation: kissaGlideInTop 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--jump-delay, 0ms) both;
 }
 
-.jump-target[data-jump='out-top'],
+.jump-target[data-jump='out-top'] {
+  animation: kissaGlideOutTop 420ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
+}
+
 .jump-target[data-jump='out-bottom'] {
-  opacity: 0.92;
+  animation: kissaGlideOutBottom 420ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  pointer-events: none;
 }
 
-@keyframes kissaFadeIn {
+@keyframes kissaGlideInBottom {
   from {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translate3d(0, 42px, 0) scale(0.965);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes kissaGlideInTop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -42px, 0) scale(0.965);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes kissaGlideOutTop {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, -34px, 0) scale(0.965);
+  }
+}
+
+@keyframes kissaGlideOutBottom {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 34px, 0) scale(0.965);
   }
 }
 

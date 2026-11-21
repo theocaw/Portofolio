@@ -14,20 +14,25 @@ const JUMP_SELECTOR = [
   // Home
   '.kissa-cabinet',
   '.kissa-reading-spread',
-  '.kissa-ledger__item',
+  '.kissa-ticker',
   '.kissa-author-copy',
   '.kissa-portrait',
+  // About
+  '.kissa-about-hero',
+  '.kissa-open-monograph',
+  '.kissa-toolkit-header',
+  '.kissa-card-cabinet',
+  '.kissa-next-bar',
   // Work
   '.kissa-work-hero__head',
   '.kissa-listening-desk',
+  '.kissa-catalog__head',
   '.kissa-tapes-grid > .kissa-tape-card',
+  '.kissa-ongoing__head',
   '.kissa-ongoing__grid > .kissa-ongoing-card',
-  // About
-  '.kissa-about-hero',
-  '.kissa-monograph__col',
-  '.kissa-catalog-grid > .kissa-index-card',
   // Journey
-  '.kissa-journey-hero',
+  '.kissa-journey-hero__head',
+  '.kissa-tuner',
   '.kissa-intern-dossier',
   '.kissa-orgs-grid > .kissa-org-card',
   '.kissa-awards-grid > .kissa-award-card',
@@ -101,6 +106,11 @@ export default function Layout() {
       const atPageBottom = viewBottom >= docBottom - 6;
       const topCutoff = viewTop + 6;
       const bottomCutoff = viewBottom - 10;
+
+      // Update global scroll-progress hairline bar (0% -> 100%)
+      const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      const pct = Math.min(100, Math.max(0, (window.scrollY / maxScroll) * 100));
+      document.documentElement.style.setProperty('--scroll-progress', `${pct.toFixed(1)}%`);
 
       // Batch all DOM layout reads before writing styles/attributes.
       const measurements = targets.map((el) => ({

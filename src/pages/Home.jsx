@@ -421,40 +421,22 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          STAGE 2: MEASURED IMPACT LEDGER
+          STAGE 2: EDITORIAL KINETIC TAPE RIBBON (Replaces Numbers Strip)
          ========================================================= */}
-      <section className="band band--paper-2 kissa-ledger-band">
-        <div className="container kissa-ledger">
-          <div className="kissa-ledger__item">
-            <span className="mono kissa-ledger__k">
-              {lang === 'id' ? 'DATA PROPERTI DIANALISIS' : 'PROPERTY RECORDS MINED'}
-            </span>
-            <span className="kissa-ledger__v">2,930</span>
-            <span className="kissa-ledger__note">Ames Housing · 82 Features</span>
-          </div>
-          <div className="kissa-ledger__item">
-            <span className="mono kissa-ledger__k">
-              {lang === 'id' ? 'AKURASI PREDIKSI (R²)' : 'PREDICTIVE ACCURACY (R²)'}
-            </span>
-            <span className="kissa-ledger__v">81.94%</span>
-            <span className="kissa-ledger__note">Multiple Linear Regression</span>
-          </div>
-          <div className="kissa-ledger__item">
-            <span className="mono kissa-ledger__k">
-              {lang === 'id' ? 'IPK KUMULATIF' : 'CUMULATIVE GPA'}
-            </span>
-            <span className="kissa-ledger__v">3.63</span>
-            <span className="kissa-ledger__note">IPB University · TPL</span>
-          </div>
-          <div className="kissa-ledger__item">
-            <span className="mono kissa-ledger__k">
-              {lang === 'id' ? 'TRANSAKSI TERAUDIT' : 'AUDITED TRANSACTIONS'}
-            </span>
-            <span className="kissa-ledger__v">280+</span>
-            <span className="kissa-ledger__note">Rp 26.19M · SITE 2025</span>
-          </div>
+      <div className="kissa-ticker" aria-hidden="true">
+        <div className="kissa-ticker__track">
+          {[0, 1].map((dup) => (
+            <div key={dup} className="mono kissa-ticker__group">
+              {home.marquee.map((phrase) => (
+                <span key={phrase} className="kissa-ticker__item">
+                  <span>{phrase}</span>
+                  <span className="kissa-ticker__sep">—</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
-      </section>
+      </div>
 
       {/* =========================================================
           STAGE 3: AUTHOR'S NOTE & ARCHIVAL PORTRAIT (Zero Duplicate Cards)
