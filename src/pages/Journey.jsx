@@ -3,6 +3,103 @@ import { useApp } from '../context/AppContext.jsx';
 import { getJourneyContent } from '../content/journey.js';
 import './Journey.css';
 
+const TUNER_STATIONS = {
+  en: [
+    {
+      freq: '88.4',
+      year: '2024',
+      pos: 10,
+      label: 'IPB TPL',
+      title: 'Entered Software Engineering Technology at IPB University',
+      detail: 'Built foundational expertise across data analysis, relational databases, and web engineering (Cumulative GPA 3.63 / 4.00).',
+      anchor: '#intern-section',
+    },
+    {
+      freq: '92.8',
+      year: '2025',
+      pos: 30,
+      label: 'PT KCT INTERN',
+      title: 'Web & Logistics Intern — PT Kharisma Cakrawala Transportasi',
+      detail: 'Shipped the live corporate website (kctjakarta.com) and prepared ~20 commercial freight quotations across domestic logistics operations.',
+      anchor: '#intern-section',
+    },
+    {
+      freq: '98.2',
+      year: '2025',
+      pos: 50,
+      label: 'SITE TREASURY',
+      title: 'Financial Governance & 280+ Audited Transactions (Rp 26.19M)',
+      detail: 'Managed multi-division budgets, vendor disbursements, and transparent financial audits across 5 student organizations and national events.',
+      anchor: '#orgs-section',
+    },
+    {
+      freq: '102.6',
+      year: '2025',
+      pos: 70,
+      label: '2× FILM AWARDS',
+      title: '2nd Place International & National Short Movie Competitions',
+      detail: 'Earned 2nd Place at Portal 7 (International) and SEMNASA ITCAS (National), plus Semifinalist at Ideanation Business Plan.',
+      anchor: '#awards-section',
+    },
+    {
+      freq: '106.8',
+      year: '2026',
+      pos: 90,
+      label: 'GEMINI AI CERT',
+      title: 'Google Gemini Certified Student (Official Credential)',
+      detail: 'Verified proficiency in generative AI workflows, analytical prompting, and responsible AI integration in software engineering.',
+      anchor: '#awards-section',
+    },
+  ],
+  id: [
+    {
+      freq: '88.4',
+      year: '2024',
+      pos: 10,
+      label: 'IPB TPL',
+      title: 'Memulai Teknologi Rekayasa Perangkat Lunak di IPB University',
+      detail: 'Membangun fondasi analisis data, basis data relasional, dan rekayasa web dengan IPK Kumulatif 3,63 / 4,00.',
+      anchor: '#intern-section',
+    },
+    {
+      freq: '92.8',
+      year: '2025',
+      pos: 30,
+      label: 'MAGANG PT KCT',
+      title: 'Magang Web & Logistik — PT Kharisma Cakrawala Transportasi',
+      detail: 'Merilis website perusahaan live (kctjakarta.com) dan menyusun ~20 dokumen kuotasi komersial pada operasional logistik.',
+      anchor: '#intern-section',
+    },
+    {
+      freq: '98.2',
+      year: '2025',
+      pos: 50,
+      label: 'AUDIT SITE',
+      title: 'Tata Kelola Keuangan & 280+ Transaksi Teraudit (Rp 26,19 Juta)',
+      detail: 'Mengelola anggaran lintas divisi dan audit laporan keuangan transparan pada 5 peran kepemimpinan organisasi kampus.',
+      anchor: '#orgs-section',
+    },
+    {
+      freq: '102.6',
+      year: '2025',
+      pos: 70,
+      label: '2× JUARA FILM',
+      title: 'Juara 2 Kompetisi Film Pendek Internasional & Nasional',
+      detail: 'Meraih Juara 2 di Portal 7 (Internasional) dan SEMNASA ITCAS (Nasional), serta Semifinalis Ideanation Business Plan.',
+      anchor: '#awards-section',
+    },
+    {
+      freq: '106.8',
+      year: '2026',
+      pos: 90,
+      label: 'GEMINI AI CERT',
+      title: 'Google Gemini Certified Student (Sertifikasi Resmi)',
+      detail: 'Terverifikasi dalam pemanfaatan AI generatif, prompting analitis, dan integrasi AI bertanggung jawab pada rekayasa perangkat lunak.',
+      anchor: '#awards-section',
+    },
+  ],
+};
+
 const ACHIEVEMENT_FILTERS = {
   en: [
     { id: 'all', label: 'All Credentials' },
@@ -22,7 +119,11 @@ export default function Journey() {
   const { intro, professional, organizations, achievements } = journey;
   const { internship } = professional;
 
+  const stations = TUNER_STATIONS[lang] || TUNER_STATIONS.en;
+  const [tunerIdx, setTunerIdx] = useState(1); // Start tuned to PT KCT Internship
   const [achFilter, setAchFilter] = useState('all');
+
+  const activeStation = stations[tunerIdx] || stations[0];
   const filterList = ACHIEVEMENT_FILTERS[lang] || ACHIEVEMENT_FILTERS.en;
 
   const visibleAchievements =
@@ -34,17 +135,96 @@ export default function Journey() {
 
   return (
     <div className="kissa-journey">
-      {/* Header */}
+      {/* Header + Interactive Backlit Analog Chronology Tuner */}
       <section className="container kissa-journey-hero">
-        <span className="mono kissa-eyebrow">
-          {lang === 'id' ? '04 / LOGBOOK PERJALANAN & ARSIP KREDENSIAL' : '04 / FIELD LOGBOOK & CREDENTIALS ARCHIVE'}
-        </span>
-        <h1 className="kissa-journey-hero__title">{intro.headline}</h1>
-        <p className="kissa-journey-hero__desc">{intro.description}</p>
+        <div className="kissa-journey-hero__head">
+          <div>
+            <span className="mono kissa-eyebrow">
+              {lang === 'id' ? '04 / PERJALANAN · LOGBOOK & KREDENSIAL' : '04 / JOURNEY · FIELD LOGBOOK & CREDENTIALS'}
+            </span>
+            <h1 className="kissa-journey-hero__title">{intro.headline}</h1>
+            <p className="kissa-journey-hero__desc">{intro.description}</p>
+          </div>
+        </div>
+
+        {/* =========================================================
+            INTERACTIVE CENTERPIECE: BACKLIT ANALOG CHRONOLOGY TUNER DIAL
+           ========================================================= */}
+        <div className="kissa-tuner">
+          <div className="kissa-tuner__topbar">
+            <div className="kissa-tuner__brand">
+              <span className="kissa-tuner__led" />
+              <span className="mono">CHRONOLOGY TUNER · 2024 — 2026</span>
+            </div>
+            <div className="kissa-tuner__step">
+              <button
+                type="button"
+                className="mono kissa-tuner__knob"
+                onClick={() => setTunerIdx((prev) => (prev - 1 + stations.length) % stations.length)}
+              >
+                ◀ TUNE
+              </button>
+              <span className="mono kissa-tuner__freq">{activeStation.freq} MHz</span>
+              <button
+                type="button"
+                className="mono kissa-tuner__knob"
+                onClick={() => setTunerIdx((prev) => (prev + 1) % stations.length)}
+              >
+                TUNE ▶
+              </button>
+            </div>
+          </div>
+
+          {/* Illuminated Warm-Amber Glass Frequency Scale */}
+          <div className="kissa-tuner__glass">
+            {/* Sliding Glowing Red Tuning Needle */}
+            <div
+              className="kissa-tuner__needle"
+              style={{ left: `${activeStation.pos}%` }}
+              aria-hidden="true"
+            />
+
+            {/* Ruler Tick Marks */}
+            <div className="kissa-tuner__ticks" aria-hidden="true" />
+
+            {/* Clickable Milestone Frequencies */}
+            <div className="kissa-tuner__stations" role="tablist" aria-label="Journey Milestones">
+              {stations.map((st, idx) => (
+                <button
+                  key={st.freq}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === tunerIdx}
+                  className={`kissa-tuner__station ${idx === tunerIdx ? 'is-tuned' : ''}`}
+                  onClick={() => setTunerIdx(idx)}
+                >
+                  <span className="mono kissa-tuner__st-freq">{st.freq}</span>
+                  <span className="mono kissa-tuner__st-label">{st.label}</span>
+                  <span className="mono kissa-tuner__st-year">{st.year}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tuned Signal Readout */}
+          <div className="kissa-tuner__readout">
+            <div className="kissa-tuner__readout-main">
+              <span className="mono kissa-tuner__signal">
+                SIGNAL LOCKED · {activeStation.year} · {activeStation.label}
+              </span>
+              <h2 className="kissa-tuner__title">{activeStation.title}</h2>
+              <p className="kissa-tuner__detail">{activeStation.detail}</p>
+            </div>
+
+            <a href={activeStation.anchor} className="mono kissa-tuner__jump">
+              {lang === 'id' ? 'Lihat Arsip ↓' : 'Jump to Record ↓'}
+            </a>
+          </div>
+        </div>
       </section>
 
       {/* Chapter 01: Industry Internship Dossier */}
-      <section className="band band--paper-2 kissa-journey-band">
+      <section className="band band--paper-2 kissa-journey-band" id="intern-section">
         <div className="container kissa-journey-section">
           <div className="kissa-section-head">
             <span className="mono kissa-eyebrow">{professional.label}</span>
@@ -114,7 +294,7 @@ export default function Journey() {
       </section>
 
       {/* Chapter 02: Organizations & Leadership */}
-      <section className="container kissa-journey-section kissa-journey-section--padded">
+      <section className="container kissa-journey-section kissa-journey-section--padded" id="orgs-section">
         <div className="kissa-section-head">
           <span className="mono kissa-eyebrow">{organizations.label}</span>
           <h2 className="kissa-section-title">{organizations.title}</h2>
@@ -160,7 +340,7 @@ export default function Journey() {
       </section>
 
       {/* Chapter 03: Achievements & Certifications */}
-      <section className="band band--paper-2 kissa-journey-band">
+      <section className="band band--paper-2 kissa-journey-band" id="awards-section">
         <div className="container kissa-journey-section">
           <div className="kissa-achievements-head">
             <div>
