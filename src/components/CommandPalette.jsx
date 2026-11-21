@@ -7,18 +7,10 @@ export default function CommandPalette() {
   const { lang, toggleLang, theme, toggleTheme } = useApp();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('commands'); // 'commands' | 'recruiter'
   const [query, setQuery] = useState('');
   const [selectedIdx, setSelectedIdx] = useState(0);
   const [copied, setCopied] = useState(false);
   const inputRef = useRef(null);
-
-  const openModal = (tab = 'commands') => {
-    setActiveTab(tab);
-    setQuery('');
-    setSelectedIdx(0);
-    setIsOpen(true);
-  };
 
   const closeModal = () => {
     setIsOpen(false);
@@ -34,14 +26,13 @@ export default function CommandPalette() {
     }
   };
 
-  // Global Ctrl+K / Cmd+K listener + custom event from SiteHeader button
+  // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
     const onKeyDown = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
         setIsOpen((prev) => {
           if (!prev) {
-            setActiveTab('commands');
             setQuery('');
             setSelectedIdx(0);
           }
@@ -53,37 +44,19 @@ export default function CommandPalette() {
       }
     };
 
-    const onCustomOpen = (e) => {
-      const requestedTab = e.detail?.tab || 'commands';
-      openModal(requestedTab);
-    };
-
     window.addEventListener('keydown', onKeyDown);
-    window.addEventListener('open-command-palette', onCustomOpen);
     return () => {
       window.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('open-command-palette', onCustomOpen);
     };
   }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen && activeTab === 'commands') {
+    if (isOpen) {
       window.requestAnimationFrame(() => inputRef.current?.focus());
     }
-  }, [isOpen, activeTab]);
+  }, [isOpen]);
 
   const commands = [
-    {
-      id: 'recruiter-scan',
-      icon: '⏱️',
-      group: lang === 'id' ? 'RINGKASAN HR' : 'RECRUITER BRIEF',
-      title:
-        lang === 'id'
-          ? 'Buka Ringkasan 30-Detik HR & Recruiter'
-          : 'Open 30-Second Recruiter Scan',
-      hint: '30s Brief',
-      action: () => setActiveTab('recruiter'),
-    },
     {
       id: 'nav-home',
       icon: '🌌',
@@ -254,31 +227,13 @@ export default function CommandPalette() {
       onClick={closeModal}
       role="dialog"
       aria-modal="true"
-      aria-label="Command Palette and Recruiter Brief"
+      aria-label="Command Palette"
     >
       <div className="cmd-modal" onClick={(e) => e.stopPropagation()}>
-        {/* Top Mode Switcher Tabs */}
         <div className="cmd-tabs">
-          <div className="cmd-tabs__group" role="tablist">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'commands'}
-              className={`mono cmd-tab ${activeTab === 'commands' ? 'is-active' : ''}`}
-              onClick={() => setActiveTab('commands')}
-            >
-              ⚡ {lang === 'id' ? 'Navigasi Cepat (Ctrl+K)' : 'Command Palette (Ctrl+K)'}
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeTab === 'recruiter'}
-              className={`mono cmd-tab ${activeTab === 'recruiter' ? 'is-active' : ''}`}
-              onClick={() => setActiveTab('recruiter')}
-            >
-              ⏱️ {lang === 'id' ? 'Ringkasan 30-Detik HR' : '30s Recruiter Scan'}
-            </button>
-          </div>
+          <span className="mono cmd-header-title">
+            ⚡ {lang === 'id' ? 'Navigasi Cepat (Ctrl+K)' : 'Quick Command Palette (Ctrl+K)'}
+          </span>
 
           <button
             type="button"
@@ -290,209 +245,61 @@ export default function CommandPalette() {
           </button>
         </div>
 
-        {activeTab === 'commands' ? (
-          <div className="cmd-palette-body">
-            <div className="cmd-search-bar">
-              <span className="cmd-search-icon" aria-hidden="true">
-                ⌕
-              </span>
-              <input
-                ref={inputRef}
-                type="text"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setSelectedIdx(0);
-                }}
-                onKeyDown={onListKeyDown}
-                placeholder={
-                  lang === 'id'
-                    ? 'Ketik halaman, studi kasus, atau aksi...'
-                    : 'Type a page, case study, or action...'
-                }
-                className="cmd-search-input"
-              />
-            </div>
-
-            <div className="cmd-list" role="listbox">
-              {filtered.length === 0 ? (
-                <p className="cmd-empty mono">
-                  {lang === 'id' ? 'Tidak ada hasil yang cocok.' : 'No matching commands.'}
-                </p>
-              ) : (
-                filtered.map((item, idx) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="option"
-                    aria-selected={idx === selectedIdx}
-                    className={`cmd-item ${idx === selectedIdx ? 'is-selected' : ''}`}
-                    onMouseEnter={() => setSelectedIdx(idx)}
-                    onClick={item.action}
-                  >
-                    <span className="cmd-item__icon" aria-hidden="true">
-                      {item.icon}
-                    </span>
-                    <span className="cmd-item__title">{item.title}</span>
-                    <span className="mono cmd-item__hint">{item.hint}</span>
-                  </button>
-                ))
-              )}
-            </div>
-
-            <div className="mono cmd-footer-bar">
-              <span>↑↓ {lang === 'id' ? 'Pilih' : 'Navigate'}</span>
-              <span>↵ {lang === 'id' ? 'Buka' : 'Select'}</span>
-              <span>ESC {lang === 'id' ? 'Tutup' : 'Close'}</span>
-            </div>
+        <div className="cmd-palette-body">
+          <div className="cmd-search-bar">
+            <span className="cmd-search-icon" aria-hidden="true">
+              ⌕
+            </span>
+            <input
+              ref={inputRef}
+              type="text"
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+                setSelectedIdx(0);
+              }}
+              onKeyDown={onListKeyDown}
+              placeholder={
+                lang === 'id'
+                  ? 'Ketik halaman, studi kasus, atau aksi...'
+                  : 'Type a page, case study, or action...'
+              }
+              className="cmd-search-input"
+            />
           </div>
-        ) : (
-          <div className="cmd-recruiter-body">
-            {/* Candidate Snapshot Header */}
-            <div className="cmd-recruiter-hero">
-              <div>
-                <span className="mono cmd-recruiter-status">
-                  <span className="cmd-recruiter-dot" />
-                  {lang === 'id'
-                    ? 'SIAP MAGANG · DATA ANALYST & FRONT-END DEVELOPER'
-                    : 'OPEN FOR INTERNSHIP · DATA ANALYST & FRONT-END DEVELOPER'}
-                </span>
-                <h2 className="cmd-recruiter-name">Osanna Patricia Limbong</h2>
-                <p className="cmd-recruiter-sub">
-                  IPB University ·{' '}
-                  {lang === 'id'
-                    ? 'Teknologi Rekayasa Perangkat Lunak (TPL)'
-                    : 'Software Engineering Technology (TPL)'}{' '}
-                  · <strong>GPA 3.63 / 4.00</strong>
-                </p>
-              </div>
 
-              <a
-                href="/images/journey/gemini/gemini-certified-student.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="mono cmd-recruiter-cert"
-              >
-                ✦ Google Gemini Certified (PDF) ↗
-              </a>
-            </div>
-
-            {/* 3 Proven Outcomes */}
-            <div className="cmd-recruiter-section">
-              <span className="mono cmd-recruiter-label">
-                01 / {lang === 'id' ? '3 BUKTI HASIL & PROYEK UTAMA' : '3 PROVEN OUTCOMES & FLAGSHIP WORK'}
-              </span>
-              <div className="cmd-recruiter-grid">
+          <div className="cmd-list" role="listbox">
+            {filtered.length === 0 ? (
+              <p className="cmd-empty mono">
+                {lang === 'id' ? 'Tidak ada hasil yang cocok.' : 'No matching commands.'}
+              </p>
+            ) : (
+              filtered.map((item, idx) => (
                 <button
+                  key={item.id}
                   type="button"
-                  className="cmd-outcome-card"
-                  onClick={() => {
-                    navigate('/work/ames-housing');
-                    closeModal();
-                  }}
+                  role="option"
+                  aria-selected={idx === selectedIdx}
+                  className={`cmd-item ${idx === selectedIdx ? 'is-selected' : ''}`}
+                  onMouseEnter={() => setSelectedIdx(idx)}
+                  onClick={item.action}
                 >
-                  <span className="mono cmd-outcome-metric">81.94% R² · 2,930 Homes</span>
-                  <strong>Ames Housing Data Mining</strong>
-                  <span>
-                    {lang === 'id'
-                      ? 'Regresi Linear (MAE $20.849), Decision Tree rpart (72,7%), & 3 klaster K-Means.'
-                      : 'Linear Regression (MAE $20,849), rpart Decision Tree (72.7%), & 3 K-Means clusters.'}
+                  <span className="cmd-item__icon" aria-hidden="true">
+                    {item.icon}
                   </span>
+                  <span className="cmd-item__title">{item.title}</span>
+                  <span className="mono cmd-item__hint">{item.hint}</span>
                 </button>
-
-                <button
-                  type="button"
-                  className="cmd-outcome-card"
-                  onClick={() => {
-                    navigate('/work/alumni-portal');
-                    closeModal();
-                  }}
-                >
-                  <span className="mono cmd-outcome-metric">4-Tier N-Tier · 7 RTM Modules</span>
-                  <strong>AlumniTPL & Dthanasha Kost</strong>
-                  <span>
-                    {lang === 'id'
-                      ? 'Arsitektur sistem DPPL/SDD standar IEEE 830, ERD ternormalisasi, & dashboard Laravel.'
-                      : 'IEEE 830 DPPL/SDD architecture, normalized ERD schemas, & Laravel Tailwind dashboards.'}
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  className="cmd-outcome-card"
-                  onClick={() => {
-                    navigate('/journey');
-                    closeModal();
-                  }}
-                >
-                  <span className="mono cmd-outcome-metric">1 Live Site · Rp 26.19M Audited</span>
-                  <strong>PT KCT Intern & SITE 2025</strong>
-                  <span>
-                    {lang === 'id'
-                      ? 'Merilis kctjakarta.com, ~20 quotation komersial, & mengaudit 280+ transaksi keuangan.'
-                      : 'Shipped kctjakarta.com, ~20 commercial quotations, & audited 280+ financial records.'}
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            {/* Core Technical Stack & Awards */}
-            <div className="cmd-recruiter-two-col">
-              <div className="cmd-recruiter-box">
-                <span className="mono cmd-recruiter-label">
-                  02 / {lang === 'id' ? 'KEAHLIAN INTI' : 'CORE TECHNICAL STACK'}
-                </span>
-                <p className="cmd-recruiter-text">
-                  <strong>Data & AI:</strong> Python, R, SQL, Pandas, Matplotlib, Seaborn, Scikit-Learn, Gemini AI
-                  <br />
-                  <strong>Web & Systems:</strong> React, JavaScript, Laravel 12, Tailwind CSS, React Native, MySQL, MongoDB, UML/ERD
-                </p>
-              </div>
-
-              <div className="cmd-recruiter-box">
-                <span className="mono cmd-recruiter-label">
-                  03 / {lang === 'id' ? 'PRESTASI & PENGHARGAAN' : 'COMPETITION HONORS'}
-                </span>
-                <p className="cmd-recruiter-text">
-                  🏆 <strong>2nd Place</strong> — International Short Movie (Portal 7, 2025)
-                  <br />
-                  🏆 <strong>2nd Place</strong> — National Short Movie (SEMNASA ITCAS, 2025)
-                  <br />
-                  ★ <strong>Semifinalist</strong> — Ideanation Business Plan (2025)
-                </p>
-              </div>
-            </div>
-
-            {/* Direct Contact Bar */}
-            <div className="cmd-recruiter-actions">
-              <button
-                type="button"
-                className={`mono cmd-action-pill cmd-action-pill--primary ${copied ? 'is-copied' : ''}`}
-                onClick={copyEmail}
-              >
-                {copied
-                  ? '✓ osannapatricia@gmail.com'
-                  : '📋 Copy Email: osannapatricia@gmail.com'}
-              </button>
-              <a
-                href="https://github.com/theocaw"
-                target="_blank"
-                rel="noreferrer"
-                className="mono cmd-action-pill"
-              >
-                GitHub ↗
-              </a>
-              <a
-                href="https://linkedin.com/in/osannapatricia"
-                target="_blank"
-                rel="noreferrer"
-                className="mono cmd-action-pill"
-              >
-                LinkedIn ↗
-              </a>
-            </div>
+              ))
+            )}
           </div>
-        )}
+
+          <div className="mono cmd-footer-bar">
+            <span>↑↓ {lang === 'id' ? 'Pilih' : 'Navigate'}</span>
+            <span>↵ {lang === 'id' ? 'Buka' : 'Select'}</span>
+            <span>ESC {lang === 'id' ? 'Tutup' : 'Close'}</span>
+          </div>
+        </div>
       </div>
     </div>
   );

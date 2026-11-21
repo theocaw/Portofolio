@@ -135,24 +135,6 @@ export default function SiteHeader() {
           </nav>
 
           <div className="site-header__actions">
-            {/* Quick Command Palette & 30s Recruiter Scan Trigger */}
-            <button
-              type="button"
-              className="mono site-header__cmd-btn"
-              onClick={() =>
-                window.dispatchEvent(
-                  new CustomEvent('open-command-palette', { detail: { tab: 'recruiter' } }),
-                )
-              }
-              title={
-                lang === 'id'
-                  ? 'Ringkasan 30-Detik HR & Navigasi Cepat (Ctrl+K)'
-                  : '30s Recruiter Scan & Command Palette (Ctrl+K)'
-              }
-            >
-              <span>⚡ {lang === 'id' ? 'Ringkasan HR' : '30s Scan'}</span>
-            </button>
-
             {/* Language Switcher */}
             <div className="site-header__lang-toggle" role="group" aria-label="Language selection">
               <button
