@@ -1,371 +1,142 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import AuroraSky from '../components/AuroraSky.jsx';
+import CassetteDeck from '../components/CassetteDeck.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getHomeContent } from '../content/home.js';
 import './Home.css';
 
-const SLOWBAR_STATIONS = {
-  en: [
-    {
-      id: 'reader',
-      kind: 'book',
-      color: 'matcha',
-      railPos: 11,
-      spineCode: 'VOL. 01',
-      spineTitle: 'THE READER',
-      icon: '📖',
-      tag: 'SLOWBAR HOST · NICHE & BIO',
-      title: 'I turn complex datasets into clear stories & build tactile web interfaces.',
-      subtitle: 'Osanna Patricia Limbong — Software Engineering (TPL) at IPB University',
-      body:
-        'Welcome to my Slowbar—where analytical data mining meets warm, human-centered front-end engineering. Pull a book from the shelf or drop the needle on a vinyl record to inspect my work.',
-      stats: [
-        { k: 'TARGET ROLES', v: 'Data Analyst & Front-End' },
-        { k: 'CAMPUS', v: 'IPB University (TPL)' },
-        { k: 'STATUS', v: 'Open for Internship' },
-      ],
-      cta: { label: 'Open Full Library Book (/about) ↗', to: '/about' },
-      vinylLabel: 'SIDE A · INTRO',
-    },
-    {
-      id: 'ames',
-      kind: 'vinyl',
-      color: 'terracotta',
-      railPos: 27,
-      spineCode: 'LP · 01',
-      spineTitle: 'AMES 81.9% R²',
-      icon: '💿',
-      tag: 'FLAGSHIP VINYL · DATA MINING & ML',
-      title: 'Predicted housing prices across 2,930 properties with 81.94% R² accuracy.',
-      subtitle: 'Multiple Linear Regression (MAE ±$20,849), rpart Decision Tree (72.7%), & K-Means',
-      body:
-        'Built an end-to-end R valuation pipeline cleaning 82 raw features, isolating Overall_Qual & Gr_Liv_Area as primary value drivers, and segmenting the market into 3 actionable K-Means buyer clusters.',
-      stats: [
-        { k: 'R² ACCURACY', v: '81.94% (MLR)' },
-        { k: 'DATASET', v: '2,930 Properties' },
-        { k: 'CLUSTERS', v: '3 K-Means Segments' },
-      ],
-      cta: { label: 'Spin Record & Try Live Simulator ↗', to: '/work/ames-housing' },
-      vinylLabel: '45 RPM · AMES LP',
-    },
-    {
-      id: 'brew',
-      kind: 'cup',
-      color: 'honey',
-      railPos: 43,
-      spineCode: 'MENU · 02',
-      spineTitle: 'POUR-OVER',
-      icon: '☕',
-      tag: 'HOUSE SPECIAL · MEASURED IMPACT',
-      title: 'Numbers brewed from real academic research, systems & treasury audits.',
-      subtitle: 'Every project in this Slowbar is backed by verifiable outcomes—never filler.',
-      body:
-        'From analyzing thousands of residential records in RStudio to auditing 280+ financial transactions worth Rp 26.19M and shipping a live corporate logistics site during my internship.',
-      stats: [
-        { k: 'RECORDS MINED', v: '2,930 Homes' },
-        { k: 'SHIPPED WORKS', v: '05 Case Studies' },
-        { k: 'AUDITED LEDGER', v: '280+ Tx (Rp 26.19M)' },
-      ],
-      cta: { label: 'Browse Full Vinyl Jukebox (/work) ↗', to: '/work' },
-      vinylLabel: 'HOUSE BLEND · 2026',
-    },
-    {
-      id: 'systems',
-      kind: 'vinyl',
-      color: 'sage',
-      railPos: 59,
-      spineCode: 'LP · 02',
-      spineTitle: 'WEB & SDD',
-      icon: '🏛️',
-      tag: 'SIDE B VINYL · SYSTEM ARCHITECTURE & WEB',
-      title: 'Engineered 4-Tier IEEE 830 architectures, Midtrans POS & Kost dashboards.',
-      subtitle: 'AlumniTPL Career Portal, Dthanasha Kost Laravel MVC, & Cafier React Native',
-      body:
-        'Designed normalized relational schemas, 7-module Requirements Traceability Matrices (RTM), and responsive Tailwind/React/Laravel interfaces that digitize manual operations.',
-      stats: [
-        { k: 'ARCHITECTURE', v: '4-Tier Layered SDD' },
-        { k: 'UI SPECS', v: '12 Mockups + 7 RTM' },
-        { k: 'STACK', v: 'Laravel 12 · React' },
-      ],
-      cta: { label: 'Inspect AlumniTPL SDD Spec ↗', to: '/work/alumni-portal' },
-      vinylLabel: '33 RPM · SYSTEMS',
-    },
-    {
-      id: 'academic',
-      kind: 'book',
-      color: 'burgundy',
-      railPos: 75,
-      spineCode: 'VOL. 02',
-      spineTitle: 'GPA 3.63',
-      icon: '🎓',
-      tag: 'ARCHIVE TRANSCRIPT · EDUCATION & TOOLKIT',
-      title: '3.63 / 4.00 Cumulative GPA in Software Engineering Technology at IPB.',
-      subtitle: 'Combining statistical programming (Python, R, SQL) with modern front-end craft',
-      body:
-        'Trained across exploratory data analysis, machine learning, database normalization, software design documentation (DPPL), and interactive web/mobile development.',
-      stats: [
-        { k: 'CUMULATIVE GPA', v: '3.63 / 4.00' },
-        { k: 'DATA STACK', v: 'Python · R · SQL' },
-        { k: 'WEB STACK', v: 'React · Laravel · JS' },
-      ],
-      cta: { label: 'View Card Catalog Toolkit (/about) ↗', to: '/about' },
-      vinylLabel: 'IPB ARCHIVE · TPL',
-    },
-    {
-      id: 'journey',
-      kind: 'book',
-      color: 'walnut',
-      railPos: 89,
-      spineCode: 'VOL. 03',
-      spineTitle: 'LOGBOOK',
-      icon: '🏆',
-      tag: 'TRAVELER LOGBOOK · INTERNSHIP & AWARDS',
-      title: 'Shipped kctjakarta.com in industry & won 2× 2nd Place Short Movie Awards.',
-      subtitle: 'PT KCT Logistics Intern · 5 Campus Leadership Roles · Google Gemini Certified',
-      body:
-        'Delivered a live company profile website and ~20 commercial quotations at PT Kharisma Cakrawala Transportasi, managed organizational treasuries, and earned international & national competition honors.',
-      stats: [
-        { k: 'LIVE SITE', v: 'kctjakarta.com' },
-        { k: 'HONORS', v: '2× 2nd Place Awards' },
-        { k: 'CERTIFIED', v: 'Google Gemini AI' },
-      ],
-      cta: { label: 'Read Full Café Logbook (/journey) ↗', to: '/journey' },
-      vinylLabel: 'FIELD LOG · 2025–26',
-    },
-  ],
-  id: [
-    {
-      id: 'reader',
-      kind: 'book',
-      color: 'matcha',
-      railPos: 11,
-      spineCode: 'VOL. 01',
-      spineTitle: 'PROFIL',
-      icon: '📖',
-      tag: 'TUAN RUMAH SLOWBAR · FOKUS & PROFIL',
-      title: 'Mengolah data kompleks jadi cerita terukur & antarmuka web yang hangat.',
-      subtitle: 'Osanna Patricia Limbong — Teknologi Rekayasa Perangkat Lunak (TPL) IPB University',
-      body:
-        'Selamat datang di Slowbar-ku—tempat analisis data bertemu kerajinan front-end yang interaktif. Klik buku di rak atau piringan vinyl di meja untuk menurunkan lampu gantung dan membaca isinya.',
-      stats: [
-        { k: 'TARGET PERAN', v: 'Data Analyst & Front-End' },
-        { k: 'KAMPUS', v: 'IPB University (TPL)' },
-        { k: 'STATUS', v: 'Siap Magang 2026' },
-      ],
-      cta: { label: 'Buka Buku Perpustakaan (/about) ↗', to: '/about' },
-      vinylLabel: 'SIDE A · INTRO',
-    },
-    {
-      id: 'ames',
-      kind: 'vinyl',
-      color: 'terracotta',
-      railPos: 27,
-      spineCode: 'LP · 01',
-      spineTitle: 'AMES 81.9% R²',
-      icon: '💿',
-      tag: 'VINYL UNGGULAN · DATA MINING & ML',
-      title: 'Memprediksi harga 2.930 properti dengan akurasi R² 81,94% di RStudio.',
-      subtitle: 'Regresi Linear Berganda (MAE ±$20.849), Decision Tree rpart (72,7%), & K-Means',
-      body:
-        'Membangun pipeline valuasi dari 82 variabel mentah, mengidentifikasi Overall_Qual & Gr_Liv_Area sebagai penentu harga utama, dan memetakan 3 segmen pasar K-Means untuk Sniper Marketing.',
-      stats: [
-        { k: 'AKURASI R²', v: '81,94% (MLR)' },
-        { k: 'DATASET', v: '2.930 Properti' },
-        { k: 'KLASTER', v: '3 Segmen K-Means' },
-      ],
-      cta: { label: 'Putar Vinyl & Coba Simulator Live ↗', to: '/work/ames-housing' },
-      vinylLabel: '45 RPM · AMES LP',
-    },
-    {
-      id: 'brew',
-      kind: 'cup',
-      color: 'honey',
-      railPos: 43,
-      spineCode: 'MENU · 02',
-      spineTitle: 'RACIKAN',
-      icon: '☕',
-      tag: 'SAJIAN UTAMA · DAMPAK TERUKUR',
-      title: 'Angka nyata dari riset akademik, arsitektur sistem, dan audit keuangan.',
-      subtitle: 'Setiap karya di Slowbar ini memiliki bukti metrik asli—bukan sekadar klaim.',
-      body:
-        'Mulai dari menambang ribuan data properti di RStudio, mengaudit 280+ transaksi senilai Rp 26,19 Juta, hingga merilis website perusahaan logistik secara live saat magang.',
-      stats: [
-        { k: 'DATA DIANALISIS', v: '2.930 Properti' },
-        { k: 'STUDI KASUS', v: '05 Proyek Selesai' },
-        { k: 'TRANSAKSI AUDIT', v: '280+ Tx (Rp 26,19Jt)' },
-      ],
-      cta: { label: 'Buka Jukebox Vinyl (/work) ↗', to: '/work' },
-      vinylLabel: 'HOUSE BLEND · 2026',
-    },
-    {
-      id: 'systems',
-      kind: 'vinyl',
-      color: 'sage',
-      railPos: 59,
-      spineCode: 'LP · 02',
-      spineTitle: 'WEB & SDD',
-      icon: '🏛️',
-      tag: 'VINYL SIDE B · ARSITEKTUR SISTEM & WEB',
-      title: 'Merancang arsitektur 4-Tier IEEE 830, kasir Midtrans & dashboard kost.',
-      subtitle: 'Portal Karier AlumniTPL, Dthanasha Kost Laravel MVC, & Cafier React Native',
-      body:
-        'Menyusun skema ERD ternormalisasi, matriks RTM 7 modul, serta antarmuka responsif menggunakan React, Laravel 12, dan Tailwind CSS.',
-      stats: [
-        { k: 'ARSITEKTUR', v: '4-Tier Layered SDD' },
-        { k: 'SPESIFIKASI', v: '12 Layar + 7 RTM' },
-        { k: 'TEKNOLOGI', v: 'Laravel 12 · React' },
-      ],
-      cta: { label: 'Lihat Spesifikasi DPPL AlumniTPL ↗', to: '/work/alumni-portal' },
-      vinylLabel: '33 RPM · SYSTEMS',
-    },
-    {
-      id: 'academic',
-      kind: 'book',
-      color: 'burgundy',
-      railPos: 75,
-      spineCode: 'VOL. 02',
-      spineTitle: 'IPK 3.63',
-      icon: '🎓',
-      tag: 'TRANSKRIP ARSIP · PENDIDIKAN & TOOLKIT',
-      title: 'IPK Kumulatif 3,63 / 4,00 Teknologi Rekayasa Perangkat Lunak di IPB.',
-      subtitle: 'Memadukan pemrograman statistik (Python, R, SQL) dengan rekayasa front-end',
-      body:
-        'Terlatih dalam eksplorasi data, machine learning, perancangan basis data, dokumen DPPL/SDD, hingga pengembangan aplikasi web dan mobile.',
-      stats: [
-        { k: 'IPK KUMULATIF', v: '3,63 / 4,00' },
-        { k: 'DATA STACK', v: 'Python · R · SQL' },
-        { k: 'WEB STACK', v: 'React · Laravel · JS' },
-      ],
-      cta: { label: 'Buka Laci Katalog Skill (/about) ↗', to: '/about' },
-      vinylLabel: 'IPB ARCHIVE · TPL',
-    },
-    {
-      id: 'journey',
-      kind: 'book',
-      color: 'walnut',
-      railPos: 89,
-      spineCode: 'VOL. 03',
-      spineTitle: 'LOGBOOK',
-      icon: '🏆',
-      tag: 'LOGBOOK PERJALANAN · MAGANG & PRESTASI',
-      title: 'Merilis kctjakarta.com di industri & meraih 2× Juara 2 Film Pendek.',
-      subtitle: 'Magang PT KCT · 5 Peran Kepemimpinan Kampus · Google Gemini Certified',
-      body:
-        'Membangun website profil perusahaan live dan ~20 dokumen kuotasi di PT Kharisma Cakrawala Transportasi, mengelola kebendaharaan acara, serta meraih penghargaan internasional & nasional.',
-      stats: [
-        { k: 'WEBSITE LIVE', v: 'kctjakarta.com' },
-        { k: 'PRESTASI', v: '2× Juara 2 Kompetisi' },
-        { k: 'SERTIFIKASI', v: 'Google Gemini AI' },
-      ],
-      cta: { label: 'Baca Logbook Perjalanan (/journey) ↗', to: '/journey' },
-      vinylLabel: 'FIELD LOG · 2025–26',
-    },
-  ],
-};
-
-const CRATE_SLEEVES = {
+const ARCHIVE_TAPES = {
   en: [
     {
       id: 'ames-housing',
-      code: 'SIDE A · 01',
-      metric: '81.94% R²',
-      sub: '2,930 Homes Analyzed',
-      title: 'Ames Housing Valuation & K-Means',
-      role: 'Data Analyst · RStudio',
-      color: 'matcha',
+      code: 'TAPE 01',
+      side: 'SIDE A',
+      title: 'Ames Housing: Valuation & Segmentation',
+      shortTitle: 'Ames Housing Valuation',
+      metricLine: '81.94% R² · 2,930 Homes · K-Means',
+      summary:
+        'End-to-end RStudio valuation pipeline across 82 variables: Multiple Linear Regression (MAE ±$20,849), rpart Decision Tree (72.7%), and 3 K-Means buyer clusters.',
+      accent: '#2b4a3e',
+      stripe: '#d9b25f',
       to: '/work/ames-housing',
     },
     {
       id: 'canvar',
-      code: 'BONUS · 02',
-      metric: '5+ 3D Assets',
-      sub: 'Vuforia Spatial AR',
-      title: 'canvAR Business Model Canvas',
-      role: '3D Modeler & AR Dev',
-      color: 'terracotta',
+      code: 'TAPE 02',
+      side: 'SIDE A',
+      title: 'canvAR: Spatial 3D Business Canvas',
+      shortTitle: 'canvAR Spatial 3D',
+      metricLine: '5+ 3D Assets · Unity & Vuforia AR',
+      summary:
+        'Transformed static Business Model Canvas workshops into an interactive 3D Augmented Reality mobile learning experience built in Blender, Unity, and Vuforia.',
+      accent: '#b84a27',
+      stripe: '#e8c587',
       to: '/work/canvar',
     },
     {
       id: 'cafier',
-      code: 'SIDE B · 03',
-      metric: 'Midtrans API',
-      sub: 'Mobile + Web POS',
-      title: 'Cafier Smart Ordering Ecosystem',
-      role: 'Mobile & Front-End Dev',
-      color: 'honey',
+      code: 'TAPE 03',
+      side: 'SIDE B',
+      title: 'Cafier: Smart Ordering Ecosystem',
+      shortTitle: 'Cafier Ordering System',
+      metricLine: 'React Native · Laravel 12 · Midtrans',
+      summary:
+        'Dual-platform café ordering ecosystem combining React Native mobile self-ordering, Midtrans payment webhooks, and a real-time Laravel 12 kitchen display.',
+      accent: '#8c5a2b',
+      stripe: '#d9b25f',
       to: '/work/cafier',
     },
     {
       id: 'dthanasha-kost',
-      code: 'SIDE B · 04',
-      metric: '100% Digital',
-      sub: 'Laravel 12 MVC',
-      title: 'Dthanasha Kost Property System',
-      role: 'Front-End & UI Designer',
-      color: 'sage',
+      code: 'TAPE 04',
+      side: 'SIDE B',
+      title: 'Dthanasha Kost: Property Operations',
+      shortTitle: 'Dthanasha Kost MVC',
+      metricLine: '100% Digital Billing · Tailwind CSS',
+      summary:
+        'Digitized manual boarding-house management into an automated Laravel MVC platform for room inventory, tenant contracts, and monthly rent reconciliation.',
+      accent: '#3d5a52',
+      stripe: '#c9a66b',
       to: '/work/dthanasha-kost',
     },
     {
       id: 'alumni-portal',
-      code: 'SIDE B · 05',
-      metric: '4-Tier SDD',
-      sub: '12 UI + 7 RTM Modules',
-      title: 'AlumniTPL Career & Tracer Portal',
-      role: 'System Analyst & UI/UX',
-      color: 'burgundy',
+      code: 'TAPE 05',
+      side: 'SIDE B',
+      title: 'AlumniTPL: Career & Tracer Portal',
+      shortTitle: 'AlumniTPL 4-Tier SDD',
+      metricLine: '4-Tier Layered · 12 UI Specs · 7 RTM',
+      summary:
+        'IEEE 830 Software Design Document (DPPL) featuring 4-tier layered architecture, normalized relational ERD, and 12 verified UI mockups for IPB TPL alumni.',
+      accent: '#63333d',
+      stripe: '#d9b25f',
       to: '/work/alumni-portal',
     },
   ],
   id: [
     {
       id: 'ames-housing',
-      code: 'SIDE A · 01',
-      metric: '81,94% R²',
-      sub: '2.930 Properti Dianalisis',
-      title: 'Valuasi & Klastering Ames Housing',
-      role: 'Data Analyst · RStudio',
-      color: 'matcha',
+      code: 'TAPE 01',
+      side: 'SIDE A',
+      title: 'Ames Housing: Valuasi & Segmentasi',
+      shortTitle: 'Valuasi Ames Housing',
+      metricLine: '81,94% R² · 2.930 Properti · K-Means',
+      summary:
+        'Pipeline valuasi RStudio pada 82 variabel: Regresi Linear Berganda (MAE ±$20.849), Decision Tree rpart (72,7%), dan 3 klaster pembeli K-Means.',
+      accent: '#2b4a3e',
+      stripe: '#d9b25f',
       to: '/work/ames-housing',
     },
     {
       id: 'canvar',
-      code: 'BONUS · 02',
-      metric: '5+ Aset 3D',
-      sub: 'Vuforia Spatial AR',
-      title: 'canvAR Business Model Canvas',
-      role: '3D Modeler & AR Dev',
-      color: 'terracotta',
+      code: 'TAPE 02',
+      side: 'SIDE A',
+      title: 'canvAR: Business Model Canvas 3D AR',
+      shortTitle: 'canvAR Spatial 3D',
+      metricLine: '5+ Aset 3D · Unity & Vuforia AR',
+      summary:
+        'Mengubah materi Business Model Canvas statis menjadi pengalaman belajar spasial 3D berbasis Augmented Reality menggunakan Blender, Unity, dan Vuforia.',
+      accent: '#b84a27',
+      stripe: '#e8c587',
       to: '/work/canvar',
     },
     {
       id: 'cafier',
-      code: 'SIDE B · 03',
-      metric: 'Midtrans API',
-      sub: 'Mobile + Web POS',
-      title: 'Ekosistem Pemesanan Cafier',
-      role: 'Mobile & Front-End Dev',
-      color: 'honey',
+      code: 'TAPE 03',
+      side: 'SIDE B',
+      title: 'Cafier: Ekosistem Pemesanan Kafe',
+      shortTitle: 'Sistem Pemesanan Cafier',
+      metricLine: 'React Native · Laravel 12 · Midtrans',
+      summary:
+        'Ekosistem pemesanan ganda yang menghubungkan aplikasi mobile React Native, pembayaran Midtrans, serta dashboard dapur Laravel 12 secara real-time.',
+      accent: '#8c5a2b',
+      stripe: '#d9b25f',
       to: '/work/cafier',
     },
     {
       id: 'dthanasha-kost',
-      code: 'SIDE B · 04',
-      metric: '100% Digital',
-      sub: 'Laravel 12 MVC',
-      title: 'Sistem Manajemen Dthanasha Kost',
-      role: 'Front-End & UI Designer',
-      color: 'sage',
+      code: 'TAPE 04',
+      side: 'SIDE B',
+      title: 'Dthanasha Kost: Manajemen Properti',
+      shortTitle: 'Dthanasha Kost MVC',
+      metricLine: '100% Digital · Laravel & Tailwind',
+      summary:
+        'Digitalisasi operasional rumah kost ke dalam sistem Laravel MVC untuk pengelolaan ketersediaan kamar, kontrak penyewa, dan penagihan bulanan otomatis.',
+      accent: '#3d5a52',
+      stripe: '#c9a66b',
       to: '/work/dthanasha-kost',
     },
     {
       id: 'alumni-portal',
-      code: 'SIDE B · 05',
-      metric: '4-Tier SDD',
-      sub: '12 Layar + 7 Modul RTM',
-      title: 'Portal Karier & Tracer AlumniTPL',
-      role: 'System Analyst & UI/UX',
-      color: 'burgundy',
+      code: 'TAPE 05',
+      side: 'SIDE B',
+      title: 'AlumniTPL: Portal Karier & Tracer',
+      shortTitle: 'AlumniTPL 4-Tier SDD',
+      metricLine: '4-Tier Layered · 12 Layar · 7 RTM',
+      summary:
+        'Dokumen DPPL standar IEEE 830 berisi arsitektur 4-lapis, skema ERD ternormalisasi, dan 12 desain antarmuka terverifikasi untuk alumni TPL IPB.',
+      accent: '#63333d',
+      stripe: '#d9b25f',
       to: '/work/alumni-portal',
     },
   ],
@@ -376,322 +147,236 @@ export default function Home() {
   const home = getHomeContent(lang);
   const { profilePhotos = [] } = home;
 
-  const stations = SLOWBAR_STATIONS[lang] || SLOWBAR_STATIONS.en;
-  const crateSleeves = CRATE_SLEEVES[lang] || CRATE_SLEEVES.en;
+  const tapes = ARCHIVE_TAPES[lang] || ARCHIVE_TAPES.en;
+  const [activeTapeIdx, setActiveTapeIdx] = useState(0);
+  const [photoIdx, setPhotoIdx] = useState(0);
 
-  const [activeId, setActiveId] = useState('reader');
-  const [isLifting, setIsLifting] = useState(false);
-  const [photoIndex, setPhotoIndex] = useState(0);
-  const [crateOpen, setCrateOpen] = useState(true);
+  const currentTape = tapes[activeTapeIdx] || tapes[0];
+  const currentPhoto = profilePhotos[photoIdx] || profilePhotos[0];
 
-  const activeStation = stations.find((s) => s.id === activeId) || stations[0];
-  const currentPhoto = profilePhotos[photoIndex] || profilePhotos[0];
-
-  const handleSelectStation = (id) => {
-    if (id === activeId) return;
-    setIsLifting(true);
-    setActiveId(id);
-    window.setTimeout(() => setIsLifting(false), 520);
-  };
+  const volumes = [
+    {
+      vol: 'VOL. I',
+      section: lang === 'id' ? 'PERPUSTAKAAN' : 'THE LIBRARY',
+      title: lang === 'id' ? 'Profil, IPB University & Katalog Keahlian' : 'Profile, IPB Education & Skill Catalog',
+      meta: 'GPA 3.63 / 4.00 · Python · R · React',
+      to: '/about',
+      cloth: 'pine',
+    },
+    {
+      vol: 'VOL. II',
+      section: lang === 'id' ? 'ARSIP KASET' : 'TAPE ARCHIVE',
+      title: lang === 'id' ? '5 Studi Kasus Selesai & Simulator Live' : 'Five Shipped Case Studies & Live Simulator',
+      meta: 'Ames 81.94% R² · 4-Tier SDD · Laravel',
+      to: '/work',
+      cloth: 'rust',
+    },
+    {
+      vol: 'VOL. III',
+      section: lang === 'id' ? 'LOGBOOK' : 'FIELD LOGBOOK',
+      title: lang === 'id' ? 'Magang PT KCT, Organisasi & Prestasi' : 'PT KCT Internship, Leadership & Honors',
+      meta: 'kctjakarta.com · Rp 26.19M · Gemini AI',
+      to: '/journey',
+      cloth: 'espresso',
+    },
+  ];
 
   return (
-    <div className="slowbar-home">
+    <div className="kissa-home">
       {/* =========================================================
-          STAGE 1: Interactive Slowbar Café Shelf & Overhead Brass Picker Lamp
+          SECTION 1: THE LISTENING ROOM (Editorial Intro + Live Hi-Fi Cassette Deck)
          ========================================================= */}
-      <section className="slowbar-stage hero-stage">
-        <AuroraSky />
-
-        <div className="container slowbar-stage__container">
-          {/* Top Café Header Strip */}
-          <div className="slowbar-stage__intro-bar">
-            <a href="#contact" className="mono slowbar-status-pill">
-              <span className="slowbar-status-dot" />
+      <section className="container kissa-hero">
+        <div className="kissa-hero__grid">
+          {/* Left Column: Niche Headline + Interactive Cassette Spine Rack */}
+          <div className="kissa-hero__left">
+            <div className="mono kissa-status-line">
+              <span className="kissa-status-dot" />
               <span>{home.availability}</span>
-            </a>
-            <span className="mono slowbar-stage__hint">
-              {lang === 'id'
-                ? '✦ KLIK BUKU, VINYL, ATAU KOPI DI MEJA UNTUK MENGGERAKKAN LAMPU PENJEPIT'
-                : '✦ CLICK ANY BOOK, VINYL, OR CUP ON THE COUNTER TO MOVE THE OVERHEAD PICKER LAMP'}
-            </span>
-          </div>
-
-          {/* Interactive Slowbar Gantry Rail, Hanging Brass Lamp Picker & Wooden Countertop */}
-          <div className="slowbar-booth">
-            {/* Giant Background Display Word (like @ui.debbie's PORTFOLIO backdrop) */}
-            <div className="slowbar-booth__backdrop-word" aria-hidden="true">
-              SLOWBAR
             </div>
 
-            {/* Overhead Brass Rail & Sliding Lamp / Record Picker Arm */}
-            <div className="slowbar-rail" aria-hidden="true">
-              <div className="slowbar-rail__bar" />
-              <div
-                className={`slowbar-picker ${isLifting ? 'is-grabbing' : ''}`}
-                style={{ left: `${activeStation.railPos}%` }}
-              >
-                <div className="slowbar-picker__carriage" />
-                <div className="slowbar-picker__cord" />
-                <div className="slowbar-picker__lamp">
-                  <span className="slowbar-picker__claw-left" />
-                  <span className="slowbar-picker__bulb" />
-                  <span className="slowbar-picker__claw-right" />
-                </div>
-                <div className="slowbar-picker__beam" />
+            <h1 className="kissa-hero__headline">
+              {lang === 'id' ? (
+                <>
+                  Mengubah data rumit menjadi <em>cerita yang jernih</em> &amp; sistem web yang presisi.
+                </>
+              ) : (
+                <>
+                  Turning complex data into <em>clear stories</em> &amp; tactile web systems.
+                </>
+              )}
+            </h1>
+
+            <p className="kissa-hero__intro">
+              {home.greeting} {home.intro}
+            </p>
+
+            {/* Interactive Physical Cassette Spine Selector Rack */}
+            <div className="kissa-rack">
+              <div className="mono kissa-rack__header">
+                <span>
+                  {lang === 'id'
+                    ? 'PILIH KASET PROYEK UNTUK DIMASUKKAN KE DECK'
+                    : 'SELECT A PROJECT CASSETTE TO LOAD INTO THE DECK'}
+                </span>
+                <span>01 — 05</span>
               </div>
-            </div>
 
-            {/* The Physical Objects on the Slowbar Wooden Countertop */}
-            <div
-              className="slowbar-counter-items"
-              role="tablist"
-              aria-label={lang === 'id' ? 'Objek Meja Slowbar' : 'Slowbar Counter Objects'}
-            >
-              {stations.map((item) => {
-                const isSelected = item.id === activeId;
-                return (
-                  <button
-                    key={item.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isSelected}
-                    className={`slowbar-object slowbar-object--${item.kind} slowbar-object--${item.color} ${
-                      isSelected ? 'is-picked' : ''
-                    }`}
-                    onClick={() => handleSelectStation(item.id)}
-                  >
-                    <span className="mono slowbar-object__code">{item.spineCode}</span>
-                    <span className="slowbar-object__icon" aria-hidden="true">
-                      {item.icon}
-                    </span>
-                    <span className="slowbar-object__title">{item.spineTitle}</span>
-                    {item.kind === 'vinyl' && (
-                      <span className="slowbar-object__disc-edge" aria-hidden="true" />
-                    )}
-                    {item.kind === 'cup' && (
-                      <span className="slowbar-object__steam" aria-hidden="true">
-                        ~ ~
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Wooden Countertop Plank */}
-            <div className="slowbar-wooden-plank" aria-hidden="true">
-              <span className="mono">
-                ☕ OSANNA PATRICIA LIMBONG · ANALOG LISTENING BAR &amp; READING ARCHIVE · EST. 2026
-              </span>
-            </div>
-          </div>
-
-          {/* =========================================================
-              INTERACTIVE LISTENING & READING TABLE (Shows the Picked Object!)
-             ========================================================= */}
-          <div className={`slowbar-reading-desk slowbar-reading-desk--${activeStation.color}`}>
-            {/* Left Column: Live Turntable Platter + Taped Café Guestbook Polaroid */}
-            <div className="slowbar-desk__left">
-              {/* Interactive Turntable Platter */}
-              <div className="slowbar-turntable-card">
-                <div className="mono slowbar-turntable-card__head">
-                  <span>💿 {activeStation.vinylLabel}</span>
-                  <span>HI-FI · 45 RPM</span>
-                </div>
-
-                <div className="slowbar-turntable-card__body">
-                  <div className="slowbar-platter-wrap">
-                    <div className="slowbar-platter-disc">
-                      <div className="slowbar-platter-grooves" />
-                      <div className="slowbar-platter-label">
-                        <span className="mono">{activeStation.spineCode}</span>
-                      </div>
-                    </div>
-                    <div className="slowbar-platter-tonearm" aria-hidden="true" />
-                  </div>
-
-                  {/* Taped Polaroid Coaster on the Table */}
-                  {currentPhoto && (
-                    <div
-                      className="slowbar-polaroid-coaster"
-                      onClick={() => setPhotoIndex((prev) => (prev + 1) % profilePhotos.length)}
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          setPhotoIndex((prev) => (prev + 1) % profilePhotos.length);
-                        }
-                      }}
-                      title={
-                        lang === 'id'
-                          ? 'Klik foto polaroid untuk ganti pose!'
-                          : 'Click polaroid to switch pose!'
-                      }
+              <div className="kissa-rack__list" role="tablist" aria-label="Project Cassettes">
+                {tapes.map((tape, idx) => {
+                  const isActive = idx === activeTapeIdx;
+                  return (
+                    <button
+                      key={tape.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      className={`kissa-spine ${isActive ? 'is-active' : ''}`}
+                      style={{ '--spine-accent': tape.accent }}
+                      onClick={() => setActiveTapeIdx(idx)}
                     >
-                      <span className="slowbar-masking-tape" aria-hidden="true" />
-                      <div className="slowbar-polaroid-coaster__img-wrap">
-                        <img
-                          src={currentPhoto.src}
-                          alt={currentPhoto.alt}
-                          className="slowbar-polaroid-coaster__img"
-                          draggable="false"
-                        />
-                      </div>
-                      <span className="mono slowbar-polaroid-coaster__caption">
-                        ✦ {currentPhoto.label}
-                      </span>
-                    </div>
-                  )}
-                </div>
+                      <span className="kissa-spine__bar" aria-hidden="true" />
+                      <span className="mono kissa-spine__code">{tape.code}</span>
+                      <span className="kissa-spine__title">{tape.shortTitle}</span>
+                      <span className="mono kissa-spine__metric">{tape.metricLine}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
+          </div>
 
-            {/* Right Column: Open Book Spread / Liner Notes of the Picked Object */}
-            <div className="slowbar-desk__right">
-              <div className="slowbar-open-book">
-                <div className="slowbar-open-book__header">
-                  <span className="mono slowbar-open-book__tag">
-                    {activeStation.icon} {activeStation.tag}
-                  </span>
-                  <span className="mono slowbar-open-book__code">
-                    ARCHIVE #{activeStation.spineCode}
-                  </span>
-                </div>
+          {/* Right Column: Real Interactive Hi-Fi Cassette Deck + Liner Notes */}
+          <div className="kissa-hero__right">
+            <CassetteDeck
+              tapes={tapes}
+              activeIndex={activeTapeIdx}
+              onSelectIndex={setActiveTapeIdx}
+            />
 
-                <h1 className="slowbar-open-book__title">{activeStation.title}</h1>
-                <p className="slowbar-open-book__subtitle">{activeStation.subtitle}</p>
-                <p className="slowbar-open-book__body">{activeStation.body}</p>
-
-                {/* 3 Stamped Library Index Coasters */}
-                <div className="slowbar-open-book__stats">
-                  {activeStation.stats.map((st) => (
-                    <div key={st.k} className="slowbar-stat-coaster">
-                      <span className="mono slowbar-stat-coaster__k">{st.k}</span>
-                      <span className="slowbar-stat-coaster__v">{st.v}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="slowbar-open-book__footer">
-                  <Link to={activeStation.cta.to} className="slowbar-open-book__cta">
-                    <span>{activeStation.cta.label}</span>
-                  </Link>
-
-                  <div className="slowbar-open-book__quick-nav">
-                    {stations.map((s, idx) => (
-                      <button
-                        key={s.id}
-                        type="button"
-                        className={`mono slowbar-quick-dot ${s.id === activeId ? 'is-active' : ''}`}
-                        onClick={() => handleSelectStation(s.id)}
-                        title={s.spineTitle}
-                      >
-                        0{idx + 1}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+            {/* Liner Notes Card Beneath Deck */}
+            <div className="kissa-liner-card">
+              <div className="mono kissa-liner-card__head">
+                <span>
+                  {currentTape.code} · {currentTape.side}
+                </span>
+                <span>{currentTape.metricLine}</span>
               </div>
+              <h2 className="kissa-liner-card__title">{currentTape.title}</h2>
+              <p className="kissa-liner-card__desc">{currentTape.summary}</p>
+              <Link to={currentTape.to} className="mono kissa-liner-card__cta">
+                {lang === 'id' ? 'Baca Studi Kasus Lengkap ↗' : 'Read Full Case Study ↗'}
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          STAGE 2: Interactive Unboxing Vinyl & Archive Crate
-          (Inspired by Reel 2's 3D box that pops open & fans out 5 metric cards!)
+          SECTION 2: MEASURED IMPACT LEDGER (Clean Editorial Numbers)
          ========================================================= */}
-      <section className="band band--paper-2 slowbar-crate-section" id="explore">
-        <div className="container slowbar-crate-container">
-          <div className="slowbar-crate-header">
-            <div>
-              <span className="mono slowbar-crate-eyebrow">
-                ✦ {lang === 'id' ? 'KOTAK KOLEKSI VINYL & ARSIP' : 'THE UNBOXING RECORD CRATE'}
-              </span>
-              <h2 className="slowbar-crate-title">
-                {lang === 'id'
-                  ? 'Karya yang kuseduh, dan angka yang berhasil digerakkan.'
-                  : 'Things I brewed & shipped, and the numbers they moved.'}
-              </h2>
-            </div>
+      <section className="band band--paper-2 kissa-ledger-band">
+        <div className="container kissa-ledger">
+          <div className="kissa-ledger__item">
+            <span className="mono kissa-ledger__k">
+              {lang === 'id' ? 'DATA PROPERTI DIANALISIS' : 'PROPERTY RECORDS MINED'}
+            </span>
+            <span className="kissa-ledger__v">2,930</span>
+            <span className="kissa-ledger__note">Ames Housing · 82 Features</span>
+          </div>
+          <div className="kissa-ledger__item">
+            <span className="mono kissa-ledger__k">
+              {lang === 'id' ? 'AKURASI PREDIKSI (R²)' : 'PREDICTIVE ACCURACY (R²)'}
+            </span>
+            <span className="kissa-ledger__v">81.94%</span>
+            <span className="kissa-ledger__note">Multiple Linear Regression</span>
+          </div>
+          <div className="kissa-ledger__item">
+            <span className="mono kissa-ledger__k">
+              {lang === 'id' ? 'IPK KUMULATIF' : 'CUMULATIVE GPA'}
+            </span>
+            <span className="kissa-ledger__v">3.63</span>
+            <span className="kissa-ledger__note">IPB University · TPL</span>
+          </div>
+          <div className="kissa-ledger__item">
+            <span className="mono kissa-ledger__k">
+              {lang === 'id' ? 'TRANSAKSI TERAUDIT' : 'AUDITED TRANSACTIONS'}
+            </span>
+            <span className="kissa-ledger__v">280+</span>
+            <span className="kissa-ledger__note">Rp 26.19M · SITE 2025</span>
+          </div>
+        </div>
+      </section>
 
-            <button
-              type="button"
-              className="mono slowbar-crate-toggle-btn"
-              onClick={() => setCrateOpen((prev) => !prev)}
-            >
-              {crateOpen
-                ? lang === 'id'
-                  ? '📦 Tutup Kotak Vinyl'
-                  : '📦 Close Record Crate'
-                : lang === 'id'
-                  ? '✨ Buka & Sebarkan 5 Vinyl'
-                  : '✨ Unbox & Fan Out 5 Records'}
-            </button>
+      {/* =========================================================
+          SECTION 3: THE READING LIBRARY SHELF (3 Cloth Volumes + Archival Portrait)
+         ========================================================= */}
+      <section className="container kissa-library-shelf">
+        <div className="kissa-library-shelf__header">
+          <div>
+            <span className="mono kissa-eyebrow">
+              {lang === 'id' ? 'KATALOG PERPUSTAKAAN' : 'THE READING ROOM ARCHIVE'}
+            </span>
+            <h2 className="kissa-library-shelf__title">
+              {lang === 'id'
+                ? 'Tiga jilid arsip untuk mengenal proses dan karyaku.'
+                : 'Three cloth-bound volumes to explore the work.'}
+            </h2>
+          </div>
+        </div>
+
+        <div className="kissa-shelf-grid">
+          {/* 3 Realistic Cloth-Bound Hardcover Volumes */}
+          <div className="kissa-volumes">
+            {volumes.map((v) => (
+              <Link key={v.vol} to={v.to} className={`kissa-volume kissa-volume--${v.cloth}`}>
+                <span className="kissa-volume__spine-crease" aria-hidden="true" />
+                <div className="kissa-volume__top">
+                  <span className="mono kissa-volume__vol">{v.vol}</span>
+                  <span className="mono kissa-volume__sec">{v.section}</span>
+                </div>
+                <h3 className="kissa-volume__title">{v.title}</h3>
+                <div className="kissa-volume__foot">
+                  <span className="mono kissa-volume__meta">{v.meta}</span>
+                  <span className="mono kissa-volume__arrow">↗</span>
+                </div>
+              </Link>
+            ))}
           </div>
 
-          {/* Interactive 3D Record Crate that fans out 5 colorful vertical cards */}
-          <div className={`slowbar-unbox-stage ${crateOpen ? 'is-open' : 'is-closed'}`}>
-            <div className="slowbar-fanned-cards">
-              {crateSleeves.map((sleeve, idx) => (
-                <Link
-                  key={sleeve.id}
-                  to={sleeve.to}
-                  className={`slowbar-fan-card slowbar-fan-card--${sleeve.color}`}
-                  style={{ '--fan-idx': idx }}
-                >
-                  <span className="slowbar-masking-tape" aria-hidden="true" />
-                  <div className="slowbar-fan-card__top">
-                    <span className="mono slowbar-fan-card__code">{sleeve.code}</span>
-                    <span className="slowbar-fan-card__disc" aria-hidden="true">
-                      💿
-                    </span>
-                  </div>
-
-                  <div className="slowbar-fan-card__metric-block">
-                    <span className="slowbar-fan-card__metric">{sleeve.metric}</span>
-                    <span className="mono slowbar-fan-card__sub">{sleeve.sub}</span>
-                  </div>
-
-                  <div className="slowbar-fan-card__bottom">
-                    <h3 className="slowbar-fan-card__title">{sleeve.title}</h3>
-                    <span className="mono slowbar-fan-card__role">{sleeve.role} ↗</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-            {/* Physical 3D Wooden Crate Base */}
-            <div
-              className="slowbar-wooden-crate"
-              onClick={() => setCrateOpen((prev) => !prev)}
+          {/* Clean Archival Matte Portrait Print */}
+          {currentPhoto && (
+            <figure
+              className="kissa-portrait"
+              onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
-                  setCrateOpen((prev) => !prev);
+                  setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
                 }
               }}
+              title={
+                lang === 'id' ? 'Klik foto untuk ganti frame potret' : 'Click print to cycle portrait'
+              }
             >
-              <div className="slowbar-wooden-crate__lip" />
-              <div className="slowbar-wooden-crate__front">
-                <span className="mono slowbar-wooden-crate__stamp">
-                  OSANNA’S VINYL &amp; DATA ARCHIVE · CRATE #01–05
-                </span>
-                <span className="mono slowbar-wooden-crate__hint">
-                  {crateOpen
-                    ? lang === 'id'
-                      ? 'Klik kartu di atas untuk buka studi kasus · Klik kotak untuk melipat'
-                      : 'Click any record card above to open case study · Click crate to fold'
-                    : lang === 'id'
-                      ? '✦ KLIK KOTAK KAYU INI UNTUK MEMBUKA 5 PIRINGAN PROYEK'
-                      : '✦ CLICK THIS WOODEN CRATE TO UNBOX 5 PROJECT RECORDS'}
-                </span>
+              <div className="kissa-portrait__frame">
+                <img
+                  src={currentPhoto.src}
+                  alt={currentPhoto.alt}
+                  className="kissa-portrait__img"
+                  draggable="false"
+                />
               </div>
-            </div>
-          </div>
+              <figcaption className="mono kissa-portrait__caption">
+                <span>
+                  PLATE 0{photoIdx + 1} / 0{profilePhotos.length}
+                </span>
+                <span>{currentPhoto.label}</span>
+              </figcaption>
+            </figure>
+          )}
         </div>
       </section>
     </div>

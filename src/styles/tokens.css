@@ -1,75 +1,92 @@
 /*
- * Design tokens: "Slowbar" — Analog Vinyl Listening Bar & Editorial Reading Library.
- * Light mode (Daylight Slowbar): Aged Library Parchment, Roasted Espresso Ink, Kyoto Matcha, Terracotta Vinyl, Tube-Amp Honey Gold.
- * Dark mode (Midnight Listening Room): Deep Mahogany Espresso, Walnut Bookshelf, Parchment Cream, Luminous Matcha Sage & Tube-Amp Amber.
+ * Design Tokens: Kissa / Archive — Analog Hi-Fi Cassette & Architectural Library
+ * Mature, tactile materiality: Cotton Archival Paper, Brushed Aluminum, Walnut Wood, Vacuum-Tube Amber.
+ * Zero cartoon outlines, zero hard comic drop shadows.
  */
 :root {
-  /* Canvas & Library Paper Stock */
-  --paper: #f5efe3;        /* Aged library parchment / steamed oat milk */
-  --paper-2: #eae0ce;      /* Kraft library catalog card / biscuit cream */
-  --card-bg: #fbf7ef;      /* Warm ivory index card surface */
-  --ink: #231914;          /* Deep roasted espresso ink */
-  --muted: #6b5848;        /* Warm walnut / toasted hazelnut muted text */
-  --rule: #d4c4ac;         /* Library catalog card hairline */
+  /* Daylight Reading Room & Listening Bar */
+  --paper: #f4f1ea;
+  --paper-2: #eae5db;
+  --card-bg: #faf8f4;
+  --ink: #1c1917;
+  --muted: #6c655d;
+  --rule: rgba(28, 25, 23, 0.12);
+  --rule-strong: rgba(28, 25, 23, 0.24);
 
-  /* Slowbar Accents: Kyoto Matcha, Terracotta Vinyl & Tube-Amp Brass */
-  --blue: #355e47;         /* Kyoto ceremonial matcha / library banker's lamp green */
-  --blue-dark: #244231;    /* Deep forest archive green */
-  --blue-soft: #dfece3;    /* Soft matcha latte foam tint */
-  --pink: #e6a387;         /* Warm terracotta blush / vinyl sleeve clay */
-  --pink-soft: #f8eae3;    /* Soft terracotta cream */
-  --pink-hot: #c24928;     /* Terracotta wax stamp / vinyl record label rust */
-  --lime: #f3d285;         /* Tube-amp brass / honey reading-lamp gold */
-  --mint: #769e86;         /* Sage bookmark ribbon */
-  --mint-soft: #e6f0e9;    /* Soft sage paper */
-  --lavender: #e4d9c8;     /* Warm linen book spine */
+  /* Refined Analog Accents */
+  --blue: #2b4a3e;         /* Archival Pine / Library Cloth Green */
+  --blue-dark: #1d342b;
+  --blue-soft: #e3ebe7;
+  --pink: #d48c70;         /* Warm Clay / Oxide Tape */
+  --pink-soft: #f5eae4;
+  --pink-hot: #b84a27;     /* Analog VU Rust / Magnetic Oxide Red */
+  --lime: #d9b25f;         /* Brushed Brass / Vacuum Tube Amber */
+  --mint: #5f8272;         /* Sage Cloth */
+  --mint-soft: #e6eee9;
+  --lavender: #dfd9ce;
 
-  /* Card & Accent Rules */
-  --dark-rule: #c8b79e;
-  --dark-muted: #6b5848;
-  --white-40: rgba(251, 247, 239, 0.76);
+  /* Deck & Hardware Surfaces */
+  --deck-face: #23211e;
+  --deck-face-hi: #2f2c28;
+  --deck-well: #12110f;
+  --deck-text: #ebe6dc;
+  --deck-muted: #989186;
+  --vu-bg: #f6e7c1;
 
-  /* Typography */
+  --dark-rule: rgba(28, 25, 23, 0.18);
+  --dark-muted: #6c655d;
+  --white-40: rgba(250, 248, 244, 0.72);
+
+  /* Editorial Typography */
+  --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Layout & Tactile Shapes */
-  --frame-max: 1440px;
-  --gutter: clamp(22px, calc(22px + 50 * (100vw - 390px) / 1050), 72px);
-  --section-y: clamp(44px, calc(44px + 20 * (100vw - 390px) / 1050), 64px);
-  --radius-button: 999px;
-  --radius-card: 24px;
-  --shadow-hard: 5px 5px 0 var(--ink);
-  --shadow-soft: 0 10px 25px -5px rgba(35, 25, 20, 0.14);
-  --transition: 180ms ease;
+  /* Architectural Layout & Realistic Soft Shadows */
+  --frame-max: 1360px;
+  --gutter: clamp(20px, calc(20px + 44 * (100vw - 390px) / 1050), 64px);
+  --section-y: clamp(48px, calc(48px + 24 * (100vw - 390px) / 1050), 72px);
+  --radius-button: 6px;
+  --radius-card: 10px;
+  --shadow-hard: 0 12px 32px -12px rgba(28, 25, 23, 0.14), 0 2px 6px rgba(28, 25, 23, 0.06);
+  --shadow-soft: 0 20px 44px -16px rgba(28, 25, 23, 0.16);
+  --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme='dark'] {
-  /* Midnight Listening Room & Mahogany Library Palette */
-  --paper: #130f0c;        /* Deep roasted espresso / mahogany listening room */
-  --paper-2: #1e1713;      /* Warm walnut bookshelf / acoustic wood panel */
-  --card-bg: #1a1410;      /* Elevated walnut dossier surface */
-  --ink: #f5ecdc;          /* Warm parchment cream text */
-  --muted: #a89784;        /* Smoky cappuccino / aged paper muted text */
-  --rule: #362a22;         /* Walnut wood grain divider */
+  /* Midnight Jazz Kissa & Walnut Listening Lounge */
+  --paper: #11100e;
+  --paper-2: #181613;
+  --card-bg: #1c1a17;
+  --ink: #f0ebe2;
+  --muted: #999186;
+  --rule: rgba(240, 235, 226, 0.1);
+  --rule-strong: rgba(240, 235, 226, 0.22);
 
-  /* Luminous Matcha Sage, Tube-Amp Amber & Vinyl Terracotta */
-  --blue: #83b697;         /* Luminous ceremonial matcha sage */
-  --blue-dark: #639678;    /* Rich sage green */
-  --blue-soft: #1b2820;    /* Deep library green shelf */
-  --pink: #e3886b;         /* Warm terracotta vinyl coral */
-  --pink-soft: #2c1b16;    /* Dark terracotta wood tint */
-  --pink-hot: #f0714d;     /* Glowing tube-amp filament orange-red */
-  --lime: #f2cc7e;         /* Tube-amp honey gold */
-  --mint: #83b697;         /* Matcha sage */
-  --mint-soft: #18241d;    /* Deep forest sage band */
-  --lavender: #cab89e;     /* Warm antique brass */
+  /* Luminous Vacuum Tube & Sage Cloth */
+  --blue: #7ea895;
+  --blue-dark: #638f7b;
+  --blue-soft: #1a241f;
+  --pink: #d9896c;
+  --pink-soft: #261b17;
+  --pink-hot: #e3724b;
+  --lime: #e0b865;
+  --mint: #7ea895;
+  --mint-soft: #16201c;
+  --lavender: #292622;
 
-  --dark-rule: #423329;
-  --dark-muted: #cbbba8;
-  --white-40: rgba(30, 23, 19, 0.78);
+  --deck-face: #1d1b18;
+  --deck-face-hi: #292622;
+  --deck-well: #0c0b0a;
+  --deck-text: #f0ebe2;
+  --deck-muted: #8a8378;
+  --vu-bg: #f3dfb0;
 
-  --shadow-hard: 4px 4px 0 #070504;
-  --shadow-soft: 0 10px 25px -5px rgba(242, 204, 126, 0.16);
+  --dark-rule: rgba(240, 235, 226, 0.15);
+  --dark-muted: #999186;
+  --white-40: rgba(28, 26, 23, 0.8);
+
+  --shadow-hard: 0 16px 38px -12px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-soft: 0 24px 52px -16px rgba(0, 0, 0, 0.75);
 }

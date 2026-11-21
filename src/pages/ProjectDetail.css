@@ -22,23 +22,21 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: var(--paper-2);
-  border: 1.5px solid var(--ink);
+  padding: 7px 14px;
+  border-radius: 4px;
+  background: transparent;
+  border: 1px solid var(--rule-strong);
   color: var(--ink);
   font-family: var(--font-mono);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
   text-decoration: none;
-  box-shadow: 2.5px 2.5px 0 var(--ink);
-  transition: transform var(--transition), box-shadow var(--transition), background-color var(--transition);
+  transition: border-color var(--transition), background-color var(--transition);
 }
 
 .project-detail-back-link:hover {
-  transform: translate(-2px, -1px);
-  box-shadow: 4px 3px 0 var(--ink);
-  background: var(--blue-soft);
+  border-color: var(--ink);
+  background: var(--paper-2);
 }
 
 .back-arrow {
@@ -177,7 +175,7 @@
 
 .detail-card {
   background: var(--card-bg);
-  border: 2px solid var(--ink);
+  border: 1px solid var(--rule);
   border-radius: var(--radius-card);
   box-shadow: var(--shadow-hard);
   padding: clamp(24px, 4vw, 36px);
@@ -187,9 +185,9 @@
 }
 
 [data-theme='dark'] .detail-card {
-  background: var(--paper-2);
+  background: var(--card-bg);
   border-color: var(--rule);
-  box-shadow: 5px 5px 0 #000000;
+  box-shadow: var(--shadow-hard);
 }
 
 .detail-section-header {
@@ -484,20 +482,20 @@
    Academic Coursework Dossier Strip
    ========================================================= */
 .detail-academic-strip {
-  background: var(--paper-2);
-  border: 2px solid var(--ink);
-  border-radius: 16px;
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
   gap: 16px;
-  box-shadow: 4px 4px 0 var(--ink);
+  box-shadow: var(--shadow-hard);
 }
 
 [data-theme='dark'] .detail-academic-strip {
-  background: #1a1410;
+  background: var(--card-bg);
   border-color: var(--rule);
-  box-shadow: 4px 4px 0 #070504;
+  box-shadow: var(--shadow-hard);
 }
 
 .academic-strip-header {
@@ -587,30 +585,27 @@
 
 .case-pillar-card {
   background: var(--paper-2);
-  border: 2px solid var(--ink);
-  border-radius: 16px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
   padding: 22px 20px;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  box-shadow: 3.5px 3.5px 0 var(--ink);
-  transition: transform var(--transition), box-shadow var(--transition);
+  transition: transform var(--transition), border-color var(--transition);
 }
 
 .case-pillar-card:hover {
   transform: translateY(-2px);
-  box-shadow: 5px 5px 0 var(--ink);
+  border-color: var(--rule-strong);
 }
 
 [data-theme='dark'] .case-pillar-card {
-  background: #1a1410;
+  background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 3.5px 3.5px 0 #070504;
 }
 
 [data-theme='dark'] .case-pillar-card:hover {
   border-color: var(--blue);
-  box-shadow: 5px 5px 0 #070504;
 }
 
 .case-pillar-header {
@@ -717,19 +712,17 @@
 
 .case-recommendation-card {
   background: var(--paper-2);
-  border: 2px solid var(--ink);
-  border-radius: 14px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
   padding: 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 3.5px 3.5px 0 var(--ink);
 }
 
 [data-theme='dark'] .case-recommendation-card {
-  background: #1a1410;
+  background: var(--paper-2);
   border-color: var(--rule);
-  box-shadow: 3.5px 3.5px 0 #070504;
 }
 
 .case-rec-badge {

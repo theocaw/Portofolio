@@ -1,29 +1,21 @@
 /* =========================================================
-   SLOWBAR WORK PAGE: Interactive Vinyl Jukebox & Record Crates
+   KISSA WORK PAGE: Stereo Cassette Listening Desk & Tape Catalog
    ========================================================= */
 
-.slowbar-work-page {
+.kissa-work {
   display: flex;
   flex-direction: column;
-  padding-bottom: 80px;
 }
 
-.jukebox-hero {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  padding-top: 28px;
-  padding-bottom: clamp(44px, 5vw, 64px);
-  border-bottom: 2.5px solid var(--ink);
-}
-
-.jukebox-hero__container {
+.kissa-work-hero {
+  padding-top: clamp(32px, 5vw, 52px);
+  padding-bottom: clamp(48px, 6vw, 72px);
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 28px;
 }
 
-.jukebox-header-bar {
+.kissa-work-hero__head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -31,426 +23,156 @@
   flex-wrap: wrap;
 }
 
-.jukebox-eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--pink-hot);
-  letter-spacing: 0.6px;
-}
-
-.jukebox-main-title {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.8vw, 44px);
-  font-weight: 700;
-  letter-spacing: -1.2px;
-  line-height: 1.1;
+.kissa-work-hero__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(34px, 4.4vw, 56px);
+  line-height: 1.06;
   color: var(--ink);
-  margin-top: 4px;
+  margin-top: 6px;
+  max-width: 780px;
 }
 
-.jukebox-transport {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: var(--card-bg);
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-[data-theme='dark'] .jukebox-transport {
-  background: var(--paper-2);
-  border-color: var(--rule);
-  box-shadow: 3px 3px 0 #070504;
-}
-
-.jukebox-transport__btn {
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1.5px solid var(--ink);
-  background: var(--lime);
-  color: #231914;
-  font-size: 10.5px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-
-.jukebox-transport__btn:hover {
-  transform: translateY(-1px);
-  background: var(--pink);
-}
-
-.jukebox-transport__counter {
+.kissa-work-hero__count {
   font-size: 11px;
-  font-weight: 700;
-  color: var(--ink);
-  padding-inline: 6px;
+  letter-spacing: 1px;
+  color: var(--muted);
+  padding: 6px 12px;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
 }
 
-/* =========================================================
-   THE INTERACTIVE JUKEBOX BOOTH (Left Platter + Right Liner Notes)
-   ========================================================= */
-.jukebox-deck {
+.kissa-listening-desk {
   display: grid;
-  grid-template-columns: 430px 1fr;
-  gap: 24px;
+  grid-template-columns: 460px 1fr;
+  gap: 28px;
   align-items: stretch;
 }
 
-.jukebox-platter-box {
-  height: 100%;
+/* Right J-Card Liner Notes */
+.kissa-jcard {
   background: var(--card-bg);
-  border: 2.5px solid var(--ink);
-  border-radius: 26px;
-  padding: 20px;
-  box-shadow: 7px 7px 0 var(--ink);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 18px;
-}
-
-[data-theme='dark'] .jukebox-platter-box {
-  background: var(--paper-2);
-  border-color: var(--rule);
-  box-shadow: 7px 7px 0 #070504;
-}
-
-.jukebox-platter-box__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--muted);
-  padding-bottom: 10px;
-  border-bottom: 1.5px dashed var(--rule);
-}
-
-.jukebox-turntable-stage {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 14px 8px;
-  min-height: 220px;
-}
-
-/* Physical Square Album Jacket */
-.jukebox-sleeve {
-  position: relative;
-  z-index: 3;
-  width: 195px;
-  height: 195px;
-  border-radius: 16px;
-  border: 2.5px solid #231914;
-  box-shadow: 5px 6px 0 #231914;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #fbf7ef;
-}
-
-.jukebox-sleeve--matcha {
-  background: linear-gradient(145deg, #355e47 0%, #244231 100%);
-}
-.jukebox-sleeve--terracotta {
-  background: linear-gradient(145deg, #c24928 0%, #8f3319 100%);
-}
-.jukebox-sleeve--honey {
-  background: linear-gradient(145deg, #f3d285 0%, #d4a74a 100%);
-  color: #231914;
-}
-.jukebox-sleeve--sage {
-  background: linear-gradient(145deg, #2f6f5e 0%, #1e4b3f 100%);
-}
-.jukebox-sleeve--burgundy {
-  background: linear-gradient(145deg, #7c2d3b 0%, #521b25 100%);
-}
-
-.jukebox-sleeve__code {
-  font-size: 10px;
-  font-weight: 700;
-  opacity: 0.85;
-}
-
-.jukebox-sleeve__icon {
-  font-size: 32px;
-  line-height: 1;
-}
-
-.jukebox-sleeve__name {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1.15;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.jukebox-sleeve__role {
-  font-size: 9px;
-  opacity: 0.85;
-}
-
-/* Spinning Vinyl Record Protruding from Jacket */
-.jukebox-spinning-disc {
-  position: absolute;
-  right: 14px;
-  width: 184px;
-  height: 184px;
-  border-radius: 50%;
-  background:
-    conic-gradient(
-      from 0deg,
-      #18120e 0deg,
-      #2e231c 45deg,
-      #18120e 90deg,
-      #18120e 180deg,
-      #2e231c 225deg,
-      #18120e 270deg,
-      #18120e 360deg
-    );
-  border: 2.5px solid #0d0907;
-  box-shadow: 5px 6px 14px rgba(0, 0, 0, 0.35);
-  z-index: 2;
-  display: grid;
-  place-items: center;
-  animation: jukeboxSpin 3.2s linear infinite;
-}
-
-.jukebox-spinning-disc__grooves {
-  position: absolute;
-  inset: 16px;
-  border-radius: 50%;
-  border: 1px dashed rgba(255, 248, 235, 0.22);
-}
-
-.jukebox-spinning-disc__label {
-  width: 62px;
-  height: 62px;
-  border-radius: 50%;
-  border: 3px solid #f3d285;
-  display: grid;
-  place-items: center;
-  color: #fbf7ef;
-  font-size: 11px;
-  font-weight: 700;
-}
-
-@keyframes jukeboxSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.jukebox-track-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.jukebox-track-pill {
-  padding: 5px 10px;
-  border-radius: 999px;
-  border: 1.5px solid var(--ink);
-  background: var(--paper-2);
-  color: var(--ink);
-  font-size: 10px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 150ms ease, background-color 150ms ease;
-}
-
-.jukebox-track-pill:hover {
-  transform: translateY(-1px);
-  background: var(--pink-soft);
-}
-
-.jukebox-track-pill.is-active {
-  background: var(--lime);
-  color: #231914;
-  box-shadow: 2px 2px 0 var(--ink);
-}
-
-/* Right Column: Liner Notes & Scorecard */
-.jukebox-liner-notes {
-  height: 100%;
-  background: var(--card-bg);
-  border: 2.5px solid var(--ink);
-  border-top: 8px solid var(--blue);
-  border-radius: 26px;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
   padding: clamp(22px, 3vw, 32px);
-  box-shadow: 7px 7px 0 var(--ink);
+  box-shadow: var(--shadow-hard);
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.jukebox-deck--terracotta .jukebox-liner-notes {
-  border-top-color: #c24928;
-}
-.jukebox-deck--honey .jukebox-liner-notes {
-  border-top-color: #b46914;
-}
-.jukebox-deck--sage .jukebox-liner-notes {
-  border-top-color: #2f6f5e;
-}
-.jukebox-deck--burgundy .jukebox-liner-notes {
-  border-top-color: #7c2d3b;
-}
-
-[data-theme='dark'] .jukebox-liner-notes {
-  background: var(--paper-2);
-  border-color: var(--rule);
-  border-top-width: 8px;
-  box-shadow: 7px 7px 0 #070504;
-}
-
-.jukebox-liner-notes__meta {
+.kissa-jcard__top {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-}
-
-.jukebox-liner-notes__cat {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--pink-hot);
-  letter-spacing: 0.5px;
-}
-
-.jukebox-liner-notes__period {
   font-size: 10px;
-  color: var(--muted);
+  letter-spacing: 0.8px;
+  color: var(--pink-hot);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
 }
 
-.jukebox-liner-notes__title {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 700;
-  letter-spacing: -0.9px;
-  line-height: 1.12;
+.kissa-jcard__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.08;
   color: var(--ink);
 }
 
-.jukebox-liner-notes__tagline {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
+.kissa-jcard__tagline {
+  font-size: 15.5px;
+  font-weight: 500;
   color: var(--blue);
+  line-height: 1.45;
 }
 
-.jukebox-liner-notes__desc {
+.kissa-jcard__desc {
   font-size: 14px;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--muted);
 }
 
-.jukebox-scorecard {
+.kissa-jcard__metrics {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   margin-block: 4px;
 }
 
-.jukebox-scorecard__item {
+.kissa-jcard__metric {
   background: var(--paper-2);
-  border: 1.5px solid var(--ink);
-  border-radius: 14px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
   gap: 3px;
-  box-shadow: 2.5px 2.5px 0 var(--ink);
 }
 
-[data-theme='dark'] .jukebox-scorecard__item {
-  background: #140f0c;
-  border-color: var(--rule);
-  box-shadow: 2.5px 2.5px 0 #070504;
-}
-
-.jukebox-scorecard__k {
+.kissa-jcard__metric-k {
   font-size: 8.5px;
-  font-weight: 700;
   color: var(--muted);
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.jukebox-scorecard__v {
+.kissa-jcard__metric-v {
   font-family: var(--font-display);
   font-size: 14.5px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
 }
 
-.jukebox-liner-notes__footer {
+.kissa-jcard__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
   flex-wrap: wrap;
   margin-top: auto;
-  padding-top: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
 }
 
-.jukebox-tags {
+.kissa-jcard__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
 }
 
-.jukebox-tag {
-  font-size: 10px;
+.kissa-jcard__cta {
+  padding: 10px 18px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11px;
   font-weight: 600;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  color: var(--ink);
-}
-
-.jukebox-open-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 20px;
-  border-radius: 999px;
-  background: var(--lime);
-  color: #231914;
-  border: 2px solid var(--ink);
-  font-size: 11.5px;
-  font-weight: 700;
   text-decoration: none;
-  box-shadow: 4px 4px 0 var(--ink);
-  transition: transform 160ms ease, background-color 160ms ease;
+  transition: background-color var(--transition);
 }
 
-.jukebox-open-btn:hover {
-  transform: translate(2px, 2px);
-  background: var(--pink);
+.kissa-jcard__cta:hover {
+  background: var(--blue);
+  color: #faf8f4;
 }
 
 /* =========================================================
-   STAGE 2: PHYSICAL VINYL SLEEVES IN CRATE
+   STAGE 2: TAPE CATALOG SHELF
    ========================================================= */
-.vinyl-crate-browse {
-  padding-top: clamp(44px, 5vw, 64px);
-  padding-bottom: clamp(44px, 5vw, 64px);
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+.kissa-catalog-band {
+  border-block: 1px solid var(--rule);
+  padding-block: clamp(52px, 6vw, 80px);
 }
 
-.vinyl-crate-browse__header {
+.kissa-catalog {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.kissa-catalog__head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -458,468 +180,278 @@
   flex-wrap: wrap;
 }
 
-.vinyl-crate-browse__eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--blue);
-}
-
-.vinyl-crate-browse__title {
-  font-family: var(--font-display);
-  font-size: clamp(24px, 3vw, 34px);
-  font-weight: 700;
-  letter-spacing: -0.9px;
+.kissa-catalog__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.6vw, 44px);
+  line-height: 1.08;
   color: var(--ink);
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
-.work-filter-bar {
+.kissa-filters {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   gap: 8px;
 }
 
-.work-filter-pill {
+.kissa-filter-btn {
   padding: 7px 14px;
-  border-radius: 999px;
-  border: 2px solid var(--ink);
-  background: var(--card-bg);
-  color: var(--ink);
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 600;
+  border-radius: 4px;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
   cursor: pointer;
-  box-shadow: 2.5px 2.5px 0 var(--ink);
-  transition: transform 160ms ease, background-color 160ms ease;
+  transition: all var(--transition);
 }
 
-.work-filter-pill.is-active {
-  background: var(--lime);
-  color: #231914;
+.kissa-filter-btn:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.kissa-filter-btn.is-active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.kissa-tapes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 24px;
+}
+
+.kissa-tape-card {
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-hard);
+  transition: transform var(--transition), border-color var(--transition);
+}
+
+.kissa-tape-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--rule-strong);
+}
+
+.kissa-tape-card.is-loaded {
+  border-color: var(--pink-hot);
+}
+
+.kissa-tape-card__shell-wrap {
+  cursor: pointer;
+  transition: transform var(--transition);
+}
+
+.kissa-tape-card__shell-wrap:hover {
   transform: translateY(-2px);
 }
 
-/* Vinyl Sleeves Grid */
-.vinyl-sleeves-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
-  gap: 32px 44px;
-  padding-right: 26px;
-}
-
-.vinyl-record-card {
-  position: relative;
-  cursor: pointer;
-  transition: transform 260ms cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.vinyl-record-card:hover {
-  transform: translateY(-6px);
-}
-
-/* Protruding Vinyl Disc on the Right Edge */
-.vinyl-record-card__disc {
-  position: absolute;
-  top: 50%;
-  right: -26px;
-  transform: translateY(-50%);
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at center, transparent 30%, rgba(255, 248, 235, 0.12) 31%, transparent 33%),
-    #18120e;
-  border: 2.5px solid #0d0907;
-  box-shadow: 4px 6px 14px rgba(0, 0, 0, 0.28);
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  transition: right 320ms cubic-bezier(0.34, 1.56, 0.64, 1), transform 600ms ease;
-}
-
-.vinyl-record-card:hover .vinyl-record-card__disc,
-.vinyl-record-card.is-loaded .vinyl-record-card__disc {
-  right: -42px;
-  transform: translateY(-50%) rotate(140deg);
-}
-
-.vinyl-record-card__disc-label {
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  border: 2.5px solid #f3d285;
-}
-
-/* Vinyl Jacket Card */
-.vinyl-record-card__jacket {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  background: var(--card-bg);
-  border: 2.5px solid var(--ink);
-  border-left: 8px solid var(--blue);
-  border-radius: 20px;
-  padding: 22px;
-  box-shadow: 6px 6px 0 var(--ink);
+.kissa-tape-card__body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 14px;
+  gap: 10px;
+  flex: 1;
 }
 
-.vinyl-record-card--terracotta .vinyl-record-card__jacket {
-  border-left-color: #c24928;
-}
-.vinyl-record-card--honey .vinyl-record-card__jacket {
-  border-left-color: #b46914;
-}
-.vinyl-record-card--sage .vinyl-record-card__jacket {
-  border-left-color: #2f6f5e;
-}
-.vinyl-record-card--burgundy .vinyl-record-card__jacket {
-  border-left-color: #7c2d3b;
-}
-
-.vinyl-record-card.is-loaded .vinyl-record-card__jacket {
-  background: var(--blue-soft);
-}
-
-[data-theme='dark'] .vinyl-record-card__jacket {
-  background: var(--paper-2);
-  border-color: var(--rule);
-  border-left-width: 8px;
-  box-shadow: 6px 6px 0 #070504;
-}
-
-[data-theme='dark'] .vinyl-record-card.is-loaded .vinyl-record-card__jacket {
-  background: #241c16;
-}
-
-.vinyl-record-card__top {
+.kissa-tape-card__meta {
   display: flex;
-  align-items: center;
   justify-content: space-between;
   gap: 8px;
-  flex-wrap: wrap;
-}
-
-.vinyl-record-card__track {
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--lime);
-  color: #231914;
-  border: 1.5px solid var(--ink);
-}
-
-.vinyl-record-card__role {
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 9.5px;
   color: var(--muted);
+  letter-spacing: 0.6px;
 }
 
-.vinyl-record-card__main {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.vinyl-record-card__cat {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--pink-hot);
-}
-
-.vinyl-record-card__title {
-  font-family: var(--font-display);
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: -0.5px;
-  line-height: 1.18;
+.kissa-tape-card__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 1.12;
   color: var(--ink);
 }
 
-.vinyl-record-card__tagline {
+.kissa-tape-card__tagline {
   font-size: 13.5px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--muted);
 }
 
-.vinyl-record-card__mini-scores {
+.kissa-tape-card__metrics {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
+  margin-top: 4px;
 }
 
-.vinyl-record-card__score {
+.kissa-tape-card__metric {
   background: var(--paper-2);
-  border: 1.5px solid var(--rule);
-  border-radius: 12px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
   padding: 8px 10px;
   display: flex;
   flex-direction: column;
   gap: 2px;
 }
 
-[data-theme='dark'] .vinyl-record-card__score {
-  background: #140f0c;
-}
-
-.vinyl-record-card__score span {
+.kissa-tape-card__metric span {
   font-size: 8.5px;
   color: var(--muted);
   text-transform: uppercase;
 }
 
-.vinyl-record-card__score strong {
+.kissa-tape-card__metric strong {
   font-family: var(--font-display);
   font-size: 13.5px;
   color: var(--ink);
 }
 
-.vinyl-record-card__actions {
-  padding-top: 6px;
-}
-
-.vinyl-record-card__cta {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 11px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: background-color 160ms ease, color 160ms ease;
-}
-
-.vinyl-record-card:hover .vinyl-record-card__cta {
-  background: var(--blue);
-  color: #fbf7ef;
-}
-
-[data-theme='dark'] .vinyl-record-card__cta {
-  background: var(--lime);
-  color: #130f0c;
-}
-
-/* =========================================================
-   STAGE 3: ON-GOING DUBPLATES / BREWING SECTION
-   ========================================================= */
-.slowbar-brewing-section {
-  padding-block: clamp(44px, 5vw, 68px);
-  border-top: 2px solid var(--rule);
-}
-
-.slowbar-brewing-container {
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-}
-
-.slowbar-brewing-header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.ongoing-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  border: 2px solid var(--ink);
-  background: var(--lime);
-  color: #231914;
-  font-size: 11px;
-  font-weight: 700;
-  box-shadow: 2.5px 2.5px 0 var(--ink);
-}
-
-.ongoing-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 8px #22c55e;
-}
-
-.ongoing-dot--sm {
-  width: 7px;
-  height: 7px;
-}
-
-.slowbar-brewing-title {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 3.2vw, 36px);
-  font-weight: 700;
-  letter-spacing: -0.9px;
-  color: var(--ink);
-}
-
-.slowbar-brewing-sub {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-.ongoing-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-  gap: 22px;
-}
-
-.ongoing-card {
-  background: var(--card-bg);
-  border: 2px solid var(--ink);
-  border-radius: 22px;
-  box-shadow: 5px 5px 0 var(--ink);
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.ongoing-card__top {
+.kissa-tape-card__actions {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
 }
 
-.ongoing-card__index {
-  font-size: 11.5px;
-  font-weight: 700;
+.kissa-tape-card__load-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
+  color: var(--ink);
+  font-size: 10.5px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+.kissa-tape-card__load-btn:hover {
+  background: var(--paper-2);
+}
+
+.kissa-tape-card__open-btn {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.kissa-tape-card__open-btn:hover {
   color: var(--pink-hot);
 }
 
-.ongoing-card__status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 999px;
-  background: var(--lime);
-  color: #231914;
-  border: 1px solid var(--ink);
-}
-
-.ongoing-card__body {
+/* =========================================================
+   STAGE 3: ON-GOING MASTER TAPES
+   ========================================================= */
+.kissa-ongoing {
+  padding-block: clamp(52px, 6vw, 80px);
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 28px;
 }
 
-.ongoing-card__category {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--blue);
-}
-
-.ongoing-card__title {
-  font-family: var(--font-display);
-  font-size: 23px;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.role-badge-wrap {
+.kissa-ongoing__head {
   display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-.role-badge {
-  display: inline-flex;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: var(--blue-soft);
-  border: 1.5px solid var(--ink);
-  color: var(--ink);
-  font-family: var(--font-mono);
+.kissa-ongoing__sub {
+  font-size: 14.5px;
+  color: var(--muted);
+}
+
+.kissa-ongoing__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 22px;
+}
+
+.kissa-ongoing-card {
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: var(--shadow-hard);
+}
+
+.kissa-ongoing-card__top {
+  display: flex;
+  justify-content: space-between;
   font-size: 10px;
-  font-weight: 700;
+  color: var(--muted);
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
 }
 
-.ongoing-card__tagline {
-  font-size: 13.5px;
+.kissa-ongoing-card__status {
+  color: var(--blue);
   font-weight: 600;
+}
+
+.kissa-ongoing-card__cat {
+  font-size: 9.5px;
+  color: var(--pink-hot);
+}
+
+.kissa-ongoing-card__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--ink);
+}
+
+.kissa-ongoing-card__tagline {
+  font-size: 14px;
+  font-weight: 500;
   color: var(--blue);
 }
 
-.ongoing-card__description {
-  font-size: 13px;
+.kissa-ongoing-card__desc {
+  font-size: 13.5px;
   line-height: 1.65;
   color: var(--muted);
 }
 
-.ongoing-card__metrics {
+.kissa-ongoing-card__metrics {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  padding-top: 10px;
-  border-top: 1px dashed var(--rule);
+  gap: 10px;
+  padding-block: 10px;
+  border-block: 1px solid var(--rule);
 }
 
-.ongoing-mini-metric {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.mini-label {
+.kissa-ongoing-card__metrics span {
+  display: block;
   font-size: 8.5px;
   color: var(--muted);
   text-transform: uppercase;
 }
 
-.mini-val {
+.kissa-ongoing-card__metrics strong {
   font-family: var(--font-display);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 12.5px;
   color: var(--ink);
 }
 
-.ongoing-card__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  list-style: none;
-  padding: 0;
-  margin-top: auto;
-}
-
-.tag--ongoing {
-  font-size: 9.5px;
-  padding: 3px 8px;
-  border-radius: 999px;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-}
-
-@media (max-width: 1024px) {
-  .jukebox-deck {
+@media (max-width: 1040px) {
+  .kissa-listening-desk {
     grid-template-columns: 1fr;
   }
 
-  .jukebox-scorecard {
+  .kissa-jcard__metrics {
     grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .vinyl-sleeves-grid {
-    grid-template-columns: 1fr;
-    padding-right: 0;
-  }
-
-  .vinyl-record-card__disc {
-    display: none;
   }
 }

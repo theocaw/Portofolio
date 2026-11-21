@@ -1,225 +1,145 @@
 /* =========================================================
-   SLOWBAR FOOTER: Cashier Counter & Tactile Café Receipt
+   KISSA FOOTER: Minimal Architectural Colophon
    ========================================================= */
 
-.contact-footer {
-  border-top: 2.5px solid var(--ink);
+.kissa-footer {
+  border-top: 1px solid var(--rule);
+  background: var(--paper);
 }
 
-.contact-footer__inner {
+.kissa-footer__inner {
+  padding-top: clamp(56px, 7vw, 84px);
+  padding-bottom: 40px;
   display: flex;
   flex-direction: column;
-  gap: 36px;
-  padding-top: clamp(48px, 6vw, 72px);
-  /* Extra bottom padding so floating bottom dock never covers the receipt */
-  padding-bottom: 108px;
+  gap: 48px;
 }
 
-.slowbar-checkout-grid {
+.kissa-footer__grid {
   display: grid;
-  grid-template-columns: 1.35fr 380px;
-  gap: 40px;
-  align-items: center;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(32px, 5vw, 72px);
+  align-items: start;
 }
 
-.slowbar-checkout__pitch {
+.kissa-footer__pitch {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
-.slowbar-checkout__eyebrow {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--pink-hot);
-  letter-spacing: 0.6px;
-}
-
-.contact-footer__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(36px, 5vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -1.8px;
+.kissa-footer__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(36px, 4.8vw, 56px);
+  line-height: 1.04;
   color: var(--ink);
 }
 
-.slowbar-checkout__sub {
-  font-size: 15px;
+.kissa-footer__sub {
+  font-size: 14.5px;
   line-height: 1.65;
   color: var(--muted);
-  max-width: 560px;
+  max-width: 520px;
 }
 
-.slowbar-checkout__cta-row {
+.kissa-footer__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 6px;
+  gap: 10px;
+  margin-top: 8px;
 }
 
-.slowbar-checkout__primary-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: 999px;
+.kissa-footer__primary {
+  padding: 11px 22px;
+  border-radius: 4px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 11.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--transition);
+}
+
+.kissa-footer__primary:hover {
   background: var(--blue);
-  color: #fbf7ef;
-  border: 2px solid var(--ink);
-  font-size: 12.5px;
-  font-weight: 700;
-  text-decoration: none;
-  box-shadow: 4px 4px 0 var(--ink);
-  transition: transform 160ms ease, background-color 160ms ease;
+  color: #faf8f4;
 }
 
-.slowbar-checkout__primary-btn:hover {
-  transform: translate(2px, 2px);
-  background: var(--pink-hot);
-}
-
-[data-theme='dark'] .slowbar-checkout__primary-btn {
-  color: #130f0c;
-  border-color: #070504;
-  box-shadow: 4px 4px 0 #070504;
-}
-
-.slowbar-checkout__copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 20px;
-  border-radius: 999px;
-  background: var(--card-bg);
+.kissa-footer__copy {
+  padding: 11px 18px;
+  border-radius: 4px;
+  border: 1px solid var(--rule-strong);
+  background: transparent;
   color: var(--ink);
-  border: 2px solid var(--ink);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11.5px;
   cursor: pointer;
-  box-shadow: 4px 4px 0 var(--ink);
-  transition: transform 160ms ease, background-color 160ms ease;
+  transition: background-color var(--transition), border-color var(--transition);
 }
 
-.slowbar-checkout__copy-btn:hover {
-  transform: translateY(-2px);
-  background: var(--lime);
-  color: #231914;
-}
-
-.slowbar-checkout__copy-btn.is-copied {
-  background: var(--lime);
-  color: #231914;
-}
-
-[data-theme='dark'] .slowbar-checkout__copy-btn {
+.kissa-footer__copy:hover {
   background: var(--paper-2);
-  border-color: var(--rule);
-  box-shadow: 4px 4px 0 #070504;
+  border-color: var(--ink);
 }
 
-/* Tactile Slowbar Café Receipt */
-.slowbar-receipt {
-  background: #fbf7ef;
-  color: #231914;
-  border: 2.5px solid #231914;
-  border-radius: 18px;
-  padding: 22px 24px;
-  box-shadow: 7px 8px 0 #231914;
+.kissa-footer__directory {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  transform: rotate(1deg);
+  gap: 14px;
 }
 
-[data-theme='dark'] .slowbar-receipt {
-  background: #221a14;
-  color: #f5ecdc;
-  border-color: var(--rule);
-  box-shadow: 7px 8px 0 #070504;
+.kissa-footer__dir-head {
+  font-size: 9.5px;
+  letter-spacing: 1px;
+  color: var(--muted);
 }
 
-.slowbar-receipt__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 2px dashed rgba(107, 88, 72, 0.45);
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.slowbar-receipt__items {
+.kissa-footer__links {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  font-size: 11px;
 }
 
-.slowbar-receipt__row {
+.kissa-footer__links a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
-}
-
-.slowbar-receipt__row strong {
-  color: var(--pink-hot);
-}
-
-.slowbar-receipt__socials {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding-top: 12px;
-  border-top: 2px dashed rgba(107, 88, 72, 0.45);
-}
-
-.slowbar-receipt__link {
-  flex: 1;
-  text-align: center;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1.5px solid currentColor;
-  font-size: 10.5px;
-  font-weight: 700;
-  color: inherit;
-  text-decoration: none;
-  transition: background-color 150ms ease, color 150ms ease;
-}
-
-.slowbar-receipt__link:hover {
-  background: #f3d285;
-  color: #231914;
-}
-
-.slowbar-receipt__barcode {
-  text-align: center;
+  gap: 12px;
+  padding-block: 13px;
+  border-top: 1px solid var(--rule);
   font-size: 14px;
-  letter-spacing: 3px;
-  opacity: 0.55;
-  padding-top: 4px;
+  color: var(--ink);
+  text-decoration: none;
+  transition: color var(--transition);
 }
 
-.contact-footer__colophon {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-top: 20px;
-  border-top: 1.5px solid var(--rule);
+.kissa-footer__links li:last-child a {
+  border-bottom: 1px solid var(--rule);
+}
+
+.kissa-footer__links a span.mono {
   font-size: 11px;
   color: var(--muted);
 }
 
-@media (max-width: 899px) {
-  .slowbar-checkout-grid {
-    grid-template-columns: 1fr;
-  }
+.kissa-footer__links a:hover,
+.kissa-footer__links a:hover span.mono {
+  color: var(--pink-hot);
+}
 
-  .slowbar-receipt {
-    transform: none;
+.kissa-footer__colophon {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: 0.9px;
+  color: var(--muted);
+}
+
+@media (max-width: 860px) {
+  .kissa-footer__grid {
+    grid-template-columns: 1fr;
   }
 }

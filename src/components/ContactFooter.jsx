@@ -20,110 +20,72 @@ export default function ContactFooter() {
   };
 
   return (
-    <footer className="band band--paper-2 contact-footer" id="contact">
-      <div className="container contact-footer__inner">
-        <div className="slowbar-checkout-grid">
-          {/* Left: Direct Slowbar Counter Call-to-Action */}
-          <div className="slowbar-checkout__pitch">
-            <span className="mono slowbar-checkout__eyebrow">
-              ☕ {lang === 'id' ? 'MEJA KASIR & PEMINJAMAN ARSIP' : 'SLOWBAR CASHIER & LIBRARY CHECKOUT'}
+    <footer className="kissa-footer" id="contact">
+      <div className="container kissa-footer__inner">
+        <div className="kissa-footer__grid">
+          <div className="kissa-footer__pitch">
+            <span className="mono kissa-eyebrow">
+              {lang === 'id' ? 'HUBUNGI LANGSUNG' : 'DIRECT CORRESPONDENCE'}
             </span>
-            <h2 className="contact-footer__title">{contact.title}</h2>
-            <p className="slowbar-checkout__sub">
+            <h2 className="kissa-footer__title">{contact.title}</h2>
+            <p className="kissa-footer__sub">
               {lang === 'id'
-                ? 'Tertarik mengajakku magang sebagai Data Analyst atau Front-End Developer? Cukup satu klik untuk mengirim pesan atau menyalin emailku.'
-                : 'Looking for a Data Analyst or Front-End Developer intern? Reach out directly with one click below.'}
+                ? 'Terbuka untuk peluang magang Data Analyst & Front-End Developer (Bogor / Jakarta / Remote).'
+                : 'Open for Data Analyst & Front-End Developer internship opportunities (Bogor / Jakarta / Remote).'}
             </p>
 
-            <div className="slowbar-checkout__cta-row">
-              <a href={`mailto:${site.email}`} className="mono slowbar-checkout__primary-btn">
-                ✉️ {lang === 'id' ? 'Kirim Email ke Osanna ↗' : 'Email Osanna Directly ↗'}
+            <div className="kissa-footer__actions">
+              <a href={`mailto:${site.email}`} className="mono kissa-footer__primary">
+                {lang === 'id' ? 'Kirim Email ↗' : 'Email Osanna ↗'}
               </a>
-
               <button
                 type="button"
-                className={`mono slowbar-checkout__copy-btn ${copied ? 'is-copied' : ''}`}
+                className="mono kissa-footer__copy"
                 onClick={copyEmail}
               >
                 {copied
                   ? lang === 'id'
-                    ? '✓ Email Tersalin!'
-                    : '✓ Copied to Clipboard!'
-                  : `📋 ${site.email}`}
+                    ? 'Email Tersalin'
+                    : 'Copied to Clipboard'
+                  : site.email}
               </button>
             </div>
           </div>
 
-          {/* Right: Tactile Slowbar Café Receipt / Library Checkout Slip */}
-          <div className="slowbar-receipt contact-footer__details">
-            <div className="slowbar-receipt__header">
-              <span className="mono slowbar-receipt__shop">OSANNA’S SLOWBAR · EST. 2026</span>
-              <span className="mono slowbar-receipt__no">RECEIPT #OPL-2026</span>
-            </div>
-
-            <div className="mono slowbar-receipt__items">
-              <div className="slowbar-receipt__row">
-                <span>01x DATA ANALYST INTERN</span>
-                <strong>READY</strong>
-              </div>
-              <div className="slowbar-receipt__row">
-                <span>01x FRONT-END DEVELOPER</span>
-                <strong>READY</strong>
-              </div>
-              <div className="slowbar-receipt__row">
-                <span>01x IPB SOFTWARE ENG (TPL)</span>
-                <strong>GPA 3.63</strong>
-              </div>
-              <div className="slowbar-receipt__row">
-                <span>05x VERIFIED CASE STUDIES</span>
-                <strong>45 RPM</strong>
-              </div>
-            </div>
-
-            <div className="slowbar-receipt__socials">
+          <div className="kissa-footer__directory">
+            <span className="mono kissa-footer__dir-head">
+              {lang === 'id' ? 'INDEKS TAUTAN' : 'ARCHIVE LINKS'}
+            </span>
+            <ul className="kissa-footer__links">
               {site.github && (
-                <a
-                  href={site.github.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mono slowbar-receipt__link"
-                >
-                  GitHub ↗
-                </a>
+                <li>
+                  <a href={site.github.url} target="_blank" rel="noreferrer">
+                    <span>GitHub</span>
+                    <span className="mono">{site.github.label} ↗</span>
+                  </a>
+                </li>
               )}
-              <a
-                href={site.linkedin.url}
-                target="_blank"
-                rel="noreferrer"
-                className="mono slowbar-receipt__link"
-              >
-                LinkedIn ↗
-              </a>
-              <a
-                href={site.instagram.url}
-                target="_blank"
-                rel="noreferrer"
-                className="mono slowbar-receipt__link"
-              >
-                Instagram ↗
-              </a>
-            </div>
-
-            <div className="mono slowbar-receipt__barcode" aria-hidden="true">
-              ||| || |||| | ||| |||| || | ||| ||||
-            </div>
+              <li>
+                <a href={site.linkedin.url} target="_blank" rel="noreferrer">
+                  <span>LinkedIn</span>
+                  <span className="mono">{site.linkedin.label} ↗</span>
+                </a>
+              </li>
+              <li>
+                <a href={site.instagram.url} target="_blank" rel="noreferrer">
+                  <span>Instagram</span>
+                  <span className="mono">{site.instagram.label} ↗</span>
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <div className="contact-footer__colophon">
-          <p className="mono contact-footer__built">
-            {lang === 'id'
-              ? 'DISEDUH & DIKEMBANGKAN DI SLOWBAR OSANNA · BOGOR / JAKARTA'
-              : 'BREWED & ENGINEERED AT OSANNA’S SLOWBAR · BOGOR / JAKARTA'}
-          </p>
-          <p className="contact-footer__copy-mark">
-            © {site.year} {site.name}
-          </p>
+        <div className="kissa-footer__colophon">
+          <span className="mono">
+            OSANNA PATRICIA LIMBONG · ARCHIVE &amp; LISTENING ROOM
+          </span>
+          <span className="mono">© {site.year}</span>
         </div>
       </div>
     </footer>

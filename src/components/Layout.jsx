@@ -2,57 +2,43 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import SiteHeader from './SiteHeader.jsx';
 import ContactFooter from './ContactFooter.jsx';
-import PinyoCompanion from './PinyoCompanion.jsx';
-import CustomCursor from './CustomCursor.jsx';
-import ScrollComet from './ScrollComet.jsx';
 import CommandPalette from './CommandPalette.jsx';
 import SplashIntro from './SplashIntro.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
 const JUMP_SELECTOR = [
-  // Shared across pages
-  '.slowbar-checkout__pitch',
-  '.contact-footer__details',
-  '.contact-footer__colophon',
-  // Home (Slowbar Counter, Picker Lamp & Unboxing Crate)
-  '.slowbar-booth',
-  '.slowbar-reading-desk',
-  '.slowbar-crate-header',
-  '.slowbar-wooden-crate',
-  // About (Open Hardcover Book & Wooden Card Catalog Drawers)
-  '.library-header-bar',
-  '.library-hardcover-book',
-  '.library-catalog-header',
-  '.library-drawers-grid > .library-drawer',
-  '.work-invitation',
-  // Work (Vinyl Jukebox & Record Crates)
-  '.jukebox-header-bar',
-  '.jukebox-deck',
-  '.vinyl-crate-browse__header',
-  '.vinyl-sleeves-grid > .vinyl-record-card',
-  '.slowbar-brewing-header',
-  '.ongoing-grid > .ongoing-card',
+  // Shared
+  '.kissa-footer__pitch',
+  '.kissa-footer__directory',
+  // Home
+  '.kissa-hero__left',
+  '.kissa-hero__right',
+  '.kissa-ledger__item',
+  '.kissa-volumes > .kissa-volume',
+  '.kissa-portrait',
+  // Work
+  '.kissa-work-hero__head',
+  '.kissa-listening-desk',
+  '.kissa-tapes-grid > .kissa-tape-card',
+  '.kissa-ongoing__grid > .kissa-ongoing-card',
+  // About
+  '.kissa-about-hero',
+  '.kissa-monograph__col',
+  '.kissa-catalog-grid > .kissa-index-card',
+  // Journey
+  '.kissa-journey-hero',
+  '.kissa-intern-dossier',
+  '.kissa-orgs-grid > .kissa-org-card',
+  '.kissa-awards-grid > .kissa-award-card',
   // Project Detail
-  '.project-detail-nav',
   '.project-detail-hero',
   '.detail-academic-strip',
   '.project-detail-body > .detail-card',
-  '.detail-metrics-grid > .detail-metric-pill',
   '.case-pillars-grid > .case-pillar-card',
-  '.case-recommendations-grid > .case-recommendation-card',
-  '.project-pager-card:not(.is-disabled)',
-  // Journey (Field Ticket, Masking-Tape Bulletin Board & Trophy Shelf)
-  '.logbook-header-bar',
-  '.dispatch-ticket',
-  '.bulletin-board-header',
-  '.organizations-bento > .org-bento-card',
-  '.trophy-shelf-header',
-  '.achievements-showcase-grid > .achievement-showcase-card',
 ].join(', ');
 
-const TILT_SELECTOR =
-  '.library-drawer, .gpa, .ongoing-card, .vinyl-record-card, .org-bento-card, .achievement-showcase-card, .case-pillar-card, .case-recommendation-card';
+const TILT_SELECTOR = '.kissa-volume, .kissa-tape-card';
 
 function getDocumentBounds(el) {
   const height = el.offsetHeight;
@@ -268,9 +254,6 @@ export default function Layout() {
         <Outlet />
       </main>
       <ContactFooter />
-      <PinyoCompanion />
-      <CustomCursor />
-      <ScrollComet />
       <CommandPalette />
     </>
   );

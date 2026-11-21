@@ -1,19 +1,18 @@
 import { useState } from 'react';
-import PageBackdrop from '../components/PageBackdrop.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getJourneyContent } from '../content/journey.js';
 import './Journey.css';
 
 const ACHIEVEMENT_FILTERS = {
   en: [
-    { id: 'all', label: 'All Plaques' },
-    { id: 'award', label: '🏆 Competition Awards' },
-    { id: 'verified', label: '✦ Certifications' },
+    { id: 'all', label: 'All Credentials' },
+    { id: 'award', label: 'Competition Awards' },
+    { id: 'verified', label: 'Certifications' },
   ],
   id: [
-    { id: 'all', label: 'Semua Plakat' },
-    { id: 'award', label: '🏆 Juara Kompetisi' },
-    { id: 'verified', label: '✦ Sertifikasi Resmi' },
+    { id: 'all', label: 'Semua Pencapaian' },
+    { id: 'award', label: 'Juara Kompetisi' },
+    { id: 'verified', label: 'Sertifikasi Resmi' },
   ],
 };
 
@@ -23,9 +22,7 @@ export default function Journey() {
   const { intro, professional, organizations, achievements } = journey;
   const { internship } = professional;
 
-  const [activeTab, setActiveTab] = useState('all'); // 'all' | 'intern' | 'orgs' | 'awards'
   const [achFilter, setAchFilter] = useState('all');
-
   const filterList = ACHIEVEMENT_FILTERS[lang] || ACHIEVEMENT_FILTERS.en;
 
   const visibleAchievements =
@@ -35,264 +32,204 @@ export default function Journey() {
         ? achievements.entries.filter((a) => a.badgeType === 'verified')
         : achievements.entries.filter((a) => a.badgeType !== 'verified');
 
-  const chapterTabs = [
-    { id: 'all', label: lang === 'id' ? '📔 Semua Arsip' : '📔 Full Logbook' },
-    { id: 'intern', label: lang === 'id' ? '🏢 Magang Industri (PT KCT)' : '🏢 Industry Dispatch (PT KCT)' },
-    { id: 'orgs', label: lang === 'id' ? '📌 Papan Organisasi (5)' : '📌 Bulletin Board (5 Orgs)' },
-    { id: 'awards', label: lang === 'id' ? '🏆 Rak Piala & Sertifikat (6)' : '🏆 Trophy & Cert Shelf (6)' },
-  ];
-
   return (
-    <div className="slowbar-journey-page">
-      {/* =========================================================
-          TOP LOGBOOK STAGE & CHAPTER TABS
-         ========================================================= */}
-      <section className="logbook-hero">
-        <PageBackdrop variant="fireflies" />
+    <div className="kissa-journey">
+      {/* Header */}
+      <section className="container kissa-journey-hero">
+        <span className="mono kissa-eyebrow">
+          {lang === 'id' ? '04 / LOGBOOK PERJALANAN & ARSIP KREDENSIAL' : '04 / FIELD LOGBOOK & CREDENTIALS ARCHIVE'}
+        </span>
+        <h1 className="kissa-journey-hero__title">{intro.headline}</h1>
+        <p className="kissa-journey-hero__desc">{intro.description}</p>
+      </section>
 
-        <div className="container logbook-hero__container">
-          <div className="logbook-header-bar">
-            <div>
-              <span className="mono logbook-eyebrow">
-                📔 {lang === 'id' ? 'LOGBOOK PERJALANAN & PAPAN BULETIN SLOWBAR' : 'SLOWBAR TRAVELER LOGBOOK & BULLETIN BOARD'}
-              </span>
-              <h1 className="logbook-main-title">{intro.headline}</h1>
-              <p className="logbook-sub-desc">{intro.description}</p>
-            </div>
-
-            <div className="logbook-tabs" role="tablist">
-              {chapterTabs.map((t) => (
-                <button
-                  key={t.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeTab === t.id}
-                  className={`mono logbook-tab-btn ${activeTab === t.id ? 'is-active' : ''}`}
-                  onClick={() => setActiveTab(t.id)}
-                >
-                  {t.label}
-                </button>
-              ))}
-            </div>
+      {/* Chapter 01: Industry Internship Dossier */}
+      <section className="band band--paper-2 kissa-journey-band">
+        <div className="container kissa-journey-section">
+          <div className="kissa-section-head">
+            <span className="mono kissa-eyebrow">{professional.label}</span>
+            <h2 className="kissa-section-title">{professional.title}</h2>
           </div>
 
-          {/* =========================================================
-              CHAPTER 01: PERFORATED FIELD DISPATCH TICKET (PT KCT INTERNSHIP)
-             ========================================================= */}
-          {(activeTab === 'all' || activeTab === 'intern') && (
-            <article className="dispatch-ticket experience-dossier">
-              {/* Left Main Manifest */}
-              <div className="dispatch-ticket__main">
-                <div className="dispatch-ticket__top">
-                  <span className="mono dispatch-ticket__stamp">
-                    ✦ FIELD DISPATCH #01 · {internship.period}
-                  </span>
-                  <span className="mono dispatch-ticket__loc">📍 {internship.location}</span>
-                </div>
-
-                <h2 className="dispatch-ticket__company">{internship.company}</h2>
-                <div className="dispatch-ticket__role-row">
-                  <span className="role-badge">{internship.role}</span>
-                  <a
-                    href={internship.website.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="mono dispatch-ticket__live-btn"
-                  >
-                    {internship.website.label}
-                  </a>
-                </div>
-
-                <p className="dispatch-ticket__desc">{internship.description}</p>
-
-                <div className="dispatch-ticket__deliverables">
-                  <span className="mono dispatch-ticket__subhead">
-                    ✦ {lang === 'id' ? 'KONTRIBUSI & DELIVERABLES:' : 'VERIFIED DELIVERABLES:'}
-                  </span>
-                  <ul>
-                    {internship.deliverables.map((item, idx) => (
-                      <li key={idx}>
-                        <span className="deliverable-check">✓</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="dispatch-ticket__skills">
-                  {internship.skills.map((skill) => (
-                    <span key={skill} className="mono dispatch-skill-chip">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+          <article className="kissa-intern-dossier">
+            <div className="kissa-intern-dossier__main">
+              <div className="mono kissa-intern-dossier__meta">
+                <span>{internship.period}</span>
+                <span>{internship.location}</span>
               </div>
 
-              {/* Perforated Tear Line */}
-              <div className="dispatch-ticket__perforation" aria-hidden="true" />
+              <h3 className="kissa-intern-dossier__company">{internship.company}</h3>
 
-              {/* Right Ticket Stub: 3 Impact Coasters */}
-              <div className="dispatch-ticket__stub">
-                <span className="mono dispatch-ticket__stub-head">
-                  {lang === 'id' ? 'BUKTI DAMPAK' : 'IMPACT STUB'}
+              <div className="kissa-intern-dossier__role-row">
+                <span className="mono kissa-role-tag">{internship.role}</span>
+                <a
+                  href={internship.website.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="mono kissa-live-link"
+                >
+                  {internship.website.label}
+                </a>
+              </div>
+
+              <p className="kissa-intern-dossier__desc">{internship.description}</p>
+
+              <div className="kissa-deliverables">
+                <span className="mono kissa-deliverables__head">
+                  {lang === 'id' ? 'KONTRIBUSI & DELIVERABLES' : 'KEY RESPONSIBILITIES & DELIVERABLES'}
                 </span>
-                <div className="dispatch-ticket__metrics">
-                  {internship.metrics.map((m) => (
-                    <div key={m.label} className="dispatch-stub-card">
-                      <span className="mono dispatch-stub-card__k">{m.label}</span>
-                      <strong className="dispatch-stub-card__v">{m.value}</strong>
-                      <span className="dispatch-stub-card__note">{m.note}</span>
-                    </div>
+                <ul>
+                  {internship.deliverables.map((item, idx) => (
+                    <li key={idx}>
+                      <span className="mono kissa-deliverables__num">0{idx + 1}</span>
+                      <span>{item}</span>
+                    </li>
                   ))}
-                </div>
+                </ul>
               </div>
-            </article>
-          )}
+
+              <div className="kissa-tags-row">
+                {internship.skills.map((skill) => (
+                  <span key={skill} className="tag">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <aside className="kissa-intern-dossier__metrics">
+              <span className="mono kissa-intern-dossier__metrics-head">
+                {lang === 'id' ? 'RINGKASAN DAMPAK' : 'MEASURED OUTCOMES'}
+              </span>
+              {internship.metrics.map((m) => (
+                <div key={m.label} className="kissa-intern-metric">
+                  <span className="mono kissa-intern-metric__k">{m.label}</span>
+                  <strong className="kissa-intern-metric__v">{m.value}</strong>
+                  <span className="kissa-intern-metric__note">{m.note}</span>
+                </div>
+              ))}
+            </aside>
+          </article>
         </div>
       </section>
 
-      {/* =========================================================
-          CHAPTER 02: MASKING-TAPE CAFE BULLETIN BOARD (ORGANIZATIONS)
-         ========================================================= */}
-      {(activeTab === 'all' || activeTab === 'orgs') && (
-        <section className="band band--paper-2 bulletin-board-section">
-          <div className="container bulletin-board-container">
-            <div className="bulletin-board-header">
-              <span className="mono logbook-eyebrow">
-                📌 {organizations.label} · {lang === 'id' ? 'PAPAN BULETIN KAFE' : 'TAPED STUDIO BULLETIN BOARD'}
-              </span>
-              <h2 className="bulletin-board-title">{organizations.title}</h2>
-              <p className="bulletin-board-desc">{organizations.description}</p>
-            </div>
+      {/* Chapter 02: Organizations & Leadership */}
+      <section className="container kissa-journey-section kissa-journey-section--padded">
+        <div className="kissa-section-head">
+          <span className="mono kissa-eyebrow">{organizations.label}</span>
+          <h2 className="kissa-section-title">{organizations.title}</h2>
+          <p className="kissa-section-desc">{organizations.description}</p>
+        </div>
 
-            <div className="organizations-bento">
-              {organizations.entries.map((entry, idx) => (
-                <article
-                  key={entry.name}
-                  className={`org-bento-card org-bento-card--tilt-${(idx % 3) + 1}`}
-                >
-                  <span className="slowbar-masking-tape" aria-hidden="true" />
+        <div className="kissa-orgs-grid">
+          {organizations.entries.map((entry) => (
+            <article key={entry.name} className="kissa-org-card">
+              <div className="mono kissa-org-card__top">
+                <span>{entry.period}</span>
+                <span className="kissa-org-card__badge">{entry.badge}</span>
+              </div>
 
-                  <div className="org-bento-card__top">
-                    <span className="mono org-bento-period">{entry.period}</span>
-                    <span className="mono org-bento-badge">{entry.badge}</span>
-                  </div>
+              <h3 className="kissa-org-card__name">{entry.name}</h3>
+              <span className="mono kissa-org-card__role">{entry.role}</span>
+              <p className="kissa-org-card__desc">{entry.description}</p>
 
-                  <div className="org-bento-card__identity">
-                    <h3 className="org-bento-name">{entry.name}</h3>
-                    <div className="role-badge-wrap">
-                      <span className="role-badge">{entry.role}</span>
+              {entry.metrics && (
+                <div className="kissa-org-card__metrics">
+                  {entry.metrics.map((m) => (
+                    <div key={m.label}>
+                      <span className="mono">{m.label}</span>
+                      <strong>{m.value}</strong>
                     </div>
-                  </div>
+                  ))}
+                </div>
+              )}
 
-                  <p className="org-bento-description">{entry.description}</p>
+              {entry.highlights && (
+                <ul className="kissa-org-card__highlights">
+                  {entry.highlights.map((h, i) => (
+                    <li key={i}>
+                      <span>—</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
 
-                  {entry.metrics && (
-                    <div className="org-bento-metrics">
-                      {entry.metrics.map((m) => (
-                        <div key={m.label} className="org-mini-stat">
-                          <span className="mono org-stat-label">{m.label}</span>
-                          <span className="org-stat-val">{m.value}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {entry.highlights && (
-                    <ul className="org-bento-highlights">
-                      {entry.highlights.map((h, i) => (
-                        <li key={i}>
-                          <span className="org-bullet">✦</span>
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* =========================================================
-          CHAPTER 03: WOODEN TROPHY & RECORD PLAQUE SHELF (ACHIEVEMENTS)
-         ========================================================= */}
-      {(activeTab === 'all' || activeTab === 'awards') && (
-        <section className="container trophy-shelf-section">
-          <div className="trophy-shelf-header">
+      {/* Chapter 03: Achievements & Certifications */}
+      <section className="band band--paper-2 kissa-journey-band">
+        <div className="container kissa-journey-section">
+          <div className="kissa-achievements-head">
             <div>
-              <span className="mono logbook-eyebrow">
-                🏆 {achievements.label} · {lang === 'id' ? 'RAK PENGHARGAAN & SERTIFIKASI' : 'WOODEN TROPHY & PLAQUE SHELF'}
-              </span>
-              <h2 className="bulletin-board-title">{achievements.title}</h2>
+              <span className="mono kissa-eyebrow">{achievements.label}</span>
+              <h2 className="kissa-section-title">{achievements.title}</h2>
             </div>
 
-            <div className="journey-filter-bar" role="tablist">
+            <div className="kissa-filters" role="tablist">
               {filterList.map((f) => (
                 <button
                   key={f.id}
                   type="button"
                   role="tab"
                   aria-selected={achFilter === f.id}
-                  className={`work-filter-pill ${achFilter === f.id ? 'is-active' : ''}`}
+                  className={`mono kissa-filter-btn ${achFilter === f.id ? 'is-active' : ''}`}
                   onClick={() => setAchFilter(f.id)}
                 >
-                  <span>{f.label}</span>
+                  {f.label}
                 </button>
               ))}
             </div>
           </div>
 
-          <div className="achievements-showcase-grid">
+          <div className="kissa-awards-grid">
             {visibleAchievements.map((entry) => (
-              <article key={entry.name} className="achievement-showcase-card">
-                <div className="achievement-card__top">
-                  <span className={`achievement-ribbon ribbon--${entry.badgeType || 'award'}`}>
-                    {entry.badgeType === 'verified' ? '✦' : '🏆'} {entry.result}
+              <article key={entry.name} className="kissa-award-card">
+                <div className="mono kissa-award-card__top">
+                  <span className={`kissa-award-pill kissa-award-pill--${entry.badgeType || 'award'}`}>
+                    {entry.result}
                   </span>
-                  <span className="mono achievement-category">{entry.category}</span>
+                  <span className="kissa-award-card__cat">{entry.category}</span>
                 </div>
 
-                <div className="achievement-card__body">
-                  <h3 className="achievement-name">{entry.name}</h3>
-                  <p className="mono achievement-organizer">{entry.organizer}</p>
-                  <p className="achievement-description">{entry.description}</p>
-                </div>
+                <h3 className="kissa-award-card__name">{entry.name}</h3>
+                <span className="mono kissa-award-card__org">{entry.organizer}</span>
+                <p className="kissa-award-card__desc">{entry.description}</p>
 
-                <div className="achievement-card__footer">
-                  <div className="achievement-card__meta-row">
+                <div className="kissa-award-card__foot">
+                  <div className="kissa-award-card__meta-row">
                     {entry.validity && (
-                      <span className="mono achievement-validity">🕒 {entry.validity}</span>
+                      <span className="mono kissa-award-card__valid">{entry.validity}</span>
                     )}
                     {entry.certificateUrl && (
                       <a
                         href={entry.certificateUrl}
                         target="_blank"
                         rel="noreferrer"
-                        className="mono achievement-cert-link"
+                        className="mono kissa-award-card__pdf"
                       >
-                        {entry.certificateLabel ||
-                          (lang === 'id' ? '📄 Lihat Sertifikat (PDF) ↗' : '📄 View Certificate (PDF) ↗')}
+                        {lang === 'id' ? 'Lihat Sertifikat (PDF) ↗' : 'View Certificate (PDF) ↗'}
                       </a>
                     )}
                   </div>
 
                   {entry.skills && (
-                    <ul className="achievement-tags">
+                    <div className="kissa-tags-row">
                       {entry.skills.map((s) => (
-                        <li key={s} className="tag tag--achievement">
+                        <span key={s} className="tag">
                           {s}
-                        </li>
+                        </span>
                       ))}
-                    </ul>
+                    </div>
                   )}
                 </div>
               </article>
             ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
     </div>
   );
 }
