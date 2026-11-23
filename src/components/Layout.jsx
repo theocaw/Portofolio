@@ -4,6 +4,7 @@ import SiteHeader from './SiteHeader.jsx';
 import ContactFooter from './ContactFooter.jsx';
 import CommandPalette from './CommandPalette.jsx';
 import SplashIntro from './SplashIntro.jsx';
+import AmbientMotion from './AmbientMotion.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 
@@ -44,7 +45,13 @@ const JUMP_SELECTOR = [
 ].join(', ');
 
 const SPOTLIGHT_SELECTOR =
-  '.kissa-spotlight, .kissa-cabinet, .hifi-deck, .kissa-tuner, .kissa-open-monograph, .kissa-intern-dossier, .kissa-org-card, .kissa-award-card';
+  '.kissa-spotlight, .kissa-cabinet, .hifi-deck, .kissa-tuner, .kissa-open-monograph, .kissa-intern-dossier, .kissa-org-card, .kissa-award-card, .kissa-tape-card, .kissa-ongoing-card';
+
+const TILT_SELECTOR =
+  '.kissa-portrait, .kissa-tape-card, .kissa-ongoing-card, .kissa-gpa-plate, .kissa-org-card, .kissa-award-card';
+
+const MAGNETIC_SELECTOR =
+  '.kissa-contact-link, .kissa-reading-spread__cta, .kissa-jcard__cta, .kissa-tuner__jump, .button-link';
 
 function getDocumentBounds(el) {
   const height = el.offsetHeight;
@@ -108,10 +115,12 @@ export default function Layout() {
       const topCutoff = viewTop + 6;
       const bottomCutoff = viewBottom - 10;
 
-      // Update global scroll-progress hairline bar (0% -> 100%)
+      // Update global scroll-progress hairline bar (0% -> 100%) & parallax offset
       const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       const pct = Math.min(100, Math.max(0, (window.scrollY / maxScroll) * 100));
       document.documentElement.style.setProperty('--scroll-progress', `${pct.toFixed(1)}%`);
+      document.documentElement.style.setProperty('--scroll-y', `${Math.min(window.scrollY, 1600).toFixed(0)}px`);
+      document.documentElement.dataset.scrolled = window.scrollY > 18 ? 'true' : 'false';
 
       // Batch all DOM layout reads before writing styles/attributes.
       const measurements = targets.map((el) => ({
@@ -204,52 +213,111 @@ export default function Layout() {
     };
   }, [pathname, lang]);
 
-  // Smooth 60fps cursor-tracking warm reading-lamp spotlight on interactive surfaces.
+  // Smooth 60fps cursor-tracking spotlight, 3D tactile tilt, and magnetic editorial CTAs.
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!fine || reduced) return undefined;
 
-    let activeEl = null;
-    let rafSpot = 0;
+    let activeSpot = null;
+    let activeTilt = null;
+    let activeMag = null;
+    let rafMotion = 0;
 
-    const clearEl = (el) => {
+    const clearSpot = (el) => {
       if (!el) return;
       el.classList.remove('is-lit');
     };
 
+    const clearTilt = (el) => {
+      if (!el) return;
+      el.classList.remove('is-tilting');
+      el.style.removeProperty('--rx');
+      el.style.removeProperty('--ry');
+    };
+
+    const clearMag = (el) => {
+      if (!el) return;
+      el.classList.remove('is-magnetic');
+      el.style.removeProperty('--mag-x');
+      el.style.removeProperty('--mag-y');
+    };
+
     const onPointerMove = (e) => {
-      const target = e.target instanceof Element ? e.target.closest(SPOTLIGHT_SELECTOR) : null;
-      if (target !== activeEl) {
-        clearEl(activeEl);
-        activeEl = target;
+      const targetEl = e.target instanceof Element ? e.target : null;
+      const nextSpot = targetEl ? targetEl.closest(SPOTLIGHT_SELECTOR) : null;
+      const nextTilt = targetEl ? targetEl.closest(TILT_SELECTOR) : null;
+      const nextMag = targetEl ? targetEl.closest(MAGNETIC_SELECTOR) : null;
+
+      if (nextSpot !== activeSpot) {
+        clearSpot(activeSpot);
+        activeSpot = nextSpot;
       }
-      if (!activeEl) return;
+      if (nextTilt !== activeTilt) {
+        clearTilt(activeTilt);
+        activeTilt = nextTilt;
+      }
+      if (nextMag !== activeMag) {
+        clearMag(activeMag);
+        activeMag = nextMag;
+      }
+
+      if (!activeSpot && !activeTilt && !activeMag) return;
 
       const x = e.clientX;
       const y = e.clientY;
-      if (rafSpot) return;
-      rafSpot = window.requestAnimationFrame(() => {
-        rafSpot = 0;
-        if (!activeEl) return;
-        const rect = activeEl.getBoundingClientRect();
-        activeEl.classList.add('kissa-spotlight', 'is-lit');
-        activeEl.style.setProperty('--mx', `${(x - rect.left).toFixed(1)}px`);
-        activeEl.style.setProperty('--my', `${(y - rect.top).toFixed(1)}px`);
+      if (rafMotion) return;
+
+      rafMotion = window.requestAnimationFrame(() => {
+        rafMotion = 0;
+
+        if (activeSpot) {
+          const rect = activeSpot.getBoundingClientRect();
+          activeSpot.classList.add('kissa-spotlight', 'is-lit');
+          activeSpot.style.setProperty('--mx', `${(x - rect.left).toFixed(1)}px`);
+          activeSpot.style.setProperty('--my', `${(y - rect.top).toFixed(1)}px`);
+        }
+
+        if (activeTilt) {
+          const rect = activeTilt.getBoundingClientRect();
+          const px = (x - rect.left) / Math.max(1, rect.width) - 0.5;
+          const py = (y - rect.top) / Math.max(1, rect.height) - 0.5;
+          const maxDeg = activeTilt.classList.contains('kissa-portrait') ? 7.5 : 4.2;
+          activeTilt.classList.add('kissa-tilt', 'is-tilting');
+          activeTilt.style.setProperty('--rx', `${(-py * maxDeg * 2).toFixed(2)}deg`);
+          activeTilt.style.setProperty('--ry', `${(px * maxDeg * 2).toFixed(2)}deg`);
+        }
+
+        if (activeMag) {
+          const rect = activeMag.getBoundingClientRect();
+          const dx = (x - (rect.left + rect.width / 2)) * 0.16;
+          const dy = (y - (rect.top + rect.height / 2)) * 0.2;
+          const clampX = Math.max(-7, Math.min(7, dx));
+          const clampY = Math.max(-5, Math.min(5, dy));
+          activeMag.classList.add('kissa-magnetic', 'is-magnetic');
+          activeMag.style.setProperty('--mag-x', `${clampX.toFixed(1)}px`);
+          activeMag.style.setProperty('--mag-y', `${clampY.toFixed(1)}px`);
+        }
       });
     };
 
     const onPointerLeave = () => {
-      clearEl(activeEl);
-      activeEl = null;
+      clearSpot(activeSpot);
+      clearTilt(activeTilt);
+      clearMag(activeMag);
+      activeSpot = null;
+      activeTilt = null;
+      activeMag = null;
     };
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     document.documentElement.addEventListener('pointerleave', onPointerLeave);
 
     return () => {
-      if (rafSpot) window.cancelAnimationFrame(rafSpot);
-      clearEl(activeEl);
+      if (rafMotion) window.cancelAnimationFrame(rafMotion);
+      clearSpot(activeSpot);
+      clearTilt(activeTilt);
+      clearMag(activeMag);
       window.removeEventListener('pointermove', onPointerMove);
       document.documentElement.removeEventListener('pointerleave', onPointerLeave);
     };
@@ -257,6 +325,7 @@ export default function Layout() {
 
   return (
     <>
+      <AmbientMotion />
       <SplashIntro />
       <SiteHeader />
       <main>

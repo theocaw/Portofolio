@@ -480,6 +480,7 @@ export default function Home() {
             >
               <div className="kissa-portrait__frame">
                 <img
+                  key={currentPhoto.src}
                   src={currentPhoto.src}
                   alt={currentPhoto.alt}
                   className="kissa-portrait__img"

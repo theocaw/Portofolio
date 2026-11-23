@@ -382,6 +382,8 @@
 }
 
 .kissa-ongoing-card {
+  position: relative;
+  overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--rule);
   border-radius: 10px;
@@ -391,6 +393,27 @@
   gap: 12px;
   box-shadow: var(--shadow-hard);
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.kissa-ongoing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), var(--lime), transparent);
+  background-size: 200% 100%;
+  animation: kissaSignalSweep 4s linear infinite;
+}
+
+@keyframes kissaSignalSweep {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
 }
 
 .kissa-ongoing-card:hover {

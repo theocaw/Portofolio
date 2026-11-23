@@ -85,27 +85,122 @@ body::before {
   color: var(--ink);
 }
 
-/* Silky Page Transition & Interactive Panel Cross-Fade */
+/* =========================================================
+   AMBIENT SUNLIT LIBRARY DUST MOTES & PRECISION BRASS CURSOR
+   ========================================================= */
+.kissa-dust-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.kissa-cursor-ring,
+.kissa-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9995;
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.kissa-cursor-ring {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 74, 39, 0.52);
+  background: radial-gradient(circle, rgba(217, 178, 95, 0.08) 0%, transparent 72%);
+  transition:
+    opacity 220ms ease,
+    border-color 220ms ease,
+    background-color 220ms ease;
+}
+
+.kissa-cursor-ring.is-visible {
+  opacity: 0.85;
+}
+
+.kissa-cursor-ring.is-hover {
+  border-color: rgba(217, 178, 95, 0.9);
+  background: radial-gradient(circle, rgba(217, 178, 95, 0.16) 0%, transparent 72%);
+}
+
+.kissa-cursor-ring.is-pressed {
+  border-color: var(--pink-hot);
+}
+
+.kissa-cursor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pink-hot);
+  transition: opacity 180ms ease, background-color 180ms ease;
+}
+
+.kissa-cursor-dot.is-visible {
+  opacity: 0.9;
+}
+
+.kissa-cursor-dot.is-hover {
+  background: var(--lime);
+}
+
+[data-theme='dark'] .kissa-cursor-ring {
+  border-color: rgba(224, 184, 101, 0.55);
+}
+
+/* Silky Editorial Curtain Page Transition & Staggered Panel Reveal */
 .kissa-page-transition {
-  animation: kissaPageEnter 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+  z-index: 2;
+  animation: kissaPageEnter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes kissaPageEnter {
-  from {
+  0% {
     opacity: 0;
-    transform: translate3d(0, 14px, 0);
+    transform: translate3d(0, 18px, 0);
+    filter: blur(4px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
+    filter: blur(0);
   }
 }
 
 .kissa-panel-reveal {
-  animation: kissaPanelGlide 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: kissaPanelGlide 440ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.kissa-panel-reveal > * {
+  animation: kissaChildCascade 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.kissa-panel-reveal > *:nth-child(2) {
+  animation-delay: 60ms;
+}
+
+.kissa-panel-reveal > *:nth-child(3) {
+  animation-delay: 110ms;
 }
 
 @keyframes kissaPanelGlide {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0) scale(0.992);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@keyframes kissaChildCascade {
   from {
     opacity: 0;
     transform: translate3d(0, 10px, 0);
@@ -114,6 +209,37 @@ body::before {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
+}
+
+/* Tactile 3D Perspective Card Tilt & Magnetic Editorial CTAs */
+.kissa-tilt {
+  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease, border-color 220ms ease;
+  transform-style: preserve-3d;
+}
+
+.kissa-tilt.is-tilting {
+  transition: transform 110ms ease-out, box-shadow 220ms ease, border-color 220ms ease;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px) !important;
+  box-shadow: 0 22px 42px -16px rgba(20, 16, 12, 0.32);
+}
+
+.kissa-magnetic {
+  transition:
+    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.kissa-magnetic.is-magnetic {
+  transition:
+    transform 90ms ease-out,
+    background-color var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+  transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) !important;
 }
 
 /* Smooth 60fps Warm Reading-Lamp Cursor Spotlight */
@@ -228,10 +354,20 @@ body::before {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .kissa-dust-canvas,
+  .kissa-cursor-ring,
+  .kissa-cursor-dot {
+    display: none !important;
+  }
+
   .jump-target,
-  .jump-target[data-jump] {
+  .jump-target[data-jump],
+  .kissa-page-transition,
+  .kissa-panel-reveal,
+  .kissa-panel-reveal > * {
     opacity: 1 !important;
     transform: none !important;
+    filter: none !important;
     animation: none !important;
   }
 }

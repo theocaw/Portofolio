@@ -80,6 +80,18 @@
   background: linear-gradient(180deg, #b84a27 0%, #8f3518 100%);
   border-radius: 0 0 3px 3px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transform-origin: top center;
+  animation: kissaRibbonSway 5.5s ease-in-out infinite;
+}
+
+@keyframes kissaRibbonSway {
+  0%,
+  100% {
+    transform: rotate(-1.2deg);
+  }
+  50% {
+    transform: rotate(1.4deg);
+  }
 }
 
 .kissa-folio__head {
@@ -184,6 +196,8 @@
 }
 
 .kissa-gpa-plate {
+  position: relative;
+  overflow: hidden;
   margin-top: auto;
   background: linear-gradient(145deg, #2b4a3e 0%, #1d342b 100%);
   color: #f4efe4;
@@ -196,6 +210,30 @@
   cursor: pointer;
   user-select: none;
   transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.kissa-gpa-plate::before {
+  content: '';
+  position: absolute;
+  inset: -40% -60%;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(224, 184, 101, 0.16) 50%,
+    transparent 60%
+  );
+  animation: kissaBrassShimmer 6.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes kissaBrassShimmer {
+  0%,
+  65% {
+    transform: translateX(-65%);
+  }
+  100% {
+    transform: translateX(65%);
+  }
 }
 
 .kissa-gpa-plate:hover {
