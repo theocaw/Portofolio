@@ -13,38 +13,21 @@ export const workData = {
         'A collection of academic and exploratory projects spanning data analytics, machine learning, augmented reality, and full-stack software development.',
     },
     note: {
-      count: '05',
+      count: '06',
       lines: [
         'ACADEMIC PROJECTS (2025 → 2026)',
-        'From foundational system design to full-stack, AR, and machine learning data analysis.',
+        'From foundational system design to full-stack, AR, healthcare data flows, and machine learning.',
       ],
     },
     ongoingSection: {
       badge: 'ON GOING PROJECTS',
       meta: '2026 · IN ACTIVE DEVELOPMENT',
       title: 'Currently in Progress',
-      subtitle: 'Three active projects currently in active research and development.',
+      subtitle: 'Two active projects currently in ongoing research and development.',
       items: [
         {
-          id: 'medigo',
-          index: '01',
-          title: 'Medigo',
-          role: 'Data Analyst',
-          category: 'HEALTHCARE SYSTEM',
-          tagline: 'Healthcare & medical services platform.',
-          description:
-            'A modern digital healthcare platform designed to streamline medical service flows, appointment bookings, and patient health record access.',
-          status: 'In Progress',
-          metrics: [
-            { label: 'Domain', value: 'Healthcare' },
-            { label: 'Platform', value: 'Web Portal' },
-            { label: 'Status', value: 'Active R&D' },
-          ],
-          tags: ['Healthcare', 'Web Platform', 'System Design', 'Data Flow'],
-        },
-        {
           id: 'veriface',
-          index: '02',
+          index: '01',
           title: 'Veriface',
           role: 'Data Analyst',
           category: 'COMPUTER VISION & AI',
@@ -61,7 +44,7 @@ export const workData = {
         },
         {
           id: 'siren',
-          index: '03',
+          index: '02',
           title: 'Siren',
           role: 'Data Analyst & System Analyst',
           category: 'ALERT & MONITORING',
@@ -80,7 +63,7 @@ export const workData = {
     },
     completedSection: {
       badge: 'COMPLETED PROJECTS',
-      meta: '2025 — 2026 · 05 PROJECTS',
+      meta: '2025 — 2026 · 06 PROJECTS',
       title: 'Completed Academic Projects',
       subtitle: 'In-depth case studies showcasing problem framing, data modeling, and end-to-end implementation.',
     },
@@ -251,11 +234,37 @@ export const workData = {
           ],
         },
       },
-// 02: canvAR (Apr 2026)
+      // 02: Medigo (Completed 2026)
+      {
+        id: 'medigo',
+        tone: 'light',
+        num: '02',
+        label: 'HEALTHCARE SYSTEM & DATA FLOW',
+        title: 'Medigo: Digital Healthcare & Patient Service Portal',
+        tagline: 'Streamlining medical service flows, appointment scheduling, and structured patient health record access.',
+        role: 'Data Analyst',
+        meta: 'ACADEMIC PROJECT · 2026 · COMPLETED',
+        description:
+          'Completed digital healthcare web platform engineered to organize medical service workflows, appointment booking queues, and structured patient health record data flows. Contributed as Data Analyst focusing on patient data modeling, service pipeline mapping, and operational clarity.',
+        metrics: [
+          { label: 'Domain', value: 'Healthcare' },
+          { label: 'Platform', value: 'Web Portal' },
+          { label: 'Focus', value: 'Data Flow & UX' },
+          { label: 'Status', value: 'Completed' },
+        ],
+        highlights: [
+          'Structured end-to-end patient service and appointment booking data flows to reduce friction across clinic registration and consultation stages.',
+          'Modeled medical record entities and relational data structures so patient history remains organized, consistent, and accessible.',
+          'Aligned analytical reporting needs with clean web portal interfaces for patients and healthcare administrators.',
+        ],
+        tags: ['Healthcare', 'Web Platform', 'System Design', 'Data Flow', 'Data Modeling'],
+        hasGallery: false,
+      },
+      // 03: canvAR (Apr 2026)
       {
         id: 'canvar',
         tone: 'light',
-        num: '02',
+        num: '03',
         label: 'AUGMENTED REALITY & 3D MODELING',
         title: 'canvAR',
         tagline: 'Transforming abstract business education into an interactive spatial 3D experience.',
@@ -281,7 +290,7 @@ export const workData = {
       {
         id: 'cafier',
         tone: 'light',
-        num: '03',
+        num: '04',
         label: 'FULL-STACK & MOBILE APPLICATION',
         title: 'Cafier',
         tagline: 'A seamless mobile cafe ordering experience backed by a resilient API architecture.',
@@ -307,7 +316,7 @@ export const workData = {
       {
         id: 'dthanasha-kost',
         tone: 'light',
-        num: '04',
+        num: '05',
         label: 'FRONT-END & SYSTEM DESIGN',
         title: 'Dthanasha Kost',
         tagline: 'Automating boarding-house operations from room availability to monthly billing.',
@@ -333,7 +342,7 @@ export const workData = {
       {
         id: 'alumni-portal',
         tone: 'light',
-        num: '05',
+        num: '06',
         longTitle: true,
         label: 'SYSTEM ARCHITECTURE & SOFTWARE DESIGN',
         title: 'AlumniTPL: Software Engineering Technology Alumni Information System & Tracer Study',
@@ -484,38 +493,21 @@ export const workData = {
         'Koleksi proyek akademik dan eksplorasi teknis yang mencakup analisis data, machine learning, augmented reality, dan pengembangan perangkat lunak full-stack.',
     },
     note: {
-      count: '05',
+      count: '06',
       lines: [
         'PROYEK AKADEMIK (2025 → 2026)',
-        'Mulai dari perancangan arsitektur sistem dasar hingga aplikasi full-stack, AR, dan analisis data machine learning.',
+        'Mulai dari perancangan arsitektur sistem, portal kesehatan, AR, hingga analisis data machine learning.',
       ],
     },
     ongoingSection: {
       badge: 'PROYEK SEDANG BERJALAN',
       meta: '2026 · TAHAP PENGEMBANGAN AKTIF',
       title: 'Sedang Dalam Pengerjaan',
-      subtitle: 'Tiga proyek aktif yang sedang dalam tahap riset dan pengembangan berkelanjutan.',
+      subtitle: 'Dua proyek aktif yang sedang dalam tahap riset dan pengembangan berkelanjutan.',
       items: [
         {
-          id: 'medigo',
-          index: '01',
-          title: 'Medigo',
-          role: 'Analis Data',
-          category: 'SISTEM KESEHATAN',
-          tagline: 'Platform layanan kesehatan & medis modern.',
-          description:
-            'Platform kesehatan digital modern yang dirancang untuk mempermudah alur layanan medis, penjadwalan konsultasi, dan akses rekam medis pasien.',
-          status: 'Sedang Berjalan',
-          metrics: [
-            { label: 'Bidang', value: 'Layanan Medis' },
-            { label: 'Platform', value: 'Portal Web' },
-            { label: 'Status', value: 'R&D Aktif' },
-          ],
-          tags: ['Healthcare', 'Web Platform', 'System Design', 'Alur Data'],
-        },
-        {
           id: 'veriface',
-          index: '02',
+          index: '01',
           title: 'Veriface',
           role: 'Analis Data',
           category: 'COMPUTER VISION & AI',
@@ -532,7 +524,7 @@ export const workData = {
         },
         {
           id: 'siren',
-          index: '03',
+          index: '02',
           title: 'Siren',
           role: 'Analis Data & Analis Sistem',
           category: 'PERINGATAN & MONITORING',
@@ -551,7 +543,7 @@ export const workData = {
     },
     completedSection: {
       badge: 'PROYEK SELESAI',
-      meta: '2025 — 2026 · 05 PROYEK',
+      meta: '2025 — 2026 · 06 PROYEK',
       title: 'Proyek Akademik Selesai',
       subtitle: 'Studi kasus mendalam yang memperlihatkan pemahaman masalah, pemodelan data, hingga implementasi sistem utuh.',
     },
@@ -722,11 +714,37 @@ export const workData = {
           ],
         },
       },
-// 02: canvAR (Apr 2026)
+      // 02: Medigo (Selesai 2026)
+      {
+        id: 'medigo',
+        tone: 'light',
+        num: '02',
+        label: 'SISTEM KESEHATAN & ALUR DATA',
+        title: 'Medigo: Portal Layanan Kesehatan & Rekam Medis Digital',
+        tagline: 'Mempermudah alur layanan medis, penjadwalan konsultasi, dan akses data rekam medis pasien yang terstruktur.',
+        role: 'Analis Data',
+        meta: 'PROYEK AKADEMIK · 2026 · SELESAI',
+        description:
+          'Platform web kesehatan digital yang telah diselesaikan untuk menata alur layanan medis, antrean penjadwalan konsultasi, dan pengelolaan data rekam medis pasien secara terstruktur. Berperan sebagai Analis Data dalam pemodelan entitas pasien, pemetaan alur data layanan, serta kejelasan informasi operasional.',
+        metrics: [
+          { label: 'Bidang', value: 'Layanan Medis' },
+          { label: 'Platform', value: 'Portal Web' },
+          { label: 'Fokus', value: 'Alur Data & UX' },
+          { label: 'Status', value: 'Selesai' },
+        ],
+        highlights: [
+          'Merancang alur data layanan pasien dan penjadwalan konsultasi dari hulu ke hilir agar proses registrasi klinik lebih ringkas.',
+          'Memodelkan entitas rekam medis dan struktur relasional agar riwayat kesehatan pasien tetap konsisten serta mudah ditelusuri.',
+          'Menyelaraskan kebutuhan pelaporan analitis dengan antarmuka portal web yang rapi bagi pasien maupun pengelola klinik.',
+        ],
+        tags: ['Healthcare', 'Web Platform', 'System Design', 'Alur Data', 'Data Modeling'],
+        hasGallery: false,
+      },
+      // 03: canvAR (Apr 2026)
       {
         id: 'canvar',
         tone: 'light',
-        num: '02',
+        num: '03',
         label: 'AUGMENTED REALITY & PEMODELAN 3D',
         title: 'canvAR',
         tagline: 'Mengubah konsep bisnis teoretis menjadi media pembelajaran spasial 3D interaktif.',
@@ -752,7 +770,7 @@ export const workData = {
       {
         id: 'cafier',
         tone: 'light',
-        num: '03',
+        num: '04',
         label: 'PENGEMBANGAN FULL-STACK & MOBILE APP',
         title: 'Cafier',
         tagline: 'Pengalaman pemesanan kafe modern yang terhubung langsung dengan arsitektur backend.',
@@ -778,7 +796,7 @@ export const workData = {
       {
         id: 'dthanasha-kost',
         tone: 'light',
-        num: '04',
+        num: '05',
         label: 'FRONT-END & DESAIN SISTEM',
         title: 'Dthanasha Kost',
         tagline: 'Otomatisasi operasional rumah kos dari penagihan sewa hingga peta ketersediaan kamar.',
@@ -804,7 +822,7 @@ export const workData = {
       {
         id: 'alumni-portal',
         tone: 'light',
-        num: '05',
+        num: '06',
         longTitle: true,
         label: 'ARSITEKTUR SISTEM & PERANCANGAN PERANGKAT LUNAK',
         title: 'AlumniTPL: Sistem Informasi Alumni dan Portal Tracer Study Teknologi Rekayasa Perangkat Lunak IPB',

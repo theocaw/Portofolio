@@ -206,8 +206,8 @@ export default function Journey() {
             </div>
           </div>
 
-          {/* Tuned Signal Readout */}
-          <div className="kissa-tuner__readout">
+          {/* Tuned Signal Readout (Smooth Crossfade on Station Change) */}
+          <div key={activeStation.freq} className="kissa-tuner__readout kissa-panel-reveal">
             <div className="kissa-tuner__readout-main">
               <span className="mono kissa-tuner__signal">
                 SIGNAL LOCKED · {activeStation.year} · {activeStation.label}

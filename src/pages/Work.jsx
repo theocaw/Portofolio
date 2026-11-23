@@ -7,6 +7,7 @@ import './Work.css';
 
 const PROJECT_CATEGORIES = {
   'ames-housing': 'data',
+  medigo: 'data',
   canvar: 'ar',
   cafier: 'system',
   'dthanasha-kost': 'system',
@@ -15,6 +16,7 @@ const PROJECT_CATEGORIES = {
 
 const TAPE_SPECS = {
   'ames-housing': { accent: '#2b4a3e', stripe: '#d9b25f', side: 'SIDE A' },
+  medigo: { accent: '#2f6b58', stripe: '#e5c67e', side: 'SIDE A' },
   canvar: { accent: '#b84a27', stripe: '#e8c587', side: 'BONUS' },
   cafier: { accent: '#8c5a2b', stripe: '#d9b25f', side: 'SIDE B' },
   'dthanasha-kost': { accent: '#3d5a52', stripe: '#c9a66b', side: 'SIDE B' },
@@ -23,14 +25,14 @@ const TAPE_SPECS = {
 
 const FILTERS = {
   en: [
-    { id: 'all', label: 'All Tapes (05)' },
-    { id: 'data', label: 'Side A · Data & ML' },
+    { id: 'all', label: 'All Tapes (06)' },
+    { id: 'data', label: 'Side A · Data & Healthcare' },
     { id: 'system', label: 'Side B · System & Web' },
     { id: 'ar', label: 'Bonus · AR & 3D' },
   ],
   id: [
-    { id: 'all', label: 'Semua Kaset (05)' },
-    { id: 'data', label: 'Side A · Data & ML' },
+    { id: 'all', label: 'Semua Kaset (06)' },
+    { id: 'data', label: 'Side A · Data & Medis' },
     { id: 'system', label: 'Side B · Sistem & Web' },
     { id: 'ar', label: 'Bonus · AR & 3D' },
   ],
@@ -70,19 +72,77 @@ export default function Work() {
   return (
     <div className="kissa-work">
       {/* =========================================================
-          STAGE 1: STEREO CASSETTE LISTENING DESK
+          STAGE 1 (TOP): ON-GOING PROJECTS IN ACTIVE DEVELOPMENT
          ========================================================= */}
-      <section className="container kissa-work-hero">
+      {ongoingSection && ongoingSection.items?.length > 0 && (
+        <section className="band band--paper-2 kissa-ongoing-top-band">
+          <div className="container kissa-ongoing-top">
+            <div className="kissa-ongoing__head">
+              <span className="mono kissa-eyebrow">
+                {lang === 'id'
+                  ? '03 / PROYEK · SEDANG DALAM PENGEMBANGAN (2026)'
+                  : '03 / WORK · CURRENTLY IN ACTIVE DEVELOPMENT (2026)'}
+              </span>
+              <h1 className="kissa-work-hero__title">{ongoingSection.title}</h1>
+              <p className="kissa-ongoing__sub">{ongoingSection.subtitle}</p>
+            </div>
+
+            <div className="kissa-ongoing__grid">
+              {ongoingSection.items.map((item) => (
+                <article key={item.id} className="kissa-ongoing-card kissa-spotlight">
+                  <div className="mono kissa-ongoing-card__top">
+                    <span>STUDIO MASTER · {item.index}</span>
+                    <span className="kissa-ongoing-card__status">
+                      <span className="kissa-live-dot" aria-hidden="true" />
+                      {item.status}
+                    </span>
+                  </div>
+                  <span className="mono kissa-ongoing-card__cat">{item.category}</span>
+                  <h2 className="kissa-ongoing-card__title">{item.title}</h2>
+                  <p className="kissa-ongoing-card__tagline">{item.tagline}</p>
+                  <p className="kissa-ongoing-card__desc">{item.description}</p>
+
+                  {item.metrics && (
+                    <div className="kissa-ongoing-card__metrics">
+                      {item.metrics.map((m) => (
+                        <div key={m.label}>
+                          <span className="mono">{m.label}</span>
+                          <strong>{m.value}</strong>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  <div className="kissa-jcard__tags">
+                    {item.tags.map((t) => (
+                      <span key={t} className="tag">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* =========================================================
+          STAGE 2: STEREO CASSETTE LISTENING DESK (COMPLETED ARCHIVE)
+         ========================================================= */}
+      <section className="container kissa-work-hero" id="tape-deck">
         <div className="kissa-work-hero__head">
           <div>
             <span className="mono kissa-eyebrow">
-              {lang === 'id' ? '03 / PROYEK · ARSIP KASET & STUDI KASUS' : '03 / WORK · CASSETTE TAPE ARCHIVE'}
+              {lang === 'id'
+                ? 'ARSIP KASET SELESAI · 06 STUDI KASUS'
+                : 'COMPLETED CASSETTE ARCHIVE · 06 CASE STUDIES'}
             </span>
-            <h1 className="kissa-work-hero__title">
+            <h2 className="kissa-catalog__title">
               {lang === 'id'
                 ? 'Pilih kaset proyek untuk diputar di deck stereo.'
-                : 'Select a project cassette to load and inspect on the stereo deck.'}
-            </h1>
+                : 'Select a completed project cassette to spin on the stereo deck.'}
+            </h2>
           </div>
           <span className="mono kissa-work-hero__count">
             0{selectedIdx + 1} / 0{projects.length} LOADED
@@ -98,8 +158,8 @@ export default function Work() {
             showDetailsLink={false}
           />
 
-          {/* Right: Editorial J-Card Liner Notes & 2x2 Scorecard */}
-          <div className="kissa-jcard">
+          {/* Right: Editorial J-Card Liner Notes & 2x2 Scorecard (Smooth Crossfade Key) */}
+          <div key={activeProject.id} className="kissa-jcard kissa-panel-reveal kissa-spotlight">
             <div className="mono kissa-jcard__top">
               <span>
                 TAPE {activeProject.num} · {activeProject.label}
@@ -107,7 +167,7 @@ export default function Work() {
               <span>{activeProject.meta}</span>
             </div>
 
-            <h2 className="kissa-jcard__title">{activeProject.title}</h2>
+            <h3 className="kissa-jcard__title">{activeProject.title}</h3>
             <p className="kissa-jcard__tagline">{activeProject.tagline}</p>
             <p className="kissa-jcard__desc">{activeProject.description}</p>
 
@@ -140,7 +200,7 @@ export default function Work() {
       </section>
 
       {/* =========================================================
-          STAGE 2: COMPLETE CASSETTE CATALOG SHELF
+          STAGE 3: COMPLETE CASSETTE CATALOG SHELF (ALL 6 COMPLETED)
          ========================================================= */}
       <section className="band band--paper-2 kissa-catalog-band">
         <div className="container kissa-catalog">
@@ -151,8 +211,8 @@ export default function Work() {
               </span>
               <h2 className="kissa-catalog__title">
                 {lang === 'id'
-                  ? 'Lima rekaman studi kasus yang telah dirilis.'
-                  : 'Five documented case studies across data, systems & 3D.'}
+                  ? 'Enam rekaman studi kasus yang telah diselesaikan.'
+                  : 'Six completed case studies across data, healthcare, systems & 3D.'}
               </h2>
             </div>
 
@@ -181,13 +241,13 @@ export default function Work() {
               return (
                 <article
                   key={project.id}
-                  className={`kissa-tape-card ${isLoaded ? 'is-loaded' : ''}`}
+                  className={`kissa-tape-card kissa-spotlight ${isLoaded ? 'is-loaded' : ''}`}
                 >
                   <div
                     className="kissa-tape-card__shell-wrap"
                     onClick={() => {
                       setSelectedIdx(origIdx);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      document.getElementById('tape-deck')?.scrollIntoView({ behavior: 'smooth' });
                     }}
                     role="button"
                     tabIndex={0}
@@ -195,10 +255,14 @@ export default function Work() {
                       if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
                         setSelectedIdx(origIdx);
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        document.getElementById('tape-deck')?.scrollIntoView({ behavior: 'smooth' });
                       }
                     }}
-                    title={lang === 'id' ? 'Klik kaset untuk muat ke Deck Stereo' : 'Click cassette to load into Stereo Deck'}
+                    title={
+                      lang === 'id'
+                        ? 'Klik kaset untuk muat ke Deck Stereo'
+                        : 'Click cassette to load into Stereo Deck'
+                    }
                   >
                     <CassetteShell
                       code={`TAPE ${project.num}`}
@@ -244,55 +308,6 @@ export default function Work() {
           </div>
         </div>
       </section>
-
-      {/* =========================================================
-          STAGE 3: STUDIO MASTER TAPES IN PROGRESS (ON-GOING)
-         ========================================================= */}
-      {ongoingSection && ongoingSection.items?.length > 0 && (
-        <section className="container kissa-ongoing">
-          <div className="kissa-ongoing__head">
-            <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'SEDANG DALAM PENGEMBANGAN · 2026' : 'IN ACTIVE DEVELOPMENT · 2026'}
-            </span>
-            <h2 className="kissa-catalog__title">{ongoingSection.title}</h2>
-            <p className="kissa-ongoing__sub">{ongoingSection.subtitle}</p>
-          </div>
-
-          <div className="kissa-ongoing__grid">
-            {ongoingSection.items.map((item) => (
-              <article key={item.id} className="kissa-ongoing-card">
-                <div className="mono kissa-ongoing-card__top">
-                  <span>MASTER TAPE · {item.index}</span>
-                  <span className="kissa-ongoing-card__status">{item.status}</span>
-                </div>
-                <span className="mono kissa-ongoing-card__cat">{item.category}</span>
-                <h3 className="kissa-ongoing-card__title">{item.title}</h3>
-                <p className="kissa-ongoing-card__tagline">{item.tagline}</p>
-                <p className="kissa-ongoing-card__desc">{item.description}</p>
-
-                {item.metrics && (
-                  <div className="kissa-ongoing-card__metrics">
-                    {item.metrics.map((m) => (
-                      <div key={m.label}>
-                        <span className="mono">{m.label}</span>
-                        <strong>{m.value}</strong>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <div className="kissa-jcard__tags">
-                  {item.tags.map((t) => (
-                    <span key={t} className="tag">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-      )}
     </div>
   );
 }

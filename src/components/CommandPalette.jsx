@@ -106,12 +106,23 @@ export default function CommandPalette() {
     },
     {
       id: 'proj-ames',
-      icon: '📊',
+      icon: '01',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Ames Housing: Property Valuation & Live Simulator (R² 81.94%)',
-      hint: 'Track 01',
+      hint: 'Tape 01',
       action: () => {
         navigate('/work/ames-housing');
+        closeModal();
+      },
+    },
+    {
+      id: 'proj-medigo',
+      icon: '02',
+      group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
+      title: 'Medigo: Digital Healthcare & Patient Service Portal',
+      hint: 'Tape 02',
+      action: () => {
+        navigate('/work/medigo');
         closeModal();
       },
     },

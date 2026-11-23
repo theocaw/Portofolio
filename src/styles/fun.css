@@ -85,6 +85,70 @@ body::before {
   color: var(--ink);
 }
 
+/* Silky Page Transition & Interactive Panel Cross-Fade */
+.kissa-page-transition {
+  animation: kissaPageEnter 460ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes kissaPageEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 14px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.kissa-panel-reveal {
+  animation: kissaPanelGlide 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes kissaPanelGlide {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Smooth 60fps Warm Reading-Lamp Cursor Spotlight */
+.kissa-spotlight {
+  position: relative;
+}
+
+.kissa-spotlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(217, 178, 95, 0.14),
+    transparent 65%
+  );
+  transition: opacity 280ms ease;
+  z-index: 2;
+}
+
+.kissa-spotlight.is-lit::after {
+  opacity: 1;
+}
+
+[data-theme='dark'] .kissa-spotlight::after {
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(224, 184, 101, 0.11),
+    transparent 65%
+  );
+}
+
 /* Bidirectional Editorial Scroll Animations (Scroll Down & Scroll Up) */
 .jump-target {
   will-change: opacity, transform;

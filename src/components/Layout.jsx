@@ -43,7 +43,8 @@ const JUMP_SELECTOR = [
   '.case-pillars-grid > .case-pillar-card',
 ].join(', ');
 
-const TILT_SELECTOR = '.kissa-volume, .kissa-tape-card';
+const SPOTLIGHT_SELECTOR =
+  '.kissa-spotlight, .kissa-cabinet, .hifi-deck, .kissa-tuner, .kissa-open-monograph, .kissa-intern-dossier, .kissa-org-card, .kissa-award-card';
 
 function getDocumentBounds(el) {
   const height = el.offsetHeight;
@@ -203,54 +204,52 @@ export default function Layout() {
     };
   }, [pathname, lang]);
 
-  // Interactive 3D tilt & cursor spotlight glare for cards across all pages.
+  // Smooth 60fps cursor-tracking warm reading-lamp spotlight on interactive surfaces.
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!fine || reduced) return undefined;
 
-    let activeCard = null;
+    let activeEl = null;
+    let rafSpot = 0;
 
-    const clearCard = (card) => {
-      if (!card) return;
-      card.classList.remove('is-tilting');
-      card.style.removeProperty('--tilt-x');
-      card.style.removeProperty('--tilt-y');
-      card.style.removeProperty('--spot-x');
-      card.style.removeProperty('--spot-y');
+    const clearEl = (el) => {
+      if (!el) return;
+      el.classList.remove('is-lit');
     };
 
     const onPointerMove = (e) => {
-      const target = e.target instanceof Element ? e.target.closest(TILT_SELECTOR) : null;
-      if (target !== activeCard) {
-        clearCard(activeCard);
-        activeCard = target;
+      const target = e.target instanceof Element ? e.target.closest(SPOTLIGHT_SELECTOR) : null;
+      if (target !== activeEl) {
+        clearEl(activeEl);
+        activeEl = target;
       }
-      if (!activeCard) return;
+      if (!activeEl) return;
 
-      const rect = activeCard.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / (rect.width || 1);
-      const py = (e.clientY - rect.top) / (rect.height || 1);
-      const tiltX = ((0.5 - py) * 7).toFixed(2);
-      const tiltY = ((px - 0.5) * 7).toFixed(2);
-
-      activeCard.classList.add('is-tilting');
-      activeCard.style.setProperty('--tilt-x', `${tiltX}deg`);
-      activeCard.style.setProperty('--tilt-y', `${tiltY}deg`);
-      activeCard.style.setProperty('--spot-x', `${(px * 100).toFixed(1)}%`);
-      activeCard.style.setProperty('--spot-y', `${(py * 100).toFixed(1)}%`);
+      const x = e.clientX;
+      const y = e.clientY;
+      if (rafSpot) return;
+      rafSpot = window.requestAnimationFrame(() => {
+        rafSpot = 0;
+        if (!activeEl) return;
+        const rect = activeEl.getBoundingClientRect();
+        activeEl.classList.add('kissa-spotlight', 'is-lit');
+        activeEl.style.setProperty('--mx', `${(x - rect.left).toFixed(1)}px`);
+        activeEl.style.setProperty('--my', `${(y - rect.top).toFixed(1)}px`);
+      });
     };
 
     const onPointerLeave = () => {
-      clearCard(activeCard);
-      activeCard = null;
+      clearEl(activeEl);
+      activeEl = null;
     };
 
     window.addEventListener('pointermove', onPointerMove, { passive: true });
     document.documentElement.addEventListener('pointerleave', onPointerLeave);
 
     return () => {
-      clearCard(activeCard);
+      if (rafSpot) window.cancelAnimationFrame(rafSpot);
+      clearEl(activeEl);
       window.removeEventListener('pointermove', onPointerMove);
       document.documentElement.removeEventListener('pointerleave', onPointerLeave);
     };
@@ -261,7 +260,9 @@ export default function Layout() {
       <SplashIntro />
       <SiteHeader />
       <main>
-        <Outlet />
+        <div key={pathname} className="kissa-page-transition">
+          <Outlet />
+        </div>
       </main>
       <ContactFooter />
       <CommandPalette />

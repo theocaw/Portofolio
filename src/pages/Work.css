@@ -350,10 +350,15 @@
 }
 
 /* =========================================================
-   STAGE 3: ON-GOING MASTER TAPES
+   STAGE 1 (TOP): ON-GOING MASTER TAPES IN ACTIVE DEVELOPMENT
    ========================================================= */
-.kissa-ongoing {
-  padding-block: clamp(52px, 6vw, 80px);
+.kissa-ongoing-top-band {
+  border-bottom: 1px solid var(--rule);
+  padding-top: clamp(32px, 5vw, 52px);
+  padding-bottom: clamp(44px, 5.5vw, 68px);
+}
+
+.kissa-ongoing-top {
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -385,11 +390,18 @@
   flex-direction: column;
   gap: 12px;
   box-shadow: var(--shadow-hard);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.kissa-ongoing-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--rule-strong);
 }
 
 .kissa-ongoing-card__top {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 10px;
   color: var(--muted);
   padding-bottom: 10px;
@@ -397,8 +409,32 @@
 }
 
 .kissa-ongoing-card__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   color: var(--blue);
   font-weight: 600;
+}
+
+.kissa-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.75);
+  animation: kissaLivePulse 2.2s ease-in-out infinite;
+}
+
+@keyframes kissaLivePulse {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
 }
 
 .kissa-ongoing-card__cat {

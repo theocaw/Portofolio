@@ -363,8 +363,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Open Reading Desk: Displays the Currently Extracted Book */}
-        <div className="kissa-reading-spread">
+        {/* Open Reading Desk: Displays the Currently Extracted Book with Smooth Crossfade */}
+        <div key={activeBook.id} className="kissa-reading-spread kissa-panel-reveal kissa-spotlight">
           <div className="kissa-reading-spread__main">
             <div className="mono kissa-reading-spread__head">
               <span>{activeBook.tag}</span>
