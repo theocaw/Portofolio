@@ -119,7 +119,7 @@ export default function CommandPalette() {
       id: 'proj-medigo',
       icon: '02',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
-      title: 'Medigo: Digital Healthcare & Patient Service Portal',
+      title: 'Medigo: 3,069 Jabodetabek Faskes ETL & Medibot Gemini AI',
       hint: 'Tape 02',
       action: () => {
         navigate('/work/medigo');
@@ -128,10 +128,10 @@ export default function CommandPalette() {
     },
     {
       id: 'proj-canvar',
-      icon: '🕶️',
+      icon: '03',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'canvAR: Interactive 3D & Vuforia AR Business Model Canvas',
-      hint: 'Track 02',
+      hint: 'Tape 03',
       action: () => {
         navigate('/work/canvar');
         closeModal();
@@ -139,10 +139,10 @@ export default function CommandPalette() {
     },
     {
       id: 'proj-cafier',
-      icon: '☕',
+      icon: '04',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Cafier: React Native & Laravel 12 Midtrans Ordering Ecosystem',
-      hint: 'Track 03',
+      hint: 'Tape 04',
       action: () => {
         navigate('/work/cafier');
         closeModal();
@@ -150,10 +150,10 @@ export default function CommandPalette() {
     },
     {
       id: 'proj-kost',
-      icon: '🏠',
+      icon: '05',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Dthanasha Kost: Automated Boarding Operations & MVC System',
-      hint: 'Track 04',
+      hint: 'Tape 05',
       action: () => {
         navigate('/work/dthanasha-kost');
         closeModal();
@@ -161,10 +161,10 @@ export default function CommandPalette() {
     },
     {
       id: 'proj-alumni',
-      icon: '🎓',
+      icon: '06',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'AlumniTPL: 4-Tier Layered Architecture & Tracer Study (DPPL)',
-      hint: 'Track 05',
+      hint: 'Tape 06',
       action: () => {
         navigate('/work/alumni-portal');
         closeModal();

@@ -239,26 +239,111 @@ export const workData = {
         id: 'medigo',
         tone: 'light',
         num: '02',
-        label: 'HEALTHCARE SYSTEM & DATA FLOW',
-        title: 'Medigo: Digital Healthcare & Patient Service Portal',
-        tagline: 'Streamlining medical service flows, appointment scheduling, and structured patient health record access.',
-        role: 'Data Analyst',
-        meta: 'ACADEMIC PROJECT · 2026 · COMPLETED',
+        label: 'HEALTHCARE DATA ENGINEERING & AI PLATFORM',
+        title: 'Medigo: Jabodetabek Healthcare Facility Finder & Medibot AI',
+        tagline: 'Unifying 3,069 BPJS & non-BPJS Jabodetabek healthcare facilities with geospatial ETL, Gemini AI function calling, and community reviews.',
+        role: 'Data Analyst & Data Pipeline Engineer',
+        meta: 'COMPETITION PROJECT · 2026 · COMPLETED',
         description:
-          'Completed digital healthcare web platform engineered to organize medical service workflows, appointment booking queues, and structured patient health record data flows. Contributed as Data Analyst focusing on patient data modeling, service pipeline mapping, and operational clarity.',
+          'Completed full-stack healthcare discovery competition platform covering 10 Jabodetabek cities. Engineered a Python multi-source scraping and 3NF relational ETL pipeline combining BPJS Kesehatan Aplicares (Playwright JWE interception) and OpenStreetMap Overpass API (non-BPJS hospitals), powering a Laravel 13 REST API, Gemini AI assistant (Medibot) with GPS road-distance search, patient reviews, and a moderated health forum.',
         metrics: [
-          { label: 'Domain', value: 'Healthcare' },
-          { label: 'Platform', value: 'Web Portal' },
-          { label: 'Focus', value: 'Data Flow & UX' },
-          { label: 'Status', value: 'Completed' },
+          { label: 'Facilities Indexed', value: '3,069 Faskes' },
+          { label: 'Relational Links', value: '26,920 Pairs' },
+          { label: 'Medical Taxonomy', value: '762 Fac · 152 Spec' },
+          { label: 'AI & Backend', value: 'Gemini + Laravel 13' },
         ],
         highlights: [
-          'Structured end-to-end patient service and appointment booking data flows to reduce friction across clinic registration and consultation stages.',
-          'Modeled medical record entities and relational data structures so patient history remains organized, consistent, and accessible.',
-          'Aligned analytical reporting needs with clean web portal interfaces for patients and healthcare administrators.',
+          'Built a dual-source Python scraper: Playwright JWE response interception for BPJS Aplicares and Overpass API radius queries across 8 Jabodetabek zones with Haversine (350m–1,200m) + token-overlap deduplication.',
+          'Engineered geospatial coordinate cleansing (auto-fixing inverted latitude signs), 4-digit BPJS kdppk regional mapping, and a 0.05° spatial-grid k-NN classifier (k=7) covering 10 Jabodetabek cities.',
+          'Normalized 30,903 total records across 5 relational CSV tables (3,069 faskes, 762 facilities, 152 specialties, 20,085 faskes-facility links, 6,835 faskes-specialty links) with composite-key deduplication.',
+          'Powered Laravel 13 + Sanctum APIs including Medibot (Gemini AI with cari_faskes function calling, RoadDistanceService GPS routing, 24h session memory & guest chat migration) and a 5-module Admin Moderation suite.',
         ],
-        tags: ['Healthcare', 'Web Platform', 'System Design', 'Data Flow', 'Data Modeling'],
+        tags: ['Python', 'Playwright', 'OpenStreetMap', 'Geospatial ETL', 'Laravel 13', 'Gemini AI', 'Tailwind CSS v4'],
         hasGallery: false,
+        caseStudy: {
+          courseInfo: {
+            course: 'Healthcare Technology Competition Project (Lomba)',
+            institution: 'IPB University — Software Engineering Technology Team',
+            author: 'Osanna Patricia Limbong — Data Analyst & Pipeline Engineer',
+            date: '2026 (Completed)',
+            dataset: 'BPJS Kesehatan Aplicares + OpenStreetMap Overpass API (Jabodetabek)',
+            scope: '3,069 Healthcare Facilities · 10 Cities · 5 Normalized Relational Tables (30,903 Rows)',
+          },
+          pillars: [
+            {
+              index: '01',
+              title: 'Multi-Source Scraping (BPJS Aplicares & OpenStreetMap)',
+              category: 'DATA ACQUISITION',
+              metricBadge: 'BPJS + OSM Dual Pipeline',
+              summary:
+                'Combined official BPJS Kesehatan facility registries with OpenStreetMap non-BPJS private hospitals so patients can compare both insured and private healthcare options in one search.',
+              details: [
+                'scraper_bpjs.py: Used Playwright with an injected JSON.parse browser hook to capture decrypted JWE payloads directly from BPJS Aplicares across DKI Jakarta, Jawa Barat, and Banten.',
+                'scrape_non_bpjs_osm.py: Queried Overpass API mirrors across 8 Jabodetabek city radii (11–16 km) and filtered out non-hospital noise (veterinary, pharmacies, parking) via regex rules.',
+                'Applied Haversine spatial matching (≤350m exact proximity or ≤1,200m with ≥60% normalized token overlap) to merge non-BPJS hospitals without duplicating existing BPJS records.',
+              ],
+            },
+            {
+              index: '02',
+              title: 'Geospatial Cleaning & Spatial Grid k-NN Mapping',
+              category: 'DATA QUALITY & ETL',
+              metricBadge: '10 Jabodetabek Cities',
+              summary:
+                'Eliminated dirty coordinates and ambiguous regional labels before database ingestion through deterministic prefix rules and spatial nearest-neighbor classification.',
+              details: [
+                'mapper.py automatically detects and corrects inverted positive latitude signs (e.g., +6.34 → -6.34) and rejects malformed (0,0) or out-of-bounds coordinates outside Jabodetabek.',
+                'Mapped 4-digit BPJS kdppk branch prefixes directly to verified cities and resolved mixed-prefix facilities using a custom PenentuWilayah spatial grid (0.05° cells, k=7 nearest neighbors).',
+                'Standardized 10 target coverage zones: Jakarta Pusat, Selatan, Timur, Barat, Utara, Bogor, Depok, Bekasi, Tangerang, and Tangerang Selatan.',
+              ],
+            },
+            {
+              index: '03',
+              title: 'Normalized 3NF Relational Schema Generation',
+              category: 'DATA MODELING',
+              metricBadge: '30,903 Verified Rows',
+              summary:
+                'Transformed nested raw JSON blobs into five clean, production-ready relational CSV tables with strict composite-key deduplication.',
+              details: [
+                'Master tables: tabel_faskes.csv (3,069 facilities), tabel_fasilitas.csv (762 standardized medical facilities & equipment), and tabel_spesialisasi.csv (152 specialist categories).',
+                'Junction tables: tabel_faskes_fasilitas.csv (20,085 deduplicated pairs) and tabel_faskes_spesialisasi.csv (6,835 deduplicated pairs) generated via generate_relasi.py.',
+                'Enforced consistent Title-Case formatting and lookup-key normalization so backend multi-filter queries run cleanly without duplicate tags.',
+              ],
+            },
+            {
+              index: '04',
+              title: 'Laravel 13 API, Medibot Gemini AI & Community Ecosystem',
+              category: 'FULL-STACK INTEGRATION',
+              metricBadge: 'Gemini Function Calling',
+              summary:
+                'Connected the normalized dataset to a Laravel 13 + Sanctum backend and Vite + Tailwind CSS v4 frontend featuring conversational AI search, GPS routing, and moderated forums.',
+              details: [
+                'Medibot (GeminiController): Uses Gemini AI with cari_faskes tool calling, RoadDistanceService GPS nearest-faskes ranking, 24-hour session memory (20 messages), guest-to-user chat migration, and off-topic guardrails.',
+                'Community & Reviews: Supports 1–5 star facility ratings, discussion forums with @faskes mentions, likes, nearby recommendations, and automatic WebP photo conversion.',
+                'Admin Governance: Built 5 dedicated moderation queues covering discussion reports, comment reports, facility data feedback, review reports, user blocking, and activity audit logs.',
+              ],
+            },
+          ],
+          recommendations: [
+            {
+              index: '01',
+              title: 'Unified BPJS & Private Care Transparency',
+              takeaway:
+                'Combining BPJS Aplicares and OpenStreetMap removes the blind spot between insured and private hospitals, letting patients filter by exact medical equipment (762 types) and specialists (152 types) in one query.',
+            },
+            {
+              index: '02',
+              title: 'Spatial-Grid k-NN for Noisy Public Datasets',
+              takeaway:
+                'Public government coordinates frequently contain inverted signs or outdated district names; pairing deterministic prefix lookups with a lightweight spatial-grid k-NN classifier guarantees clean regional filtering.',
+            },
+            {
+              index: '03',
+              title: 'Grounded AI Assistant Over Freeform Chat',
+              takeaway:
+                'Binding Medibot to a structured cari_faskes tool call with real GPS road-distance computation prevents hallucinated hospital addresses and keeps medical guidance safe and verifiable.',
+            },
+          ],
+        },
       },
       // 03: canvAR (Apr 2026)
       {
@@ -719,26 +804,111 @@ export const workData = {
         id: 'medigo',
         tone: 'light',
         num: '02',
-        label: 'SISTEM KESEHATAN & ALUR DATA',
-        title: 'Medigo: Portal Layanan Kesehatan & Rekam Medis Digital',
-        tagline: 'Mempermudah alur layanan medis, penjadwalan konsultasi, dan akses data rekam medis pasien yang terstruktur.',
-        role: 'Analis Data',
-        meta: 'PROYEK AKADEMIK · 2026 · SELESAI',
+        label: 'REKAYASA DATA KESEHATAN & PLATFORM AI',
+        title: 'Medigo: Pencari Faskes Jabodetabek & Asisten AI Medibot',
+        tagline: 'Menyatukan 3.069 fasilitas kesehatan BPJS & non-BPJS se-Jabodetabek melalui pipeline ETL geospasial, Gemini AI function calling, dan forum komunitas.',
+        role: 'Analis Data & Data Pipeline Engineer',
+        meta: 'PROYEK LOMBA · 2026 · SELESAI',
         description:
-          'Platform web kesehatan digital yang telah diselesaikan untuk menata alur layanan medis, antrean penjadwalan konsultasi, dan pengelolaan data rekam medis pasien secara terstruktur. Berperan sebagai Analis Data dalam pemodelan entitas pasien, pemetaan alur data layanan, serta kejelasan informasi operasional.',
+          'Platform web pencarian fasilitas kesehatan untuk kompetisi yang mencakup 10 kota di Jabodetabek. Membangun pipeline scraping multi-sumber dan ETL relasional 3NF berbasis Python yang menggabungkan BPJS Kesehatan Aplicares (intersepsi JWE Playwright) serta OpenStreetMap Overpass API (RS non-BPJS), untuk menopang REST API Laravel 13, asisten AI Medibot (Gemini) berbasis jarak GPS, ulasan pasien, dan forum kesehatan termoderasi.',
         metrics: [
-          { label: 'Bidang', value: 'Layanan Medis' },
-          { label: 'Platform', value: 'Portal Web' },
-          { label: 'Fokus', value: 'Alur Data & UX' },
-          { label: 'Status', value: 'Selesai' },
+          { label: 'Faskes Terindeks', value: '3.069 Faskes' },
+          { label: 'Relasi Terpetakan', value: '26.920 Pasang' },
+          { label: 'Taksonomi Medis', value: '762 Fas · 152 Spes' },
+          { label: 'AI & Backend', value: 'Gemini + Laravel 13' },
         ],
         highlights: [
-          'Merancang alur data layanan pasien dan penjadwalan konsultasi dari hulu ke hilir agar proses registrasi klinik lebih ringkas.',
-          'Memodelkan entitas rekam medis dan struktur relasional agar riwayat kesehatan pasien tetap konsisten serta mudah ditelusuri.',
-          'Menyelaraskan kebutuhan pelaporan analitis dengan antarmuka portal web yang rapi bagi pasien maupun pengelola klinik.',
+          'Membangun scraper Python dua sumber: intersepsi respons JWE BPJS Aplicares dengan Playwright serta query radius Overpass API pada 8 zona Jabodetabek dengan deduplikasi jarak Haversine (350m–1.200m) + kemiripan token.',
+          'Merancang pembersihan koordinat geospasial (koreksi otomatis tanda lintang positif), pemetaan prefix 4-digit kdppk BPJS, serta klasifikasi kota spatial-grid k-NN (sel 0,05°, k=7) untuk 10 kota Jabodetabek.',
+          'Menormalisasi total 30.903 baris ke dalam 5 tabel CSV relasional (3.069 faskes, 762 fasilitas medis, 152 spesialisasi, 20.085 relasi faskes-fasilitas, dan 6.835 relasi faskes-spesialisasi) dengan deduplikasi kunci komposit.',
+          'Menopang API Laravel 13 + Sanctum termasuk Medibot (Gemini AI dengan function calling cari_faskes, rute jarak jalan GPS, memori sesi 24 jam & migrasi chat tamu) serta 5 modul dashboard moderasi admin.',
         ],
-        tags: ['Healthcare', 'Web Platform', 'System Design', 'Alur Data', 'Data Modeling'],
+        tags: ['Python', 'Playwright', 'OpenStreetMap', 'Geospatial ETL', 'Laravel 13', 'Gemini AI', 'Tailwind CSS v4'],
         hasGallery: false,
+        caseStudy: {
+          courseInfo: {
+            course: 'Proyek Kompetisi Teknologi Kesehatan (Lomba)',
+            institution: 'Sekolah Vokasi IPB University — Tim Teknologi Rekayasa Perangkat Lunak',
+            author: 'Osanna Patricia Limbong — Analis Data & Data Pipeline Engineer',
+            date: '2026 (Selesai)',
+            dataset: 'BPJS Kesehatan Aplicares + OpenStreetMap Overpass API (Jabodetabek)',
+            scope: '3.069 Fasilitas Kesehatan · 10 Kota · 5 Tabel Relasional Ternormalisasi (30.903 Baris)',
+          },
+          pillars: [
+            {
+              index: '01',
+              title: 'Scraping Multi-Sumber (BPJS Aplicares & OpenStreetMap)',
+              category: 'AKUISISI DATA',
+              metricBadge: 'Pipeline Ganda BPJS + OSM',
+              summary:
+                'Menggabungkan registri resmi BPJS Kesehatan dengan rumah sakit swasta non-BPJS dari OpenStreetMap agar pasien dapat membandingkan layanan BPJS maupun umum dalam satu pencarian.',
+              details: [
+                'scraper_bpjs.py: Menggunakan Playwright dengan injeksi hook JSON.parse di browser untuk menangkap payload JWE terdekripsi langsung dari BPJS Aplicares untuk wilayah DKI Jakarta, Jawa Barat, dan Banten.',
+                'scrape_non_bpjs_osm.py: Menarik data dari mirror Overpass API di 8 radius pusat kota Jabodetabek (11–16 km) sekaligus menyaring entri non-rumah sakit (klinik hewan, apotek, parkir) dengan aturan regex.',
+                'Menerapkan pencocokan spasial Haversine (≤350m sangat dekat atau ≤1.200m dengan kemiripan token ≥60%) untuk menggabungkan RS non-BPJS tanpa menduplikasi data BPJS yang sudah ada.',
+              ],
+            },
+            {
+              index: '02',
+              title: 'Pembersihan Geospasial & Klasifikasi Wilayah Grid k-NN',
+              category: 'KUALITAS DATA & ETL',
+              metricBadge: '10 Kota Jabodetabek',
+              summary:
+                'Membersihkan koordinat rusak dan label wilayah ambigu sebelum masuk ke basis data melalui aturan prefix deterministik serta klasifikasi tetangga terdekat spasial.',
+              details: [
+                'mapper.py otomatis mendeteksi dan memperbaiki tanda latitude positif yang terbalik (mis. +6.34 → -6.34) serta menolak koordinat rusak (0,0) atau di luar batas Jabodetabek.',
+                'Memetakan 4 digit awal kode cabang kdppk BPJS ke kota yang pasti, lalu menyelesaikan prefix campuran menggunakan kelas PenentuWilayah berbasis grid spasial (sel 0,05°, k=7 tetangga terdekat).',
+                'Menstandardisasi 10 wilayah cakupan: Jakarta Pusat, Selatan, Timur, Barat, Utara, Bogor, Depok, Bekasi, Tangerang, dan Tangerang Selatan.',
+              ],
+            },
+            {
+              index: '03',
+              title: 'Pembentukan Skema Relasional 3NF Ternormalisasi',
+              category: 'PEMODELAN DATA',
+              metricBadge: '30.903 Baris Terverifikasi',
+              summary:
+                'Mengubah JSON mentah bersarang menjadi lima tabel CSV relasional siap produksi dengan deduplikasi ketat pada level pasangan kunci komposit.',
+              details: [
+                'Tabel master: tabel_faskes.csv (3.069 faskes), tabel_fasilitas.csv (762 jenis fasilitas & peralatan medis), dan tabel_spesialisasi.csv (152 kategori dokter spesialis).',
+                'Tabel relasi: tabel_faskes_fasilitas.csv (20.085 pasangan unik) dan tabel_faskes_spesialisasi.csv (6.835 pasangan unik) yang dibangkitkan oleh generate_relasi.py.',
+                'Menerapkan format Title-Case dan normalisasi lookup key agar filter pencarian multi-kriteria di backend berjalan cepat tanpa tag ganda.',
+              ],
+            },
+            {
+              index: '04',
+              title: 'API Laravel 13, Asisten AI Medibot & Ekosistem Komunitas',
+              category: 'INTEGRASI FULL-STACK',
+              metricBadge: 'Gemini Function Calling',
+              summary:
+                'Menghubungkan dataset ternormalisasi ke backend Laravel 13 + Sanctum dan frontend Vite + Tailwind CSS v4 yang menghadirkan pencarian AI percakapan, rute GPS, serta forum termoderasi.',
+              details: [
+                'Medibot (GeminiController): Memakai Gemini AI dengan function calling cari_faskes, pemeringkatan faskes terdekat lewat RoadDistanceService, memori sesi 24 jam (20 pesan), migrasi chat tamu ke akun login, serta guardrail off-topic.',
+                'Komunitas & Ulasan: Mendukung rating faskes bintang 1–5, forum diskusi dengan mention @faskes, like, rekomendasi faskes terdekat, serta konversi otomatis foto galeri ke WebP.',
+                'Tata Kelola Admin: Menyediakan 5 antrean moderasi khusus meliputi laporan topik diskusi, laporan komentar, masukan data faskes, laporan ulasan, pemblokiran pengguna, dan log aktivitas.',
+              ],
+            },
+          ],
+          recommendations: [
+            {
+              index: '01',
+              title: 'Transparansi Layanan BPJS & Non-BPJS dalam Satu Pintu',
+              takeaway:
+                'Penggabungan data BPJS Aplicares dan OpenStreetMap menghilangkan celah informasi antara RS BPJS dan swasta, sehingga pasien bisa memfilter hingga 762 fasilitas medis dan 152 spesialisasi secara akurat.',
+            },
+            {
+              index: '02',
+              title: 'Grid Spasial k-NN untuk Dataset Publik yang Beragam',
+              takeaway:
+                'Data koordinat publik kerap memiliki tanda lintang terbalik atau nama kecamatan tidak seragam; memadukan lookup prefix deterministik dan grid spasial k-NN memastikan filter wilayah selalu konsisten.',
+            },
+            {
+              index: '03',
+              title: 'Asisten AI Berbasis Tool Call yang Terverifikasi',
+              takeaway:
+                'Menambatkan Medibot pada fungsi cari_faskes dan perhitungan jarak jalan GPS mencegah halusinasi alamat rumah sakit sekaligus menjaga saran medis awal tetap aman dan dapat diverifikasi.',
+            },
+          ],
+        },
       },
       // 03: canvAR (Apr 2026)
       {
