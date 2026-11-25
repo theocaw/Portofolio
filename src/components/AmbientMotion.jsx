@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useApp } from '../context/AppContext.jsx';
 
 const INTERACTIVE_SELECTOR =
-  'a, button, [role="button"], [role="tab"], input, select, textarea, .kissa-tape-card__shell-wrap, .kissa-portrait, .kissa-gpa-plate';
+  'a, button, [role="button"], [role="tab"], input, select, textarea, .kissa-tape-card__shell-wrap, .kissa-portrait, .kissa-gpa-plate, .garden-hero-stage';
 
 export default function AmbientMotion() {
   const { theme } = useApp();
@@ -15,7 +15,7 @@ export default function AmbientMotion() {
     themeRef.current = theme;
   }, [theme]);
 
-  // 1. Lightweight 60fps sunlit library dust motes drifting across viewport
+  // 1. Floating Wildflower Petals & Golden Pollen Drifting Across Viewport (60fps)
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) return undefined;
@@ -38,16 +38,19 @@ export default function AmbientMotion() {
     };
     resize();
 
-    const count = width < 768 ? 16 : 28;
-    const motes = Array.from({ length: count }, (_, i) => ({
+    const petalCount = width < 768 ? 14 : 24;
+    const items = Array.from({ length: petalCount }, (_, i) => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      r: 0.9 + Math.random() * 1.9,
-      vx: (Math.random() - 0.5) * 0.16,
-      vy: -0.08 - Math.random() * 0.22,
-      phase: i * 0.9 + Math.random() * Math.PI * 2,
-      alpha: 0.14 + Math.random() * 0.28,
-      warm: i % 3 !== 0,
+      size: i % 3 === 0 ? 4.8 + Math.random() * 4.5 : 1.5 + Math.random() * 2,
+      isPetal: i % 3 === 0,
+      vx: 0.14 + Math.random() * 0.25,
+      vy: 0.18 + Math.random() * 0.34,
+      rot: Math.random() * Math.PI * 2,
+      vRot: (Math.random() - 0.5) * 0.018,
+      phase: i * 0.8 + Math.random() * Math.PI * 2,
+      alpha: 0.22 + Math.random() * 0.28,
+      hueType: i % 4,
     }));
 
     const pointer = { x: -9999, y: -9999 };
@@ -70,47 +73,70 @@ export default function AmbientMotion() {
     const draw = () => {
       rafId = window.requestAnimationFrame(draw);
       if (document.hidden) return;
-      tick += 0.012;
+      tick += 0.014;
 
       ctx.clearRect(0, 0, width, height);
       const isDark = themeRef.current === 'dark';
 
-      for (const m of motes) {
-        m.x += m.vx + Math.sin(tick + m.phase) * 0.14;
-        m.y += m.vy;
+      for (const p of items) {
+        p.x += p.vx + Math.sin(tick + p.phase) * 0.28;
+        p.y += p.isPetal ? p.vy : -p.vy * 0.45;
+        p.rot += p.vRot;
 
-        // Soft gentle drift away from pointer
-        const dx = m.x - pointer.x;
-        const dy = m.y - pointer.y;
+        // Gentle breeze repulsion around pointer
+        const dx = p.x - pointer.x;
+        const dy = p.y - pointer.y;
         const distSq = dx * dx + dy * dy;
-        if (distSq < 12000 && distSq > 1) {
+        if (distSq < 14000 && distSq > 1) {
           const dist = Math.sqrt(distSq);
-          const push = ((110 - dist) / 110) * 0.42;
-          m.x += (dx / dist) * push;
-          m.y += (dy / dist) * push;
+          const push = ((118 - dist) / 118) * 0.55;
+          p.x += (dx / dist) * push;
+          p.y += (dy / dist) * push;
         }
 
-        if (m.y < -12) {
-          m.y = height + 12;
-          m.x = Math.random() * width;
+        if (p.y > height + 18) {
+          p.y = -18;
+          p.x = Math.random() * width;
+        } else if (p.y < -18) {
+          p.y = height + 18;
+          p.x = Math.random() * width;
         }
-        if (m.x < -12) m.x = width + 12;
-        if (m.x > width + 12) m.x = -12;
+        if (p.x > width + 18) p.x = -18;
+        if (p.x < -18) p.x = width + 18;
 
-        const twinkle = 0.65 + 0.35 * Math.sin(tick * 1.7 + m.phase);
-        const a = m.alpha * twinkle * (isDark ? 0.85 : 0.72);
-        const color = m.warm
-          ? isDark
-            ? `rgba(224, 184, 101, ${a.toFixed(3)})`
-            : `rgba(184, 128, 42, ${a.toFixed(3)})`
-          : isDark
-            ? `rgba(126, 168, 149, ${a.toFixed(3)})`
-            : `rgba(43, 74, 62, ${a.toFixed(3)})`;
+        const a = p.alpha * (isDark ? 0.72 : 0.65);
+        const palette = isDark
+          ? [
+              `rgba(232, 121, 144, ${a.toFixed(3)})`,
+              `rgba(231, 188, 98, ${a.toFixed(3)})`,
+              `rgba(118, 186, 149, ${a.toFixed(3)})`,
+              `rgba(169, 154, 212, ${a.toFixed(3)})`,
+            ]
+          : [
+              `rgba(194, 75, 99, ${a.toFixed(3)})`,
+              `rgba(216, 162, 62, ${a.toFixed(3)})`,
+              `rgba(90, 141, 115, ${a.toFixed(3)})`,
+              `rgba(138, 121, 184, ${a.toFixed(3)})`,
+            ];
 
-        ctx.beginPath();
-        ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
-        ctx.fillStyle = color;
-        ctx.fill();
+        ctx.fillStyle = palette[p.hueType];
+
+        if (p.isPetal) {
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.scale(1, 0.58 + 0.25 * Math.sin(tick * 2 + p.phase));
+          ctx.beginPath();
+          ctx.moveTo(0, -p.size);
+          ctx.bezierCurveTo(p.size * 0.9, -p.size * 0.4, p.size * 0.85, p.size * 0.75, 0, p.size);
+          ctx.bezierCurveTo(-p.size * 0.85, p.size * 0.75, -p.size * 0.9, -p.size * 0.4, 0, -p.size);
+          ctx.fill();
+          ctx.restore();
+        } else {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
       }
     };
 
@@ -124,7 +150,7 @@ export default function AmbientMotion() {
     };
   }, []);
 
-  // 2. Minimalist Precision Brass Cursor Ring (Desktop fine pointers only)
+  // 2. Minimalist Precision Botanical Rose-Gold Cursor Ring (Desktop fine pointers only)
   useEffect(() => {
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -182,7 +208,6 @@ export default function AmbientMotion() {
       rafId = window.requestAnimationFrame(animate);
       if (!visible) return;
 
-      // Smooth spring-lagged interpolation for the outer brass ring
       ringX += (targetX - ringX) * 0.18;
       ringY += (targetY - ringY) * 0.18;
 

@@ -13,8 +13,12 @@ const JUMP_SELECTOR = [
   '.kissa-footer__pitch',
   '.kissa-footer__directory',
   // Home
+  '.garden-hero-stage',
+  '.kw-prompt-bar',
+  '.kw-grid > .kw-card',
   '.kissa-cabinet',
   '.kissa-reading-spread',
+  '.agc-card',
   '.kissa-ticker',
   '.kissa-author-copy',
   '.kissa-portrait',

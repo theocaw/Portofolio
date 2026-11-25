@@ -74,11 +74,14 @@
    ========================================================= */
 .kissa-cabinet {
   position: relative;
-  background: linear-gradient(180deg, #1b1815 0%, #141210 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(232, 139, 156, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 80% 15%, rgba(231, 188, 98, 0.12) 0%, transparent 45%),
+    linear-gradient(180deg, #1a2d24 0%, #122019 100%);
+  border: 1px solid rgba(242, 240, 232, 0.14);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 26px 56px -20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 26px 56px -20px rgba(14, 28, 20, 0.45);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -312,22 +315,22 @@
 }
 
 .kissa-book--pine {
-  background: linear-gradient(90deg, #243e34 0%, #2f5244 45%, #1e352c 100%);
+  background: linear-gradient(90deg, #1f4535 0%, #2d624b 45%, #19382b 100%);
 }
 .kissa-book--walnut {
-  background: linear-gradient(90deg, #3b2f26 0%, #4d3e32 45%, #2d231c 100%);
+  background: linear-gradient(90deg, #564a78 0%, #73649e 45%, #443a61 100%);
 }
 .kissa-book--rust {
-  background: linear-gradient(90deg, #8f391e 0%, #b34826 45%, #732c16 100%);
+  background: linear-gradient(90deg, #a13a50 0%, #c85069 45%, #842d40 100%);
 }
 .kissa-book--olive {
-  background: linear-gradient(90deg, #3c4a3e 0%, #4e6051 45%, #2f3b31 100%);
+  background: linear-gradient(90deg, #3b6350 0%, #52846c 45%, #2f5040 100%);
 }
 .kissa-book--brass {
-  background: linear-gradient(90deg, #8c6d2c 0%, #ad8838 45%, #705620 100%);
+  background: linear-gradient(90deg, #a67827 0%, #cf9838 45%, #855e1c 100%);
 }
 .kissa-book--burgundy {
-  background: linear-gradient(90deg, #5c2a33 0%, #753642 45%, #471f27 100%);
+  background: linear-gradient(90deg, #6e2f44 0%, #8e405b 45%, #552334 100%);
 }
 
 .kissa-book:hover {

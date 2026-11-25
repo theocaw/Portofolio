@@ -1,0 +1,263 @@
+/* =========================================================
+   INTERACTIVE STAGGERED DATA CHARTS (Reel 2 Shadcn Chart Style)
+   Auto-syncs colors via --chart-1 .. --chart-5 in Sunlit & Moonlit modes
+   ========================================================= */
+
+.agc-band {
+  border-block: 1px solid var(--rule);
+  padding-block: clamp(48px, 6vw, 76px);
+}
+
+.agc-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.agc-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.agc-title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(28px, 3.8vw, 44px);
+  line-height: 1.06;
+  color: var(--ink);
+  margin-top: 6px;
+}
+
+/* Motion layoutId Segmented Tabs */
+.agc-tabs {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--rule-strong);
+}
+
+.agc-tab {
+  position: relative;
+  border: 0;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 200ms ease;
+}
+
+.agc-tab.is-active {
+  color: var(--paper);
+}
+
+.agc-tab__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--blue);
+  z-index: 0;
+}
+
+.agc-tab__label {
+  position: relative;
+  z-index: 1;
+}
+
+/* Main Chart Card */
+.agc-card {
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: clamp(20px, 3vw, 32px);
+  box-shadow: var(--shadow-hard);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.agc-tooltip-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+}
+
+.agc-tooltip-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.agc-tooltip-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.agc-tooltip-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.agc-tooltip-desc {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.agc-link {
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  white-space: nowrap;
+}
+
+.agc-link:hover {
+  color: var(--pink-hot);
+}
+
+/* Staggered Vertical Bar Plot */
+.agc-plot {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: clamp(10px, 2vw, 22px);
+  align-items: end;
+  padding-top: 8px;
+}
+
+.agc-col {
+  border: 0;
+  background: transparent;
+  padding: 8px 4px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.agc-col:hover,
+.agc-col.is-focused {
+  background: var(--paper-2);
+}
+
+.agc-col__val {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.agc-col__track {
+  width: 100%;
+  max-width: 72px;
+  height: 185px;
+  border-radius: 10px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: flex-end;
+  padding: 4px;
+  overflow: hidden;
+}
+
+.agc-col__bar {
+  width: 100%;
+  border-radius: 7px;
+  transform-origin: bottom center;
+  transition: filter 180ms ease;
+}
+
+.agc-col.is-focused .agc-col__bar {
+  filter: brightness(1.08);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+}
+
+.agc-col__label {
+  font-size: 10px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.agc-col.is-focused .agc-col__label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* Footer with Theme-Synced CSS Custom Properties */
+.agc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+}
+
+.agc-summary {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 620px;
+}
+
+.agc-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.agc-swatch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 9px;
+  color: var(--muted);
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+}
+
+.agc-swatch-chip i {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+  .agc-plot {
+    gap: 6px;
+  }
+
+  .agc-col__track {
+    height: 135px;
+  }
+
+  .agc-col__val {
+    font-size: 9.5px;
+  }
+
+  .agc-col__label {
+    font-size: 8.5px;
+  }
+}

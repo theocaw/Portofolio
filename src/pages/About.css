@@ -42,11 +42,11 @@
 .kissa-open-monograph {
   display: grid;
   grid-template-columns: 1fr 18px 1fr;
-  background: linear-gradient(145deg, #243e34 0%, #192c25 100%);
-  border: 1px solid rgba(224, 184, 101, 0.25);
-  border-radius: 12px;
+  background: linear-gradient(145deg, #214736 0%, #163024 100%);
+  border: 1px solid rgba(232, 139, 156, 0.3);
+  border-radius: 14px;
   padding: 12px;
-  box-shadow: 0 28px 58px -20px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 28px 58px -20px rgba(14, 28, 20, 0.42);
 }
 
 .kissa-folio {
@@ -77,9 +77,9 @@
 .kissa-silk-ribbon {
   width: 5px;
   height: calc(100% + 18px);
-  background: linear-gradient(180deg, #b84a27 0%, #8f3518 100%);
+  background: linear-gradient(180deg, #d8657c 0%, #a83d55 100%);
   border-radius: 0 0 3px 3px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.36);
   transform-origin: top center;
   animation: kissaRibbonSway 5.5s ease-in-out infinite;
 }

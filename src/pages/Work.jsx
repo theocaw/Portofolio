@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 import CassetteDeck, { CassetteShell } from '../components/CassetteDeck.jsx';
 import { useApp } from '../context/AppContext.jsx';
 import { getWorkContent } from '../content/work.js';
@@ -15,12 +16,12 @@ const PROJECT_CATEGORIES = {
 };
 
 const TAPE_SPECS = {
-  'ames-housing': { accent: '#2b4a3e', stripe: '#d9b25f', side: 'SIDE A' },
-  medigo: { accent: '#2f6b58', stripe: '#e5c67e', side: 'SIDE A' },
-  canvar: { accent: '#b84a27', stripe: '#e8c587', side: 'BONUS' },
-  cafier: { accent: '#8c5a2b', stripe: '#d9b25f', side: 'SIDE B' },
-  'dthanasha-kost': { accent: '#3d5a52', stripe: '#c9a66b', side: 'SIDE B' },
-  'alumni-portal': { accent: '#63333d', stripe: '#d9b25f', side: 'SIDE B' },
+  'ames-housing': { accent: '#234c39', stripe: '#d8a23e', side: 'SIDE A' },
+  medigo: { accent: '#2d6852', stripe: '#e88b9c', side: 'SIDE A' },
+  canvar: { accent: '#c24b63', stripe: '#f0cf7b', side: 'BONUS' },
+  cafier: { accent: '#8f6928', stripe: '#e8c587', side: 'SIDE B' },
+  'dthanasha-kost': { accent: '#48735e', stripe: '#d8a23e', side: 'SIDE B' },
+  'alumni-portal': { accent: '#6d5c96', stripe: '#e88b9c', side: 'SIDE B' },
 };
 
 const FILTERS = {
@@ -217,18 +218,28 @@ export default function Work() {
             </div>
 
             <div className="kissa-filters" role="tablist">
-              {(FILTERS[lang] || FILTERS.en).map((f) => (
-                <button
-                  key={f.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={activeFilter === f.id}
-                  className={`mono kissa-filter-btn ${activeFilter === f.id ? 'is-active' : ''}`}
-                  onClick={() => setActiveFilter(f.id)}
-                >
-                  {f.label}
-                </button>
-              ))}
+              {(FILTERS[lang] || FILTERS.en).map((f) => {
+                const isSelected = activeFilter === f.id;
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    role="tab"
+                    aria-selected={isSelected}
+                    className={`mono kissa-filter-btn ${isSelected ? 'is-active' : ''}`}
+                    onClick={() => setActiveFilter(f.id)}
+                  >
+                    {isSelected && (
+                      <motion.span
+                        layoutId="garden-work-filter-pill"
+                        className="kissa-filter-btn__bg"
+                        transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                      />
+                    )}
+                    <span className="kissa-filter-btn__label">{f.label}</span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 
@@ -239,8 +250,12 @@ export default function Work() {
               const isLoaded = origIdx === selectedIdx;
 
               return (
-                <article
+                <motion.article
                   key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 24 }}
                   className={`kissa-tape-card kissa-spotlight ${isLoaded ? 'is-loaded' : ''}`}
                 >
                   <div
@@ -302,7 +317,7 @@ export default function Work() {
                       </Link>
                     </div>
                   </div>
-                </article>
+                </motion.article>
               );
             })}
           </div>

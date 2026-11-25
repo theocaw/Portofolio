@@ -1,41 +1,48 @@
 /*
- * Design Tokens: Kissa / Archive — Analog Hi-Fi Cassette & Architectural Library
- * Mature, tactile materiality: Cotton Archival Paper, Brushed Aluminum, Walnut Wood, Vacuum-Tube Amber.
- * Zero cartoon outlines, zero hard comic drop shadows.
+ * Design Tokens: Botanical Conservatory & Living Garden Archive
+ * Mature, tactile materiality: Sunlit Herbarium Parchment, Conservatory Moss,
+ * Camellia Peony Rose, Marigold Pollen Gold, and Moonlit Glasshouse.
  */
 :root {
-  /* Daylight Reading Room & Listening Bar */
-  --paper: #f4f1ea;
-  --paper-2: #eae5db;
-  --card-bg: #faf8f4;
-  --ink: #1c1917;
-  --muted: #6c655d;
-  --rule: rgba(28, 25, 23, 0.12);
-  --rule-strong: rgba(28, 25, 23, 0.24);
+  /* Sunlit Botanical Conservatory (Light Mode) */
+  --paper: #f7f5ee;
+  --paper-2: #edf1e8;
+  --card-bg: #fcfbf7;
+  --ink: #18231c;
+  --muted: #5a685e;
+  --rule: rgba(24, 35, 28, 0.11);
+  --rule-strong: rgba(24, 35, 28, 0.24);
 
-  /* Refined Analog Accents */
-  --blue: #2b4a3e;         /* Archival Pine / Library Cloth Green */
-  --blue-dark: #1d342b;
-  --blue-soft: #e3ebe7;
-  --pink: #d48c70;         /* Warm Clay / Oxide Tape */
-  --pink-soft: #f5eae4;
-  --pink-hot: #b84a27;     /* Analog VU Rust / Magnetic Oxide Red */
-  --lime: #d9b25f;         /* Brushed Brass / Vacuum Tube Amber */
-  --mint: #5f8272;         /* Sage Cloth */
-  --mint-soft: #e6eee9;
-  --lavender: #dfd9ce;
+  /* Living Flora & Botanical Specimen Accents */
+  --blue: #234c39;         /* Conservatory Moss Green */
+  --blue-dark: #163325;
+  --blue-soft: #e2eee7;
+  --pink: #e295a2;         /* Soft Peony Blush */
+  --pink-soft: #faedf0;
+  --pink-hot: #c24b63;     /* Camellia Rose */
+  --lime: #d8a23e;         /* Marigold Pollen Gold */
+  --mint: #5a8d73;         /* Eucalyptus Sage */
+  --mint-soft: #e4f0e8;
+  --lavender: #8a79b8;     /* Garden Lavender */
 
-  /* Deck & Hardware Surfaces */
-  --deck-face: #23211e;
-  --deck-face-hi: #2f2c28;
-  --deck-well: #12110f;
-  --deck-text: #ebe6dc;
-  --deck-muted: #989186;
-  --vu-bg: #f6e7c1;
+  /* Shadcn-style Theme-Synced Chart Variables (Reel 2) */
+  --chart-1: #234c39;
+  --chart-2: #c24b63;
+  --chart-3: #d8a23e;
+  --chart-4: #5a8d73;
+  --chart-5: #8a79b8;
 
-  --dark-rule: rgba(28, 25, 23, 0.18);
-  --dark-muted: #6c655d;
-  --white-40: rgba(250, 248, 244, 0.72);
+  /* Deck & Conservatory Hardware Surfaces */
+  --deck-face: #1c2821;
+  --deck-face-hi: #27382e;
+  --deck-well: #0f1612;
+  --deck-text: #f0eee6;
+  --deck-muted: #93a399;
+  --vu-bg: #f6ebd1;
+
+  --dark-rule: rgba(24, 35, 28, 0.18);
+  --dark-muted: #5a685e;
+  --white-40: rgba(252, 251, 247, 0.78);
 
   /* Editorial Typography */
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -47,45 +54,52 @@
   --frame-max: 1360px;
   --gutter: clamp(20px, calc(20px + 44 * (100vw - 390px) / 1050), 64px);
   --section-y: clamp(48px, calc(48px + 24 * (100vw - 390px) / 1050), 72px);
-  --radius-button: 6px;
-  --radius-card: 10px;
-  --shadow-hard: 0 12px 32px -12px rgba(28, 25, 23, 0.14), 0 2px 6px rgba(28, 25, 23, 0.06);
-  --shadow-soft: 0 20px 44px -16px rgba(28, 25, 23, 0.16);
+  --radius-button: 8px;
+  --radius-card: 12px;
+  --shadow-hard: 0 12px 32px -12px rgba(20, 34, 25, 0.12), 0 2px 6px rgba(20, 34, 25, 0.05);
+  --shadow-soft: 0 22px 48px -16px rgba(20, 34, 25, 0.16);
   --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme='dark'] {
-  /* Midnight Jazz Kissa & Walnut Listening Lounge */
-  --paper: #11100e;
-  --paper-2: #181613;
-  --card-bg: #1c1a17;
-  --ink: #f0ebe2;
-  --muted: #999186;
-  --rule: rgba(240, 235, 226, 0.1);
-  --rule-strong: rgba(240, 235, 226, 0.22);
+  /* Moonlit Glasshouse Conservatory (Dark Mode) */
+  --paper: #0f1511;
+  --paper-2: #161f19;
+  --card-bg: #1a241e;
+  --ink: #f2f0e8;
+  --muted: #95a499;
+  --rule: rgba(242, 240, 232, 0.1);
+  --rule-strong: rgba(242, 240, 232, 0.22);
 
-  /* Luminous Vacuum Tube & Sage Cloth */
-  --blue: #7ea895;
-  --blue-dark: #638f7b;
-  --blue-soft: #1a241f;
-  --pink: #d9896c;
-  --pink-soft: #261b17;
-  --pink-hot: #e3724b;
-  --lime: #e0b865;
-  --mint: #7ea895;
-  --mint-soft: #16201c;
-  --lavender: #292622;
+  /* Luminous Night-Garden Flora */
+  --blue: #76ba95;
+  --blue-dark: #5ca27c;
+  --blue-soft: #1a2a21;
+  --pink: #e59aa8;
+  --pink-soft: #2b1b20;
+  --pink-hot: #e87990;
+  --lime: #e7bc62;
+  --mint: #76ba95;
+  --mint-soft: #16241d;
+  --lavender: #a99ad4;
 
-  --deck-face: #1d1b18;
-  --deck-face-hi: #292622;
-  --deck-well: #0c0b0a;
-  --deck-text: #f0ebe2;
-  --deck-muted: #8a8378;
-  --vu-bg: #f3dfb0;
+  /* Theme-Synced Night Chart Variables */
+  --chart-1: #76ba95;
+  --chart-2: #e87990;
+  --chart-3: #e7bc62;
+  --chart-4: #5ca27c;
+  --chart-5: #a99ad4;
 
-  --dark-rule: rgba(240, 235, 226, 0.15);
-  --dark-muted: #999186;
-  --white-40: rgba(28, 26, 23, 0.8);
+  --deck-face: #17211b;
+  --deck-face-hi: #223028;
+  --deck-well: #0b100d;
+  --deck-text: #f2f0e8;
+  --deck-muted: #8a9b90;
+  --vu-bg: #f3e2b7;
+
+  --dark-rule: rgba(242, 240, 232, 0.15);
+  --dark-muted: #95a499;
+  --white-40: rgba(26, 36, 30, 0.82);
 
   --shadow-hard: 0 16px 38px -12px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
   --shadow-soft: 0 24px 52px -16px rgba(0, 0, 0, 0.75);

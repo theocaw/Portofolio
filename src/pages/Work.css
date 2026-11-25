@@ -196,14 +196,16 @@
 }
 
 .kissa-filter-btn {
+  position: relative;
   padding: 7px 14px;
-  border-radius: 4px;
+  border-radius: 999px;
   border: 1px solid var(--rule-strong);
   background: transparent;
   color: var(--muted);
   font-size: 11px;
   cursor: pointer;
-  transition: all var(--transition);
+  overflow: hidden;
+  transition: border-color var(--transition), color var(--transition);
 }
 
 .kissa-filter-btn:hover {
@@ -212,9 +214,21 @@
 }
 
 .kissa-filter-btn.is-active {
-  background: var(--ink);
-  border-color: var(--ink);
+  border-color: var(--blue);
   color: var(--paper);
+}
+
+.kissa-filter-btn__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--blue);
+  z-index: 0;
+}
+
+.kissa-filter-btn__label {
+  position: relative;
+  z-index: 1;
 }
 
 .kissa-tapes-grid {

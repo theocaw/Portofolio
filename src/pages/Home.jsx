@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext.jsx';
 import { getHomeContent } from '../content/home.js';
+import BotanicalHeroCanvas from '../components/BotanicalHeroCanvas.jsx';
+import KineticGardenWidgets from '../components/KineticGardenWidgets.jsx';
+import AnalyticsGardenChart from '../components/AnalyticsGardenChart.jsx';
 import './Home.css';
 
 const LIBRARY_BOOKS = {
@@ -281,26 +284,38 @@ export default function Home() {
   return (
     <div className="kissa-home">
       {/* =========================================================
-          STAGE 1: INTERACTIVE LIBRARY BOOKSHELF & BRASS BOOK-EXTRACTOR
+          STAGE 1: 60FPS INTERACTIVE BOTANICAL GARDEN HERO (Reel 3)
+         ========================================================= */}
+      <BotanicalHeroCanvas availability={home.availability} />
+
+      {/* =========================================================
+          STAGE 2: KINETIC PROMPT & ANIME.JS SPRING MICRO-WIDGETS (Reel 1 & 2)
+         ========================================================= */}
+      <KineticGardenWidgets />
+
+      {/* =========================================================
+          STAGE 3: INTERACTIVE HERBARIUM BOOKSHELF & BRASS EXTRACTOR
          ========================================================= */}
       <section className="container kissa-shelf-hero">
         <div className="kissa-shelf-hero__topbar">
           <div className="mono kissa-status-line">
             <span className="kissa-status-dot" />
-            <span>{home.availability}</span>
+            <span>
+              {lang === 'id' ? 'RAK HERBARIUM BOTANI · 06 JILID UTAMA' : 'BOTANICAL HERBARIUM SHELF · 06 CORE VOLUMES'}
+            </span>
           </div>
           <span className="mono kissa-shelf-hero__instruction">
             {lang === 'id'
-              ? 'KLIK BUKU DI RAK ATAU TEKAN ← / → UNTUK MENARIK ARSIP'
+              ? 'KLIK BUKU DI RAK ATAU TEKAN ← / → UNTUK MENARIK JILID'
               : 'CLICK ANY VOLUME ON THE SHELF OR PRESS ← / → TO EXTRACT'}
           </span>
         </div>
 
-        {/* Physical Walnut Library Cabinet + Rolling Brass Extractor Arm */}
+        {/* Physical Conservatory Herbarium Cabinet + Rolling Brass Extractor Arm */}
         <div className="kissa-cabinet">
           {/* Giant Recessed Architectural Typography */}
           <div className="kissa-cabinet__backdrop" aria-hidden="true">
-            LIBRARY
+            GARDEN
           </div>
 
           {/* Top Brushed Brass Rail & Mechanical Book-Extractor Clamp */}
@@ -355,10 +370,10 @@ export default function Home() {
             })}
           </div>
 
-          {/* Dark Walnut Shelf Plank */}
+          {/* Dark Moss Conservatory Shelf Plank */}
           <div className="kissa-walnut-ledge" aria-hidden="true">
             <span className="mono">
-              OSANNA PATRICIA LIMBONG · ARCHIVAL READING SHELF · VOL. 01 — 06
+              OSANNA PATRICIA LIMBONG · BOTANICAL HERBARIUM ARCHIVE · VOL. 01 — 06
             </span>
           </div>
         </div>
@@ -421,7 +436,12 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          STAGE 2: EDITORIAL KINETIC TAPE RIBBON (Replaces Numbers Strip)
+          STAGE 4: INTERACTIVE STAGGERED DATA CHARTS (Reel 2 Shadcn Style)
+         ========================================================= */}
+      <AnalyticsGardenChart />
+
+      {/* =========================================================
+          STAGE 5: EDITORIAL KINETIC BOTANICAL RIBBON
          ========================================================= */}
       <div className="kissa-ticker" aria-hidden="true">
         <div className="kissa-ticker__track">

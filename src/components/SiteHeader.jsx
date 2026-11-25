@@ -1,4 +1,5 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
 import './SiteHeader.css';
@@ -21,28 +22,35 @@ export default function SiteHeader() {
         <Link to="/" className="kissa-brand" aria-label="Osanna Patricia Limbong — Home">
           <span className="kissa-brand__name">Osanna Patricia Limbong</span>
           <span className="mono kissa-brand__sub">
-            {lang === 'id' ? 'ARSIP & RUANG DENGAR' : 'ARCHIVE & LISTENING ROOM'}
+            {lang === 'id' ? 'TAMAN BOTANI & ARSIP KARYA' : 'BOTANICAL GARDEN & ARCHIVE'}
           </span>
         </Link>
 
         <nav className="kissa-nav" aria-label="Main Navigation">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.to === '/'}
-              className={({ isActive }) =>
-                `kissa-nav__link ${
-                  isActive || (item.to === '/work' && pathname.startsWith('/work/'))
-                    ? 'is-active'
-                    : ''
-                }`
-              }
-            >
-              <span className="mono kissa-nav__idx">{item.index}</span>
-              <span>{item.label}</span>
-            </NavLink>
-          ))}
+          {navItems.map((item) => {
+            const active =
+              item.to === '/'
+                ? pathname === '/'
+                : pathname === item.to || (item.to === '/work' && pathname.startsWith('/work/'));
+            return (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.to === '/'}
+                className={`kissa-nav__link ${active ? 'is-active' : ''}`}
+              >
+                <span className="mono kissa-nav__idx">{item.index}</span>
+                <span>{item.label}</span>
+                {active && (
+                  <motion.span
+                    layoutId="garden-nav-active-bar"
+                    className="kissa-nav__active-bar"
+                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+                  />
+                )}
+              </NavLink>
+            );
+          })}
         </nav>
 
         <div className="kissa-controls">
@@ -68,15 +76,15 @@ export default function SiteHeader() {
             type="button"
             className="mono kissa-theme-btn"
             onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
+            aria-label={theme === 'light' ? 'Switch to moonlit dark mode' : 'Switch to sunlit light mode'}
           >
             {theme === 'light'
               ? lang === 'id'
                 ? 'Malam'
-                : 'Dark'
+                : 'Moonlit'
               : lang === 'id'
                 ? 'Siang'
-                : 'Light'}
+                : 'Sunlit'}
           </button>
 
           <a href="#contact" className="mono kissa-contact-link" title={site.email}>

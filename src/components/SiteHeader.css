@@ -104,9 +104,22 @@
   color: var(--ink);
 }
 
-.kissa-nav__link:hover::after,
-.kissa-nav__link.is-active::after {
+.kissa-nav__link:hover::after {
   transform: scaleX(1);
+}
+
+.kissa-nav__link.is-active::after {
+  transform: scaleX(0);
+}
+
+.kissa-nav__active-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--blue), var(--pink-hot), var(--lime));
 }
 
 .kissa-nav__link:hover .kissa-nav__idx {
