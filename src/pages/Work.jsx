@@ -16,25 +16,25 @@ const PROJECT_CATEGORIES = {
 };
 
 const BLOOM_SPECS = {
-  'ames-housing': { species: 'edelweiss', label: 'EDELWEISS' },
-  medigo: { species: 'rose', label: 'ALPINE ROSE' },
-  canvar: { species: 'buttercup', label: 'BUTTERCUP' },
-  cafier: { species: 'gentian', label: 'BLUE GENTIAN' },
-  'dthanasha-kost': { species: 'lavender', label: 'LAVENDER' },
-  'alumni-portal': { species: 'poppy', label: 'ALPINE POPPY' },
+  'ames-housing': { species: 'edelweiss', flower: 'Edelweiss', accent: 'var(--blue)' },
+  medigo: { species: 'rose', flower: 'Alpine Rose', accent: 'var(--pink-hot)' },
+  canvar: { species: 'buttercup', flower: 'Swiss Buttercup', accent: 'var(--lime)' },
+  cafier: { species: 'gentian', flower: 'Blue Gentian', accent: 'var(--sky)' },
+  'dthanasha-kost': { species: 'lavender', flower: 'Mountain Lavender', accent: 'var(--lavender)' },
+  'alumni-portal': { species: 'poppy', flower: 'Alpine Poppy', accent: 'var(--pink-hot)' },
 };
 
 const FILTERS = {
   en: [
-    { id: 'all', label: 'All Blooms (06)' },
-    { id: 'data', label: 'Data & Healthcare' },
-    { id: 'system', label: 'System & Web' },
+    { id: 'all', label: 'All (06)' },
+    { id: 'data', label: 'Data & Med' },
+    { id: 'system', label: 'Web & Systems' },
     { id: 'ar', label: 'AR & 3D' },
   ],
   id: [
-    { id: 'all', label: 'Semua Karya (06)' },
+    { id: 'all', label: 'Semua (06)' },
     { id: 'data', label: 'Data & Medis' },
-    { id: 'system', label: 'Sistem & Web' },
+    { id: 'system', label: 'Web & Sistem' },
     { id: 'ar', label: 'AR & 3D' },
   ],
 };
@@ -45,111 +45,123 @@ export default function Work() {
   const { ongoingSection, projects } = work;
 
   const [activeFilter, setActiveFilter] = useState('all');
-  const [expandedId, setExpandedId] = useState('medigo');
+  const [focusedId, setFocusedId] = useState(projects[0]?.id || 'ames-housing');
+  const [expandedOngoing, setExpandedOngoing] = useState(null);
 
   const visibleProjects =
     activeFilter === 'all'
       ? projects
       : projects.filter((p) => PROJECT_CATEGORIES[p.id] === activeFilter);
 
+  const stageProject =
+    visibleProjects.find((p) => p.id === focusedId) || visibleProjects[0] || projects[0];
+  const stageSpec = BLOOM_SPECS[stageProject.id] || BLOOM_SPECS['ames-housing'];
+
   return (
-    <div className="exhibit-work">
-      {/* =========================================================
-          TOP: GROWING SEEDLINGS — ON-GOING PROJECTS (VERIFACE & SIREN)
-         ========================================================= */}
-      {ongoingSection && ongoingSection.items?.length > 0 && (
-        <section className="container exhibit-ongoing">
-          <div className="exhibit-ongoing__head">
-            <motion.span
-              className="mono kissa-eyebrow"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
+    <div className="greenhouse-work">
+      {/* Compact Editorial Opening + Floating On-Going Seedling Strip (TOP) */}
+      <section className="container gh-top">
+        <div className="gh-top__head">
+          <span className="mono kissa-eyebrow">
+            {lang === 'id'
+              ? '03 / PROYEK · RUMAH KACA KARYA'
+              : '03 / WORK · THE ALPINE GREENHOUSE'}
+          </span>
+          <div className="gh-mask">
+            <motion.h1
+              className="gh-title"
+              initial={{ y: '100%' }}
+              animate={{ y: '0%' }}
+              transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
             >
-              {lang === 'id'
-                ? '03 / PROYEK · TUNAS SEDANG TUMBUH (ON-GOING 2026)'
-                : '03 / WORK · GROWING SEEDLINGS (ON-GOING 2026)'}
-            </motion.span>
-            <div className="exhibit-mask">
-              <motion.h1
-                className="exhibit-hero-title"
-                initial={{ y: '100%' }}
-                animate={{ y: '0%' }}
-                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              >
-                {ongoingSection.title}
-              </motion.h1>
+              {lang === 'id' ? (
+                <>
+                  Karya yang <em>Tumbuh</em> &amp; Mekar.
+                </>
+              ) : (
+                <>
+                  Works in <em>Bloom</em> &amp; Growth.
+                </>
+              )}
+            </motion.h1>
+          </div>
+        </div>
+
+        {/* TOP: Compact Interactive On-Going Seedlings Strip (Veriface & Siren) */}
+        {ongoingSection && ongoingSection.items?.length > 0 && (
+          <div className="gh-seedling-strip" aria-label="On-going projects in active development">
+            <div className="gh-seedling-strip__label mono">
+              <i className="exhibit-live-dot" aria-hidden="true" />
+              <span>
+                {lang === 'id' ? 'SEDANG DIKEMBANGKAN (2026)' : 'CURRENTLY GROWING (ON-GOING 2026)'}
+              </span>
             </div>
-            <p className="exhibit-hero-sub">{ongoingSection.subtitle}</p>
-          </div>
 
-          <div className="exhibit-seedlings">
-            {ongoingSection.items.map((item, idx) => (
-              <motion.article
-                key={item.id}
-                className="exhibit-seedling"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.55, delay: 0.1 + idx * 0.1 }}
-                whileHover={{ y: -4 }}
-              >
-                <div className="exhibit-seedling__top mono">
-                  <span className="exhibit-seedling__live">
-                    <i className="exhibit-live-dot" aria-hidden="true" />
-                    {item.status}
-                  </span>
-                  <span>{item.category}</span>
-                </div>
-
-                <div className="exhibit-seedling__title-row">
-                  <h2 className="exhibit-seedling__title">{item.title}</h2>
-                  <FlowerEmblem species={idx === 0 ? 'gentian' : 'poppy'} size={44} />
-                </div>
-
-                <p className="exhibit-seedling__tagline">{item.tagline}</p>
-                <p className="exhibit-seedling__desc">{item.description}</p>
-
-                {item.metrics && (
-                  <div className="exhibit-seedling__stats">
-                    {item.metrics.map((m) => (
-                      <div key={m.label}>
-                        <span className="mono">{m.label}</span>
-                        <strong>{m.value}</strong>
+            <div className="gh-seedling-capsules">
+              {ongoingSection.items.map((item, idx) => {
+                const open = expandedOngoing === item.id;
+                return (
+                  <motion.div
+                    key={item.id}
+                    layout
+                    className={`gh-capsule ${open ? 'is-open' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      className="gh-capsule__head"
+                      onClick={() => setExpandedOngoing(open ? null : item.id)}
+                      aria-expanded={open}
+                    >
+                      <FlowerEmblem species={idx === 0 ? 'gentian' : 'poppy'} size={36} />
+                      <div className="gh-capsule__info">
+                        <span className="mono gh-capsule__cat">
+                          {item.status} · {item.category}
+                        </span>
+                        <strong>{item.title}</strong>
                       </div>
-                    ))}
-                  </div>
-                )}
+                      <span className="mono gh-capsule__toggle">{open ? '−' : '+'}</span>
+                    </button>
 
-                <div className="exhibit-tags">
-                  {item.tags.map((t) => (
-                    <span key={t} className="tag">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </motion.article>
-            ))}
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          className="gh-capsule__body"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <p className="gh-capsule__tagline">{item.tagline}</p>
+                          <p className="gh-capsule__desc">{item.description}</p>
+                          <div className="gh-capsule__tags">
+                            {item.tags.map((t) => (
+                              <span key={t} className="tag">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })}
+            </div>
           </div>
-        </section>
-      )}
+        )}
+      </section>
 
       {/* =========================================================
-          MAIN: INTERACTIVE EXPANDING FLOWER EXHIBITION (6 COMPLETED)
-          Full-width kinetic accordion rows — Zero static card wall!
+          MAIN: BRAND-NEW 2-COLUMN SPLIT GREENHOUSE GALLERY
+          Left: Sticky Live-Morphing Flower Stage | Right: Hover/Click Project Index
          ========================================================= */}
-      <section className="container exhibit-gallery">
-        <div className="exhibit-gallery__head">
-          <div>
-            <span className="mono kissa-eyebrow">
-              {lang === 'id'
-                ? 'PAMERAN BUNGA SELESAI · 06 STUDI KASUS MEKAR'
-                : 'FULL-BLOOM EXHIBITION · 06 COMPLETED CASE STUDIES'}
-            </span>
-            <h2 className="exhibit-gallery__title">
-              {lang === 'id'
-                ? 'Klik baris proyek mana saja untuk memekarkan detailnya.'
-                : 'Click any project bloom below to unfurl its case study.'}
-            </h2>
-          </div>
+      <section className="container gh-split-section">
+        <div className="gh-split-bar">
+          <span className="mono gh-split-bar__hint">
+            {lang === 'id'
+              ? 'ARAHKAN KURSOR KE PROYEK DI KANAN UNTUK PRATINJAU LANGSUNG'
+              : 'HOVER ANY PROJECT ON THE RIGHT TO BLOOM THE LIVE STAGE'}
+          </span>
 
           <div className="exhibit-filters" role="tablist">
             {(FILTERS[lang] || FILTERS.en).map((f) => {
@@ -165,7 +177,7 @@ export default function Work() {
                 >
                   {isSelected && (
                     <motion.span
-                      layoutId="exhibit-work-filter-pill"
+                      layoutId="gh-work-filter-pill"
                       className="exhibit-filter__bg"
                       transition={{ type: 'spring', stiffness: 420, damping: 30 }}
                     />
@@ -177,103 +189,116 @@ export default function Work() {
           </div>
         </div>
 
-        <div className="exhibit-list">
-          {visibleProjects.map((project) => {
-            const spec = BLOOM_SPECS[project.id] || BLOOM_SPECS['ames-housing'];
-            const isOpen = expandedId === project.id;
-
-            return (
-              <motion.article
-                key={project.id}
-                layout
-                className={`exhibit-row ${isOpen ? 'is-open' : ''}`}
-              >
-                <button
-                  type="button"
-                  className="exhibit-row__trigger"
-                  onClick={() => setExpandedId(isOpen ? null : project.id)}
-                  aria-expanded={isOpen}
+        <div className="gh-split-grid">
+          {/* LEFT: Sticky Live-Morphing Botanical Stage */}
+          <aside className="gh-stage-col">
+            <div className="gh-stage-frame">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={stageProject.id}
+                  className="gh-stage-content"
+                  initial={{ opacity: 0, y: 16, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -12, scale: 0.98 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 24 }}
                 >
-                  <span className="mono exhibit-row__num">{project.num}</span>
-
-                  <motion.span
-                    className="exhibit-row__flower"
-                    animate={{
-                      rotate: isOpen ? 36 : 0,
-                      scale: isOpen ? 1.18 : 0.95,
-                    }}
-                    transition={{ type: 'spring', stiffness: 280, damping: 18 }}
-                  >
-                    <FlowerEmblem species={spec.species} size={50} />
-                  </motion.span>
-
-                  <div className="exhibit-row__heading">
-                    <h3 className="exhibit-row__title">{project.title}</h3>
-                    <span className="mono exhibit-row__meta">
-                      {spec.label} · {project.role} · {project.meta}
+                  <div className="gh-stage-top mono">
+                    <span>
+                      BLOOM {stageProject.num} · {stageSpec.flower.toUpperCase()}
                     </span>
+                    <span>{stageProject.role}</span>
                   </div>
 
-                  <span className="mono exhibit-row__toggle">
-                    {isOpen
-                      ? lang === 'id'
-                        ? 'TUTUP −'
-                        : 'CLOSE −'
-                      : lang === 'id'
-                        ? 'MEKAR +'
-                        : 'BLOOM +'}
-                  </span>
-                </button>
+                  <motion.div
+                    className="gh-stage-flower"
+                    initial={{ rotate: -24, scale: 0.72 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 16 }}
+                  >
+                    <FlowerEmblem species={stageSpec.species} size={146} />
+                  </motion.div>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`${project.id}-body`}
-                      className="exhibit-row__expand"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <div className="exhibit-row__content">
-                        <div className="exhibit-row__copy">
-                          <p className="exhibit-row__tagline">{project.tagline}</p>
-                          <p className="exhibit-row__desc">{project.description}</p>
+                  <h2 className="gh-stage-title">{stageProject.title}</h2>
+                  <p className="gh-stage-tagline">{stageProject.tagline}</p>
 
-                          <div className="exhibit-tags">
-                            {project.tags.map((t) => (
-                              <span key={t} className="tag">
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-
-                          <div className="exhibit-row__cta-wrap">
-                            <Link to={`/work/${project.id}`} className="mono alpine-orbit-cta">
-                              {lang === 'id'
-                                ? 'Buka Studi Kasus Lengkap ↗'
-                                : 'Open Full Case Study ↗'}
-                            </Link>
-                          </div>
+                  {stageProject.metrics && (
+                    <div className="gh-stage-metrics">
+                      {stageProject.metrics.slice(0, 4).map((m) => (
+                        <div key={m.label} className="gh-stage-metric">
+                          <span className="mono">{m.label}</span>
+                          <strong>{m.value}</strong>
                         </div>
-
-                        {project.metrics && (
-                          <div className="exhibit-row__metrics">
-                            {project.metrics.map((m) => (
-                              <div key={m.label} className="exhibit-metric-pill">
-                                <span className="mono">{m.label}</span>
-                                <strong>{m.value}</strong>
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    </motion.div>
+                      ))}
+                    </div>
                   )}
-                </AnimatePresence>
-              </motion.article>
-            );
-          })}
+
+                  <div className="gh-stage-footer">
+                    <Link to={`/work/${stageProject.id}`} className="mono alpine-orbit-cta">
+                      {lang === 'id' ? 'Buka Studi Kasus Lengkap ↗' : 'Open Full Case Study ↗'}
+                    </Link>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </aside>
+
+          {/* RIGHT: Airy Interactive Botanical Project Index */}
+          <div className="gh-index-col">
+            {visibleProjects.map((project) => {
+              const spec = BLOOM_SPECS[project.id] || BLOOM_SPECS['ames-housing'];
+              const isFocused = stageProject.id === project.id;
+
+              return (
+                <motion.div
+                  key={project.id}
+                  layout
+                  initial={{ opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+                >
+                  <Link
+                    to={`/work/${project.id}`}
+                    className={`gh-index-item ${isFocused ? 'is-focused' : ''}`}
+                    onMouseEnter={() => setFocusedId(project.id)}
+                    onFocus={() => setFocusedId(project.id)}
+                  >
+                    <div className="gh-index-item__top mono">
+                      <span>
+                        {project.num} · {project.label}
+                      </span>
+                      <span>{project.meta}</span>
+                    </div>
+
+                    <div className="gh-index-item__mid">
+                      <motion.span
+                        className="gh-index-item__flower"
+                        animate={{
+                          rotate: isFocused ? 22 : 0,
+                          scale: isFocused ? 1.15 : 0.94,
+                        }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                      >
+                        <FlowerEmblem species={spec.species} size={46} />
+                      </motion.span>
+                      <div>
+                        <h3 className="gh-index-item__title">{project.title}</h3>
+                        <p className="gh-index-item__desc">{project.tagline}</p>
+                      </div>
+                      <span className="mono gh-index-item__arrow">↗</span>
+                    </div>
+
+                    <div className="gh-index-item__tags">
+                      {project.tags.slice(0, 4).map((t) => (
+                        <span key={t} className="tag">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>

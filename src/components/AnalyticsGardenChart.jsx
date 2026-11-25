@@ -7,140 +7,141 @@ import './AnalyticsGardenChart.css';
 
 const BAR_SPECIES = ['edelweiss', 'rose', 'buttercup', 'gentian', 'lavender'];
 
+// 100% General Portfolio Overview Datasets (NOT limited to 2 specific projects!)
 const CHART_DATASETS = {
-  medigo: {
-    id: 'medigo',
-    tabEn: 'Medigo ETL (30,903 Rows)',
-    tabId: 'Medigo ETL (30.903 Baris)',
-    eyebrowEn: 'VERIFIED GEOSPATIAL ETL · 5 NORMALIZED 3NF TABLES',
-    eyebrowId: 'ETL GEOSPASIAL TERVERIFIKASI · 5 TABEL RELASIONAL 3NF',
-    titleEn: 'Jabodetabek Healthcare Data Architecture',
-    titleId: 'Arsitektur Data Faskes Jabodetabek',
+  skills: {
+    id: 'skills',
+    tabEn: 'Core Skill Balance',
+    tabId: 'Komposisi Keahlian',
+    eyebrowEn: 'MULTIDISCIPLINARY STRENGTHS · GENERAL OVERVIEW',
+    eyebrowId: 'KEKUATAN MULTIDISIPLIN · GAMBARAN UMUM',
+    titleEn: 'Where Analytical Thinking Meets Visual Craft',
+    titleId: 'Perpaduan Analisis Data & Rekayasa Antarmuka',
     summaryEn:
-      'Scraped from BPJS Aplicares (Playwright JWE interception) & OpenStreetMap Overpass API across 10 cities, normalized into 5 deduplicated CSV tables.',
+      'A balanced foundation across data analysis, modern front-end development, structured backend/database design, AI workflows, and creative storytelling.',
     summaryId:
-      'Hasil scraping BPJS Aplicares (intersepsi JWE Playwright) & OpenStreetMap Overpass API di 10 kota, dinormalisasi ke 5 tabel CSV tanpa duplikat.',
-    to: '/work/medigo',
-    ctaEn: 'Inspect Medigo Case Study ↗',
-    ctaId: 'Buka Studi Kasus Medigo ↗',
+      'Fondasi seimbang yang menggabungkan analisis data, pengembangan front-end modern, desain sistem & basis data, alur kerja AI, serta penceritaan visual.',
+    to: '/about',
+    ctaEn: 'Explore Full Toolkit (/about) ↗',
+    ctaId: 'Lihat Semua Keahlian (/about) ↗',
     bars: [
       {
-        key: 'faskes',
-        labelEn: 'Faskes',
-        labelId: 'Faskes',
-        valueText: '3,069',
-        pct: 74,
+        key: 'data',
+        labelEn: 'Data & ML',
+        labelId: 'Data & ML',
+        valueText: '92%',
+        pct: 92,
         colorVar: '--chart-1',
-        detailEn: '3,069 verified BPJS & non-BPJS facilities across 10 Jabodetabek cities',
-        detailId: '3.069 faskes BPJS & non-BPJS terverifikasi di 10 kota Jabodetabek',
+        detailEn: 'Python, R, SQL, Exploratory Data Analysis, Geospatial ETL, Regression & K-Means',
+        detailId: 'Python, R, SQL, EDA, ETL Geospasial, Regresi Linear, Decision Tree & K-Means',
       },
       {
-        key: 'fasilitas',
-        labelEn: 'Facilities',
-        labelId: 'Fasilitas',
-        valueText: '762',
-        pct: 48,
+        key: 'frontend',
+        labelEn: 'Front-End',
+        labelId: 'Front-End',
+        valueText: '90%',
+        pct: 90,
         colorVar: '--chart-2',
-        detailEn: '762 standardized medical equipment & service master categories',
-        detailId: '762 kategori master peralatan & layanan medis terstandardisasi',
+        detailEn: 'React, Vite, Tailwind CSS, Motion & Anime.js — responsive, living user interfaces',
+        detailId: 'React, Vite, Tailwind CSS, Motion & Anime.js — antarmuka responsif dan interaktif',
       },
       {
-        key: 'spesialisasi',
-        labelEn: 'Specialists',
-        labelId: 'Spesialis',
-        valueText: '152',
-        pct: 32,
+        key: 'systems',
+        labelEn: 'Systems & DB',
+        labelId: 'Sistem & DB',
+        valueText: '88%',
+        pct: 88,
         colorVar: '--chart-3',
-        detailEn: '152 distinct clinical specialist taxonomy entries',
-        detailId: '152 taksonomi dokter spesialis klinis yang terstruktur',
+        detailEn: 'Laravel, REST APIs, MySQL & MongoDB, 3NF ERD modeling & 4-tier IEEE 830 SDD',
+        detailId: 'Laravel, REST API, MySQL & MongoDB, pemodelan ERD 3NF & spesifikasi 4-tier DPPL',
       },
       {
-        key: 'rel-fas',
-        labelEn: 'Fac-Links',
-        labelId: 'Rel. Fasilitas',
-        valueText: '20,085',
-        pct: 100,
+        key: 'ai',
+        labelEn: 'AI & Gemini',
+        labelId: 'AI & Gemini',
+        valueText: '85%',
+        pct: 85,
         colorVar: '--chart-4',
-        detailEn: '20,085 deduplicated faskes-to-facility junction records',
-        detailId: '20.085 pasangan relasi unik faskes-ke-fasilitas medis',
+        detailEn: 'Google Gemini Certified Student — function calling, prompt engineering & AI integration',
+        detailId: 'Google Gemini Certified Student — function calling, prompt engineering & integrasi AI',
       },
       {
-        key: 'rel-sp',
-        labelEn: 'Spec-Links',
-        labelId: 'Rel. Spesialis',
-        valueText: '6,835',
-        pct: 84,
+        key: 'creative',
+        labelEn: '3D & Story',
+        labelId: '3D & Visual',
+        valueText: '82%',
+        pct: 82,
         colorVar: '--chart-5',
-        detailEn: '6,835 deduplicated faskes-to-specialist junction records',
-        detailId: '6.835 pasangan relasi unik faskes-ke-spesialis',
+        detailEn: 'Blender 3D, Unity Vuforia AR, visual narrative & 2× 2nd Place Short Film competitions',
+        detailId: 'Blender 3D, Unity Vuforia AR, narasi visual & 2× Juara 2 kompetisi film pendek',
       },
     ],
   },
-  ames: {
-    id: 'ames',
-    tabEn: 'Ames Housing (2,930 Homes)',
-    tabId: 'Ames Housing (2.930 Rumah)',
-    eyebrowEn: 'DATA MINING BENCHMARKS · REGRESSION, TREE & K-MEANS',
-    eyebrowId: 'BENCHMARK DATA MINING · REGRESI, TREE & K-MEANS',
-    titleEn: 'Property Valuation & Market Segmentation',
-    titleId: 'Valuasi Properti & Segmentasi Pasar',
+  footprint: {
+    id: 'footprint',
+    tabEn: 'Portfolio Footprint',
+    tabId: 'Sebaran Karya',
+    eyebrowEn: 'ACROSS ALL DISCIPLINES · 2024 — 2026',
+    eyebrowId: 'LINTAS BIDANG & PENGALAMAN · 2024 — 2026',
+    titleEn: 'Everything Cultivated Across Campus & Industry',
+    titleId: 'Jejak Karya di Akademik, Organisasi & Industri',
     summaryEn:
-      'Four-pillar analytics on 2,930 properties (81 features, 0 nulls): Multiple Linear Regression, rpart Decision Tree, and standardized K-Means clusters.',
+      'Hover any blooming stem to inspect how my projects, active builds, leadership roles, competitions, and industry experience fit together.',
     summaryId:
-      'Analitik empat pilar pada 2.930 properti (81 fitur, 0 null): Regresi Linear Berganda, Decision Tree rpart, dan klastering K-Means.',
-    to: '/work/ames-housing',
-    ctaEn: 'Inspect Ames Case Study ↗',
-    ctaId: 'Buka Studi Kasus Ames ↗',
+      'Arahkan kursor ke setiap tangkai bunga untuk melihat sebaran proyek selesai, proyek aktif, organisasi, prestasi, dan pengalaman industri.',
+    to: '/work',
+    ctaEn: 'Browse All Projects (/work) ↗',
+    ctaId: 'Jelajahi Semua Proyek (/work) ↗',
     bars: [
       {
-        key: 'r2',
-        labelEn: 'Linear R²',
-        labelId: 'Regresi R²',
-        valueText: '81.94%',
-        pct: 82,
+        key: 'completed',
+        labelEn: 'Shipped',
+        labelId: 'Selesai',
+        valueText: '06',
+        pct: 96,
         colorVar: '--chart-1',
-        detailEn: 'Multiple Linear Regression R² = 81.94% · MAE $20,849 on 586 test homes',
-        detailId: 'Regresi Linear Berganda R² = 81,94% · MAE $20.849 pada 586 data uji',
+        detailEn: '6 completed case studies spanning data mining, healthcare ETL, full-stack, mobile & AR',
+        detailId: '6 studi kasus selesai mencakup data mining, ETL kesehatan, full-stack, mobile & AR',
       },
       {
-        key: 'tree',
-        labelEn: 'Tree Acc.',
-        labelId: 'Akurasi Tree',
-        valueText: '72.7%',
-        pct: 73,
+        key: 'orgs',
+        labelEn: 'Leadership',
+        labelId: 'Organisasi',
+        valueText: '05',
+        pct: 82,
         colorVar: '--chart-2',
-        detailEn: 'White-box rpart Decision Tree across Low / Mid / High price quantiles',
-        detailId: 'Decision Tree rpart untuk klasifikasi kuantil harga Rendah / Sedang / Tinggi',
+        detailEn: '5 student leadership & treasury roles — 280+ financial records audited transparently',
+        detailId: '5 peran kepemimpinan & bendahara kampus — 280+ transaksi diaudit secara transparan',
       },
       {
-        key: 'eko',
-        labelEn: 'Ekonomis',
-        labelId: 'Ekonomis',
-        valueText: '1,354',
-        pct: 92,
+        key: 'awards',
+        labelEn: 'Honors',
+        labelId: 'Prestasi',
+        valueText: '04',
+        pct: 68,
         colorVar: '--chart-3',
-        detailEn: 'Cluster 1 — 1,354 homes · compact affordable starter housing segment',
-        detailId: 'Klaster 1 — 1.354 rumah · segmen hunian ekonomis & rumah pertama',
+        detailEn: 'Google Gemini Certified Student + 2× 2nd Place Short Movie + Business Plan Semifinalist',
+        detailId: 'Google Gemini Certified Student + 2× Juara 2 Film Pendek + Semifinalis Business Plan',
       },
       {
-        key: 'prem',
-        labelEn: 'Premium',
-        labelId: 'Premium',
-        valueText: '1,107',
-        pct: 76,
+        key: 'ongoing',
+        labelEn: 'Active Now',
+        labelId: 'On-Going',
+        valueText: '02',
+        pct: 48,
         colorVar: '--chart-4',
-        detailEn: 'Cluster 2 — 1,107 homes · modern upscale family residences',
-        detailId: 'Klaster 2 — 1.107 rumah · hunian keluarga modern kelas menengah-atas',
+        detailEn: '2 active 2026 builds currently growing in the studio (Veriface & Siren)',
+        detailId: '2 proyek 2026 yang sedang aktif dikembangkan di studio (Veriface & Siren)',
       },
       {
-        key: 'ext',
-        labelEn: 'Luxury Lot',
-        labelId: 'Lahan Ekstrem',
-        valueText: '469',
-        pct: 42,
+        key: 'industry',
+        labelEn: 'Industry',
+        labelId: 'Industri',
+        valueText: 'Live',
+        pct: 60,
         colorVar: '--chart-5',
-        detailEn: 'Cluster 3 — 469 estates · avg lot 15,059 sqft, quality score 8.02',
-        detailId: 'Klaster 3 — 469 properti · rata-rata lahan 15.059 sqft, skor kualitas 8,02',
+        detailEn: 'PT KCT Logistics internship — shipped live corporate website kctjakarta.com & ~20 quotes',
+        detailId: 'Magang PT KCT — merilis website korporat live kctjakarta.com & ~20 kuotasi komersial',
       },
     ],
   },
@@ -148,14 +149,14 @@ const CHART_DATASETS = {
 
 export default function AnalyticsGardenChart() {
   const { lang } = useApp();
-  const [datasetKey, setDatasetKey] = useState('medigo');
+  const [datasetKey, setDatasetKey] = useState('skills');
   const [hoveredIdx, setHoveredIdx] = useState(0);
 
-  const active = CHART_DATASETS[datasetKey] || CHART_DATASETS.medigo;
+  const active = CHART_DATASETS[datasetKey] || CHART_DATASETS.skills;
   const activeBar = active.bars[hoveredIdx] || active.bars[0];
 
   return (
-    <section className="band band--paper-2 agc-band" aria-label="Interactive Data Analytics Charts">
+    <section className="band band--paper-2 agc-band" aria-label="Interactive Botanical Overview Chart">
       <div className="container agc-wrap">
         <div className="agc-head">
           <div>
@@ -165,8 +166,7 @@ export default function AnalyticsGardenChart() {
             <h2 className="agc-title">{lang === 'id' ? active.titleId : active.titleEn}</h2>
           </div>
 
-          {/* Motion shared layoutId Tabs (Reel 2) */}
-          <div className="agc-tabs" role="tablist" aria-label="Analytics dataset switcher">
+          <div className="agc-tabs" role="tablist" aria-label="Overview chart switcher">
             {Object.values(CHART_DATASETS).map((ds) => {
               const isSelected = ds.id === datasetKey;
               return (
@@ -223,8 +223,8 @@ export default function AnalyticsGardenChart() {
             </Link>
           </div>
 
-          {/* Staggered Growing Interactive Bars (Shadcn Chart style from Reel 2) */}
-          <div className="agc-plot" role="list" aria-label="Interactive bar visualization">
+          {/* Staggered Growing Flower Stems */}
+          <div className="agc-plot" role="list" aria-label="Interactive blooming stem visualization">
             {active.bars.map((bar, idx) => {
               const isFocused = idx === hoveredIdx;
               return (
@@ -276,14 +276,14 @@ export default function AnalyticsGardenChart() {
             })}
           </div>
 
-          {/* Theme-Synced CSS Custom Property Palette Footer (--chart-1 .. --chart-5) */}
+          {/* Theme-Synced Footer */}
           <div className="agc-footer">
             <p className="agc-summary">{lang === 'id' ? active.summaryId : active.summaryEn}</p>
-            <div className="agc-swatches mono" aria-label="Theme-synced chart variables">
+            <div className="agc-swatches mono" aria-label="Alpine meadow palette">
               {[1, 2, 3, 4, 5].map((n) => (
                 <span key={n} className="agc-swatch-chip">
                   <i style={{ background: `var(--chart-${n})` }} />
-                  --chart-{n}
+                  bloom-{n}
                 </span>
               ))}
             </div>
