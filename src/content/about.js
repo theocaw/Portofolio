@@ -4,7 +4,7 @@ export const aboutData = {
       label: '01 / ABOUT OSANNA',
       headline: 'Analytical clarity meets expressive design.',
       description:
-        'I like finding patterns, asking better questions, and turning what I learn into something people can use.',
+        'I enjoy uncovering patterns behind complex datasets, asking thoughtful questions, and shaping what I learn into intuitive digital products. Whether modeling data or crafting front-end interfaces, I focus on bringing structure, clarity, and care to every detail.',
     },
     profile: {
       label: 'THE PERSON / THE DIRECTION',
@@ -27,7 +27,7 @@ export const aboutData = {
       degree: ['Bachelor of Applied Engineering', 'Software Engineering'],
       languages: [
         { name: 'Indonesian', level: 'Native' },
-        { name: 'English', level: 'Working Proficiency' },
+        { name: 'English', level: 'Intermediate' },
         { name: 'Korean', level: 'Currently Learning' },
         { name: 'Mandarin', level: 'Currently Learning' },
       ],
@@ -101,7 +101,7 @@ export const aboutData = {
       label: '01 / TENTANG OSANNA',
       headline: 'Ketajaman analitik berpadu dengan kepekaan desain.',
       description:
-        'Aku senang menemukan pola data, mengajukan pertanyaan kritis, dan mengubah wawasan menjadi karya nyata yang bermanfaat.',
+        'Aku senang menyingkap pola di balik data yang kompleks, mengajukan pertanyaan kritis, dan menerjemahkan temuan menjadi produk digital yang intuitif. Baik saat memodelkan data maupun merancang antarmuka front-end, aku selalu mengutamakan struktur yang rapi, kejelasan, dan detail yang bermakna.',
     },
     profile: {
       label: 'SOSOK / ARAH TUJUAN',
@@ -124,7 +124,7 @@ export const aboutData = {
       degree: ['Sarjana Terapan Teknik', 'Rekayasa Perangkat Lunak'],
       languages: [
         { name: 'Bahasa Indonesia', level: 'Native' },
-        { name: 'Bahasa Inggris', level: 'Aktif' },
+        { name: 'Bahasa Inggris', level: 'Intermediate' },
         { name: 'Bahasa Korea', level: 'Sedang Dipelajari' },
         { name: 'Bahasa Mandarin', level: 'Sedang Dipelajari' },
       ],

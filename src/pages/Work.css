@@ -25,13 +25,15 @@
 
 .gh-mask {
   overflow: hidden;
+  padding-bottom: 0.16em;
+  margin-bottom: -0.16em;
 }
 
 .gh-title {
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: clamp(46px, 7vw, 92px);
-  line-height: 0.95;
+  line-height: 1.03;
   letter-spacing: -0.02em;
   color: var(--ink);
 }
@@ -174,6 +176,10 @@
   flex-wrap: wrap;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--rule);
+}
+
+.gh-split-bar--end {
+  justify-content: flex-end;
 }
 
 .gh-split-bar__hint {

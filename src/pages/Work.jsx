@@ -27,13 +27,13 @@ const BLOOM_SPECS = {
 const FILTERS = {
   en: [
     { id: 'all', label: 'All (06)' },
-    { id: 'data', label: 'Data & Med' },
+    { id: 'data', label: 'Data' },
     { id: 'system', label: 'Web & Systems' },
     { id: 'ar', label: 'AR & 3D' },
   ],
   id: [
     { id: 'all', label: 'Semua (06)' },
-    { id: 'data', label: 'Data & Medis' },
+    { id: 'data', label: 'Data' },
     { id: 'system', label: 'Web & Sistem' },
     { id: 'ar', label: 'AR & 3D' },
   ],
@@ -46,7 +46,11 @@ export default function Work() {
 
   const [activeFilter, setActiveFilter] = useState('all');
   const [focusedId, setFocusedId] = useState(projects[0]?.id || 'ames-housing');
-  const [expandedOngoing, setExpandedOngoing] = useState(null);
+  const [openOngoing, setOpenOngoing] = useState({});
+
+  const toggleOngoing = (id) => {
+    setOpenOngoing((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   const visibleProjects =
     activeFilter === 'all'
@@ -87,19 +91,19 @@ export default function Work() {
           </div>
         </div>
 
-        {/* TOP: Compact Interactive On-Going Seedlings Strip (Veriface & Siren) */}
+        {/* TOP: Compact Interactive On-Going Strip (Veriface & Siren — Independent Toggles) */}
         {ongoingSection && ongoingSection.items?.length > 0 && (
-          <div className="gh-seedling-strip" aria-label="On-going projects in active development">
+          <div className="gh-seedling-strip" aria-label="Currently on-going projects">
             <div className="gh-seedling-strip__label mono">
               <i className="exhibit-live-dot" aria-hidden="true" />
               <span>
-                {lang === 'id' ? 'SEDANG DIKEMBANGKAN (2026)' : 'CURRENTLY GROWING (ON-GOING 2026)'}
+                {lang === 'id' ? 'SEDANG BERJALAN (ON-GOING 2026)' : 'CURRENTLY ON-GOING (2026)'}
               </span>
             </div>
 
             <div className="gh-seedling-capsules">
               {ongoingSection.items.map((item, idx) => {
-                const open = expandedOngoing === item.id;
+                const open = Boolean(openOngoing[item.id]);
                 return (
                   <motion.div
                     key={item.id}
@@ -109,7 +113,7 @@ export default function Work() {
                     <button
                       type="button"
                       className="gh-capsule__head"
-                      onClick={() => setExpandedOngoing(open ? null : item.id)}
+                      onClick={() => toggleOngoing(item.id)}
                       aria-expanded={open}
                     >
                       <FlowerEmblem species={idx === 0 ? 'gentian' : 'poppy'} size={36} />
@@ -156,13 +160,7 @@ export default function Work() {
           Left: Sticky Live-Morphing Flower Stage | Right: Hover/Click Project Index
          ========================================================= */}
       <section className="container gh-split-section">
-        <div className="gh-split-bar">
-          <span className="mono gh-split-bar__hint">
-            {lang === 'id'
-              ? 'ARAHKAN KURSOR KE PROYEK DI KANAN UNTUK PRATINJAU LANGSUNG'
-              : 'HOVER ANY PROJECT ON THE RIGHT TO BLOOM THE LIVE STAGE'}
-          </span>
-
+        <div className="gh-split-bar gh-split-bar--end">
           <div className="exhibit-filters" role="tablist">
             {(FILTERS[lang] || FILTERS.en).map((f) => {
               const isSelected = activeFilter === f.id;
@@ -281,7 +279,7 @@ export default function Work() {
                         <FlowerEmblem species={spec.species} size={46} />
                       </motion.span>
                       <div>
-                        <h3 className="gh-index-item__title">{project.title}</h3>
+                        <h3 className="gh-index-item__title">{project.title.split(':')[0]}</h3>
                         <p className="gh-index-item__desc">{project.tagline}</p>
                       </div>
                       <span className="mono gh-index-item__arrow">↗</span>

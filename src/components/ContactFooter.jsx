@@ -59,20 +59,28 @@ export default function ContactFooter() {
 
             <p className="meadow-footer__sub">
               {lang === 'id'
-                ? 'Terbuka untuk peluang magang Data Analyst & Front-End Developer (Bogor / Jakarta / Remote).'
-                : 'Open for Data Analyst & Front-End Developer internship opportunities (Bogor / Jakarta / Remote).'}
+                ? 'Terbuka untuk peluang magang Data Analyst & Front-End Developer (DKI Jakarta / Remote).'
+                : 'Open for Data Analyst & Front-End Developer internship opportunities (DKI Jakarta / Remote).'}
             </p>
 
             <div className="meadow-footer__actions">
-              <a href={`mailto:${site.email}`} className="mono meadow-footer__primary">
-                {lang === 'id' ? 'Kirim Email ↗' : 'Email Osanna ↗'}
-              </a>
-              <button type="button" className="mono meadow-footer__copy" onClick={copyEmail}>
-                {copied
-                  ? lang === 'id'
-                    ? 'Email Tersalin ✓'
-                    : 'Copied to Clipboard ✓'
-                  : site.email}
+              <button
+                type="button"
+                className="mono meadow-footer__email-pill"
+                onClick={copyEmail}
+                aria-label={`Copy email address ${site.email}`}
+              >
+                <span className="meadow-footer__email-tag">EMAIL</span>
+                <span className="meadow-footer__email-addr">{site.email}</span>
+                <span className="meadow-footer__email-action">
+                  {copied
+                    ? lang === 'id'
+                      ? 'Tersalin ✓'
+                      : 'Copied ✓'
+                    : lang === 'id'
+                      ? 'Salin'
+                      : 'Copy'}
+                </span>
               </button>
             </div>
 
@@ -92,7 +100,11 @@ export default function ContactFooter() {
           </motion.div>
 
           <div className="meadow-footer__bottom mono">
-            <span>OSANNA PATRICIA LIMBONG · PORTFOLIO</span>
+            <span>
+              {lang === 'id'
+                ? 'Dirancang sepenuh hati oleh Osanna Patricia Limbong'
+                : 'Crafted with love by Osanna Patricia Limbong'}
+            </span>
             <span>© {site.year}</span>
           </div>
         </div>
