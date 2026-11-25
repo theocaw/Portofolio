@@ -14,30 +14,30 @@ const JUMP_SELECTOR = [
   '.kissa-footer__directory',
   // Home
   '.garden-hero-stage',
+  '.meadow-bed',
+  '.meadow-field-note',
   '.kw-prompt-bar',
   '.kw-grid > .kw-card',
-  '.kissa-cabinet',
-  '.kissa-reading-spread',
   '.agc-card',
   '.kissa-ticker',
   '.kissa-author-copy',
   '.kissa-portrait',
   // About
-  '.kissa-about-hero',
-  '.kissa-open-monograph',
-  '.kissa-toolkit-header',
-  '.kissa-card-cabinet',
-  '.kissa-next-bar',
+  '.meadow-about-hero',
+  '.meadow-pavilion > .meadow-wing',
+  '.meadow-toolkit-header',
+  '.meadow-seed-card',
+  '.meadow-next-bar',
   // Work
   '.kissa-work-hero__head',
-  '.kissa-listening-desk',
+  '.meadow-showcase-desk',
   '.kissa-catalog__head',
   '.kissa-tapes-grid > .kissa-tape-card',
   '.kissa-ongoing__head',
   '.kissa-ongoing__grid > .kissa-ongoing-card',
   // Journey
   '.kissa-journey-hero__head',
-  '.kissa-tuner',
+  '.alpine-trail',
   '.kissa-intern-dossier',
   '.kissa-orgs-grid > .kissa-org-card',
   '.kissa-awards-grid > .kissa-award-card',
@@ -49,13 +49,13 @@ const JUMP_SELECTOR = [
 ].join(', ');
 
 const SPOTLIGHT_SELECTOR =
-  '.kissa-spotlight, .kissa-cabinet, .hifi-deck, .kissa-tuner, .kissa-open-monograph, .kissa-intern-dossier, .kissa-org-card, .kissa-award-card, .kissa-tape-card, .kissa-ongoing-card';
+  '.kissa-spotlight, .meadow-wing, .meadow-pedestal, .alpine-trail, .kissa-intern-dossier, .kissa-org-card, .kissa-award-card, .kissa-tape-card, .kissa-ongoing-card';
 
 const TILT_SELECTOR =
   '.kissa-portrait, .kissa-tape-card, .kissa-ongoing-card, .kissa-gpa-plate, .kissa-org-card, .kissa-award-card';
 
 const MAGNETIC_SELECTOR =
-  '.kissa-contact-link, .kissa-reading-spread__cta, .kissa-jcard__cta, .kissa-tuner__jump, .button-link';
+  '.kissa-contact-link, .meadow-field-note__cta, .kissa-jcard__cta, .alpine-trail__jump, .meadow-next-bar__cta, .garden-hero__cta, .button-link';
 
 function getDocumentBounds(el) {
   const height = el.offsetHeight;

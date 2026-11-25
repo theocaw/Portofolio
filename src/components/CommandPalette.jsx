@@ -59,9 +59,9 @@ export default function CommandPalette() {
   const commands = [
     {
       id: 'nav-home',
-      icon: '🌌',
+      icon: '01',
       group: lang === 'id' ? 'HALAMAN' : 'NAVIGATION',
-      title: lang === 'id' ? 'Beranda (Home)' : 'Home — Aurora Hero & Impact',
+      title: lang === 'id' ? 'Beranda — Taman Bunga Alpen' : 'Home — Swiss Alpine Flower Meadow',
       hint: '/',
       action: () => {
         navigate('/');
@@ -69,21 +69,10 @@ export default function CommandPalette() {
       },
     },
     {
-      id: 'nav-work',
-      icon: '💿',
-      group: lang === 'id' ? 'HALAMAN' : 'NAVIGATION',
-      title: lang === 'id' ? 'Proyek (Work Tracklist)' : 'Work — Case Study Tracklist',
-      hint: '/work',
-      action: () => {
-        navigate('/work');
-        closeModal();
-      },
-    },
-    {
       id: 'nav-about',
-      icon: '🌸',
+      icon: '02',
       group: lang === 'id' ? 'HALAMAN' : 'NAVIGATION',
-      title: lang === 'id' ? 'Tentang & Keahlian (About)' : 'About — Profile, Education & Toolkit',
+      title: lang === 'id' ? 'Tentang — Paviliun Botani & Keahlian' : 'About — Botanical Pavilion & Toolkit',
       hint: '/about',
       action: () => {
         navigate('/about');
@@ -91,13 +80,24 @@ export default function CommandPalette() {
       },
     },
     {
+      id: 'nav-work',
+      icon: '03',
+      group: lang === 'id' ? 'HALAMAN' : 'NAVIGATION',
+      title: lang === 'id' ? 'Proyek — Taman Karya Mekar' : 'Work — Project Flower Garden',
+      hint: '/work',
+      action: () => {
+        navigate('/work');
+        closeModal();
+      },
+    },
+    {
       id: 'nav-journey',
-      icon: '✨',
+      icon: '04',
       group: lang === 'id' ? 'HALAMAN' : 'NAVIGATION',
       title:
         lang === 'id'
-          ? 'Perjalanan & Prestasi (Journey)'
-          : 'Journey — Internship, Leadership & Awards',
+          ? 'Perjalanan — Jalur Alpen & Prestasi'
+          : 'Journey — Alpine Trail, Internship & Awards',
       hint: '/journey',
       action: () => {
         navigate('/journey');
@@ -109,7 +109,7 @@ export default function CommandPalette() {
       icon: '01',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Ames Housing: Property Valuation & Live Simulator (R² 81.94%)',
-      hint: 'Tape 01',
+      hint: 'Bloom 01',
       action: () => {
         navigate('/work/ames-housing');
         closeModal();
@@ -120,7 +120,7 @@ export default function CommandPalette() {
       icon: '02',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Medigo: 3,069 Jabodetabek Faskes ETL & Medibot Gemini AI',
-      hint: 'Tape 02',
+      hint: 'Bloom 02',
       action: () => {
         navigate('/work/medigo');
         closeModal();
@@ -131,7 +131,7 @@ export default function CommandPalette() {
       icon: '03',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'canvAR: Interactive 3D & Vuforia AR Business Model Canvas',
-      hint: 'Tape 03',
+      hint: 'Bloom 03',
       action: () => {
         navigate('/work/canvar');
         closeModal();
@@ -142,7 +142,7 @@ export default function CommandPalette() {
       icon: '04',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Cafier: React Native & Laravel 12 Midtrans Ordering Ecosystem',
-      hint: 'Tape 04',
+      hint: 'Bloom 04',
       action: () => {
         navigate('/work/cafier');
         closeModal();
@@ -153,7 +153,7 @@ export default function CommandPalette() {
       icon: '05',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'Dthanasha Kost: Automated Boarding Operations & MVC System',
-      hint: 'Tape 05',
+      hint: 'Bloom 05',
       action: () => {
         navigate('/work/dthanasha-kost');
         closeModal();
@@ -164,7 +164,7 @@ export default function CommandPalette() {
       icon: '06',
       group: lang === 'id' ? 'STUDI KASUS' : 'CASE STUDIES',
       title: 'AlumniTPL: 4-Tier Layered Architecture & Tracer Study (DPPL)',
-      hint: 'Tape 06',
+      hint: 'Bloom 06',
       action: () => {
         navigate('/work/alumni-portal');
         closeModal();

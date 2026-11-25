@@ -1,13 +1,13 @@
 /* =========================================================
-   KISSA ABOUT PAGE: Open Cloth-Bound Monograph & 3-Drawer Walnut Cabinet
+   SWISS BOTANICAL PAVILION — ABOUT PAGE
    ========================================================= */
 
-.kissa-about {
+.meadow-about {
   display: flex;
   flex-direction: column;
 }
 
-.kissa-about-hero {
+.meadow-about-hero {
   padding-top: clamp(32px, 5vw, 52px);
   padding-bottom: clamp(32px, 4vw, 48px);
   display: flex;
@@ -15,7 +15,7 @@
   gap: 12px;
 }
 
-.kissa-about-hero__title {
+.meadow-about-hero__title {
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: clamp(38px, 5vw, 62px);
@@ -24,78 +24,39 @@
   max-width: 820px;
 }
 
-.kissa-about-hero__desc {
+.meadow-about-hero__desc {
   font-size: 16px;
   line-height: 1.7;
   color: var(--muted);
   max-width: 680px;
 }
 
-/* =========================================================
-   CENTERPIECE 1: OPEN CLOTH-BOUND HARDCOVER MONOGRAPH
-   ========================================================= */
-.kissa-desk-band {
+/* Pavilion Two-Wing Band */
+.meadow-pavilion-band {
   border-block: 1px solid var(--rule);
   padding-block: clamp(44px, 5.5vw, 72px);
 }
 
-.kissa-open-monograph {
+.meadow-pavilion {
   display: grid;
-  grid-template-columns: 1fr 18px 1fr;
-  background: linear-gradient(145deg, #214736 0%, #163024 100%);
-  border: 1px solid rgba(232, 139, 156, 0.3);
-  border-radius: 14px;
-  padding: 12px;
-  box-shadow: 0 28px 58px -20px rgba(14, 28, 20, 0.42);
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
-.kissa-folio {
+.meadow-wing {
   background: var(--card-bg);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
   padding: clamp(24px, 3.2vw, 38px);
+  box-shadow: var(--shadow-hard);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.kissa-folio--left {
-  border-radius: 6px 2px 2px 6px;
-  box-shadow: inset -14px 0 24px rgba(28, 25, 23, 0.08);
-}
-
-.kissa-folio--right {
-  border-radius: 2px 6px 6px 2px;
-  box-shadow: inset 14px 0 24px rgba(28, 25, 23, 0.08);
-}
-
-.kissa-monograph-spine {
-  background: linear-gradient(90deg, #13110f 0%, #3a322a 50%, #13110f 100%);
+.meadow-wing__head {
   display: flex;
-  justify-content: center;
-  position: relative;
-}
-
-.kissa-silk-ribbon {
-  width: 5px;
-  height: calc(100% + 18px);
-  background: linear-gradient(180deg, #d8657c 0%, #a83d55 100%);
-  border-radius: 0 0 3px 3px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.36);
-  transform-origin: top center;
-  animation: kissaRibbonSway 5.5s ease-in-out infinite;
-}
-
-@keyframes kissaRibbonSway {
-  0%,
-  100% {
-    transform: rotate(-1.2deg);
-  }
-  50% {
-    transform: rotate(1.4deg);
-  }
-}
-
-.kissa-folio__head {
-  display: flex;
+  align-items: center;
   justify-content: space-between;
   font-size: 9.5px;
   letter-spacing: 1px;
@@ -104,7 +65,7 @@
   border-bottom: 1px solid var(--rule);
 }
 
-.kissa-folio__title {
+.meadow-wing__title {
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: clamp(28px, 3vw, 38px);
@@ -112,7 +73,7 @@
   color: var(--ink);
 }
 
-.kissa-folio__prose {
+.meadow-wing__prose {
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -121,7 +82,7 @@
   color: var(--muted);
 }
 
-.kissa-focus-row {
+.meadow-focus-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -129,53 +90,52 @@
   padding-top: 8px;
 }
 
-.kissa-focus-box {
+.meadow-focus-box {
   background: var(--paper-2);
   border: 1px solid var(--rule);
   border-left: 3px solid var(--blue);
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 12px 14px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.kissa-focus-box:nth-child(2) {
+.meadow-focus-box:nth-child(2) {
   border-left-color: var(--pink-hot);
 }
 
-.kissa-focus-box__k {
+.meadow-focus-box__k {
   font-size: 9px;
   color: var(--muted);
   letter-spacing: 0.6px;
 }
 
-.kissa-focus-box__v {
+.meadow-focus-box__v {
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 15.5px;
   color: var(--ink);
 }
 
-/* Education & Interactive Brass Seal GPA Plate */
-.kissa-edu-block {
+.meadow-edu-block {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.kissa-edu-block__period {
+.meadow-edu-block__period {
   font-size: 10px;
   color: var(--pink-hot);
   letter-spacing: 0.8px;
 }
 
-.kissa-edu-block__degree {
+.meadow-edu-block__degree {
   font-size: 14.5px;
   line-height: 1.6;
   color: var(--muted);
 }
 
-.kissa-lang-grid {
+.meadow-lang-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 12px;
@@ -183,408 +143,290 @@
   border-top: 1px solid var(--rule);
 }
 
-.kissa-lang-item {
+.meadow-lang-item {
   display: flex;
   flex-direction: column;
   gap: 2px;
   font-size: 13.5px;
 }
 
-.kissa-lang-item span {
+.meadow-lang-item span {
   font-size: 10px;
   color: var(--muted);
 }
 
-.kissa-gpa-plate {
+/* Interactive Blooming Edelweiss GPA Card */
+.meadow-gpa-card {
   position: relative;
   overflow: hidden;
   margin-top: auto;
-  background: linear-gradient(145deg, #2b4a3e 0%, #1d342b 100%);
-  color: #f4efe4;
-  border: 1px solid rgba(224, 184, 101, 0.35);
-  border-radius: 8px;
-  padding: 22px 24px;
+  background: linear-gradient(145deg, #256b4b 0%, #194d35 100%);
+  color: #f7faf5;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   cursor: pointer;
   user-select: none;
-  transition: transform var(--transition), box-shadow var(--transition);
+  box-shadow: 0 18px 36px -14px rgba(25, 77, 53, 0.42);
 }
 
-.kissa-gpa-plate::before {
-  content: '';
-  position: absolute;
-  inset: -40% -60%;
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(224, 184, 101, 0.16) 50%,
-    transparent 60%
-  );
-  animation: kissaBrassShimmer 6.5s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes kissaBrassShimmer {
-  0%,
-  65% {
-    transform: translateX(-65%);
-  }
-  100% {
-    transform: translateX(65%);
-  }
-}
-
-.kissa-gpa-plate:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px -10px rgba(0, 0, 0, 0.45);
-}
-
-.kissa-gpa-plate__top {
+.meadow-gpa-card__top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.meadow-gpa-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 9.5px;
+  letter-spacing: 0.7px;
+  color: rgba(247, 250, 245, 0.78);
+}
+
+.meadow-gpa-card__badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fce295;
   font-size: 9px;
-  letter-spacing: 0.9px;
-  color: #e2c583;
 }
 
-.kissa-gpa-plate__seal {
-  padding: 3px 8px;
-  border: 1px solid rgba(226, 197, 131, 0.55);
-  border-radius: 3px;
-  background: rgba(17, 16, 14, 0.25);
-}
-
-.kissa-gpa-plate.is-stamping .kissa-gpa-plate__seal {
-  animation: brassStamp 380ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-@keyframes brassStamp {
-  0% {
-    transform: scale(1.18);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.kissa-gpa-plate__val {
+.meadow-gpa-card__val {
   display: flex;
   align-items: baseline;
   gap: 8px;
+}
+
+.meadow-gpa-card__num {
   font-family: var(--font-serif);
-}
-
-.kissa-gpa-plate__num {
-  font-size: 62px;
+  font-size: clamp(44px, 5vw, 58px);
   line-height: 0.95;
+  color: #ffffff;
 }
 
-.kissa-gpa-plate__scale {
-  font-size: 24px;
-  color: rgba(244, 239, 228, 0.7);
+.meadow-gpa-card__scale {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: rgba(247, 250, 245, 0.74);
 }
 
-.kissa-gpa-plate__note {
+.meadow-gpa-card__note {
   font-size: 13px;
   line-height: 1.55;
-  color: rgba(244, 239, 228, 0.82);
+  color: rgba(247, 250, 245, 0.86);
 }
 
-/* =========================================================
-   CENTERPIECE 2: INTERACTIVE 3-DRAWER WALNUT CARD CATALOG CABINET
-   ========================================================= */
-.kissa-toolkit-section {
+/* 3-Bed Botanical Toolkit Section */
+.meadow-toolkit-section {
   padding-block: clamp(52px, 6vw, 84px);
   display: flex;
   flex-direction: column;
   gap: 28px;
 }
 
-.kissa-toolkit-header {
+.meadow-toolkit-header {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
+  gap: 18px;
   flex-wrap: wrap;
 }
 
-.kissa-toolkit-title {
+.meadow-toolkit-title {
   font-family: var(--font-serif);
   font-weight: 400;
   font-size: clamp(30px, 3.8vw, 46px);
-  line-height: 1.08;
+  line-height: 1.06;
   color: var(--ink);
   margin-top: 6px;
 }
 
-.kissa-cabinet-controls {
+.meadow-bed-tabs {
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
-}
-
-.kissa-active-filter {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 4px;
-  background: var(--blue);
-  color: #faf8f4;
-  font-size: 10.5px;
-}
-
-.kissa-active-filter button {
-  border: 0;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.kissa-drawer-all-btn {
-  padding: 7px 14px;
-  border-radius: 4px;
-  border: 1px solid var(--rule-strong);
-  background: transparent;
-  color: var(--ink);
-  font-size: 10.5px;
-  cursor: pointer;
-  transition: background-color var(--transition), border-color var(--transition);
-}
-
-.kissa-drawer-all-btn:hover {
+  gap: 6px;
+  padding: 5px;
+  border-radius: 999px;
   background: var(--paper-2);
-  border-color: var(--ink);
+  border: 1px solid var(--rule);
 }
 
-/* Walnut Cabinet Frame */
-.kissa-card-cabinet {
-  background: linear-gradient(180deg, #271e17 0%, #1c1510 100%);
-  border: 1px solid rgba(224, 184, 101, 0.22);
-  border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.45);
-}
-
-.kissa-wood-drawer {
-  background: linear-gradient(180deg, #3c2e23 0%, #2d2219 100%);
-  border: 1px solid rgba(224, 184, 101, 0.2);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: box-shadow 260ms ease, border-color 260ms ease;
-}
-
-.kissa-wood-drawer.is-pulled {
-  border-color: rgba(224, 184, 101, 0.55);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
-}
-
-.kissa-wood-drawer__face {
-  width: 100%;
+.meadow-bed-tab {
+  position: relative;
   border: 0;
   background: transparent;
-  padding: 16px 22px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  gap: 16px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 10.5px;
+  color: var(--muted);
   cursor: pointer;
-  color: #f0ebe2;
-  text-align: left;
+  transition: color 200ms ease;
 }
 
-.kissa-wood-drawer__brass-plate {
-  justify-self: start;
-  padding: 5px 12px;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #e5c67e 0%, #b59142 100%);
-  color: #1c1917;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.9px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 2px 6px rgba(0, 0, 0, 0.45);
+.meadow-bed-tab.is-active {
+  color: #ffffff;
 }
 
-/* Curved Brushed-Brass Drawer Pull Handle */
-.kissa-wood-drawer__pull-handle {
-  width: 68px;
-  height: 14px;
-  border-radius: 0 0 14px 14px;
-  border: 2.5px solid #d9b25f;
-  border-top: 0;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.45);
-  transition: transform 200ms ease;
+.meadow-bed-tab__bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--blue);
+  z-index: 0;
 }
 
-.kissa-wood-drawer__face:hover .kissa-wood-drawer__pull-handle {
-  transform: translateY(2px);
+.meadow-bed-tab__label {
+  position: relative;
+  z-index: 1;
 }
 
-.kissa-wood-drawer__state {
-  justify-self: end;
-  font-size: 9.5px;
-  letter-spacing: 1px;
-  color: #cbbba6;
+.meadow-seed-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
-/* Sliding Tray with Ruled Index Card Inside */
-.kissa-wood-drawer__tray {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 420ms cubic-bezier(0.22, 1, 0.36, 1), padding 320ms ease;
-  padding: 0 18px;
-  background: #17120e;
+.meadow-seed-grid.is-multi {
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
 }
 
-.kissa-wood-drawer.is-pulled .kissa-wood-drawer__tray {
-  max-height: 440px;
-  padding: 16px 18px 20px;
-}
-
-.kissa-ruled-card {
+.meadow-seed-card {
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-top: 3px solid var(--pink-hot);
-  border-radius: 6px;
-  padding: 20px 24px;
+  border-radius: 18px;
+  padding: clamp(22px, 3vw, 32px);
+  box-shadow: var(--shadow-hard);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
-.kissa-ruled-card__header {
+.meadow-seed-card__top {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--rule);
 }
 
-.kissa-ruled-card__title {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: 26px;
-  color: var(--ink);
+.meadow-seed-card__species {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.kissa-ruled-card__count {
+.meadow-seed-card__code {
   font-size: 9.5px;
   letter-spacing: 0.9px;
-  color: var(--muted);
+  color: var(--pink-hot);
 }
 
-.kissa-ruled-card__desc {
-  font-size: 14px;
+.meadow-seed-card__title {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.8vw, 32px);
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+.meadow-seed-clear {
+  border: 1px solid var(--pink-hot);
+  background: var(--pink-soft);
+  color: var(--pink-hot);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.meadow-seed-card__desc {
+  font-size: 14.5px;
   line-height: 1.68;
   color: var(--muted);
+  max-width: 720px;
 }
 
-.kissa-index-card__pills {
+.meadow-seed-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
-  padding-top: 4px;
+  gap: 8px;
 }
 
-.kissa-tool-pill {
-  font-size: 10.5px;
-  padding: 5px 11px;
-  border-radius: 4px;
+.meadow-seed-pill {
+  padding: 7px 14px;
+  border-radius: 999px;
   border: 1px solid var(--rule-strong);
   background: var(--paper-2);
   color: var(--ink);
+  font-size: 11px;
   cursor: pointer;
-  transition: all var(--transition);
+  transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
 }
 
-.kissa-tool-pill:hover {
-  border-color: var(--ink);
+.meadow-seed-pill:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
 }
 
-.kissa-tool-pill.is-selected {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--paper);
+.meadow-seed-pill.is-selected {
+  background: var(--pink-hot);
+  border-color: var(--pink-hot);
+  color: #ffffff;
 }
 
-/* Next Room Bar */
-.kissa-next-bar {
+/* Next Room Invitation */
+.meadow-next-bar {
+  margin-top: 12px;
+  padding: 26px 30px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--blue-soft) 0%, var(--pink-soft) 100%);
+  border: 1px solid var(--rule);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   flex-wrap: wrap;
-  padding: 26px 28px;
-  border: 1px solid var(--rule);
-  border-radius: 10px;
-  background: var(--paper-2);
 }
 
-.kissa-next-bar__title {
+.meadow-next-bar__title {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: 28px;
+  font-size: clamp(24px, 3vw, 34px);
   color: var(--ink);
   margin-top: 4px;
 }
 
-.kissa-next-bar__cta {
-  padding: 10px 18px;
-  border-radius: 4px;
-  background: var(--ink);
-  color: var(--paper);
+.meadow-next-bar__cta {
+  padding: 11px 22px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #ffffff;
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color var(--transition);
+  transition: background-color var(--transition), transform var(--transition);
 }
 
-.kissa-next-bar__cta:hover {
-  background: var(--blue);
-  color: #faf8f4;
+.meadow-next-bar__cta:hover {
+  background: var(--pink-hot);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
-@media (max-width: 960px) {
-  .kissa-open-monograph {
+@media (max-width: 900px) {
+  .meadow-pavilion {
     grid-template-columns: 1fr;
-    gap: 12px;
   }
 
-  .kissa-monograph-spine {
-    display: none;
-  }
-
-  .kissa-folio--left,
-  .kissa-folio--right {
-    border-radius: 6px;
-  }
-}
-
-@media (max-width: 640px) {
-  .kissa-wood-drawer__face {
-    grid-template-columns: 1fr auto;
-  }
-
-  .kissa-wood-drawer__pull-handle {
-    display: none;
-  }
-
-  .kissa-focus-row,
-  .kissa-lang-grid {
-    grid-template-columns: 1fr;
+  .meadow-bed-tabs {
+    border-radius: 14px;
   }
 }

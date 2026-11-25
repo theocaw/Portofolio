@@ -1,14 +1,15 @@
 /* =========================================================
-   KISSA WORK PAGE: Stereo Cassette Listening Desk & Tape Catalog
+   SWISS ALPINE FLOWER GARDEN — WORK PAGE
+   Zero Cassette Deck: Seedlings Top + Blooming Showcase Pedestal + Garden Grid
    ========================================================= */
 
-.kissa-work {
+.meadow-work {
   display: flex;
   flex-direction: column;
 }
 
 .kissa-work-hero {
-  padding-top: clamp(32px, 5vw, 52px);
+  padding-top: clamp(36px, 5vw, 56px);
   padding-bottom: clamp(48px, 6vw, 72px);
   display: flex;
   flex-direction: column;
@@ -36,25 +37,115 @@
 .kissa-work-hero__count {
   font-size: 11px;
   letter-spacing: 1px;
-  color: var(--muted);
-  padding: 6px 12px;
+  color: var(--blue);
+  padding: 6px 14px;
   border: 1px solid var(--rule);
-  border-radius: 4px;
+  border-radius: 999px;
+  background: var(--blue-soft);
 }
 
-.kissa-listening-desk {
+/* Interactive Wildflower Pedestal + Specimen Sheet */
+.meadow-showcase-desk {
   display: grid;
-  grid-template-columns: 460px 1fr;
-  gap: 28px;
+  grid-template-columns: 420px 1fr;
+  gap: 26px;
   align-items: stretch;
 }
 
-/* Right J-Card Liner Notes */
+.meadow-pedestal {
+  background: linear-gradient(165deg, var(--sky-soft) 0%, var(--card-bg) 52%, var(--blue-soft) 100%);
+  border: 1px solid var(--rule);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: var(--shadow-hard);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.meadow-pedestal__top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9.5px;
+  letter-spacing: 0.9px;
+  color: var(--muted);
+}
+
+.meadow-pedestal__stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-block: 14px;
+}
+
+.meadow-pedestal__emblem {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.1) 70%);
+  border: 1px dashed var(--rule-strong);
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 12px 24px rgba(24, 52, 38, 0.14));
+}
+
+[data-theme='dark'] .meadow-pedestal__emblem {
+  background: radial-gradient(circle, rgba(244, 248, 242, 0.12) 0%, transparent 70%);
+}
+
+.meadow-pedestal__short {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.meadow-pedestal__selector {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.meadow-pedestal__chip {
+  border: 1px solid var(--rule);
+  background: var(--card-bg);
+  border-radius: 999px;
+  padding: 6px 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 10px;
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+.meadow-pedestal__chip:hover {
+  border-color: var(--blue);
+  transform: translateY(-1px);
+}
+
+.meadow-pedestal__chip.is-active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
+.meadow-pedestal__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+}
+
+/* Right Specimen Sheet */
 .kissa-jcard {
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: clamp(22px, 3vw, 32px);
+  border-radius: 18px;
+  padding: clamp(22px, 3vw, 34px);
   box-shadow: var(--shadow-hard);
   display: flex;
   flex-direction: column;
@@ -104,7 +195,7 @@
 .kissa-jcard__metric {
   background: var(--paper-2);
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 10px;
   padding: 10px 12px;
   display: flex;
   flex-direction: column;
@@ -143,23 +234,24 @@
 }
 
 .kissa-jcard__cta {
-  padding: 10px 18px;
-  border-radius: 4px;
-  background: var(--ink);
-  color: var(--paper);
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #ffffff;
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color var(--transition);
+  transition: background-color var(--transition), transform var(--transition);
 }
 
 .kissa-jcard__cta:hover {
-  background: var(--blue);
-  color: #faf8f4;
+  background: var(--pink-hot);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 /* =========================================================
-   STAGE 2: TAPE CATALOG SHELF
+   STAGE 3: COMPLETE WILDFLOWER CATALOG GRID
    ========================================================= */
 .kissa-catalog-band {
   border-block: 1px solid var(--rule);
@@ -197,7 +289,7 @@
 
 .kissa-filter-btn {
   position: relative;
-  padding: 7px 14px;
+  padding: 7px 15px;
   border-radius: 999px;
   border: 1px solid var(--rule-strong);
   background: transparent;
@@ -209,13 +301,13 @@
 }
 
 .kissa-filter-btn:hover {
-  border-color: var(--ink);
+  border-color: var(--blue);
   color: var(--ink);
 }
 
 .kissa-filter-btn.is-active {
   border-color: var(--blue);
-  color: var(--paper);
+  color: #ffffff;
 }
 
 .kissa-filter-btn__bg {
@@ -240,31 +332,52 @@
 .kissa-tape-card {
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-radius: 10px;
-  padding: 20px;
+  border-radius: 16px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
   box-shadow: var(--shadow-hard);
   transition: transform var(--transition), border-color var(--transition);
 }
 
 .kissa-tape-card:hover {
   transform: translateY(-4px);
-  border-color: var(--rule-strong);
+  border-color: var(--blue);
 }
 
 .kissa-tape-card.is-loaded {
   border-color: var(--pink-hot);
 }
 
-.kissa-tape-card__shell-wrap {
+.meadow-card-banner {
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg, var(--sky-soft) 0%, var(--blue-soft) 55%, var(--pink-soft) 100%);
+  border: 1px solid var(--rule);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   cursor: pointer;
-  transition: transform var(--transition);
+  transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.kissa-tape-card__shell-wrap:hover {
+.meadow-card-banner:hover {
   transform: translateY(-2px);
+}
+
+.meadow-card-banner__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  letter-spacing: 0.8px;
+  color: var(--muted);
+}
+
+.meadow-card-banner__flower {
+  display: grid;
+  place-items: center;
+  padding-block: 6px;
 }
 
 .kissa-tape-card__body {
@@ -307,7 +420,7 @@
 .kissa-tape-card__metric {
   background: var(--paper-2);
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 8px 10px;
   display: flex;
   flex-direction: column;
@@ -336,25 +449,10 @@
   border-top: 1px solid var(--rule);
 }
 
-.kissa-tape-card__load-btn {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: 1px solid var(--rule-strong);
-  background: transparent;
-  color: var(--ink);
-  font-size: 10.5px;
-  cursor: pointer;
-  transition: background-color var(--transition);
-}
-
-.kissa-tape-card__load-btn:hover {
-  background: var(--paper-2);
-}
-
 .kissa-tape-card__open-btn {
   font-size: 11px;
   font-weight: 600;
-  color: var(--ink);
+  color: var(--blue);
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -364,7 +462,7 @@
 }
 
 /* =========================================================
-   STAGE 1 (TOP): ON-GOING MASTER TAPES IN ACTIVE DEVELOPMENT
+   STAGE 1 (TOP): ON-GOING SEEDLINGS IN ACTIVE DEVELOPMENT
    ========================================================= */
 .kissa-ongoing-top-band {
   border-bottom: 1px solid var(--rule);
@@ -400,7 +498,7 @@
   overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-radius: 10px;
+  border-radius: 16px;
   padding: 24px;
   display: flex;
   flex-direction: column;
@@ -415,8 +513,8 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--blue), var(--lime), transparent);
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--blue), var(--pink-hot), var(--lime), transparent);
   background-size: 200% 100%;
   animation: kissaSignalSweep 4s linear infinite;
 }
@@ -432,7 +530,7 @@
 
 .kissa-ongoing-card:hover {
   transform: translateY(-3px);
-  border-color: var(--rule-strong);
+  border-color: var(--blue);
 }
 
 .kissa-ongoing-card__top {
@@ -454,8 +552,8 @@
 }
 
 .kissa-live-dot {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: #22c55e;
   box-shadow: 0 0 8px rgba(34, 197, 94, 0.75);
@@ -472,6 +570,13 @@
     opacity: 1;
     transform: scale(1.25);
   }
+}
+
+.meadow-ongoing-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .kissa-ongoing-card__cat {
@@ -520,7 +625,7 @@
 }
 
 @media (max-width: 1040px) {
-  .kissa-listening-desk {
+  .meadow-showcase-desk {
     grid-template-columns: 1fr;
   }
 

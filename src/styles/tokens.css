@@ -1,48 +1,42 @@
 /*
- * Design Tokens: Botanical Conservatory & Living Garden Archive
- * Mature, tactile materiality: Sunlit Herbarium Parchment, Conservatory Moss,
- * Camellia Peony Rose, Marigold Pollen Gold, and Moonlit Glasshouse.
+ * Design Tokens: Swiss Alpine Flower Meadow & Botanical Atelier
+ * Pure sunlit mountain air, glacial sky blue, lush alpine clover,
+ * wild alpine rose, buttercup gold, and mountain gentian lavender.
  */
 :root {
-  /* Sunlit Botanical Conservatory (Light Mode) */
-  --paper: #f7f5ee;
-  --paper-2: #edf1e8;
-  --card-bg: #fcfbf7;
-  --ink: #18231c;
-  --muted: #5a685e;
-  --rule: rgba(24, 35, 28, 0.11);
-  --rule-strong: rgba(24, 35, 28, 0.24);
+  /* Sunlit Swiss Alpine Meadow (Light Mode) */
+  --paper: #fbfcf8;
+  --paper-2: #eff5ed;
+  --card-bg: #ffffff;
+  --ink: #172920;
+  --muted: #51685c;
+  --rule: rgba(23, 41, 32, 0.1);
+  --rule-strong: rgba(23, 41, 32, 0.2);
 
-  /* Living Flora & Botanical Specimen Accents */
-  --blue: #234c39;         /* Conservatory Moss Green */
-  --blue-dark: #163325;
-  --blue-soft: #e2eee7;
-  --pink: #e295a2;         /* Soft Peony Blush */
-  --pink-soft: #faedf0;
-  --pink-hot: #c24b63;     /* Camellia Rose */
-  --lime: #d8a23e;         /* Marigold Pollen Gold */
-  --mint: #5a8d73;         /* Eucalyptus Sage */
-  --mint-soft: #e4f0e8;
-  --lavender: #8a79b8;     /* Garden Lavender */
+  /* Swiss Wildflower & Glacial Sky Palette */
+  --sky: #4a90c8;          /* Glacial Alpine Sky */
+  --sky-soft: #e3f1fc;
+  --blue: #256b4b;         /* Lush Alpine Meadow Emerald */
+  --blue-dark: #194d35;
+  --blue-soft: #e3f2ea;
+  --pink: #f3a6b8;         /* Soft Alpine Blossom */
+  --pink-soft: #fdeef2;
+  --pink-hot: #d94f6e;     /* Wild Alpine Rose / Poppy */
+  --lime: #e5a92f;         /* Alpine Buttercup Gold */
+  --mint: #4ea87b;         /* Fresh Meadow Clover */
+  --mint-soft: #e5f5ec;
+  --lavender: #7e6bd1;     /* Mountain Gentian / Lavender */
 
-  /* Shadcn-style Theme-Synced Chart Variables (Reel 2) */
-  --chart-1: #234c39;
-  --chart-2: #c24b63;
-  --chart-3: #d8a23e;
-  --chart-4: #5a8d73;
-  --chart-5: #8a79b8;
+  /* Shadcn-style Theme-Synced Meadow Chart Variables */
+  --chart-1: #256b4b;      /* Alpine Meadow */
+  --chart-2: #d94f6e;      /* Wild Rose */
+  --chart-3: #e5a92f;      /* Buttercup */
+  --chart-4: #4a90c8;      /* Glacial Sky */
+  --chart-5: #7e6bd1;      /* Mountain Lavender */
 
-  /* Deck & Conservatory Hardware Surfaces */
-  --deck-face: #1c2821;
-  --deck-face-hi: #27382e;
-  --deck-well: #0f1612;
-  --deck-text: #f0eee6;
-  --deck-muted: #93a399;
-  --vu-bg: #f6ebd1;
-
-  --dark-rule: rgba(24, 35, 28, 0.18);
-  --dark-muted: #5a685e;
-  --white-40: rgba(252, 251, 247, 0.78);
+  --dark-rule: rgba(23, 41, 32, 0.16);
+  --dark-muted: #51685c;
+  --white-40: rgba(255, 255, 255, 0.84);
 
   /* Editorial Typography */
   --font-serif: 'Instrument Serif', Georgia, 'Times New Roman', serif;
@@ -50,57 +44,52 @@
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  /* Architectural Layout & Realistic Soft Shadows */
+  /* Airy Alpine Layout & Soft Sunlit Shadows */
   --frame-max: 1360px;
   --gutter: clamp(20px, calc(20px + 44 * (100vw - 390px) / 1050), 64px);
   --section-y: clamp(48px, calc(48px + 24 * (100vw - 390px) / 1050), 72px);
-  --radius-button: 8px;
-  --radius-card: 12px;
-  --shadow-hard: 0 12px 32px -12px rgba(20, 34, 25, 0.12), 0 2px 6px rgba(20, 34, 25, 0.05);
-  --shadow-soft: 0 22px 48px -16px rgba(20, 34, 25, 0.16);
+  --radius-button: 999px;
+  --radius-card: 16px;
+  --shadow-hard: 0 12px 32px -12px rgba(24, 52, 38, 0.1), 0 2px 6px rgba(24, 52, 38, 0.04);
+  --shadow-soft: 0 24px 52px -16px rgba(24, 52, 38, 0.14);
   --transition: 220ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme='dark'] {
-  /* Moonlit Glasshouse Conservatory (Dark Mode) */
-  --paper: #0f1511;
-  --paper-2: #161f19;
-  --card-bg: #1a241e;
-  --ink: #f2f0e8;
-  --muted: #95a499;
-  --rule: rgba(242, 240, 232, 0.1);
-  --rule-strong: rgba(242, 240, 232, 0.22);
+  /* Starlit Swiss Alpine Valley at Dusk (Dark Mode) */
+  --paper: #0e1916;
+  --paper-2: #14241f;
+  --card-bg: #182c26;
+  --ink: #f4f8f2;
+  --muted: #98b0a3;
+  --rule: rgba(244, 248, 242, 0.11);
+  --rule-strong: rgba(244, 248, 242, 0.22);
 
-  /* Luminous Night-Garden Flora */
-  --blue: #76ba95;
-  --blue-dark: #5ca27c;
-  --blue-soft: #1a2a21;
-  --pink: #e59aa8;
-  --pink-soft: #2b1b20;
-  --pink-hot: #e87990;
-  --lime: #e7bc62;
-  --mint: #76ba95;
-  --mint-soft: #16241d;
-  --lavender: #a99ad4;
+  /* Luminous Dusk Alpine Flora */
+  --sky: #7ec2f5;
+  --sky-soft: #142836;
+  --blue: #68c998;
+  --blue-dark: #4ca97a;
+  --blue-soft: #173026;
+  --pink: #f4a4b6;
+  --pink-soft: #2e1b23;
+  --pink-hot: #f27491;
+  --lime: #f2c252;
+  --mint: #68c998;
+  --mint-soft: #162e24;
+  --lavender: #aba0eb;
 
-  /* Theme-Synced Night Chart Variables */
-  --chart-1: #76ba95;
-  --chart-2: #e87990;
-  --chart-3: #e7bc62;
-  --chart-4: #5ca27c;
-  --chart-5: #a99ad4;
+  /* Theme-Synced Starlit Meadow Chart Variables */
+  --chart-1: #68c998;
+  --chart-2: #f27491;
+  --chart-3: #f2c252;
+  --chart-4: #7ec2f5;
+  --chart-5: #aba0eb;
 
-  --deck-face: #17211b;
-  --deck-face-hi: #223028;
-  --deck-well: #0b100d;
-  --deck-text: #f2f0e8;
-  --deck-muted: #8a9b90;
-  --vu-bg: #f3e2b7;
+  --dark-rule: rgba(244, 248, 242, 0.15);
+  --dark-muted: #98b0a3;
+  --white-40: rgba(24, 44, 38, 0.85);
 
-  --dark-rule: rgba(242, 240, 232, 0.15);
-  --dark-muted: #95a499;
-  --white-40: rgba(26, 36, 30, 0.82);
-
-  --shadow-hard: 0 16px 38px -12px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-soft: 0 24px 52px -16px rgba(0, 0, 0, 0.75);
+  --shadow-hard: 0 16px 38px -12px rgba(0, 0, 0, 0.58), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 24px 52px -16px rgba(0, 0, 0, 0.72);
 }

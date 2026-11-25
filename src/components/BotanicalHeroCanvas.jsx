@@ -4,59 +4,69 @@ import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import './BotanicalHeroCanvas.css';
 
-const FLOWER_SPECIES = [
+// Authentic Swiss Alpine Wildflower Species
+const ALPINE_FLOWERS = [
   {
-    name: 'Peony',
+    name: 'Edelweiss',
     petals: 10,
-    innerPetals: 7,
-    outerColor: '#e88b9c',
-    innerColor: '#f8c8d1',
-    centerColor: '#e7bc62',
-    radius: 34,
-  },
-  {
-    name: 'Marigold',
-    petals: 12,
-    innerPetals: 8,
-    outerColor: '#df9c38',
-    innerColor: '#f6d37b',
-    centerColor: '#9c4c1f',
+    innerPetals: 6,
+    outerColor: '#ffffff',
+    innerColor: '#eef4e8',
+    centerColor: '#eab338',
     radius: 30,
   },
   {
-    name: 'Cosmos',
-    petals: 8,
-    innerPetals: 5,
-    outerColor: '#f4ece4',
-    innerColor: '#e6b2bd',
-    centerColor: '#d9a441',
+    name: 'Alpine Rose',
+    petals: 9,
+    innerPetals: 6,
+    outerColor: '#e25a77',
+    innerColor: '#f8b9c7',
+    centerColor: '#f5cb5c',
     radius: 32,
   },
   {
-    name: 'Lavender Star',
-    petals: 9,
-    innerPetals: 6,
-    outerColor: '#9f8fd1',
-    innerColor: '#d8cef2',
-    centerColor: '#f0cf7b',
+    name: 'Swiss Buttercup',
+    petals: 8,
+    innerPetals: 5,
+    outerColor: '#f3bb32',
+    innerColor: '#fce18d',
+    centerColor: '#b56516',
     radius: 28,
   },
   {
-    name: 'Camellia',
-    petals: 11,
-    innerPetals: 7,
-    outerColor: '#c94d66',
-    innerColor: '#f09bac',
-    centerColor: '#f5d78c',
-    radius: 35,
+    name: 'Blue Gentian',
+    petals: 6,
+    innerPetals: 6,
+    outerColor: '#4a90d6',
+    innerColor: '#9ecdf8',
+    centerColor: '#f5d26b',
+    radius: 29,
+  },
+  {
+    name: 'Mountain Lavender',
+    petals: 9,
+    innerPetals: 6,
+    outerColor: '#8d7ae0',
+    innerColor: '#cfc4f7',
+    centerColor: '#f2ca63',
+    radius: 28,
+  },
+  {
+    name: 'Alpine Poppy',
+    petals: 6,
+    innerPetals: 5,
+    outerColor: '#ea5d50',
+    innerColor: '#f9a9a1',
+    centerColor: '#2d2522',
+    radius: 31,
   },
 ];
 
 const BUTTERFLY_STYLES = [
-  { wingA: '#f4b5c2', wingB: '#c94d66', edge: '#471a26', accent: '#f8e6c1' }, // Camellia Swallowtail
-  { wingA: '#f4c76b', wingB: '#cf7c28', edge: '#3d210b', accent: '#fff6de' }, // Marigold Monarch
-  { wingA: '#9ed9ba', wingB: '#3e8565', edge: '#143326', accent: '#eefaf3' }, // Glasshouse Morpho
-  { wingA: '#cfc3f2', wingB: '#7a68b5', edge: '#2a204a', accent: '#f7f4ff' }, // Twilight Velvet
+  { wingA: '#f7c2cf', wingB: '#d94f6e', edge: '#521b29', accent: '#fff7e6' }, // Alpine Rose
+  { wingA: '#f8d36c', wingB: '#de8c23', edge: '#4a290b', accent: '#fff9e6' }, // Swallowtail Gold
+  { wingA: '#9fd4f8', wingB: '#3e82c4', edge: '#163554', accent: '#f2f9ff' }, // Adonis Blue
+  { wingA: '#d4c8f7', wingB: '#7a66c9', edge: '#2d2057', accent: '#f9f7ff' }, // Mountain Violet
 ];
 
 function createButterfly(width, height, index) {
@@ -64,12 +74,12 @@ function createButterfly(width, height, index) {
   const speed = 0.85 + Math.random() * 0.55;
   return {
     id: `${Date.now()}-${index}-${Math.random()}`,
-    x: width * (0.15 + Math.random() * 0.7),
-    y: height * (0.18 + Math.random() * 0.64),
+    x: width * (0.14 + Math.random() * 0.72),
+    y: height * (0.16 + Math.random() * 0.56),
     vx: Math.cos(angle) * speed,
     vy: Math.sin(angle) * speed,
     angle,
-    size: 16 + Math.random() * 7,
+    size: 15 + Math.random() * 6.5,
     wingPhase: Math.random() * Math.PI * 2,
     wingSpeed: 0.16 + Math.random() * 0.06,
     style: BUTTERFLY_STYLES[index % BUTTERFLY_STYLES.length],
@@ -79,7 +89,7 @@ function createButterfly(width, height, index) {
 }
 
 function createFlower(x, y, speciesIdx, preBloomed = false) {
-  const species = FLOWER_SPECIES[speciesIdx % FLOWER_SPECIES.length];
+  const species = ALPINE_FLOWERS[speciesIdx % ALPINE_FLOWERS.length];
   return {
     id: `${Date.now()}-${Math.random()}`,
     x,
@@ -88,18 +98,15 @@ function createFlower(x, y, speciesIdx, preBloomed = false) {
     rot: Math.random() * Math.PI * 2,
     swayPhase: Math.random() * Math.PI * 2,
     scale: preBloomed ? 1 : 0.02,
-    scaleVel: preBloomed ? 0 : 0.17,
+    scaleVel: preBloomed ? 0 : 0.18,
     bornAt: performance.now(),
-    isTarget: !preBloomed,
-    leaves: [
-      Math.random() * Math.PI * 2,
-      Math.random() * Math.PI * 2 + 2.1,
-    ],
+    hasStem: y > 300,
+    leaves: [Math.random() * Math.PI * 2, Math.random() * Math.PI * 2 + 2.2],
   };
 }
 
-// Gentle Web Audio botanical wind-chime / conservatory harp ambient synth
-function createGardenAudioEngine() {
+// Gentle Web Audio Alpine Meadow Harp & Mountain Chimes
+function createMeadowAudioEngine() {
   const AudioCtx = window.AudioContext || window.webkitAudioContext;
   if (!AudioCtx) return null;
   const ctx = new AudioCtx();
@@ -107,10 +114,10 @@ function createGardenAudioEngine() {
   master.gain.value = 0.16;
   master.connect(ctx.destination);
 
-  // Pentatonic conservatory harp frequencies (D major pentatonic)
-  const notes = [293.66, 329.63, 369.99, 440.0, 493.88, 587.33, 659.25, 739.99];
+  // Airy F major pentatonic harp chimes
+  const notes = [349.23, 392.0, 440.0, 523.25, 587.33, 698.46, 783.99, 880.0];
 
-  const playNote = (freq, duration = 2.6, gainPeak = 0.18) => {
+  const playNote = (freq, duration = 2.6, gainPeak = 0.17) => {
     if (ctx.state === 'suspended') return;
     const now = ctx.currentTime;
     const osc = ctx.createOscillator();
@@ -123,15 +130,15 @@ function createGardenAudioEngine() {
     osc2.frequency.setValueAtTime(freq * 2, now);
 
     env.gain.setValueAtTime(0.0001, now);
-    env.gain.exponentialRampToValueAtTime(gainPeak, now + 0.06);
+    env.gain.exponentialRampToValueAtTime(gainPeak, now + 0.05);
     env.gain.exponentialRampToValueAtTime(0.0001, now + duration);
 
-    const harmonicGain = ctx.createGain();
-    harmonicGain.gain.value = 0.18;
+    const hGain = ctx.createGain();
+    hGain.gain.value = 0.15;
 
     osc.connect(env);
-    osc2.connect(harmonicGain);
-    harmonicGain.connect(env);
+    osc2.connect(hGain);
+    hGain.connect(env);
     env.connect(master);
 
     osc.start(now);
@@ -143,16 +150,16 @@ function createGardenAudioEngine() {
   let timer = null;
   const start = async () => {
     if (ctx.state === 'suspended') await ctx.resume();
-    playNote(notes[0], 3.2, 0.2);
-    playNote(notes[3], 3.6, 0.14);
+    playNote(notes[0], 3.0, 0.18);
+    playNote(notes[3], 3.4, 0.13);
     timer = window.setInterval(() => {
       const n1 = notes[Math.floor(Math.random() * notes.length)];
-      playNote(n1, 2.4 + Math.random() * 1.4, 0.14);
-      if (Math.random() > 0.55) {
+      playNote(n1, 2.5 + Math.random() * 1.2, 0.13);
+      if (Math.random() > 0.52) {
         const n2 = notes[Math.floor(Math.random() * notes.length)];
-        window.setTimeout(() => playNote(n2, 2.2, 0.09), 260);
+        window.setTimeout(() => playNote(n2, 2.2, 0.08), 240);
       }
-    }, 1700);
+    }, 1650);
   };
 
   const stop = () => {
@@ -163,8 +170,8 @@ function createGardenAudioEngine() {
   const playBloomChime = () => {
     if (ctx.state !== 'running') return;
     const base = notes[Math.floor(Math.random() * 5)];
-    playNote(base, 1.5, 0.22);
-    window.setTimeout(() => playNote(base * 1.5, 1.8, 0.14), 90);
+    playNote(base, 1.5, 0.2);
+    window.setTimeout(() => playNote(base * 1.5, 1.7, 0.13), 85);
   };
 
   const destroy = () => {
@@ -176,33 +183,36 @@ function createGardenAudioEngine() {
 }
 
 export default function BotanicalHeroCanvas({ availability }) {
-  const { lang } = useApp();
+  const { lang, theme } = useApp();
   const stageRef = useRef(null);
   const canvasRef = useRef(null);
   const audioRef = useRef(null);
+  const themeRef = useRef(theme);
 
   const [butterflyCount, setButterflyCount] = useState(4);
-  const [bloomCount, setBloomCount] = useState(5);
+  const [bloomCount, setBloomCount] = useState(8);
   const [audioOn, setAudioOn] = useState(false);
 
+  useEffect(() => {
+    themeRef.current = theme;
+  }, [theme]);
+
   const stateRef = useRef({
-    width: 900,
-    height: 580,
+    width: 960,
+    height: 600,
     butterflies: [],
     flowers: [],
+    meadowStalks: [],
     ripples: [],
     sparks: [],
     speciesCursor: 0,
-    pointer: { x: -9999, y: -9999 },
   });
 
-  // Plant a flower at (x, y) with pollen burst + ripple + butterfly attraction
   const plantFlowerAt = useCallback((x, y, playSound = true) => {
     const st = stateRef.current;
     const flower = createFlower(x, y, st.speciesCursor++, false);
 
-    // Keep max 28 flowers so the garden stays lush and crisp at 60fps
-    if (st.flowers.length >= 28) {
+    if (st.flowers.length >= 30) {
       st.flowers.shift();
     }
     st.flowers.push(flower);
@@ -212,9 +222,9 @@ export default function BotanicalHeroCanvas({ availability }) {
       x,
       y,
       r: 8,
-      maxR: 86,
+      maxR: 82,
       alpha: 0.72,
-      color: flower.species.outerColor,
+      color: flower.species.outerColor === '#ffffff' ? '#eab338' : flower.species.outerColor,
     });
 
     for (let i = 0; i < 8; i++) {
@@ -231,12 +241,9 @@ export default function BotanicalHeroCanvas({ availability }) {
       });
     }
 
-    // Attract 2 nearest butterflies to this freshly planted bloom
-    const sorted = [...st.butterflies].sort((a, b) => {
-      const da = Math.hypot(a.x - x, a.y - y);
-      const db = Math.hypot(b.x - x, b.y - y);
-      return da - db;
-    });
+    const sorted = [...st.butterflies].sort(
+      (a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y),
+    );
     sorted.slice(0, 2).forEach((bf) => {
       bf.targetFlowerId = flower.id;
     });
@@ -246,10 +253,9 @@ export default function BotanicalHeroCanvas({ availability }) {
     }
   }, []);
 
-  // Toggle ambient conservatory harp audio
   const toggleAudio = async () => {
     if (!audioRef.current) {
-      audioRef.current = createGardenAudioEngine();
+      audioRef.current = createMeadowAudioEngine();
     }
     if (!audioRef.current) return;
 
@@ -262,7 +268,6 @@ export default function BotanicalHeroCanvas({ availability }) {
     }
   };
 
-  // Sync butterfly count dynamically when user clicks − / +
   useEffect(() => {
     const st = stateRef.current;
     while (st.butterflies.length < butterflyCount) {
@@ -273,7 +278,6 @@ export default function BotanicalHeroCanvas({ availability }) {
     }
   }, [butterflyCount]);
 
-  // Cleanup audio on unmount
   useEffect(() => {
     return () => {
       if (audioRef.current) {
@@ -283,7 +287,7 @@ export default function BotanicalHeroCanvas({ availability }) {
     };
   }, []);
 
-  // 60fps Living Canvas Engine (Butterflies + Blooming Flowers + Z-Depth Shadows)
+  // 60fps Swiss Meadow Living Canvas (Swaying Foreground Grass + Wildflowers + Butterflies)
   useEffect(() => {
     const stage = stageRef.current;
     const canvas = canvasRef.current;
@@ -294,13 +298,29 @@ export default function BotanicalHeroCanvas({ availability }) {
     const st = stateRef.current;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    const seedInitialGarden = (w, h) => {
+    const buildForegroundMeadow = (w, h) => {
+      const stalkCount = Math.min(46, Math.max(22, Math.floor(w / 26)));
+      st.meadowStalks = Array.from({ length: stalkCount }, (_, i) => ({
+        x: (w / stalkCount) * i + Math.random() * 18,
+        height: 44 + Math.random() * 68,
+        phase: Math.random() * Math.PI * 2,
+        speed: 1.1 + Math.random() * 0.7,
+        hasBud: i % 2 === 0,
+        budColor: ALPINE_FLOWERS[i % ALPINE_FLOWERS.length].outerColor,
+        budSize: 3.5 + Math.random() * 3.5,
+      }));
+    };
+
+    const seedInitialMeadow = (w, h) => {
       const spots = [
-        [w * 0.13, h * 0.24],
-        [w * 0.86, h * 0.27],
-        [w * 0.16, h * 0.77],
-        [w * 0.83, h * 0.75],
-        [w * 0.52, h * 0.84],
+        [w * 0.09, h * 0.78],
+        [w * 0.18, h * 0.85],
+        [w * 0.29, h * 0.81],
+        [w * 0.72, h * 0.82],
+        [w * 0.83, h * 0.86],
+        [w * 0.91, h * 0.77],
+        [w * 0.12, h * 0.3],
+        [w * 0.88, h * 0.29],
       ];
       st.flowers = spots.map(([fx, fy], idx) => createFlower(fx, fy, idx, true));
       st.speciesCursor = spots.length;
@@ -310,13 +330,14 @@ export default function BotanicalHeroCanvas({ availability }) {
     const resize = () => {
       const rect = stage.getBoundingClientRect();
       st.width = Math.max(320, rect.width);
-      st.height = Math.max(440, rect.height);
+      st.height = Math.max(460, rect.height);
       canvas.width = Math.floor(st.width * dpr);
       canvas.height = Math.floor(st.height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
+      buildForegroundMeadow(st.width, st.height);
       if (st.flowers.length === 0) {
-        seedInitialGarden(st.width, st.height);
+        seedInitialMeadow(st.width, st.height);
       }
       if (st.butterflies.length === 0) {
         for (let i = 0; i < butterflyCount; i++) {
@@ -330,40 +351,52 @@ export default function BotanicalHeroCanvas({ availability }) {
     ro.observe(stage);
 
     const drawFlower = (f, t) => {
-      // Spring physics for blooming unfurl (scale -> 1.0 with slight overshoot)
       const force = (1 - f.scale) * 0.12;
       f.scaleVel = (f.scaleVel + force) * 0.78;
       f.scale = Math.max(0.01, f.scale + f.scaleVel);
 
-      const sway = Math.sin(t * 1.4 + f.swayPhase) * 0.055;
+      const sway = Math.sin(t * 1.45 + f.swayPhase) * 0.06;
       const r = f.species.radius * f.scale;
+
+      // Growing slender meadow stem if planted in the lower meadow zone
+      if (f.hasStem && f.y > st.height * 0.56) {
+        const tipX = f.x + Math.sin(t * 1.45 + f.swayPhase) * 6;
+        ctx.save();
+        ctx.strokeStyle = themeRef.current === 'dark' ? '#3d8762' : '#2f7a53';
+        ctx.lineWidth = 2.2;
+        ctx.beginPath();
+        ctx.moveTo(f.x, st.height + 6);
+        ctx.quadraticCurveTo(f.x + 8, (f.y + st.height) * 0.5, tipX, f.y);
+        ctx.stroke();
+        ctx.restore();
+      }
 
       ctx.save();
       ctx.translate(f.x, f.y);
       ctx.rotate(f.rot + sway);
 
-      // Soft botanical shadow for Z-depth over typography
+      // Soft Z-depth shadow over sky/typography
       ctx.save();
-      ctx.translate(6, 10);
+      ctx.translate(5, 9);
       ctx.beginPath();
-      ctx.arc(0, 0, r * 0.92, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(6, 16, 11, 0.28)';
+      ctx.arc(0, 0, r * 0.88, 0, Math.PI * 2);
+      ctx.fillStyle =
+        themeRef.current === 'dark' ? 'rgba(5, 14, 11, 0.34)' : 'rgba(28, 60, 44, 0.16)';
       ctx.filter = 'blur(5px)';
       ctx.fill();
       ctx.restore();
 
-      // Botanical leaves peeking beneath petals
-      ctx.fillStyle = '#3b7355';
+      // Leaves beneath bloom
+      ctx.fillStyle = '#3b8c63';
       for (const leafAngle of f.leaves) {
         ctx.save();
         ctx.rotate(leafAngle);
         ctx.beginPath();
-        ctx.ellipse(r * 0.88, 0, r * 0.55, r * 0.24, 0, 0, Math.PI * 2);
+        ctx.ellipse(r * 0.84, 0, r * 0.52, r * 0.22, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       }
 
-      // Outer petal ring
       const { petals, innerPetals, outerColor, innerColor, centerColor } = f.species;
       for (let i = 0; i < petals; i++) {
         const ang = (Math.PI * 2 * i) / petals;
@@ -375,24 +408,27 @@ export default function BotanicalHeroCanvas({ availability }) {
         ctx.bezierCurveTo(r * 1.05, r * 0.22, r * 0.48, r * 0.34, 0, 0);
         ctx.fillStyle = outerColor;
         ctx.fill();
+        if (outerColor === '#ffffff') {
+          ctx.strokeStyle = 'rgba(130, 158, 140, 0.35)';
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
         ctx.restore();
       }
 
-      // Inner petal ring
       for (let i = 0; i < innerPetals; i++) {
-        const ang = (Math.PI * 2 * i) / innerPetals + 0.28;
+        const ang = (Math.PI * 2 * i) / innerPetals + 0.3;
         ctx.save();
         ctx.rotate(ang);
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(r * 0.3, -r * 0.22, r * 0.68, -r * 0.16, r * 0.64, 0);
-        ctx.bezierCurveTo(r * 0.68, r * 0.16, r * 0.3, r * 0.22, 0, 0);
+        ctx.bezierCurveTo(r * 0.28, -r * 0.21, r * 0.66, -r * 0.15, r * 0.62, 0);
+        ctx.bezierCurveTo(r * 0.66, r * 0.15, r * 0.28, r * 0.21, 0, 0);
         ctx.fillStyle = innerColor;
         ctx.fill();
         ctx.restore();
       }
 
-      // Pollen center
       ctx.beginPath();
       ctx.arc(0, 0, r * 0.22, 0, Math.PI * 2);
       ctx.fillStyle = centerColor;
@@ -400,7 +436,7 @@ export default function BotanicalHeroCanvas({ availability }) {
 
       ctx.beginPath();
       ctx.arc(-r * 0.05, -r * 0.05, r * 0.08, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,0.45)';
+      ctx.fillStyle = 'rgba(255,255,255,0.48)';
       ctx.fill();
 
       ctx.restore();
@@ -408,16 +444,17 @@ export default function BotanicalHeroCanvas({ availability }) {
 
     const drawButterfly = (bf) => {
       const flap = Math.abs(Math.sin(bf.wingPhase));
-      const wingScaleX = 0.26 + flap * 0.74;
+      const wingScaleX = 0.25 + flap * 0.75;
       const s = bf.size;
 
-      // Soft Z-depth drop shadow cast onto hero headline below
+      // Soft Z-depth shadow cast onto headline & alpine sky
       ctx.save();
-      ctx.translate(bf.x + 14, bf.y + 22);
+      ctx.translate(bf.x + 12, bf.y + 18);
       ctx.rotate(bf.angle + Math.PI / 2);
-      ctx.scale(wingScaleX * 0.9, 0.9);
-      ctx.fillStyle = 'rgba(4, 12, 8, 0.34)';
-      ctx.filter = 'blur(6px)';
+      ctx.scale(wingScaleX * 0.88, 0.88);
+      ctx.fillStyle =
+        themeRef.current === 'dark' ? 'rgba(4, 12, 10, 0.38)' : 'rgba(24, 58, 42, 0.18)';
+      ctx.filter = 'blur(5px)';
       ctx.beginPath();
       ctx.ellipse(-s * 0.55, -s * 0.12, s * 0.68, s * 0.52, -0.25, 0, Math.PI * 2);
       ctx.ellipse(s * 0.55, -s * 0.12, s * 0.68, s * 0.52, 0.25, 0, Math.PI * 2);
@@ -428,12 +465,10 @@ export default function BotanicalHeroCanvas({ availability }) {
       ctx.translate(bf.x, bf.y);
       ctx.rotate(bf.angle + Math.PI / 2);
 
-      // Draw symmetric wings with realistic sinusoidal foreshortening
       for (const dir of [-1, 1]) {
         ctx.save();
         ctx.scale(dir * wingScaleX, 1);
 
-        // Forewing
         const grad = ctx.createLinearGradient(0, -s, s * 1.25, s * 0.3);
         grad.addColorStop(0, bf.style.wingA);
         grad.addColorStop(0.68, bf.style.wingB);
@@ -447,13 +482,11 @@ export default function BotanicalHeroCanvas({ availability }) {
         ctx.fillStyle = grad;
         ctx.fill();
 
-        // Forewing pearl spot
         ctx.beginPath();
         ctx.arc(s * 0.74, -s * 0.34, s * 0.13, 0, Math.PI * 2);
         ctx.fillStyle = bf.style.accent;
         ctx.fill();
 
-        // Hindwing with swallowtail curve
         ctx.beginPath();
         ctx.moveTo(0, s * 0.04);
         ctx.bezierCurveTo(s * 0.92, s * 0.12, s * 0.96, s * 0.85, s * 0.45, s * 1.05);
@@ -470,7 +503,6 @@ export default function BotanicalHeroCanvas({ availability }) {
         ctx.restore();
       }
 
-      // Slender botanical thorax & antennae
       ctx.fillStyle = bf.style.edge;
       ctx.beginPath();
       ctx.ellipse(0, 0.08 * s, s * 0.09, s * 0.42, 0, 0, Math.PI * 2);
@@ -498,7 +530,31 @@ export default function BotanicalHeroCanvas({ availability }) {
 
       ctx.clearRect(0, 0, st.width, st.height);
 
-      // 1. Expanding golden ripples where flowers were planted
+      // 1. Gently swaying foreground Swiss meadow grass blades & tiny wildflower buds
+      const isDark = themeRef.current === 'dark';
+      for (const s of st.meadowStalks) {
+        const swayX = Math.sin(tick * s.speed + s.phase) * 11;
+        const tipX = s.x + swayX;
+        const tipY = st.height - s.height;
+
+        ctx.beginPath();
+        ctx.moveTo(s.x, st.height + 4);
+        ctx.quadraticCurveTo(s.x + swayX * 0.35, st.height - s.height * 0.55, tipX, tipY);
+        ctx.strokeStyle = isDark ? 'rgba(82, 168, 123, 0.52)' : 'rgba(42, 122, 79, 0.44)';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        if (s.hasBud) {
+          ctx.beginPath();
+          ctx.arc(tipX, tipY, s.budSize, 0, Math.PI * 2);
+          ctx.fillStyle = s.budColor;
+          ctx.globalAlpha = 0.85;
+          ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+      }
+
+      // 2. Ripples where flowers were planted
       for (let i = st.ripples.length - 1; i >= 0; i--) {
         const rp = st.ripples[i];
         rp.r += 2.2;
@@ -516,12 +572,12 @@ export default function BotanicalHeroCanvas({ availability }) {
         ctx.globalAlpha = 1;
       }
 
-      // 2. Blooming procedural flowers
+      // 3. Blooming Swiss Wildflowers
       for (const f of st.flowers) {
         drawFlower(f, tick);
       }
 
-      // 3. Drifting pollen sparks
+      // 4. Golden pollen sparks
       for (let i = st.sparks.length - 1; i >= 0; i--) {
         const sp = st.sparks[i];
         sp.x += sp.vx;
@@ -541,17 +597,15 @@ export default function BotanicalHeroCanvas({ availability }) {
         ctx.globalAlpha = 1;
       }
 
-      // 4. Living 60fps Butterflies (flying over typography + attracted to planted blooms)
+      // 5. Living 60fps Alpine Butterflies
       for (let i = 0; i < st.butterflies.length; i++) {
         const bf = st.butterflies[i];
         let desiredVx = Math.cos(bf.wanderAngle) * 1.15;
         let desiredVy = Math.sin(bf.wanderAngle) * 1.15;
         let hurry = false;
 
-        // Gentle organic wander
         bf.wanderAngle += (Math.random() - 0.5) * 0.09;
 
-        // Steer toward assigned newly planted flower
         if (bf.targetFlowerId) {
           const target = st.flowers.find((f) => f.id === bf.targetFlowerId);
           if (target) {
@@ -563,11 +617,10 @@ export default function BotanicalHeroCanvas({ availability }) {
               desiredVy = (dy / dist) * 2.6;
               hurry = true;
             } else {
-              // Orbit gently around the flower then release after 4.5s
               const orbitAngle = Math.atan2(dy, dx) + Math.PI / 2;
               desiredVx = Math.cos(orbitAngle) * 1.05;
               desiredVy = Math.sin(orbitAngle) * 1.05;
-              if (performance.now() - target.bornAt > 4800) {
+              if (performance.now() - target.bornAt > 4600) {
                 bf.targetFlowerId = null;
               }
             }
@@ -576,7 +629,6 @@ export default function BotanicalHeroCanvas({ availability }) {
           }
         }
 
-        // Soft collision avoidance with other butterflies
         for (let j = 0; j < st.butterflies.length; j++) {
           if (i === j) continue;
           const other = st.butterflies[j];
@@ -589,7 +641,6 @@ export default function BotanicalHeroCanvas({ availability }) {
           }
         }
 
-        // Smooth boundary turnaround inside conservatory frame
         const margin = 52;
         if (bf.x < margin) desiredVx += 1.4;
         if (bf.x > st.width - margin) desiredVx -= 1.4;
@@ -613,7 +664,6 @@ export default function BotanicalHeroCanvas({ availability }) {
     };
 
     rafId = window.requestAnimationFrame(frame);
-
     return () => {
       window.cancelAnimationFrame(rafId);
       ro.disconnect();
@@ -629,14 +679,14 @@ export default function BotanicalHeroCanvas({ availability }) {
 
   const handlePlantRandom = () => {
     const st = stateRef.current;
-    const rx = st.width * (0.14 + Math.random() * 0.72);
-    const ry = st.height * (0.2 + Math.random() * 0.62);
+    const rx = st.width * (0.12 + Math.random() * 0.76);
+    const ry = st.height * (0.24 + Math.random() * 0.62);
     plantFlowerAt(rx, ry, true);
   };
 
   const handleClearBlooms = () => {
     const st = stateRef.current;
-    st.flowers = st.flowers.slice(0, 3);
+    st.flowers = st.flowers.slice(0, 6);
     setBloomCount(st.flowers.length);
   };
 
@@ -647,13 +697,60 @@ export default function BotanicalHeroCanvas({ availability }) {
         className="garden-hero-stage"
         onClick={handleStageClick}
         role="region"
-        aria-label="Interactive Botanical Conservatory Hero — click anywhere to plant flowers"
+        aria-label="Interactive Swiss Alpine Flower Meadow — click anywhere to plant wildflowers"
       >
-        {/* Subtle Glasshouse Mullion Architectural Lines */}
-        <div className="garden-hero__mullions" aria-hidden="true" />
-        <div className="garden-hero__sunbeam" aria-hidden="true" />
+        {/* Painterly Swiss Alps Mountain Peaks & Rolling Green Meadow Backdrop */}
+        <svg
+          className="garden-alps-backdrop"
+          viewBox="0 0 1440 620"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="alpsPeakFar" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--alps-peak-top)" />
+              <stop offset="100%" stopColor="var(--alps-peak-bot)" />
+            </linearGradient>
+            <linearGradient id="alpsHillMid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--alps-hill-top)" />
+              <stop offset="100%" stopColor="var(--alps-hill-bot)" />
+            </linearGradient>
+            <linearGradient id="alpsMeadowNear" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--alps-meadow-top)" />
+              <stop offset="100%" stopColor="var(--alps-meadow-bot)" />
+            </linearGradient>
+          </defs>
 
-        {/* Top Floating Frosted-Glass Control Bar (Reel 3 inspired) */}
+          {/* Soft Alpine Clouds */}
+          <ellipse cx="260" cy="112" rx="140" ry="28" fill="var(--alps-cloud)" opacity="0.6" />
+          <ellipse cx="1140" cy="94" rx="170" ry="32" fill="var(--alps-cloud)" opacity="0.55" />
+
+          {/* Far Snow-Dusted Swiss Alpine Peaks */}
+          <path
+            d="M0 430 L170 250 L295 340 L480 195 L665 348 L860 215 L1055 335 L1250 185 L1440 315 L1440 620 L0 620 Z"
+            fill="url(#alpsPeakFar)"
+          />
+          {/* Subtle Snow Caps */}
+          <path
+            d="M480 195 L430 245 L465 235 L488 250 L525 236 Z M860 215 L814 260 L848 252 L872 265 L904 252 Z M1250 185 L1200 235 L1238 228 L1264 242 L1296 226 Z"
+            fill="var(--alps-snow)"
+            opacity="0.78"
+          />
+
+          {/* Rolling Midground Alpine Slopes */}
+          <path
+            d="M0 460 Q 340 365 720 445 T 1440 420 L 1440 620 L 0 620 Z"
+            fill="url(#alpsHillMid)"
+          />
+
+          {/* Foreground Sunlit Flower Meadow Valley */}
+          <path
+            d="M0 515 Q 420 455 860 505 T 1440 485 L 1440 620 L 0 620 Z"
+            fill="url(#alpsMeadowNear)"
+          />
+        </svg>
+
+        {/* Top Floating Alpine-Glass Controls (Reel 3 Inspired) */}
         <div className="garden-hero__topbar">
           <div className="garden-glass-pill mono">
             <span className="garden-live-dot" aria-hidden="true" />
@@ -669,11 +766,11 @@ export default function BotanicalHeroCanvas({ availability }) {
             >
               {audioOn
                 ? lang === 'id'
-                  ? 'Musik Taman: ON'
-                  : 'Garden Audio: ON'
+                  ? 'Harpa Taman: ON'
+                  : 'Meadow Harp: ON'
                 : lang === 'id'
-                  ? 'Musik Taman: OFF'
-                  : 'Garden Audio: OFF'}
+                  ? 'Harpa Taman: OFF'
+                  : 'Meadow Harp: OFF'}
             </button>
 
             <div className="garden-glass-counter mono" aria-label="Butterfly count control">
@@ -700,22 +797,18 @@ export default function BotanicalHeroCanvas({ availability }) {
               className="garden-glass-btn garden-glass-btn--accent mono"
               onClick={handlePlantRandom}
             >
-              + {lang === 'id' ? `Tanam Bunga (${bloomCount})` : `Plant Bloom (${bloomCount})`}
+              + {lang === 'id' ? `Tanam Bunga (${bloomCount})` : `Plant Flower (${bloomCount})`}
             </button>
 
-            {bloomCount > 6 && (
-              <button
-                type="button"
-                className="garden-glass-btn mono"
-                onClick={handleClearBlooms}
-              >
+            {bloomCount > 10 && (
+              <button type="button" className="garden-glass-btn mono" onClick={handleClearBlooms}>
                 {lang === 'id' ? 'Rapikan' : 'Trim'}
               </button>
             )}
           </div>
         </div>
 
-        {/* Center Giant Editorial Serif Typography (Butterflies fly ABOVE this with Z-depth shadow) */}
+        {/* Center Giant Editorial Serif Typography */}
         <motion.div
           className="garden-hero__type"
           initial={{ opacity: 0, y: 24 }}
@@ -728,7 +821,7 @@ export default function BotanicalHeroCanvas({ availability }) {
           <h1 className="garden-hero__headline">
             {lang === 'id' ? (
               <>
-                TUMBUH &amp; <em>BERKARYA</em>
+                TAMAN <em>KARYA</em> &amp; DATA
               </>
             ) : (
               <>
@@ -738,25 +831,25 @@ export default function BotanicalHeroCanvas({ availability }) {
           </h1>
           <p className="garden-hero__sub">
             {lang === 'id'
-              ? 'Analis Data & Front-End Developer — merangkai data mentah menjadi model yang jernih dan antarmuka web yang terasa hidup.'
-              : 'Data Analyst & Front-End Developer — cultivating complex datasets into clear models and tactile, living web experiences.'}
+              ? 'Analis Data & Front-End Developer — merangkai data kompleks menjadi wawasan yang jernih dan antarmuka web yang mekar hidup.'
+              : 'Data Analyst & Front-End Developer — cultivating raw datasets into clear stories and sunlit, living web experiences.'}
           </p>
         </motion.div>
 
-        {/* 60fps Living Canvas Overlay: Butterflies & Blooming Flowers float ABOVE typography */}
+        {/* 60fps Living Canvas ABOVE Typography (Butterflies, Swaying Meadow & Planted Wildflowers) */}
         <canvas ref={canvasRef} className="garden-hero__canvas" aria-hidden="true" />
 
-        {/* Bottom Floating Frosted Bar: Interactive Prompt + Quick Links */}
+        {/* Bottom Floating Frosted Bar */}
         <div className="garden-hero__bottombar">
           <span className="mono garden-hero__hint">
             {lang === 'id'
-              ? 'KLIK DI MANA SAJA DI TAMAN UNTUK MENANAM BUNGA & MEMANGGIL KUPU-KUPU'
-              : 'CLICK ANYWHERE IN THE GARDEN TO PLANT A FLOWER & ATTRACT BUTTERFLIES'}
+              ? 'KLIK DI MANA SAJA DI PADANG BUNGA UNTUK MENANAM & MEMANGGIL KUPU-KUPU'
+              : 'CLICK ANYWHERE IN THE MEADOW TO PLANT ALPINE WILDFLOWERS & CALL BUTTERFLIES'}
           </span>
 
           <div className="garden-hero__actions">
             <Link to="/work" className="garden-hero__cta mono">
-              {lang === 'id' ? 'Jelajahi Proyek ↗' : 'Explore Projects ↗'}
+              {lang === 'id' ? 'Lihat Taman Proyek ↗' : 'Explore Project Garden ↗'}
             </Link>
             <Link to="/about" className="garden-hero__cta garden-hero__cta--ghost mono">
               {lang === 'id' ? 'Profil & Keahlian' : 'About & Toolkit'}

@@ -1,26 +1,27 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getHomeContent } from '../content/home.js';
 import BotanicalHeroCanvas from '../components/BotanicalHeroCanvas.jsx';
 import KineticGardenWidgets from '../components/KineticGardenWidgets.jsx';
 import AnalyticsGardenChart from '../components/AnalyticsGardenChart.jsx';
+import FlowerEmblem from '../components/FlowerEmblem.jsx';
 import './Home.css';
 
-const LIBRARY_BOOKS = {
+const MEADOW_BLOOMS = {
   en: [
     {
       id: 'intro',
-      vol: 'VOL. 01',
-      spine: 'INTRODUCTION',
-      cloth: 'pine',
-      height: 100,
-      railPos: 9,
+      num: '01',
+      species: 'edelweiss',
+      flowerName: 'EDELWEISS',
+      stemHeight: 118,
       tag: '01 / OVERVIEW & DIRECTION',
-      title: 'Turning complex data into clear stories & tactile web systems.',
+      title: 'Turning complex data into clear stories & living web systems.',
       subtitle: 'Osanna Patricia Limbong — Data Analyst & Front-End Developer',
       body:
-        'Software Engineering student at IPB University combining analytical rigor with thoughtful interface engineering. Use the brass extractor above—or press ← / → arrow keys—to pull any volume from the shelf.',
+        'Software Engineering student at IPB University blending analytical rigor with tactile front-end craft. Pick any Swiss alpine wildflower above—or press ← / → arrow keys—to explore each pillar.',
       metrics: [
         { k: 'PRIMARY FOCUS', v: 'Data Analyst & Front-End' },
         { k: 'EDUCATION', v: 'IPB University (TPL)' },
@@ -30,68 +31,64 @@ const LIBRARY_BOOKS = {
     },
     {
       id: 'analytics',
-      vol: 'VOL. 02',
-      spine: 'DATA & ML',
-      cloth: 'rust',
-      height: 94,
-      railPos: 25.5,
+      num: '02',
+      species: 'rose',
+      flowerName: 'ALPINE ROSE',
+      stemHeight: 102,
       tag: '02 / DATA ANALYSIS & MODELING',
-      title: 'Statistical modeling, predictive analytics & market segmentation.',
+      title: 'Statistical modeling, geospatial ETL & market segmentation.',
       subtitle: 'Exploratory Data Analysis · Linear Regression · Decision Trees · K-Means',
       body:
-        'Transforming raw, multi-variable datasets into validated predictive models, interpretable decision rules, and actionable business segments using Python, R, SQL, and interactive visualizations.',
+        'Cultivating raw multi-source datasets into normalized 3NF schemas, validated predictive models, and actionable business segments using Python, R, SQL, and interactive charts.',
       metrics: [
         { k: 'CORE STACK', v: 'Python · R · SQL' },
-        { k: 'METHODOLOGY', v: 'EDA · Regression · Clustering' },
+        { k: 'GEOSPATIAL ETL', v: '30,903 Verified Rows' },
         { k: 'PEAK MODEL', v: '81.94% R² Validated' },
       ],
-      cta: { label: 'Inspect Data Case Studies (/work) ↗', to: '/work' },
+      cta: { label: 'Explore Data Case Studies (/work) ↗', to: '/work' },
     },
     {
       id: 'frontend',
-      vol: 'VOL. 03',
-      spine: 'WEB & SYSTEMS',
-      cloth: 'olive',
-      height: 98,
-      railPos: 42,
+      num: '03',
+      species: 'buttercup',
+      flowerName: 'BUTTERCUP',
+      stemHeight: 112,
       tag: '03 / FRONT-END & SYSTEM ARCHITECTURE',
       title: 'Designing layered architectures & responsive web applications.',
-      subtitle: 'React · Laravel 12 · Tailwind CSS · IEEE 830 SDD · Normalized ERD',
+      subtitle: 'React · Laravel 13 · Tailwind CSS · IEEE 830 SDD · Normalized ERD',
       body:
-        'Building structured software systems from blueprint to interface—spanning 4-tier layered specifications, payment integrations, mobile ordering ecosystems, and operational dashboards.',
+        'Growing structured software systems from blueprint to interface—spanning 4-tier layered specifications, AI function-calling platforms, payment integrations, and operational dashboards.',
       metrics: [
         { k: 'WEB STACK', v: 'React · Laravel · Tailwind' },
-        { k: 'ARCHITECTURE', v: '4-Tier SDD & ERD' },
-        { k: 'SHIPPED WORK', v: '5 Documented Projects' },
+        { k: 'ARCHITECTURE', v: '4-Tier SDD & 3NF ERD' },
+        { k: 'COMPLETED WORK', v: '6 Documented Projects' },
       ],
-      cta: { label: 'Explore Tape Archive (/work) ↗', to: '/work' },
+      cta: { label: 'Visit Project Garden (/work) ↗', to: '/work' },
     },
     {
       id: 'education',
-      vol: 'VOL. 04',
-      spine: 'EDUCATION',
-      cloth: 'walnut',
-      height: 89,
-      railPos: 58.5,
+      num: '04',
+      species: 'gentian',
+      flowerName: 'BLUE GENTIAN',
+      stemHeight: 96,
       tag: '04 / ACADEMIC FOUNDATION & TOOLKIT',
       title: '3.63 / 4.00 Cumulative GPA in Software Engineering Technology.',
       subtitle: 'Vocational School of IPB University · Bilingual (ID & EN)',
       body:
-        'Grounded in software engineering fundamentals, database design, machine learning, and 3D spatial prototyping—backed by an organized technical toolkit built through hands-on coursework.',
+        'Rooted in software engineering fundamentals, database design, machine learning, and 3D spatial prototyping—backed by an organized technical toolkit sharpened across hands-on coursework.',
       metrics: [
         { k: 'CUMULATIVE GPA', v: '3.63 / 4.00' },
         { k: 'PROGRAM', v: 'Software Engineering (TPL)' },
         { k: 'LANGUAGES', v: 'Indonesian · English' },
       ],
-      cta: { label: 'Open Library & Toolkit (/about) ↗', to: '/about' },
+      cta: { label: 'Visit Botanical Pavilion (/about) ↗', to: '/about' },
     },
     {
       id: 'experience',
-      vol: 'VOL. 05',
-      spine: 'EXPERIENCE',
-      cloth: 'brass',
-      height: 95,
-      railPos: 75,
+      num: '05',
+      species: 'lavender',
+      flowerName: 'LAVENDER',
+      stemHeight: 108,
       tag: '05 / INDUSTRY & LEADERSHIP',
       title: 'Industry web delivery, logistics operations & treasury governance.',
       subtitle: 'PT KCT Logistics Internship · 5 Campus Leadership & Treasury Roles',
@@ -102,41 +99,39 @@ const LIBRARY_BOOKS = {
         { k: 'TREASURY AUDIT', v: '280+ Tx (Rp 26.19M)' },
         { k: 'LEADERSHIP', v: '5 Active Organizations' },
       ],
-      cta: { label: 'Read Experience Logbook (/journey) ↗', to: '/journey' },
+      cta: { label: 'Walk Alpine Trail (/journey) ↗', to: '/journey' },
     },
     {
       id: 'honors',
-      vol: 'VOL. 06',
-      spine: 'HONORS & CERTS',
-      cloth: 'burgundy',
-      height: 91,
-      railPos: 91,
+      num: '06',
+      species: 'poppy',
+      flowerName: 'ALPINE POPPY',
+      stemHeight: 100,
       tag: '06 / AWARDS & VERIFIED CREDENTIALS',
       title: 'International competition honors & verified AI certifications.',
       subtitle: 'Google Gemini Certified Student · 2× 2nd Place Short Movie · Business Plan',
       body:
-        'Recognized across international and national creative competitions alongside formal Google Gemini AI certification—balancing analytical precision with visual storytelling.',
+        'Recognized across international and national creative competitions alongside formal Google Gemini AI certification—balancing analytical precision with expressive storytelling.',
       metrics: [
         { k: 'CERTIFICATION', v: 'Google Gemini Certified' },
         { k: 'COMPETITIONS', v: '2× 2nd Place Awards' },
         { k: 'STRATEGY', v: 'Business Plan Semifinalist' },
       ],
-      cta: { label: 'View All Credentials (/journey) ↗', to: '/journey' },
+      cta: { label: 'View Credentials (/journey) ↗', to: '/journey' },
     },
   ],
   id: [
     {
       id: 'intro',
-      vol: 'VOL. 01',
-      spine: 'PENGANTAR',
-      cloth: 'pine',
-      height: 100,
-      railPos: 9,
+      num: '01',
+      species: 'edelweiss',
+      flowerName: 'EDELWEISS',
+      stemHeight: 118,
       tag: '01 / RINGKASAN & ARAH KARYA',
-      title: 'Mengubah data rumit menjadi cerita jernih & sistem web yang presisi.',
+      title: 'Mengubah data rumit menjadi cerita jernih & sistem web yang hidup.',
       subtitle: 'Osanna Patricia Limbong — Data Analyst & Front-End Developer',
       body:
-        'Mahasiswi Rekayasa Perangkat Lunak IPB University yang menggabungkan ketajaman analisis data dengan rekayasa antarmuka interaktif. Gunakan penjepit kuningan di atas—atau tombol panah ← / →—untuk menarik jilid buku.',
+        'Mahasiswi Rekayasa Perangkat Lunak IPB University yang memadukan ketajaman analisis data dengan rekayasa antarmuka interaktif. Pilih salah satu bunga Alpen di atas—atau tekan panah ← / →—untuk membuka tiap pilar.',
       metrics: [
         { k: 'FOKUS UTAMA', v: 'Data Analyst & Front-End' },
         { k: 'PENDIDIKAN', v: 'IPB University (TPL)' },
@@ -146,68 +141,64 @@ const LIBRARY_BOOKS = {
     },
     {
       id: 'analytics',
-      vol: 'VOL. 02',
-      spine: 'DATA & ML',
-      cloth: 'rust',
-      height: 94,
-      railPos: 25.5,
+      num: '02',
+      species: 'rose',
+      flowerName: 'MAWAR ALPEN',
+      stemHeight: 102,
       tag: '02 / ANALISIS DATA & PEMODELAN',
-      title: 'Pemodelan statistik, analitik prediktif & segmentasi pasar.',
+      title: 'Pemodelan statistik, ETL geospasial & segmentasi pasar.',
       subtitle: 'Exploratory Data Analysis · Regresi Linear · Decision Tree · K-Means',
       body:
-        'Mengolah dataset mentah multi-variabel menjadi model prediksi tervalidasi, aturan keputusan yang mudah dibaca, dan segmen bisnis terukur menggunakan Python, R, dan SQL.',
+        'Mengolah dataset multi-sumber menjadi skema 3NF ternormalisasi, model prediksi tervalidasi, dan segmen bisnis terukur menggunakan Python, R, SQL, serta grafik interaktif.',
       metrics: [
         { k: 'TEKNOLOGI INTI', v: 'Python · R · SQL' },
-        { k: 'METODOLOGI', v: 'EDA · Regresi · Klastering' },
+        { k: 'ETL GEOSPASIAL', v: '30.903 Baris Valid' },
         { k: 'VALIDASI MODEL', v: '81,94% R² Teruji' },
       ],
       cta: { label: 'Lihat Studi Kasus Data (/work) ↗', to: '/work' },
     },
     {
       id: 'frontend',
-      vol: 'VOL. 03',
-      spine: 'WEB & SISTEM',
-      cloth: 'olive',
-      height: 98,
-      railPos: 42,
+      num: '03',
+      species: 'buttercup',
+      flowerName: 'BUTTERCUP',
+      stemHeight: 112,
       tag: '03 / FRONT-END & ARSITEKTUR SISTEM',
       title: 'Merancang arsitektur berlapis & aplikasi web yang responsif.',
-      subtitle: 'React · Laravel 12 · Tailwind CSS · DPPL IEEE 830 · ERD Ternormalisasi',
+      subtitle: 'React · Laravel 13 · Tailwind CSS · DPPL IEEE 830 · ERD 3NF',
       body:
-        'Membangun sistem perangkat lunak terstruktur dari cetak biru hingga antarmuka—mencakup spesifikasi 4-tier, integrasi pembayaran, ekosistem pemesanan mobile, dan dashboard operasional.',
+        'Menumbuhkan sistem perangkat lunak terstruktur dari cetak biru hingga antarmuka—mencakup spesifikasi 4-tier, platform AI function calling, integrasi pembayaran, dan dashboard operasional.',
       metrics: [
         { k: 'WEB STACK', v: 'React · Laravel · Tailwind' },
-        { k: 'ARSITEKTUR', v: '4-Tier SDD & ERD' },
-        { k: 'PROYEK RILIS', v: '5 Studi Kasus Lengkap' },
+        { k: 'ARSITEKTUR', v: '4-Tier SDD & ERD 3NF' },
+        { k: 'PROYEK SELESAI', v: '6 Studi Kasus Lengkap' },
       ],
-      cta: { label: 'Buka Arsip Kaset (/work) ↗', to: '/work' },
+      cta: { label: 'Masuk Taman Proyek (/work) ↗', to: '/work' },
     },
     {
       id: 'education',
-      vol: 'VOL. 04',
-      spine: 'PENDIDIKAN',
-      cloth: 'walnut',
-      height: 89,
-      railPos: 58.5,
+      num: '04',
+      species: 'gentian',
+      flowerName: 'GENTIAN BIRU',
+      stemHeight: 96,
       tag: '04 / FONDASI AKADEMIK & KEAHLIAN',
       title: 'IPK Kumulatif 3,63 / 4,00 Teknologi Rekayasa Perangkat Lunak.',
       subtitle: 'Sekolah Vokasi IPB University · Bilingual (ID & EN)',
       body:
-        'Berakar pada fondasi rekayasa perangkat lunak, desain basis data, machine learning, dan prototipe 3D AR—didukung katalog keahlian teknis yang diasah lewat proyek nyata.',
+        'Berakar pada fondasi rekayasa perangkat lunak, desain basis data, machine learning, dan prototipe 3D AR—didukung rangkaian keahlian teknis yang diasah lewat proyek nyata.',
       metrics: [
         { k: 'IPK KUMULATIF', v: '3,63 / 4,00' },
         { k: 'PROGRAM STUDI', v: 'Rekayasa Perangkat Lunak' },
         { k: 'BAHASA', v: 'Indonesia · Inggris' },
       ],
-      cta: { label: 'Buka Perpustakaan & Toolkit (/about) ↗', to: '/about' },
+      cta: { label: 'Buka Paviliun Profil (/about) ↗', to: '/about' },
     },
     {
       id: 'experience',
-      vol: 'VOL. 05',
-      spine: 'PENGALAMAN',
-      cloth: 'brass',
-      height: 95,
-      railPos: 75,
+      num: '05',
+      species: 'lavender',
+      flowerName: 'LAVENDER',
+      stemHeight: 108,
       tag: '05 / INDUSTRI & KEPEMIMPINAN',
       title: 'Pengembangan web industri, operasional logistik & tata kelola keuangan.',
       subtitle: 'Magang PT KCT · 5 Peran Kepemimpinan & Bendahara Organisasi',
@@ -218,15 +209,14 @@ const LIBRARY_BOOKS = {
         { k: 'AUDIT ANGGARAN', v: '280+ Tx (Rp 26,19Jt)' },
         { k: 'ORGANISASI', v: '5 Peran Aktif' },
       ],
-      cta: { label: 'Baca Logbook Pengalaman (/journey) ↗', to: '/journey' },
+      cta: { label: 'Susuri Jalur Alpen (/journey) ↗', to: '/journey' },
     },
     {
       id: 'honors',
-      vol: 'VOL. 06',
-      spine: 'PRESTASI',
-      cloth: 'burgundy',
-      height: 91,
-      railPos: 91,
+      num: '06',
+      species: 'poppy',
+      flowerName: 'POPPY ALPEN',
+      stemHeight: 100,
       tag: '06 / PENGHARGAAN & SERTIFIKASI',
       title: 'Prestasi kompetisi internasional & sertifikasi AI terverifikasi.',
       subtitle: 'Google Gemini Certified Student · 2× Juara 2 Film Pendek · Business Plan',
@@ -237,7 +227,7 @@ const LIBRARY_BOOKS = {
         { k: 'KOMPETISI', v: '2× Juara 2 Film Pendek' },
         { k: 'STRATEGI', v: 'Semifinalis Business Plan' },
       ],
-      cta: { label: 'Lihat Semua Kredensial (/journey) ↗', to: '/journey' },
+      cta: { label: 'Lihat Kredensial (/journey) ↗', to: '/journey' },
     },
   ],
 };
@@ -247,201 +237,198 @@ export default function Home() {
   const home = getHomeContent(lang);
   const { profilePhotos = [] } = home;
 
-  const books = LIBRARY_BOOKS[lang] || LIBRARY_BOOKS.en;
+  const blooms = MEADOW_BLOOMS[lang] || MEADOW_BLOOMS.en;
   const [activeIdx, setActiveIdx] = useState(0);
-  const [hoverIdx, setHoverIdx] = useState(null);
-  const [isExtracting, setIsExtracting] = useState(false);
   const [photoIdx, setPhotoIdx] = useState(0);
 
-  const activeBook = books[activeIdx] || books[0];
-  const railTargetBook = hoverIdx !== null ? books[hoverIdx] : activeBook;
+  const activeBloom = blooms[activeIdx] || blooms[0];
   const currentPhoto = profilePhotos[photoIdx] || profilePhotos[0];
 
-  const extractBook = (idx) => {
-    setIsExtracting(true);
-    setActiveIdx(idx);
-    window.setTimeout(() => setIsExtracting(false), 520);
-  };
-
-  // Keyboard navigation (Left / Right arrows slide the brass book extractor)
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
       if (e.key === 'ArrowRight') {
-        setIsExtracting(true);
-        setActiveIdx((prev) => (prev + 1) % books.length);
-        window.setTimeout(() => setIsExtracting(false), 480);
+        setActiveIdx((prev) => (prev + 1) % blooms.length);
       } else if (e.key === 'ArrowLeft') {
-        setIsExtracting(true);
-        setActiveIdx((prev) => (prev - 1 + books.length) % books.length);
-        window.setTimeout(() => setIsExtracting(false), 480);
+        setActiveIdx((prev) => (prev - 1 + blooms.length) % blooms.length);
       }
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
-  }, [books.length]);
+  }, [blooms.length]);
 
   return (
-    <div className="kissa-home">
+    <div className="meadow-home">
       {/* =========================================================
-          STAGE 1: 60FPS INTERACTIVE BOTANICAL GARDEN HERO (Reel 3)
+          STAGE 1: 60FPS INTERACTIVE SWISS ALPINE FLOWER MEADOW HERO
          ========================================================= */}
       <BotanicalHeroCanvas availability={home.availability} />
 
       {/* =========================================================
-          STAGE 2: KINETIC PROMPT & ANIME.JS SPRING MICRO-WIDGETS (Reel 1 & 2)
+          STAGE 2: INTERACTIVE 6-FLOWER SWISS MEADOW BED (Replaces Bookshelf)
          ========================================================= */}
-      <KineticGardenWidgets />
-
-      {/* =========================================================
-          STAGE 3: INTERACTIVE HERBARIUM BOOKSHELF & BRASS EXTRACTOR
-         ========================================================= */}
-      <section className="container kissa-shelf-hero">
-        <div className="kissa-shelf-hero__topbar">
-          <div className="mono kissa-status-line">
-            <span className="kissa-status-dot" />
+      <section className="container meadow-bed-section">
+        <div className="meadow-bed-section__top">
+          <div className="mono meadow-status-line">
+            <span className="meadow-status-dot" />
             <span>
-              {lang === 'id' ? 'RAK HERBARIUM BOTANI · 06 JILID UTAMA' : 'BOTANICAL HERBARIUM SHELF · 06 CORE VOLUMES'}
+              {lang === 'id'
+                ? 'PADANG BUNGA ALPEN · 06 PILAR UTAMA'
+                : 'SWISS WILDFLOWER BED · 06 CORE PILLARS'}
             </span>
           </div>
-          <span className="mono kissa-shelf-hero__instruction">
+          <span className="mono meadow-bed-section__hint">
             {lang === 'id'
-              ? 'KLIK BUKU DI RAK ATAU TEKAN ← / → UNTUK MENARIK JILID'
-              : 'CLICK ANY VOLUME ON THE SHELF OR PRESS ← / → TO EXTRACT'}
+              ? 'KLIK BUNGA ATAU TEKAN ← / → UNTUK MEKARKAN TOPIK'
+              : 'PICK ANY WILDFLOWER OR PRESS ← / → TO BLOOM'}
           </span>
         </div>
 
-        {/* Physical Conservatory Herbarium Cabinet + Rolling Brass Extractor Arm */}
-        <div className="kissa-cabinet">
-          {/* Giant Recessed Architectural Typography */}
-          <div className="kissa-cabinet__backdrop" aria-hidden="true">
-            GARDEN
+        {/* Sunlit Alpine Meadow Flowerbed with 6 Swaying Interactive Wildflowers */}
+        <div className="meadow-bed" role="tablist" aria-label="Interactive Swiss Wildflower Bed">
+          <div className="meadow-bed__backdrop" aria-hidden="true">
+            MEADOW
           </div>
 
-          {/* Top Brushed Brass Rail & Mechanical Book-Extractor Clamp */}
-          <div className="kissa-extractor-rail" aria-hidden="true">
-            <div className="kissa-extractor-rail__rod" />
-            <div
-              className={`kissa-extractor ${isExtracting ? 'is-clamping' : ''}`}
-              style={{ left: `${railTargetBook.railPos}%` }}
-            >
-              <div className="kissa-extractor__trolley">
-                <span className="kissa-extractor__wheel" />
-                <span className="kissa-extractor__wheel" />
-              </div>
-              <div className="kissa-extractor__stem" />
-              <div className="kissa-extractor__clamp">
-                <span className="kissa-extractor__jaw kissa-extractor__jaw--l" />
-                <span className="kissa-extractor__housing" />
-                <span className="kissa-extractor__jaw kissa-extractor__jaw--r" />
-              </div>
-              <div className="kissa-extractor__spotlight" />
-            </div>
-          </div>
-
-          {/* 6 Tall Cloth-Bound Library Volumes Standing on the Walnut Shelf */}
-          <div
-            className="kissa-bookshelf-row"
-            role="tablist"
-            aria-label="Interactive Library Bookshelf"
-          >
-            {books.map((book, idx) => {
-              const isExtracted = idx === activeIdx;
+          <div className="meadow-bed__row">
+            {blooms.map((item, idx) => {
+              const isSelected = idx === activeIdx;
               return (
-                <button
-                  key={book.id}
+                <motion.button
+                  key={item.id}
                   type="button"
                   role="tab"
-                  aria-selected={isExtracted}
-                  className={`kissa-book kissa-book--${book.cloth} ${
-                    isExtracted ? 'is-extracted' : ''
-                  }`}
-                  style={{ '--book-h': `${book.height}%` }}
-                  onMouseEnter={() => setHoverIdx(idx)}
-                  onMouseLeave={() => setHoverIdx(null)}
-                  onClick={() => extractBook(idx)}
+                  aria-selected={isSelected}
+                  className={`meadow-flower-btn ${isSelected ? 'is-bloomed' : ''}`}
+                  onClick={() => setActiveIdx(idx)}
+                  whileHover={{ y: -8 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: 'spring', stiffness: 340, damping: 20 }}
                 >
-                  <span className="kissa-book__band kissa-book__band--top" aria-hidden="true" />
-                  <span className="mono kissa-book__vol">{book.vol}</span>
-                  <span className="kissa-book__spine-title">{book.spine}</span>
-                  <span className="kissa-book__band kissa-book__band--bot" aria-hidden="true" />
-                </button>
+                  <motion.div
+                    className="meadow-flower-btn__head"
+                    animate={{
+                      scale: isSelected ? 1.24 : 0.94,
+                      rotate: isSelected ? [0, 6, -4, 0] : 0,
+                    }}
+                    transition={{ type: 'spring', stiffness: 260, damping: 18 }}
+                  >
+                    {isSelected && (
+                      <motion.span
+                        layoutId="meadow-sun-halo"
+                        className="meadow-flower-btn__halo"
+                        transition={{ type: 'spring', stiffness: 320, damping: 26 }}
+                      />
+                    )}
+                    <FlowerEmblem species={item.species} size={68} />
+                  </motion.div>
+
+                  <span
+                    className="meadow-flower-btn__stem"
+                    style={{ height: `${item.stemHeight}px` }}
+                    aria-hidden="true"
+                  >
+                    <i className="meadow-leaf meadow-leaf--l" />
+                    <i className="meadow-leaf meadow-leaf--r" />
+                  </span>
+
+                  <span className="meadow-flower-btn__label-plate">
+                    <span className="mono meadow-flower-btn__num">{item.num}</span>
+                    <span className="mono meadow-flower-btn__name">{item.flowerName}</span>
+                  </span>
+                </motion.button>
               );
             })}
           </div>
 
-          {/* Dark Moss Conservatory Shelf Plank */}
-          <div className="kissa-walnut-ledge" aria-hidden="true">
+          {/* Lush Alpine Clover Ground Strip */}
+          <div className="meadow-bed__turf" aria-hidden="true">
             <span className="mono">
-              OSANNA PATRICIA LIMBONG · BOTANICAL HERBARIUM ARCHIVE · VOL. 01 — 06
+              SWISS ALPINE WILDFLOWER COLLECTION · EDELWEISS · ROSE · BUTTERCUP · GENTIAN · LAVENDER · POPPY
             </span>
           </div>
         </div>
 
-        {/* Open Reading Desk: Displays the Currently Extracted Book with Smooth Crossfade */}
-        <div key={activeBook.id} className="kissa-reading-spread kissa-panel-reveal kissa-spotlight">
-          <div className="kissa-reading-spread__main">
-            <div className="mono kissa-reading-spread__head">
-              <span>{activeBook.tag}</span>
-              <span>
-                {activeBook.vol} / 0{books.length}
-              </span>
-            </div>
+        {/* Open Sunlit Meadow Field Note Card */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`${lang}-${activeBloom.id}`}
+            className="meadow-field-note kissa-spotlight"
+            initial={{ opacity: 0, y: 14, scale: 0.99 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.99 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+          >
+            <div className="meadow-field-note__main">
+              <div className="mono meadow-field-note__head">
+                <span>{activeBloom.tag}</span>
+                <span>
+                  {activeBloom.flowerName} · {activeBloom.num} / 0{blooms.length}
+                </span>
+              </div>
 
-            <h1 className="kissa-reading-spread__title">{activeBook.title}</h1>
-            <p className="kissa-reading-spread__subtitle">{activeBook.subtitle}</p>
-            <p className="kissa-reading-spread__body">{activeBook.body}</p>
+              <h2 className="meadow-field-note__title">{activeBloom.title}</h2>
+              <p className="meadow-field-note__subtitle">{activeBloom.subtitle}</p>
+              <p className="meadow-field-note__body">{activeBloom.body}</p>
 
-            <div className="kissa-reading-spread__footer">
-              <Link to={activeBook.cta.to} className="mono kissa-reading-spread__cta">
-                {activeBook.cta.label}
-              </Link>
+              <div className="meadow-field-note__footer">
+                <Link to={activeBloom.cta.to} className="mono meadow-field-note__cta">
+                  {activeBloom.cta.label}
+                </Link>
 
-              <div className="kissa-reading-spread__steppers">
-                <button
-                  type="button"
-                  className="mono kissa-step-btn"
-                  onClick={() => extractBook((activeIdx - 1 + books.length) % books.length)}
-                  aria-label="Previous Volume"
-                >
-                  ← PREV
-                </button>
-                <button
-                  type="button"
-                  className="mono kissa-step-btn"
-                  onClick={() => extractBook((activeIdx + 1) % books.length)}
-                  aria-label="Next Volume"
-                >
-                  NEXT →
-                </button>
+                <div className="meadow-field-note__steppers">
+                  <button
+                    type="button"
+                    className="mono meadow-step-btn"
+                    onClick={() => setActiveIdx((activeIdx - 1 + blooms.length) % blooms.length)}
+                    aria-label="Previous Wildflower"
+                  >
+                    ← PREV
+                  </button>
+                  <button
+                    type="button"
+                    className="mono meadow-step-btn"
+                    onClick={() => setActiveIdx((activeIdx + 1) % blooms.length)}
+                    aria-label="Next Wildflower"
+                  >
+                    NEXT →
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right Folio Plate: 3 Verified Metrics for the Extracted Book */}
-          <aside className="kissa-reading-spread__plate">
-            <span className="mono kissa-reading-spread__plate-head">
-              {lang === 'id' ? 'CATATAN ARSIP' : 'ARCHIVAL INDEX PLATE'}
-            </span>
-            <div className="kissa-reading-spread__metrics">
-              {activeBook.metrics.map((m) => (
-                <div key={m.k} className="kissa-plate-metric">
-                  <span className="mono kissa-plate-metric__k">{m.k}</span>
-                  <strong className="kissa-plate-metric__v">{m.v}</strong>
-                </div>
-              ))}
-            </div>
-          </aside>
-        </div>
+            <aside className="meadow-field-note__plate">
+              <div className="meadow-field-note__plate-top">
+                <span className="mono">
+                  {lang === 'id' ? 'CATATAN BOTANI' : 'MEADOW SPECIMEN NOTE'}
+                </span>
+                <FlowerEmblem species={activeBloom.species} size={34} />
+              </div>
+              <div className="meadow-field-note__metrics">
+                {activeBloom.metrics.map((m) => (
+                  <div key={m.k} className="meadow-plate-metric">
+                    <span className="mono meadow-plate-metric__k">{m.k}</span>
+                    <strong className="meadow-plate-metric__v">{m.v}</strong>
+                  </div>
+                ))}
+              </div>
+            </aside>
+          </motion.div>
+        </AnimatePresence>
       </section>
 
       {/* =========================================================
-          STAGE 4: INTERACTIVE STAGGERED DATA CHARTS (Reel 2 Shadcn Style)
+          STAGE 3: KINETIC PROMPT & ANIME.JS SPRING MICRO-WIDGETS
+         ========================================================= */}
+      <KineticGardenWidgets />
+
+      {/* =========================================================
+          STAGE 4: INTERACTIVE STAGGERED DATA CHARTS
          ========================================================= */}
       <AnalyticsGardenChart />
 
       {/* =========================================================
-          STAGE 5: EDITORIAL KINETIC BOTANICAL RIBBON
+          STAGE 5: SUNLIT BOTANICAL RIBBON & AUTHOR'S NOTE
          ========================================================= */}
       <div className="kissa-ticker" aria-hidden="true">
         <div className="kissa-ticker__track">
@@ -450,7 +437,7 @@ export default function Home() {
               {home.marquee.map((phrase) => (
                 <span key={phrase} className="kissa-ticker__item">
                   <span>{phrase}</span>
-                  <span className="kissa-ticker__sep">—</span>
+                  <span className="kissa-ticker__sep">✿</span>
                 </span>
               ))}
             </div>
@@ -458,26 +445,23 @@ export default function Home() {
         </div>
       </div>
 
-      {/* =========================================================
-          STAGE 3: AUTHOR'S NOTE & ARCHIVAL PORTRAIT (Zero Duplicate Cards)
-         ========================================================= */}
       <section className="container kissa-author-section">
         <div className="kissa-author-grid">
           <div className="kissa-author-copy">
             <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'CATATAN PENULIS ARSIP' : 'AUTHOR’S NOTE'}
+              {lang === 'id' ? 'CATATAN PENULIS TAMAN' : 'GARDEN KEEPER’S NOTE'}
             </span>
             <h2 className="kissa-author-title">{home.greeting}</h2>
             <p className="kissa-author-text">{home.intro}</p>
             <div className="kissa-author-links">
               <Link to="/about" className="mono kissa-author-link">
-                02 / {lang === 'id' ? 'Tentang & Keahlian ↗' : 'About & Toolkit ↗'}
+                02 / {lang === 'id' ? 'Paviliun Profil & Keahlian ↗' : 'About Pavilion & Toolkit ↗'}
               </Link>
               <Link to="/work" className="mono kissa-author-link">
-                03 / {lang === 'id' ? 'Putar Arsip Kaset Proyek ↗' : 'Spin Project Cassette Deck ↗'}
+                03 / {lang === 'id' ? 'Jelajahi Taman Proyek ↗' : 'Explore Project Garden ↗'}
               </Link>
               <Link to="/journey" className="mono kissa-author-link">
-                04 / {lang === 'id' ? 'Logbook Magang & Prestasi ↗' : 'Internship & Awards Logbook ↗'}
+                04 / {lang === 'id' ? 'Jalur Alpen & Prestasi ↗' : 'Alpine Trail & Honors ↗'}
               </Link>
             </div>
           </div>
@@ -509,7 +493,7 @@ export default function Home() {
               </div>
               <figcaption className="mono kissa-portrait__caption">
                 <span>
-                  PLATE 0{photoIdx + 1} / 0{profilePhotos.length}
+                  BLOOM 0{photoIdx + 1} / 0{profilePhotos.length}
                 </span>
                 <span>{currentPhoto.label}</span>
               </figcaption>

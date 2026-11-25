@@ -22,7 +22,7 @@ export default function SiteHeader() {
         <Link to="/" className="kissa-brand" aria-label="Osanna Patricia Limbong — Home">
           <span className="kissa-brand__name">Osanna Patricia Limbong</span>
           <span className="mono kissa-brand__sub">
-            {lang === 'id' ? 'TAMAN BOTANI & ARSIP KARYA' : 'BOTANICAL GARDEN & ARCHIVE'}
+            {lang === 'id' ? 'TAMAN BUNGA ALPEN' : 'ALPINE FLOWER GARDEN'}
           </span>
         </Link>
 

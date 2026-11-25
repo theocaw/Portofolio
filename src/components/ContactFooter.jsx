@@ -54,7 +54,7 @@ export default function ContactFooter() {
 
           <div className="kissa-footer__directory">
             <span className="mono kissa-footer__dir-head">
-              {lang === 'id' ? 'INDEKS TAUTAN' : 'ARCHIVE LINKS'}
+              {lang === 'id' ? 'TAUTAN TAMAN' : 'GARDEN LINKS'}
             </span>
             <ul className="kissa-footer__links">
               {site.github && (
@@ -83,7 +83,7 @@ export default function ContactFooter() {
 
         <div className="kissa-footer__colophon">
           <span className="mono">
-            OSANNA PATRICIA LIMBONG · ARCHIVE &amp; LISTENING ROOM
+            OSANNA PATRICIA LIMBONG · ALPINE FLOWER GARDEN
           </span>
           <span className="mono">© {site.year}</span>
         </div>

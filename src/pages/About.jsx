@@ -1,23 +1,27 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getAboutContent } from '../content/about.js';
+import FlowerEmblem from '../components/FlowerEmblem.jsx';
 import './About.css';
 
 const SEAL_STAMPS = {
   en: [
-    'OFFICIAL RECORD · CLICK TO VERIFY',
+    'EDELWEISS RECORD · CLICK TO BLOOM',
     'VERIFIED · CUM LAUDE TRACK',
     'VERIFIED · DATA & SOFTWARE ENG.',
     'VERIFIED · VOCATIONAL IPB UNIVERSITY',
   ],
   id: [
-    'CATATAN RESMI · KLIK UNTUK VERIFIKASI',
+    'CATATAN EDELWEISS · KLIK UNTUK MEKAR',
     'TERVERIFIKASI · JALUR CUM LAUDE',
     'TERVERIFIKASI · DATA & RPL',
     'TERVERIFIKASI · SEKOLAH VOKASI IPB',
   ],
 };
+
+const BED_FLOWERS = ['rose', 'buttercup', 'lavender'];
 
 export default function About() {
   const { lang } = useApp();
@@ -25,80 +29,79 @@ export default function About() {
   const { intro, profile, education, toolkit, workInvitation } = about;
 
   const [stampIdx, setStampIdx] = useState(0);
-  const [stamping, setStamping] = useState(false);
-  const [openDrawer, setOpenDrawer] = useState(0); // 0, 1, 2, or 'all'
+  const [activeBed, setActiveBed] = useState(0); // 0, 1, 2, or 'all'
   const [selectedTool, setSelectedTool] = useState(null);
 
   const stamps = SEAL_STAMPS[lang] || SEAL_STAMPS.en;
 
-  const handleStamp = () => {
-    setStampIdx((prev) => (prev + 1) % stamps.length);
-    setStamping(false);
-    window.requestAnimationFrame(() => setStamping(true));
-  };
+  const visibleDomains =
+    activeBed === 'all'
+      ? toolkit.domains.map((d, idx) => ({ ...d, idx }))
+      : [{ ...toolkit.domains[activeBed], idx: activeBed }];
 
   return (
-    <div className="kissa-about">
+    <div className="meadow-about">
       {/* Header */}
-      <section className="container kissa-about-hero">
+      <section className="container meadow-about-hero">
         <span className="mono kissa-eyebrow">
-          {lang === 'id' ? '02 / TENTANG · PERPUSTAKAAN & PROFIL' : '02 / ABOUT · THE ARCHIVAL LIBRARY'}
+          {lang === 'id'
+            ? '02 / TENTANG · PAVILIUN BOTANI & PROFIL'
+            : '02 / ABOUT · ALPINE GLASSHOUSE PAVILION'}
         </span>
-        <h1 className="kissa-about-hero__title">{intro.headline}</h1>
-        <p className="kissa-about-hero__desc">{intro.description}</p>
+        <h1 className="meadow-about-hero__title">{intro.headline}</h1>
+        <p className="meadow-about-hero__desc">{intro.description}</p>
       </section>
 
       {/* =========================================================
-          CENTERPIECE 1: OPEN CLOTH-BOUND HARDCOVER MONOGRAPH ON WALNUT DESK
+          CENTERPIECE 1: SUNLIT ALPINE GLASSHOUSE PAVILION (2 Botanical Cards)
          ========================================================= */}
-      <section className="band band--paper-2 kissa-desk-band">
+      <section className="band band--paper-2 meadow-pavilion-band">
         <div className="container">
-          <div className="kissa-open-monograph">
-            {/* Left Page: Folio 01 — Profile & Direction */}
-            <div className="kissa-folio kissa-folio--left">
-              <div className="mono kissa-folio__head">
-                <span>CHAPTER I · {profile.label}</span>
-                <span>FOLIO 01</span>
+          <div className="meadow-pavilion">
+            {/* Left Pavilion Wing: Profile & Focus */}
+            <article className="meadow-wing kissa-spotlight">
+              <div className="meadow-wing__head">
+                <span className="mono">
+                  {lang === 'id' ? 'TAMAN I · PROFIL & ARAH' : `GARDEN WING I · ${profile.label}`}
+                </span>
+                <FlowerEmblem species="rose" size={34} />
               </div>
 
-              <h2 className="kissa-folio__title">{profile.title}</h2>
+              <h2 className="meadow-wing__title">{profile.title}</h2>
 
-              <div className="kissa-folio__prose">
+              <div className="meadow-wing__prose">
                 {profile.paragraphs.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
               </div>
 
-              <div className="kissa-focus-row">
+              <div className="meadow-focus-row">
                 {profile.focus.map((f) => (
-                  <div key={f.label} className="kissa-focus-box">
-                    <span className="mono kissa-focus-box__k">{f.label}</span>
-                    <strong className="kissa-focus-box__v">{f.value}</strong>
+                  <div key={f.label} className="meadow-focus-box">
+                    <span className="mono meadow-focus-box__k">{f.label}</span>
+                    <strong className="meadow-focus-box__v">{f.value}</strong>
                   </div>
                 ))}
               </div>
-            </div>
+            </article>
 
-            {/* Center Recessed Book Spine & Silk Bookmark Ribbon */}
-            <div className="kissa-monograph-spine" aria-hidden="true">
-              <span className="kissa-silk-ribbon" />
-            </div>
-
-            {/* Right Page: Folio 02 — IPB Education & Interactive Brass Seal GPA */}
-            <div className="kissa-folio kissa-folio--right">
-              <div className="mono kissa-folio__head">
-                <span>CHAPTER II · {education.label}</span>
-                <span>FOLIO 02</span>
+            {/* Right Pavilion Wing: IPB Education & Interactive Blooming Edelweiss GPA */}
+            <article className="meadow-wing kissa-spotlight">
+              <div className="meadow-wing__head">
+                <span className="mono">
+                  {lang === 'id' ? 'TAMAN II · PENDIDIKAN' : `GARDEN WING II · ${education.label}`}
+                </span>
+                <FlowerEmblem species="gentian" size={34} />
               </div>
 
-              <div className="kissa-edu-block">
-                <span className="mono kissa-edu-block__period">{education.period}</span>
-                <h2 className="kissa-folio__title">{education.school}</h2>
-                <p className="kissa-edu-block__degree">{education.degree.join(' — ')}</p>
+              <div className="meadow-edu-block">
+                <span className="mono meadow-edu-block__period">{education.period}</span>
+                <h2 className="meadow-wing__title">{education.school}</h2>
+                <p className="meadow-edu-block__degree">{education.degree.join(' — ')}</p>
 
-                <div className="kissa-lang-grid">
+                <div className="meadow-lang-grid">
                   {education.languages.map((l) => (
-                    <div key={l.name} className="kissa-lang-item">
+                    <div key={l.name} className="meadow-lang-item">
                       <strong>{l.name}</strong>
                       <span className="mono">{l.level}</span>
                     </div>
@@ -106,154 +109,173 @@ export default function About() {
                 </div>
               </div>
 
-              {/* Interactive Embossed Brass Seal GPA Plate */}
-              <div
-                className={`kissa-gpa-plate ${stamping ? 'is-stamping' : ''}`}
-                onClick={handleStamp}
+              {/* Interactive Blooming Edelweiss GPA Medallion */}
+              <motion.div
+                className="meadow-gpa-card kissa-gpa-plate"
+                onClick={() => setStampIdx((prev) => (prev + 1) % stamps.length)}
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.985 }}
+                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    handleStamp();
+                    setStampIdx((prev) => (prev + 1) % stamps.length);
                   }
                 }}
               >
-                <div className="mono kissa-gpa-plate__top">
-                  <span>{education.gpa.label}</span>
-                  <span className="kissa-gpa-plate__seal">{stamps[stampIdx]}</span>
+                <div className="meadow-gpa-card__top">
+                  <div className="mono meadow-gpa-card__meta">
+                    <span>{education.gpa.label}</span>
+                    <span className="meadow-gpa-card__badge">{stamps[stampIdx]}</span>
+                  </div>
+                  <motion.div
+                    key={stampIdx}
+                    initial={{ rotate: -35, scale: 0.8 }}
+                    animate={{ rotate: 0, scale: 1 }}
+                    transition={{ type: 'spring', stiffness: 280, damping: 16 }}
+                  >
+                    <FlowerEmblem species="edelweiss" size={44} />
+                  </motion.div>
                 </div>
-                <div className="kissa-gpa-plate__val">
-                  <span className="kissa-gpa-plate__num">{education.gpa.value}</span>
-                  <span className="kissa-gpa-plate__scale">{education.gpa.scale}</span>
+
+                <div className="meadow-gpa-card__val">
+                  <span className="meadow-gpa-card__num">{education.gpa.value}</span>
+                  <span className="meadow-gpa-card__scale">{education.gpa.scale}</span>
                 </div>
-                <p className="kissa-gpa-plate__note">{education.gpa.note}</p>
-              </div>
-            </div>
+                <p className="meadow-gpa-card__note">{education.gpa.note}</p>
+              </motion.div>
+            </article>
           </div>
         </div>
       </section>
 
       {/* =========================================================
-          CENTERPIECE 2: INTERACTIVE WALNUT 3-DRAWER CARD CATALOG CABINET
+          CENTERPIECE 2: 3-BED BOTANICAL SEED PACKET TOOLKIT
          ========================================================= */}
-      <section className="container kissa-toolkit-section">
-        <div className="kissa-toolkit-header">
+      <section className="container meadow-toolkit-section">
+        <div className="meadow-toolkit-header">
           <div>
-            <span className="mono kissa-eyebrow">CHAPTER III · {toolkit.label}</span>
-            <h2 className="kissa-toolkit-title">{toolkit.title}</h2>
+            <span className="mono kissa-eyebrow">
+              {lang === 'id' ? 'KEBUN KEAHLIAN · 03 PETAK BUNGA' : `BOTANICAL TOOLKIT · ${toolkit.label}`}
+            </span>
+            <h2 className="meadow-toolkit-title">{toolkit.title}</h2>
           </div>
 
-          <div className="kissa-cabinet-controls">
-            {selectedTool && (
-              <div className="mono kissa-active-filter">
-                <span>INDEX: {selectedTool}</span>
+          <div className="meadow-bed-tabs" role="tablist" aria-label="Toolkit botanical beds">
+            {toolkit.domains.map((d, idx) => {
+              const isSelected = activeBed === idx;
+              return (
                 <button
+                  key={d.title}
                   type="button"
-                  onClick={() => setSelectedTool(null)}
-                  aria-label="Clear filter"
+                  role="tab"
+                  aria-selected={isSelected}
+                  className={`mono meadow-bed-tab ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => setActiveBed(idx)}
                 >
-                  ×
+                  {isSelected && (
+                    <motion.span
+                      layoutId="about-garden-bed-pill"
+                      className="meadow-bed-tab__bg"
+                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                    />
+                  )}
+                  <span className="meadow-bed-tab__label">0{idx + 1} · {d.title}</span>
                 </button>
-              </div>
-            )}
+              );
+            })}
             <button
               type="button"
-              className="mono kissa-drawer-all-btn"
-              onClick={() => setOpenDrawer((prev) => (prev === 'all' ? 0 : 'all'))}
+              role="tab"
+              aria-selected={activeBed === 'all'}
+              className={`mono meadow-bed-tab ${activeBed === 'all' ? 'is-active' : ''}`}
+              onClick={() => setActiveBed('all')}
             >
-              {openDrawer === 'all'
-                ? lang === 'id'
-                  ? 'Tutup ke 1 Laci'
-                  : 'Focus Single Drawer'
-                : lang === 'id'
-                  ? 'Buka Semua Laci (3)'
-                  : 'Pull All Drawers (3)'}
+              {activeBed === 'all' && (
+                <motion.span
+                  layoutId="about-garden-bed-pill"
+                  className="meadow-bed-tab__bg"
+                  transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                />
+              )}
+              <span className="meadow-bed-tab__label">
+                {lang === 'id' ? 'Semua (3)' : 'All Beds (3)'}
+              </span>
             </button>
           </div>
         </div>
 
-        {/* Physical Dark Walnut Card Catalog Cabinet */}
-        <div className="kissa-card-cabinet">
-          {toolkit.domains.map((d, idx) => {
-            const isOpen = openDrawer === 'all' || openDrawer === idx;
-            const hasSelectedTool = d.tools.includes(selectedTool);
-
-            return (
-              <div
-                key={d.title}
-                className={`kissa-wood-drawer ${isOpen ? 'is-pulled' : ''} ${
-                  hasSelectedTool ? 'has-match' : ''
-                }`}
-              >
-                {/* Brushed Brass Drawer Face & Pull Handle */}
-                <button
-                  type="button"
-                  className="kissa-wood-drawer__face"
-                  onClick={() => setOpenDrawer(idx)}
-                  aria-expanded={isOpen}
-                >
-                  <span className="mono kissa-wood-drawer__brass-plate">
-                    DRAWER 0{idx + 1} · {d.title.toUpperCase()}
-                  </span>
-
-                  <span className="kissa-wood-drawer__pull-handle" aria-hidden="true" />
-
-                  <span className="mono kissa-wood-drawer__state">
-                    {isOpen
-                      ? lang === 'id'
-                        ? 'TERBUKA'
-                        : 'OPEN'
-                      : lang === 'id'
-                        ? 'TARIK LACI ↓'
-                        : 'PULL DRAWER ↓'}
-                  </span>
-                </button>
-
-                {/* Ruled Archival Index Card Sliding Out of the Drawer */}
-                <div className="kissa-wood-drawer__tray">
-                  <div className="kissa-ruled-card">
-                    <div className="kissa-ruled-card__header">
-                      <h3 className="kissa-ruled-card__title">{d.title}</h3>
-                      <span className="mono kissa-ruled-card__count">
-                        {d.tools.length} INDEXED TOOLS
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={String(activeBed)}
+            className={`meadow-seed-grid ${activeBed === 'all' ? 'is-multi' : ''}`}
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+          >
+            {visibleDomains.map((d) => (
+              <article key={d.title} className="meadow-seed-card kissa-spotlight">
+                <div className="meadow-seed-card__top">
+                  <div className="meadow-seed-card__species">
+                    <FlowerEmblem species={BED_FLOWERS[d.idx % BED_FLOWERS.length]} size={42} />
+                    <div>
+                      <span className="mono meadow-seed-card__code">
+                        GARDEN BED 0{d.idx + 1} · {d.tools.length} TOOLS
                       </span>
-                    </div>
-
-                    <p className="kissa-ruled-card__desc">{d.description}</p>
-
-                    <div className="kissa-index-card__pills">
-                      {d.tools.map((tool) => (
-                        <button
-                          key={tool}
-                          type="button"
-                          className={`mono kissa-tool-pill ${
-                            selectedTool === tool ? 'is-selected' : ''
-                          }`}
-                          onClick={() =>
-                            setSelectedTool((prev) => (prev === tool ? null : tool))
-                          }
-                        >
-                          {tool}
-                        </button>
-                      ))}
+                      <h3 className="meadow-seed-card__title">{d.title}</h3>
                     </div>
                   </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
 
-        {/* Single Next-Room Invitation */}
-        <div className="kissa-next-bar">
+                  {selectedTool && d.tools.includes(selectedTool) && (
+                    <button
+                      type="button"
+                      className="mono meadow-seed-clear"
+                      onClick={() => setSelectedTool(null)}
+                    >
+                      {selectedTool} ×
+                    </button>
+                  )}
+                </div>
+
+                <p className="meadow-seed-card__desc">{d.description}</p>
+
+                <div className="meadow-seed-pills">
+                  {d.tools.map((tool, tIdx) => (
+                    <motion.button
+                      key={tool}
+                      type="button"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 340,
+                        damping: 22,
+                        delay: tIdx * 0.03,
+                      }}
+                      className={`mono meadow-seed-pill ${selectedTool === tool ? 'is-selected' : ''}`}
+                      onClick={() => setSelectedTool((prev) => (prev === tool ? null : tool))}
+                    >
+                      {tool}
+                    </motion.button>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Next-Garden Invitation */}
+        <div className="meadow-next-bar">
           <div>
             <span className="mono kissa-eyebrow">
-              {lang === 'id' ? '03 / SELANJUTNYA: ARSIP KASET PROYEK' : '03 / NEXT: CASSETTE TAPE ARCHIVE'}
+              {lang === 'id' ? '03 / SELANJUTNYA: TAMAN PROYEK' : '03 / NEXT: PROJECT FLOWER GARDEN'}
             </span>
-            <h3 className="kissa-next-bar__title">{workInvitation.title}</h3>
+            <h3 className="meadow-next-bar__title">{workInvitation.title}</h3>
           </div>
-          <Link to={workInvitation.action.to} className="mono kissa-next-bar__cta">
+          <Link to={workInvitation.action.to} className="mono meadow-next-bar__cta">
             {workInvitation.action.label} ↗
           </Link>
         </div>

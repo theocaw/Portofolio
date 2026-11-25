@@ -1,22 +1,22 @@
 /* =========================================================
-   KISSA HOME: Interactive Library Bookshelf & Brass Book-Extractor
-   Mature, Architectural, Mechanically Interactive
+   SWISS ALPINE FLOWER MEADOW HOME PAGE
+   100% Wildflower Garden Bed, Field Note Card, Botanical Ribbon & Portrait
    ========================================================= */
 
-.kissa-home {
+.meadow-home {
   display: flex;
   flex-direction: column;
 }
 
-.kissa-shelf-hero {
-  padding-top: clamp(24px, 3.5vw, 40px);
-  padding-bottom: clamp(48px, 6vw, 72px);
+.meadow-bed-section {
+  padding-top: clamp(16px, 2.5vw, 32px);
+  padding-bottom: clamp(44px, 5.5vw, 68px);
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.kissa-shelf-hero__topbar {
+.meadow-bed-section__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +24,7 @@
   flex-wrap: wrap;
 }
 
-.kissa-status-line {
+.meadow-status-line {
   display: inline-flex;
   align-items: center;
   gap: 9px;
@@ -34,7 +34,7 @@
   color: var(--muted);
 }
 
-.kissa-status-dot {
+.meadow-status-dot {
   position: relative;
   width: 7px;
   height: 7px;
@@ -43,16 +43,16 @@
   box-shadow: 0 0 8px var(--blue);
 }
 
-.kissa-status-dot::after {
+.meadow-status-dot::after {
   content: '';
   position: absolute;
   inset: -4px;
   border-radius: 50%;
   border: 1.5px solid var(--blue);
-  animation: kissaSonarPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+  animation: meadowSonar 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
 }
 
-@keyframes kissaSonarPulse {
+@keyframes meadowSonar {
   0% {
     transform: scale(0.7);
     opacity: 0.85;
@@ -63,348 +63,218 @@
   }
 }
 
-.kissa-shelf-hero__instruction {
+.meadow-bed-section__hint {
   font-size: 9.5px;
   letter-spacing: 1px;
   color: var(--pink-hot);
 }
 
 /* =========================================================
-   WALNUT LIBRARY CABINET & ROLLING BRASS BOOK-EXTRACTOR
+   INTERACTIVE 6-FLOWER SWISS WILDFLOWER GARDEN BED
    ========================================================= */
-.kissa-cabinet {
+.meadow-bed {
   position: relative;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(232, 139, 156, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 80% 15%, rgba(231, 188, 98, 0.12) 0%, transparent 45%),
-    linear-gradient(180deg, #1a2d24 0%, #122019 100%);
-  border: 1px solid rgba(242, 240, 232, 0.14);
-  border-radius: 14px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 26px 56px -20px rgba(14, 28, 20, 0.45);
+  background: linear-gradient(
+    180deg,
+    #dff0fc 0%,
+    #f5faf4 56%,
+    #d7edd9 100%
+  );
+  border: 1px solid var(--rule);
+  box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 350px;
+  min-height: 310px;
 }
 
-/* Giant Recessed Architectural Typography behind the Books (subtle scroll parallax) */
-.kissa-cabinet__backdrop {
+[data-theme='dark'] .meadow-bed {
+  background: linear-gradient(
+    180deg,
+    #132936 0%,
+    #142a22 58%,
+    #173828 100%
+  );
+  border-color: rgba(244, 248, 242, 0.14);
+}
+
+.meadow-bed__backdrop {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-serif);
-  font-size: clamp(92px, 18vw, 240px);
-  letter-spacing: 0.04em;
-  color: rgba(240, 235, 226, 0.045);
+  font-size: clamp(86px, 16vw, 220px);
+  letter-spacing: 0.05em;
+  color: rgba(37, 107, 75, 0.06);
   pointer-events: none;
   user-select: none;
   z-index: 0;
-  line-height: 1;
-  transform: translate3d(0, calc(var(--scroll-y, 0px) * 0.06), 0);
-  will-change: transform;
+  transform: translate3d(0, calc(var(--scroll-y, 0px) * 0.04), 0);
 }
 
-/* Top Brushed Brass Rail & Sliding Book-Extractor Clamp */
-.kissa-extractor-rail {
+[data-theme='dark'] .meadow-bed__backdrop {
+  color: rgba(244, 248, 242, 0.045);
+}
+
+.meadow-bed__row {
   position: relative;
-  width: 100%;
-  height: 92px;
-  z-index: 4;
-  pointer-events: none;
-}
-
-.kissa-extractor-rail__rod {
-  position: absolute;
-  top: 18px;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background: linear-gradient(180deg, #e5c67e 0%, #9b7a36 60%, #5a441a 100%);
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
-}
-
-.kissa-extractor {
-  position: absolute;
-  top: 12px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transition: left 480ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.kissa-extractor__trolley {
-  width: 34px;
-  height: 14px;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #d9b25f 0%, #8c6d2c 100%);
-  border: 1px solid #3a2d12;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-}
-
-.kissa-extractor__wheel {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #231f1b;
-}
-
-.kissa-extractor__stem {
-  width: 2px;
-  height: 28px;
-  background: linear-gradient(180deg, #d9b25f, #8c6d2c);
-  transition: height 240ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.kissa-extractor.is-clamping .kissa-extractor__stem {
-  height: 46px;
-}
-
-.kissa-extractor__clamp {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-}
-
-.kissa-extractor__housing {
-  width: 38px;
-  height: 12px;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #d9b25f 0%, #8c6d2c 100%);
-  border: 1px solid #3a2d12;
-}
-
-.kissa-extractor__jaw {
-  position: absolute;
-  top: 10px;
-  width: 9px;
-  height: 15px;
-  border: 2px solid #d9b25f;
-  border-top: 0;
-  transition: transform 220ms ease;
-}
-
-.kissa-extractor__jaw--l {
-  left: -4px;
-  border-right: 0;
-  border-radius: 0 0 0 4px;
-  transform: rotate(14deg);
-}
-
-.kissa-extractor__jaw--r {
-  right: -4px;
-  border-left: 0;
-  border-radius: 0 0 4px 0;
-  transform: rotate(-14deg);
-}
-
-.kissa-extractor.is-clamping .kissa-extractor__jaw--l {
-  transform: rotate(-8deg) translateX(4px);
-}
-
-.kissa-extractor.is-clamping .kissa-extractor__jaw--r {
-  transform: rotate(8deg) translateX(-4px);
-}
-
-.kissa-extractor__spotlight {
-  width: 200px;
-  height: 240px;
-  background: radial-gradient(
-    ellipse at top,
-    rgba(224, 184, 101, 0.24) 0%,
-    rgba(224, 184, 101, 0.05) 55%,
-    transparent 82%
-  );
-  clip-path: polygon(36% 0%, 64% 0%, 100% 100%, 0% 100%);
-  pointer-events: none;
-  animation: kissaLampBreathe 4.2s ease-in-out infinite;
-}
-
-@keyframes kissaLampBreathe {
-  0%,
-  100% {
-    opacity: 0.82;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-/* =========================================================
-   6 CLOTH-BOUND HARDCOVER LIBRARY BOOKS ON THE SHELF
-   ========================================================= */
-.kissa-bookshelf-row {
-  position: relative;
-  z-index: 3;
+  z-index: 2;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: clamp(10px, 1.5vw, 18px);
+  gap: clamp(8px, 1.5vw, 18px);
   align-items: end;
-  height: 215px;
-  padding-inline: clamp(16px, 3vw, 36px);
+  padding: 36px clamp(16px, 3vw, 36px) 0;
 }
 
-.kissa-book {
+.meadow-flower-btn {
   position: relative;
-  height: var(--book-h, 94%);
   border: 0;
-  border-radius: 4px 4px 0 0;
-  padding: 16px 10px 14px;
+  background: transparent;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   cursor: pointer;
-  color: #f4efe4;
-  overflow: hidden;
-  box-shadow:
-    inset 6px 0 12px rgba(255, 255, 255, 0.08),
-    inset -6px 0 12px rgba(0, 0, 0, 0.32),
-    0 -2px 10px rgba(0, 0, 0, 0.45);
-  transition:
-    transform 380ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 220ms ease,
-    box-shadow 280ms ease;
-  animation: kissaBookRise 620ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  color: var(--ink);
 }
 
-.kissa-book:nth-child(1) { animation-delay: 40ms; }
-.kissa-book:nth-child(2) { animation-delay: 95ms; }
-.kissa-book:nth-child(3) { animation-delay: 150ms; }
-.kissa-book:nth-child(4) { animation-delay: 205ms; }
-.kissa-book:nth-child(5) { animation-delay: 260ms; }
-.kissa-book:nth-child(6) { animation-delay: 315ms; }
-
-@keyframes kissaBookRise {
-  from {
-    opacity: 0;
-    transform: translateY(34px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Gold-foil diagonal sheen sweep across book spine */
-.kissa-book::after {
-  content: '';
-  position: absolute;
-  inset: -20% -80%;
-  background: linear-gradient(
-    115deg,
-    transparent 38%,
-    rgba(229, 198, 126, 0.28) 50%,
-    transparent 62%
-  );
-  transform: translateX(-75%);
-  transition: transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
-}
-
-.kissa-book:hover::after,
-.kissa-book.is-extracted::after {
-  transform: translateX(75%);
-}
-
-.kissa-book--pine {
-  background: linear-gradient(90deg, #1f4535 0%, #2d624b 45%, #19382b 100%);
-}
-.kissa-book--walnut {
-  background: linear-gradient(90deg, #564a78 0%, #73649e 45%, #443a61 100%);
-}
-.kissa-book--rust {
-  background: linear-gradient(90deg, #a13a50 0%, #c85069 45%, #842d40 100%);
-}
-.kissa-book--olive {
-  background: linear-gradient(90deg, #3b6350 0%, #52846c 45%, #2f5040 100%);
-}
-.kissa-book--brass {
-  background: linear-gradient(90deg, #a67827 0%, #cf9838 45%, #855e1c 100%);
-}
-.kissa-book--burgundy {
-  background: linear-gradient(90deg, #6e2f44 0%, #8e405b 45%, #552334 100%);
-}
-
-.kissa-book:hover {
-  transform: translateY(-12px);
-  filter: brightness(1.08);
-}
-
-.kissa-book.is-extracted {
-  transform: translateY(-28px) rotate(-1.8deg);
-  filter: brightness(1.12);
-  box-shadow:
-    inset 6px 0 12px rgba(255, 255, 255, 0.14),
-    0 14px 28px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(224, 184, 101, 0.65);
-  z-index: 5;
-}
-
-/* Gold Foil Raised Spine Bands */
-.kissa-book__band {
-  width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(224, 184, 101, 0.72), transparent);
-}
-
-.kissa-book__vol {
-  font-size: 9px;
-  letter-spacing: 1px;
-  color: #e5c67e;
-}
-
-.kissa-book__spine-title {
-  font-family: var(--font-display);
-  font-size: clamp(11px, 1.15vw, 13.5px);
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-align: center;
-  line-height: 1.25;
-  color: #f4efe4;
-}
-
-/* Dark Walnut Shelf Plank */
-.kissa-walnut-ledge {
+.meadow-flower-btn__head {
   position: relative;
-  z-index: 4;
-  padding: 11px 24px;
-  background: linear-gradient(180deg, #3c2c21 0%, #261b14 100%);
-  border-top: 1px solid rgba(224, 184, 101, 0.35);
-  color: rgba(240, 235, 226, 0.62);
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  filter: drop-shadow(0 8px 14px rgba(24, 52, 38, 0.16));
+}
+
+.meadow-flower-btn__halo {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(246, 211, 123, 0.55) 0%,
+    rgba(243, 166, 184, 0.25) 55%,
+    transparent 74%
+  );
+  z-index: -1;
+}
+
+.meadow-flower-btn__stem {
+  position: relative;
+  width: 3.5px;
+  margin-top: -10px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #4ea87b 0%, #256b4b 100%);
+  transform-origin: bottom center;
+  animation: stemSway 4.8s ease-in-out infinite;
+}
+
+.meadow-flower-btn:nth-child(even) .meadow-flower-btn__stem {
+  animation-delay: -1.8s;
+}
+
+@keyframes stemSway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2.2deg);
+  }
+}
+
+.meadow-leaf {
+  position: absolute;
+  width: 16px;
+  height: 8px;
+  border-radius: 999px 0 999px 0;
+  background: #3d9164;
+}
+
+.meadow-leaf--l {
+  left: -14px;
+  top: 42%;
+  transform: rotate(-22deg);
+}
+
+.meadow-leaf--r {
+  right: -14px;
+  top: 62%;
+  transform: scaleX(-1) rotate(-22deg);
+}
+
+.meadow-flower-btn__label-plate {
+  margin-top: -4px;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(37, 107, 75, 0.16);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 4px 12px rgba(24, 52, 38, 0.08);
+  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+}
+
+[data-theme='dark'] .meadow-flower-btn__label-plate {
+  background: rgba(20, 42, 34, 0.88);
+  border-color: rgba(244, 248, 242, 0.16);
+}
+
+.meadow-flower-btn.is-bloomed .meadow-flower-btn__label-plate {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
+.meadow-flower-btn__num {
+  font-size: 9px;
+  opacity: 0.72;
+}
+
+.meadow-flower-btn__name {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.meadow-bed__turf {
+  position: relative;
+  z-index: 3;
+  padding: 11px 22px;
+  background: linear-gradient(180deg, #3a8b5e 0%, #256b4b 100%);
+  color: rgba(255, 255, 255, 0.85);
   font-size: 9.5px;
-  letter-spacing: 1.4px;
+  letter-spacing: 1.3px;
   text-align: center;
 }
 
 /* =========================================================
-   OPEN READING DESK (Displays the Extracted Volume)
+   SUNLIT MEADOW FIELD NOTE CARD
    ========================================================= */
-.kissa-reading-spread {
+.meadow-field-note {
   display: grid;
   grid-template-columns: 1.45fr 1fr;
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-radius: 10px;
+  border-radius: 18px;
   box-shadow: var(--shadow-hard);
   overflow: hidden;
 }
 
-.kissa-reading-spread__main {
+.meadow-field-note__main {
   padding: clamp(24px, 3.2vw, 38px);
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.kissa-reading-spread__head {
+.meadow-field-note__head {
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -415,28 +285,28 @@
   border-bottom: 1px solid var(--rule);
 }
 
-.kissa-reading-spread__title {
+.meadow-field-note__title {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(30px, 3.8vw, 48px);
-  line-height: 1.05;
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.06;
   color: var(--ink);
 }
 
-.kissa-reading-spread__subtitle {
+.meadow-field-note__subtitle {
   font-size: 15px;
   font-weight: 500;
   color: var(--blue);
 }
 
-.kissa-reading-spread__body {
+.meadow-field-note__body {
   font-size: 14.5px;
   line-height: 1.72;
   color: var(--muted);
   max-width: 640px;
 }
 
-.kissa-reading-spread__footer {
+.meadow-field-note__footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -447,30 +317,31 @@
   border-top: 1px solid var(--rule);
 }
 
-.kissa-reading-spread__cta {
+.meadow-field-note__cta {
   padding: 10px 20px;
-  border-radius: 4px;
-  background: var(--ink);
-  color: var(--paper);
+  border-radius: 999px;
+  background: var(--blue);
+  color: #ffffff;
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color var(--transition);
+  transition: background-color var(--transition), transform var(--transition);
 }
 
-.kissa-reading-spread__cta:hover {
-  background: var(--blue);
-  color: #faf8f4;
+.meadow-field-note__cta:hover {
+  background: var(--pink-hot);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-.kissa-reading-spread__steppers {
+.meadow-field-note__steppers {
   display: inline-flex;
   gap: 6px;
 }
 
-.kissa-step-btn {
-  padding: 7px 12px;
-  border-radius: 4px;
+.meadow-step-btn {
+  padding: 7px 14px;
+  border-radius: 999px;
   border: 1px solid var(--rule-strong);
   background: transparent;
   color: var(--ink);
@@ -479,13 +350,12 @@
   transition: background-color var(--transition), border-color var(--transition);
 }
 
-.kissa-step-btn:hover {
+.meadow-step-btn:hover {
   background: var(--paper-2);
-  border-color: var(--ink);
+  border-color: var(--blue);
 }
 
-/* Right Archival Index Plate */
-.kissa-reading-spread__plate {
+.meadow-field-note__plate {
   background: var(--paper-2);
   border-left: 1px solid var(--rule);
   padding: clamp(24px, 3vw, 34px);
@@ -494,36 +364,39 @@
   gap: 16px;
 }
 
-.kissa-reading-spread__plate-head {
+.meadow-field-note__plate-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 9.5px;
   letter-spacing: 1px;
   color: var(--muted);
 }
 
-.kissa-reading-spread__metrics {
+.meadow-field-note__metrics {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin-block: auto;
 }
 
-.kissa-plate-metric {
+.meadow-plate-metric {
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 12px;
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-.kissa-plate-metric__k {
+.meadow-plate-metric__k {
   font-size: 9px;
   letter-spacing: 0.7px;
   color: var(--muted);
 }
 
-.kissa-plate-metric__v {
+.meadow-plate-metric__v {
   font-family: var(--font-display);
   font-size: 17px;
   font-weight: 600;
@@ -531,7 +404,7 @@
 }
 
 /* =========================================================
-   STAGE 2: EDITORIAL KINETIC TAPE RIBBON
+   BOTANICAL TICKER RIBBON & AUTHOR'S NOTE
    ========================================================= */
 .kissa-ticker {
   overflow: hidden;
@@ -578,9 +451,6 @@
   }
 }
 
-/* =========================================================
-   STAGE 3: AUTHOR'S NOTE & ARCHIVAL PORTRAIT
-   ========================================================= */
 .kissa-author-section {
   padding-block: clamp(56px, 7vw, 88px);
 }
@@ -641,11 +511,10 @@
   transform: translateX(3px);
 }
 
-/* Archival Matte Portrait Print */
 .kissa-portrait {
   background: var(--card-bg);
   border: 1px solid var(--rule);
-  border-radius: 6px;
+  border-radius: 14px;
   padding: 12px;
   display: flex;
   flex-direction: column;
@@ -660,7 +529,7 @@
 }
 
 .kissa-portrait__frame {
-  border-radius: 3px;
+  border-radius: 8px;
   overflow: hidden;
   background: var(--paper-2);
 }
@@ -682,12 +551,10 @@
   from {
     opacity: 0;
     transform: scale(1.06);
-    filter: sepia(0.22);
   }
   to {
     opacity: 1;
     transform: scale(1);
-    filter: sepia(0);
   }
 }
 
@@ -701,45 +568,25 @@
 }
 
 @media (max-width: 960px) {
-  .kissa-reading-spread,
+  .meadow-field-note,
   .kissa-author-grid {
     grid-template-columns: 1fr;
   }
 
-  .kissa-reading-spread__plate {
+  .meadow-field-note__plate {
     border-left: 0;
     border-top: 1px solid var(--rule);
   }
 }
 
 @media (max-width: 780px) {
-  .kissa-extractor-rail {
-    display: none;
-  }
-
-  .kissa-bookshelf-row {
+  .meadow-bed__row {
     grid-template-columns: repeat(3, 1fr);
-    height: auto;
     padding-top: 24px;
-    padding-bottom: 18px;
-    gap: 10px;
+    gap: 12px;
   }
 
-  .kissa-book {
-    height: 112px;
-    border-radius: 4px;
-  }
-
-  .kissa-book.is-extracted {
-    transform: translateY(-8px);
-  }
-
-  .kissa-ledger {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .kissa-ledger__item {
-    padding: 20px 14px;
-    border-bottom: 1px solid var(--rule);
+  .meadow-flower-btn__stem {
+    height: 44px !important;
   }
 }

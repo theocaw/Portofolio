@@ -1,28 +1,40 @@
 /* =========================================================
-   BOTANICAL CONSERVATORY 60FPS HERO STAGE (Reel 3 Inspired)
-   Butterflies & blooming procedural flowers float ABOVE giant editorial serif type
+   SWISS ALPINE FLOWER MEADOW 60FPS HERO STAGE
+   Bright glacial sky, snow-capped Alps, swaying wildflower meadow,
+   and 60fps butterflies flying ABOVE giant editorial serif type
    ========================================================= */
 
 .garden-hero-wrap {
-  padding-top: clamp(18px, 2.8vw, 32px);
-  padding-bottom: clamp(32px, 4.5vw, 52px);
+  padding-top: clamp(16px, 2.5vw, 28px);
+  padding-bottom: clamp(28px, 4vw, 48px);
 }
 
 .garden-hero-stage {
+  --alps-cloud: #ffffff;
+  --alps-peak-top: #cfe2f2;
+  --alps-peak-bot: #9ec0d9;
+  --alps-snow: #ffffff;
+  --alps-hill-top: #9ad1ab;
+  --alps-hill-bot: #5ea57c;
+  --alps-meadow-top: #6ab985;
+  --alps-meadow-bot: #3c8c5e;
+
   position: relative;
-  min-height: clamp(510px, 74vh, 690px);
-  border-radius: 18px;
+  min-height: clamp(530px, 76vh, 700px);
+  border-radius: 22px;
   overflow: hidden;
   cursor: crosshair;
-  background:
-    radial-gradient(circle at 22% 18%, rgba(232, 139, 156, 0.24) 0%, transparent 46%),
-    radial-gradient(circle at 82% 24%, rgba(231, 188, 98, 0.2) 0%, transparent 48%),
-    radial-gradient(circle at 50% 92%, rgba(90, 141, 115, 0.34) 0%, transparent 56%),
-    linear-gradient(155deg, #1b3b2d 0%, #142b21 52%, #1d3328 100%);
-  border: 1px solid rgba(242, 240, 232, 0.18);
+  background: linear-gradient(
+    180deg,
+    #b9dff7 0%,
+    #def0fc 36%,
+    #f9f8ee 66%,
+    #dff0de 100%
+  );
+  border: 1px solid rgba(37, 107, 75, 0.18);
   box-shadow:
-    0 32px 68px -22px rgba(14, 28, 20, 0.55),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    0 30px 64px -22px rgba(24, 62, 46, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,45 +42,36 @@
   user-select: none;
 }
 
-/* Conservatory Glasshouse Architectural Grid Lines */
-.garden-hero__mullions {
+[data-theme='dark'] .garden-hero-stage {
+  --alps-cloud: rgba(162, 207, 240, 0.16);
+  --alps-peak-top: #1c3547;
+  --alps-peak-bot: #122430;
+  --alps-snow: rgba(235, 246, 255, 0.45);
+  --alps-hill-top: #1b4234;
+  --alps-hill-bot: #122c23;
+  --alps-meadow-top: #204f3c;
+  --alps-meadow-bot: #133125;
+
+  background: linear-gradient(
+    180deg,
+    #0e2030 0%,
+    #163242 38%,
+    #193632 68%,
+    #122b21 100%
+  );
+  border-color: rgba(244, 248, 242, 0.14);
+  box-shadow: 0 32px 68px -20px rgba(0, 0, 0, 0.65);
+}
+
+.garden-alps-backdrop {
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 0;
-  background-image:
-    linear-gradient(to right, rgba(248, 245, 236, 0.045) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(248, 245, 236, 0.045) 1px, transparent 1px);
-  background-size: 96px 96px;
 }
 
-.garden-hero__sunbeam {
-  position: absolute;
-  inset: -20%;
-  pointer-events: none;
-  z-index: 0;
-  background: radial-gradient(
-    ellipse at 50% 0%,
-    rgba(246, 211, 123, 0.16) 0%,
-    rgba(232, 139, 156, 0.06) 45%,
-    transparent 74%
-  );
-  animation: gardenSunBreathe 7s ease-in-out infinite;
-}
-
-@keyframes gardenSunBreathe {
-  0%,
-  100% {
-    opacity: 0.72;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.04);
-  }
-}
-
-/* 60fps Canvas LAYERED ABOVE typography so butterflies cast shadows on the letters */
 .garden-hero__canvas {
   position: absolute;
   inset: 0;
@@ -78,7 +81,6 @@
   z-index: 3;
 }
 
-/* Top & Bottom Frosted Glass Pill Bars sit above the canvas so buttons are always clickable */
 .garden-hero__topbar,
 .garden-hero__bottombar {
   position: relative;
@@ -90,28 +92,40 @@
   flex-wrap: wrap;
 }
 
+/* Sunlit Frosted Alpine Glass Controls */
 .garden-glass-pill {
   display: inline-flex;
   align-items: center;
   gap: 9px;
   padding: 7px 14px;
   border-radius: 999px;
-  background: rgba(248, 245, 236, 0.1);
-  border: 1px solid rgba(248, 245, 236, 0.22);
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(23, 41, 32, 0.12);
   backdrop-filter: blur(12px);
-  color: #f6f2e8;
+  color: var(--ink);
   font-size: 10px;
   letter-spacing: 0.8px;
   text-transform: uppercase;
+}
+
+[data-theme='dark'] .garden-glass-pill {
+  background: rgba(18, 36, 29, 0.72);
+  border-color: rgba(244, 248, 242, 0.2);
+  color: #f4f8f2;
 }
 
 .garden-live-dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #8ee0b0;
-  box-shadow: 0 0 10px #8ee0b0;
+  background: #256b4b;
+  box-shadow: 0 0 10px rgba(37, 107, 75, 0.75);
   animation: gardenDotPulse 2.2s ease-in-out infinite;
+}
+
+[data-theme='dark'] .garden-live-dot {
+  background: #68c998;
+  box-shadow: 0 0 10px #68c998;
 }
 
 @keyframes gardenDotPulse {
@@ -140,30 +154,50 @@
   gap: 8px;
   padding: 6px 13px;
   border-radius: 999px;
-  background: rgba(248, 245, 236, 0.11);
-  border: 1px solid rgba(248, 245, 236, 0.24);
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(23, 41, 32, 0.14);
   backdrop-filter: blur(12px);
-  color: #f8f5ec;
+  color: var(--ink);
   font-size: 10px;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.5px;
   cursor: pointer;
   transition: background-color 180ms ease, border-color 180ms ease, transform 160ms ease;
 }
 
+[data-theme='dark'] .garden-glass-btn,
+[data-theme='dark'] .garden-glass-counter {
+  background: rgba(18, 36, 29, 0.72);
+  border-color: rgba(244, 248, 242, 0.2);
+  color: #f4f8f2;
+}
+
 .garden-glass-btn:hover {
-  background: rgba(248, 245, 236, 0.22);
-  border-color: rgba(248, 245, 236, 0.45);
+  background: #ffffff;
+  border-color: var(--blue);
   transform: translateY(-1px);
 }
 
+[data-theme='dark'] .garden-glass-btn:hover {
+  background: rgba(28, 54, 44, 0.92);
+}
+
 .garden-glass-btn.is-active {
-  background: rgba(232, 139, 156, 0.34);
-  border-color: rgba(248, 200, 209, 0.65);
+  background: var(--pink-soft);
+  border-color: var(--pink-hot);
+  color: var(--pink-hot);
+  font-weight: 600;
 }
 
 .garden-glass-btn--accent {
-  background: rgba(231, 188, 98, 0.24);
-  border-color: rgba(246, 211, 123, 0.55);
+  background: rgba(255, 246, 218, 0.88);
+  border-color: rgba(229, 169, 47, 0.55);
+  color: #7d5307;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .garden-glass-btn--accent {
+  background: rgba(242, 194, 82, 0.2);
+  color: #f7d682;
 }
 
 .garden-glass-counter {
@@ -175,29 +209,30 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  border: 1px solid rgba(248, 245, 236, 0.28);
-  background: rgba(248, 245, 236, 0.1);
-  color: #f8f5ec;
+  border: 1px solid var(--rule-strong);
+  background: rgba(37, 107, 75, 0.08);
+  color: var(--ink);
   font-size: 13px;
   line-height: 1;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 150ms ease;
 }
 
 .garden-glass-counter button:hover {
-  background: rgba(248, 245, 236, 0.28);
+  background: var(--blue);
+  color: #ffffff;
+  border-color: var(--blue);
 }
 
 .garden-glass-counter strong {
   min-width: 18px;
   text-align: center;
-  color: #f6d37b;
+  color: var(--pink-hot);
 }
 
-/* Center Giant Editorial Serif Typography */
+/* Center Giant Editorial Serif Headline */
 .garden-hero__type {
   position: relative;
   z-index: 2;
@@ -205,46 +240,69 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 14px;
-  padding-block: clamp(26px, 5vw, 56px);
+  gap: 12px;
+  padding-top: clamp(18px, 3.5vw, 38px);
+  padding-bottom: clamp(44px, 6vw, 74px);
   pointer-events: none;
 }
 
 .garden-hero__eyebrow {
   font-size: 10.5px;
   letter-spacing: 2px;
-  color: rgba(246, 211, 123, 0.92);
+  color: var(--blue);
+  background: rgba(255, 255, 255, 0.65);
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+[data-theme='dark'] .garden-hero__eyebrow {
+  background: rgba(16, 36, 29, 0.65);
+  color: #f2c252;
 }
 
 .garden-hero__headline {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(58px, 11.2vw, 148px);
+  font-size: clamp(56px, 10.6vw, 142px);
   line-height: 0.92;
   letter-spacing: -0.02em;
-  color: #faf7ef;
-  text-shadow: 0 10px 30px rgba(8, 20, 14, 0.35);
+  color: #162a20;
+  text-shadow: 0 8px 28px rgba(255, 255, 255, 0.65);
+}
+
+[data-theme='dark'] .garden-hero__headline {
+  color: #f6faf4;
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 
 .garden-hero__headline em {
   font-style: italic;
-  color: #f7c5cf;
+  color: var(--pink-hot);
 }
 
 .garden-hero__sub {
-  max-width: 580px;
+  max-width: 590px;
   font-size: clamp(14px, 1.4vw, 16.5px);
   line-height: 1.65;
-  color: rgba(244, 240, 232, 0.82);
+  color: #254032;
+  background: rgba(255, 255, 255, 0.55);
+  padding: 8px 18px;
+  border-radius: 14px;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='dark'] .garden-hero__sub {
+  color: rgba(244, 248, 242, 0.88);
+  background: rgba(14, 28, 24, 0.55);
 }
 
 .garden-hero__hint {
   font-size: 9.5px;
-  letter-spacing: 1px;
-  color: rgba(246, 211, 123, 0.9);
-  background: rgba(14, 28, 20, 0.45);
-  border: 1px solid rgba(246, 211, 123, 0.28);
-  padding: 6px 12px;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  background: rgba(23, 56, 40, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 6px 13px;
   border-radius: 999px;
   backdrop-filter: blur(8px);
 }
@@ -259,8 +317,8 @@
 .garden-hero__cta {
   padding: 9px 18px;
   border-radius: 999px;
-  background: #faf7ef;
-  color: #162e23;
+  background: #172920;
+  color: #ffffff;
   font-size: 11px;
   font-weight: 600;
   text-decoration: none;
@@ -268,21 +326,21 @@
 }
 
 .garden-hero__cta:hover {
-  background: #f6d37b;
-  color: #162e23;
+  background: var(--pink-hot);
+  color: #ffffff;
   transform: translateY(-2px);
 }
 
 .garden-hero__cta--ghost {
-  background: rgba(248, 245, 236, 0.12);
-  border: 1px solid rgba(248, 245, 236, 0.3);
-  color: #faf7ef;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(23, 41, 32, 0.18);
+  color: #172920;
   backdrop-filter: blur(10px);
 }
 
 .garden-hero__cta--ghost:hover {
-  background: rgba(248, 245, 236, 0.24);
-  color: #ffffff;
+  background: #ffffff;
+  color: var(--blue);
 }
 
 @media (max-width: 720px) {
