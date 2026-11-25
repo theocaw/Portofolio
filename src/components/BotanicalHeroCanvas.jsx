@@ -50,7 +50,7 @@ function createFlower(x, y, speciesIdx, preBloomed = false) {
     scale: preBloomed ? 1 : 0.02,
     scaleVel: preBloomed ? 0 : 0.18,
     bornAt: performance.now(),
-    hasStem: y > 320,
+    hasStem: true,
     leaves: [Math.random() * Math.PI * 2, Math.random() * Math.PI * 2 + 2.2],
   };
 }
@@ -169,7 +169,12 @@ export default function BotanicalHeroCanvas({ availability }) {
 
   const plantFlowerAt = useCallback((x, y, playSound = true) => {
     const st = stateRef.current;
-    const flower = createFlower(x, y, st.speciesCursor++, false);
+    // Always root flowers cleanly inside the rolling green meadow — never floating in the sky
+    const meadowMinY = st.height * 0.67;
+    const meadowMaxY = st.height * 0.91;
+    const clampedY = Math.max(meadowMinY, Math.min(meadowMaxY, y));
+    const clampedX = Math.max(36, Math.min(st.width - 36, x));
+    const flower = createFlower(clampedX, clampedY, st.speciesCursor++, false);
 
     if (st.flowers.length >= 34) {
       st.flowers.shift();
@@ -178,8 +183,8 @@ export default function BotanicalHeroCanvas({ availability }) {
     setBloomCount(st.flowers.length);
 
     st.ripples.push({
-      x,
-      y,
+      x: clampedX,
+      y: clampedY,
       r: 10,
       maxR: 92,
       alpha: 0.78,
@@ -190,8 +195,8 @@ export default function BotanicalHeroCanvas({ availability }) {
       const a = (Math.PI * 2 * i) / 10 + Math.random() * 0.4;
       const spd = 0.9 + Math.random() * 1.9;
       st.sparks.push({
-        x,
-        y,
+        x: clampedX,
+        y: clampedY,
         vx: Math.cos(a) * spd,
         vy: Math.sin(a) * spd - 0.4,
         r: 1.8 + Math.random() * 2.4,
@@ -201,7 +206,7 @@ export default function BotanicalHeroCanvas({ availability }) {
     }
 
     const sorted = [...st.butterflies].sort(
-      (a, b) => Math.hypot(a.x - x, a.y - y) - Math.hypot(b.x - x, b.y - y),
+      (a, b) => Math.hypot(a.x - clampedX, a.y - clampedY) - Math.hypot(b.x - clampedX, b.y - clampedY),
     );
     sorted.slice(0, 2).forEach((bf) => {
       bf.targetFlowerId = flower.id;
@@ -274,15 +279,15 @@ export default function BotanicalHeroCanvas({ availability }) {
 
     const seedInitialMeadow = (w, h) => {
       const spots = [
-        [w * 0.07, h * 0.8],
+        [w * 0.07, h * 0.79],
         [w * 0.16, h * 0.87],
-        [w * 0.27, h * 0.82],
-        [w * 0.39, h * 0.89],
-        [w * 0.62, h * 0.88],
-        [w * 0.74, h * 0.81],
+        [w * 0.27, h * 0.81],
+        [w * 0.39, h * 0.88],
+        [w * 0.51, h * 0.84],
+        [w * 0.62, h * 0.87],
+        [w * 0.74, h * 0.8],
         [w * 0.85, h * 0.86],
-        [w * 0.93, h * 0.79],
-        [w * 0.11, h * 0.28],
+        [w * 0.93, h * 0.78],
       ];
       st.flowers = spots.map(([fx, fy], idx) => createFlower(fx, fy, idx, true));
       st.speciesCursor = spots.length;
@@ -344,7 +349,7 @@ export default function BotanicalHeroCanvas({ availability }) {
       const r = f.species.radius * f.scale;
       const fx = f.x + breezeOffset;
 
-      if (f.hasStem && f.y > st.height * 0.52) {
+      if (f.hasStem) {
         ctx.save();
         ctx.strokeStyle = themeRef.current === 'dark' ? '#3d8762' : '#2d7a52';
         ctx.lineWidth = 2.4;
@@ -677,8 +682,8 @@ export default function BotanicalHeroCanvas({ availability }) {
 
   const handlePlantRandom = () => {
     const st = stateRef.current;
-    const rx = st.width * (0.12 + Math.random() * 0.76);
-    const ry = st.height * (0.28 + Math.random() * 0.58);
+    const rx = st.width * (0.08 + Math.random() * 0.84);
+    const ry = st.height * (0.7 + Math.random() * 0.2);
     plantFlowerAt(rx, ry, true);
   };
 
@@ -747,7 +752,7 @@ export default function BotanicalHeroCanvas({ availability }) {
               animate={{ y: '0%' }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
             >
-              {lang === 'id' ? 'TAMAN' : 'ALPINE'}
+              OSANNA
             </motion.h1>
           </div>
           <div className="meadow-mask-line">
@@ -758,7 +763,7 @@ export default function BotanicalHeroCanvas({ availability }) {
               animate={{ y: '0%' }}
               transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
             >
-              {lang === 'id' ? 'BUNGA & DATA' : 'BLOOM STUDIO'}
+              PATRICIA
             </motion.div>
           </div>
         </div>

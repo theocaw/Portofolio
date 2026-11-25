@@ -2,7 +2,7 @@ export const aboutData = {
   en: {
     intro: {
       label: '01 / ABOUT OSANNA',
-      headline: ['Curiosity,', 'with structure.'],
+      headline: 'Analytical clarity meets expressive design.',
       description:
         'I like finding patterns, asking better questions, and turning what I learn into something people can use.',
     },
@@ -26,8 +26,10 @@ export const aboutData = {
       school: 'IPB University',
       degree: ['Bachelor of Applied Engineering', 'Software Engineering'],
       languages: [
-        { name: 'Indonesian', level: 'Fluent' },
-        { name: 'English', level: 'Intermediate' },
+        { name: 'Indonesian', level: 'Native' },
+        { name: 'English', level: 'Working Proficiency' },
+        { name: 'Korean', level: 'Currently Learning' },
+        { name: 'Mandarin', level: 'Currently Learning' },
       ],
       gpa: {
         label: 'ACADEMIC RECORD / GPA',
@@ -91,13 +93,13 @@ export const aboutData = {
     },
     workInvitation: {
       title: 'See how I put these tools to work.',
-      action: { label: 'Explore five projects', to: '/work' },
+      action: { label: 'Explore six projects', to: '/work' },
     },
   },
   id: {
     intro: {
       label: '01 / TENTANG OSANNA',
-      headline: ['Rasa ingin tahu,', 'dengan struktur terarah.'],
+      headline: 'Ketajaman analitik berpadu dengan kepekaan desain.',
       description:
         'Aku senang menemukan pola data, mengajukan pertanyaan kritis, dan mengubah wawasan menjadi karya nyata yang bermanfaat.',
     },
@@ -121,8 +123,10 @@ export const aboutData = {
       school: 'IPB University',
       degree: ['Sarjana Terapan Teknik', 'Rekayasa Perangkat Lunak'],
       languages: [
-        { name: 'Bahasa Indonesia', level: 'Fasih / Penutur Asli' },
-        { name: 'Bahasa Inggris', level: 'Menengah (Intermediate)' },
+        { name: 'Bahasa Indonesia', level: 'Native' },
+        { name: 'Bahasa Inggris', level: 'Aktif' },
+        { name: 'Bahasa Korea', level: 'Sedang Dipelajari' },
+        { name: 'Bahasa Mandarin', level: 'Sedang Dipelajari' },
       ],
       gpa: {
         label: 'REKAM AKADEMIS / IPK',
@@ -186,7 +190,7 @@ export const aboutData = {
     },
     workInvitation: {
       title: 'Lihat bagaimana aku menerapkan kemampuan ini.',
-      action: { label: 'Jelajahi 5 proyek', to: '/work' },
+      action: { label: 'Jelajahi 6 proyek', to: '/work' },
     },
   },
 };

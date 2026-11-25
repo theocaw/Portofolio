@@ -48,7 +48,7 @@
 
 .about-walk__story-grid {
   display: grid;
-  grid-template-columns: 1.25fr 360px;
+  grid-template-columns: 1.15fr 400px;
   gap: clamp(36px, 6vw, 84px);
   align-items: center;
 }
@@ -113,11 +113,11 @@
   color: var(--ink);
 }
 
-/* Interactive Blooming GPA Flower Orbit */
-.about-gpa-orbit {
+/* Lush 22-Petal Multi-Layer Blooming Rose around GPA */
+.about-gpa-rose {
   position: relative;
-  width: 320px;
-  height: 320px;
+  width: 380px;
+  height: 380px;
   margin-inline: auto;
   display: grid;
   place-items: center;
@@ -125,38 +125,69 @@
   user-select: none;
 }
 
-.about-gpa-orbit__petal {
+.about-gpa-rose__leaf {
   position: absolute;
-  width: 112px;
-  height: 164px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(243, 166, 184, 0.55) 0%, rgba(227, 242, 234, 0.65) 100%);
-  border: 1px solid rgba(217, 79, 110, 0.22);
-  transform-origin: center 112px;
-  top: 48px;
+  width: 96px;
+  height: 185px;
+  border-radius: 999px 12px 999px 12px;
+  background: linear-gradient(180deg, #3c8f62 0%, #1d573a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  transform-origin: center 175px;
+  top: 15px;
+  z-index: 0;
 }
 
-[data-theme='dark'] .about-gpa-orbit__petal {
-  background: linear-gradient(180deg, rgba(242, 116, 145, 0.28) 0%, rgba(104, 201, 152, 0.24) 100%);
+.about-gpa-rose__petal {
+  position: absolute;
+  border-radius: 50% 50% 42% 42% / 60% 60% 38% 38%;
+  transform-origin: center 154px;
+  top: 36px;
+  box-shadow: 0 8px 20px rgba(176, 48, 78, 0.14);
+}
+
+.about-gpa-rose__petal--outer {
+  width: 118px;
+  height: 162px;
+  background: linear-gradient(180deg, #f7a7bc 0%, #dd5375 56%, #a82e4d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  z-index: 1;
+}
+
+.about-gpa-rose__petal--inner {
+  width: 96px;
+  height: 142px;
+  top: 52px;
+  transform-origin: center 138px;
+  background: linear-gradient(180deg, #ffe0e9 0%, #f183a0 62%, #c94466 100%);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  z-index: 2;
+}
+
+[data-theme='dark'] .about-gpa-rose__petal--outer {
+  background: linear-gradient(180deg, #f48ca6 0%, #c94163 60%, #7d1f38 100%);
+}
+
+[data-theme='dark'] .about-gpa-rose__petal--inner {
+  background: linear-gradient(180deg, #fbc1d0 0%, #e46c8a 60%, #a53150 100%);
 }
 
 .about-gpa-orbit__core {
   position: relative;
-  z-index: 3;
-  width: 224px;
-  height: 224px;
+  z-index: 4;
+  width: 204px;
+  height: 204px;
   border-radius: 50%;
   background: linear-gradient(145deg, #256b4b 0%, #174932 100%);
   color: #ffffff;
   border: 4px solid var(--card-bg);
-  box-shadow: 0 24px 48px -14px rgba(23, 73, 50, 0.42);
+  box-shadow: 0 24px 48px -14px rgba(23, 73, 50, 0.46);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 20px;
-  gap: 5px;
+  padding: 18px;
+  gap: 4px;
 }
 
 .about-gpa-orbit__label {
@@ -173,7 +204,7 @@
 
 .about-gpa-orbit__val span {
   font-family: var(--font-serif);
-  font-size: 58px;
+  font-size: 56px;
   line-height: 0.9;
 }
 
@@ -192,37 +223,65 @@
   opacity: 0.68;
 }
 
-/* Open Horizontal Education Ribbon */
+/* Open Horizontal Degree + Unified Languages Strip */
 .about-edu-ribbon {
   display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
-  gap: 20px;
-  padding-block: 24px;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 24px;
+  padding-block: 26px;
   border-block: 1px solid var(--rule);
+  align-items: start;
 }
 
 .about-edu-ribbon__item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
-.about-edu-ribbon__item span {
+.about-edu-ribbon__item > span {
   font-size: 9.5px;
   letter-spacing: 1px;
   color: var(--pink-hot);
 }
 
-.about-edu-ribbon__item strong {
-  font-size: 15px;
+.about-edu-ribbon__item > strong {
+  font-size: 16px;
   font-weight: 500;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.about-lang-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.about-lang-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--card-bg);
+  border: 1px solid var(--rule);
+  box-shadow: 0 4px 12px -6px rgba(24, 52, 38, 0.1);
+}
+
+.about-lang-pill strong {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--ink);
 }
 
-.about-edu-ribbon__item em {
-  font-style: italic;
-  color: var(--muted);
-  font-weight: 400;
+.about-lang-pill em {
+  font-style: normal;
+  font-size: 9.5px;
+  color: var(--blue);
+  background: var(--blue-soft);
+  padding: 2px 8px;
+  border-radius: 999px;
 }
 
 /* Interactive Skill Constellation */

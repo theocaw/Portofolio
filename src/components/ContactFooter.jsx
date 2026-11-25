@@ -92,7 +92,7 @@ export default function ContactFooter() {
           </motion.div>
 
           <div className="meadow-footer__bottom mono">
-            <span>OSANNA PATRICIA LIMBONG · SWISS ALPINE FLOWER GARDEN</span>
+            <span>OSANNA PATRICIA LIMBONG · PORTFOLIO</span>
             <span>© {site.year}</span>
           </div>
         </div>

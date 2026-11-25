@@ -211,7 +211,7 @@ export default function Home() {
           SCENE 2: INTRODUCTION FIRST — "HI, I'M OSANNA PATRICIA LIMBONG."
          ========================================================= */}
       <section ref={portraitRef} className="container alpine-arch-section">
-        <div className="alpine-arch-grid">
+        <div className="alpine-intro-showcase">
           <motion.div
             className="alpine-arch-copy"
             initial={{ opacity: 0, y: 24 }}
@@ -219,48 +219,51 @@ export default function Home() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
-            <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'PERKENALAN · OSANNA' : 'INTRODUCTION'}
+            <span className="mono alpine-intro-tag">
+              <FlowerEmblem species="rose" size={18} />
+              <span>{lang === 'id' ? 'PERKENALAN · OSANNA' : 'ABOUT ME · INTRODUCTION'}</span>
             </span>
             <h2 className="alpine-arch-title">{home.greeting}</h2>
             <p className="alpine-arch-text">{home.intro}</p>
 
             <div className="alpine-arch-links">
-              <Link to="/about" className="mono alpine-arch-pill">
+              <Link to="/about" className="mono alpine-arch-pill alpine-arch-pill--primary">
                 02 · {lang === 'id' ? 'Profil & Keahlian ↗' : 'About & Toolkit ↗'}
               </Link>
               <Link to="/work" className="mono alpine-arch-pill">
                 03 · {lang === 'id' ? 'Taman Proyek ↗' : 'Project Greenhouse ↗'}
               </Link>
               <Link to="/journey" className="mono alpine-arch-pill">
-                04 · {lang === 'id' ? 'Tiga Musim Perjalanan ↗' : 'Seasons of Journey ↗'}
+                04 · {lang === 'id' ? 'Perjalanan & Prestasi ↗' : 'Seasons of Journey ↗'}
               </Link>
             </div>
           </motion.div>
 
           {currentPhoto && (
-            <motion.figure
-              className="alpine-arch-frame-wrap"
-              style={{ scale: archScale }}
-              onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
-                }
-              }}
-              title={lang === 'id' ? 'Klik untuk ganti potret' : 'Click arch to cycle portrait'}
-            >
+            <motion.div className="alpine-portrait-stage" style={{ scale: archScale }}>
+              <div className="alpine-portrait-aura" aria-hidden="true" />
               <div className="alpine-arch-corner alpine-arch-corner--tl" aria-hidden="true">
-                <FlowerEmblem species="rose" size={48} />
+                <FlowerEmblem species="rose" size={54} />
+              </div>
+              <div className="alpine-arch-corner alpine-arch-corner--tr" aria-hidden="true">
+                <FlowerEmblem species="buttercup" size={38} />
               </div>
               <div className="alpine-arch-corner alpine-arch-corner--br" aria-hidden="true">
-                <FlowerEmblem species="edelweiss" size={56} />
+                <FlowerEmblem species="edelweiss" size={62} />
               </div>
 
-              <div className="alpine-arch-window">
+              <figure
+                className="alpine-arch-window"
+                onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
+                  }
+                }}
+              >
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={currentPhoto.src}
@@ -268,21 +271,36 @@ export default function Home() {
                     alt={currentPhoto.alt}
                     className="alpine-arch-img"
                     draggable="false"
-                    initial={{ opacity: 0, scale: 1.08 }}
+                    initial={{ opacity: 0, scale: 1.07 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.96 }}
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </AnimatePresence>
-              </div>
 
-              <figcaption className="mono alpine-arch-caption">
-                <span>
-                  0{photoIdx + 1} / 0{profilePhotos.length}
-                </span>
-                <span>{currentPhoto.label}</span>
-              </figcaption>
-            </motion.figure>
+                <figcaption className="mono alpine-arch-overlay">
+                  <span>
+                    0{photoIdx + 1} / 0{profilePhotos.length}
+                  </span>
+                  <span>{currentPhoto.label}</span>
+                </figcaption>
+              </figure>
+
+              {/* Interactive Frame Dots Below Portrait */}
+              <div className="alpine-portrait-dots" role="tablist" aria-label="Portrait gallery">
+                {profilePhotos.map((ph, idx) => (
+                  <button
+                    key={ph.src}
+                    type="button"
+                    role="tab"
+                    aria-selected={idx === photoIdx}
+                    className={`alpine-portrait-dot ${idx === photoIdx ? 'is-active' : ''}`}
+                    onClick={() => setPhotoIdx(idx)}
+                    aria-label={ph.label}
+                  />
+                ))}
+              </div>
+            </motion.div>
           )}
         </div>
       </section>

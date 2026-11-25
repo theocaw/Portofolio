@@ -1,12 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getAboutContent } from '../content/about.js';
 import FlowerEmblem from '../components/FlowerEmblem.jsx';
 import './About.css';
 
 const BED_FLOWERS = ['rose', 'buttercup', 'lavender'];
+const OUTER_ROSE_PETALS = Array.from({ length: 12 }, (_, i) => i * 30);
+const INNER_ROSE_PETALS = Array.from({ length: 10 }, (_, i) => i * 36 + 15);
+const ROSE_LEAVES = [35, 125, 215, 305];
 
 export default function About() {
   const { lang } = useApp();
@@ -14,13 +17,7 @@ export default function About() {
   const { intro, profile, education, toolkit, workInvitation } = about;
 
   const [bloomOpen, setBloomOpen] = useState(false);
-  const [activeBed, setActiveBed] = useState('all'); // 'all' | 0 | 1 | 2
   const [selectedTool, setSelectedTool] = useState(null);
-
-  const visibleDomains =
-    activeBed === 'all'
-      ? toolkit.domains.map((d, idx) => ({ ...d, idx }))
-      : [{ ...toolkit.domains[activeBed], idx: activeBed }];
 
   return (
     <div className="about-walk">
@@ -56,7 +53,7 @@ export default function About() {
         </motion.p>
       </section>
 
-      {/* Open Asymmetric Editorial Story + Interactive Sculptural Blooming GPA Ring */}
+      {/* Open Asymmetric Editorial Story + Lush Multi-Layered Blooming Rose GPA */}
       <section className="container about-walk__story-band">
         <div className="about-walk__story-grid">
           <motion.div
@@ -92,15 +89,15 @@ export default function About() {
             </div>
           </motion.div>
 
-          {/* Interactive Sculptural Blooming GPA Ring (Click/Hover blooms petals outward!) */}
+          {/* Lush 22-Petal Multi-Layer Blooming Rose around GPA 3.63 / 4.00 */}
           <motion.div
-            className={`about-gpa-orbit ${bloomOpen ? 'is-bloomed' : ''}`}
+            className={`about-gpa-rose ${bloomOpen ? 'is-bloomed' : ''}`}
             onClick={() => setBloomOpen((b) => !b)}
             onMouseEnter={() => setBloomOpen(true)}
             onMouseLeave={() => setBloomOpen(false)}
             role="button"
             tabIndex={0}
-            aria-label="Interactive Blooming GPA Medallion — click to bloom petals"
+            aria-label="Interactive Blooming Rose GPA Medallion"
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
                 e.preventDefault();
@@ -108,21 +105,56 @@ export default function About() {
               }
             }}
           >
-            {/* 6 Animated Petals Radiating Outward on Hover/Click */}
-            {[0, 60, 120, 180, 240, 300].map((deg, i) => (
+            {/* 4 Emerald Rose Sepal Leaves */}
+            {ROSE_LEAVES.map((deg, i) => (
               <motion.span
-                key={deg}
-                className="about-gpa-orbit__petal"
+                key={`leaf-${deg}`}
+                className="about-gpa-rose__leaf"
                 animate={{
-                  rotate: deg + (bloomOpen ? 18 : 0),
-                  scale: bloomOpen ? 1.15 : 0.85,
-                  opacity: bloomOpen ? 0.92 : 0.45,
+                  rotate: deg + (bloomOpen ? 10 : 0),
+                  scale: bloomOpen ? 1.25 : 0.72,
+                  opacity: bloomOpen ? 0.92 : 0.35,
+                }}
+                transition={{ type: 'spring', stiffness: 170, damping: 16, delay: i * 0.03 }}
+                aria-hidden="true"
+              />
+            ))}
+
+            {/* 12 Large Outer Velvet Rose Petals */}
+            {OUTER_ROSE_PETALS.map((deg, i) => (
+              <motion.span
+                key={`outer-${deg}`}
+                className="about-gpa-rose__petal about-gpa-rose__petal--outer"
+                animate={{
+                  rotate: deg + (bloomOpen ? 16 : 0),
+                  scale: bloomOpen ? 1.32 : 0.78,
+                  opacity: bloomOpen ? 0.96 : 0.48,
                 }}
                 transition={{
                   type: 'spring',
-                  stiffness: 200,
-                  damping: 18,
-                  delay: i * 0.03,
+                  stiffness: 185,
+                  damping: 16,
+                  delay: i * 0.018,
+                }}
+                aria-hidden="true"
+              />
+            ))}
+
+            {/* 10 Overlapping Inner Blush Rose Petals */}
+            {INNER_ROSE_PETALS.map((deg, i) => (
+              <motion.span
+                key={`inner-${deg}`}
+                className="about-gpa-rose__petal about-gpa-rose__petal--inner"
+                animate={{
+                  rotate: deg - (bloomOpen ? 14 : 0),
+                  scale: bloomOpen ? 1.2 : 0.82,
+                  opacity: bloomOpen ? 0.94 : 0.52,
+                }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 205,
+                  damping: 17,
+                  delay: 0.04 + i * 0.016,
                 }}
                 aria-hidden="true"
               />
@@ -140,120 +172,80 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* Clean Horizontal Education & Languages Strip */}
+        {/* Clean Degree + Unified 4-Language Group (Indonesian, English, Korean, Mandarin) */}
         <div className="about-edu-ribbon">
           <div className="about-edu-ribbon__item">
-            <span className="mono">DEGREE</span>
+            <span className="mono">{lang === 'id' ? 'PROGRAM STUDI' : 'DEGREE'}</span>
             <strong>{education.degree.join(' — ')}</strong>
           </div>
-          {education.languages.map((l) => (
-            <div key={l.name} className="about-edu-ribbon__item">
-              <span className="mono">LANGUAGE</span>
-              <strong>
-                {l.name} · <em>{l.level}</em>
-              </strong>
+
+          <div className="about-edu-ribbon__item">
+            <span className="mono">{lang === 'id' ? 'BAHASA' : 'LANGUAGES'}</span>
+            <div className="about-lang-pills">
+              {education.languages.map((l) => (
+                <span key={l.name} className="about-lang-pill">
+                  <strong>{l.name}</strong>
+                  <em className="mono">{l.level}</em>
+                </span>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      {/* Interactive Floating Seed-Cloud Botanical Skill Constellation */}
+      {/* Toolkit — All 3 Domains Directly Visible (No Filter Tabs!) */}
       <section className="container about-constellation">
         <div className="about-constellation__head">
           <div>
             <span className="mono kissa-eyebrow">{toolkit.label}</span>
             <h2 className="about-walk__section-h2">{toolkit.title}</h2>
           </div>
-
-          <div className="about-constellation__tabs" role="tablist">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeBed === 'all'}
-              className={`mono about-tab ${activeBed === 'all' ? 'is-active' : ''}`}
-              onClick={() => setActiveBed('all')}
-            >
-              {activeBed === 'all' && (
-                <motion.span
-                  layoutId="about-constellation-pill"
-                  className="about-tab__bg"
-                  transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-                />
-              )}
-              <span className="about-tab__lbl">{lang === 'id' ? 'Semua' : 'All Flora'}</span>
-            </button>
-
-            {toolkit.domains.map((d, idx) => {
-              const selected = activeBed === idx;
-              return (
-                <button
-                  key={d.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={selected}
-                  className={`mono about-tab ${selected ? 'is-active' : ''}`}
-                  onClick={() => setActiveBed(idx)}
-                >
-                  {selected && (
-                    <motion.span
-                      layoutId="about-constellation-pill"
-                      className="about-tab__bg"
-                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-                    />
-                  )}
-                  <span className="about-tab__lbl">{d.title}</span>
-                </button>
-              );
-            })}
-          </div>
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={String(activeBed)}
-            className="about-constellation__rows"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-          >
-            {visibleDomains.map((d) => (
-              <div key={d.title} className="about-domain-row">
-                <div className="about-domain-row__left">
-                  <FlowerEmblem species={BED_FLOWERS[d.idx % BED_FLOWERS.length]} size={46} />
-                  <div>
-                    <h3 className="about-domain-row__title">{d.title}</h3>
-                    <p className="about-domain-row__desc">{d.description}</p>
-                  </div>
-                </div>
-
-                <div className="about-domain-row__cloud">
-                  {d.tools.map((tool, tIdx) => (
-                    <motion.button
-                      key={tool}
-                      type="button"
-                      className={`mono about-seed-chip ${selectedTool === tool ? 'is-selected' : ''}`}
-                      initial={{ opacity: 0, scale: 0.86 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      whileHover={{ y: -4, scale: 1.06 }}
-                      whileTap={{ scale: 0.94 }}
-                      transition={{ type: 'spring', stiffness: 360, damping: 20, delay: tIdx * 0.025 }}
-                      onClick={() => setSelectedTool((prev) => (prev === tool ? null : tool))}
-                    >
-                      {tool}
-                    </motion.button>
-                  ))}
+        <div className="about-constellation__rows">
+          {toolkit.domains.map((d, idx) => (
+            <motion.div
+              key={d.title}
+              className="about-domain-row"
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+            >
+              <div className="about-domain-row__left">
+                <FlowerEmblem species={BED_FLOWERS[idx % BED_FLOWERS.length]} size={46} />
+                <div>
+                  <h3 className="about-domain-row__title">{d.title}</h3>
+                  <p className="about-domain-row__desc">{d.description}</p>
                 </div>
               </div>
-            ))}
-          </motion.div>
-        </AnimatePresence>
 
-        {/* Open Horizon Next Link */}
+              <div className="about-domain-row__cloud">
+                {d.tools.map((tool, tIdx) => (
+                  <motion.button
+                    key={tool}
+                    type="button"
+                    className={`mono about-seed-chip ${selectedTool === tool ? 'is-selected' : ''}`}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    whileHover={{ y: -4, scale: 1.06 }}
+                    whileTap={{ scale: 0.94 }}
+                    transition={{ type: 'spring', stiffness: 360, damping: 20, delay: tIdx * 0.02 }}
+                    onClick={() => setSelectedTool((prev) => (prev === tool ? null : tool))}
+                  >
+                    {tool}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
         <div className="about-next-banner">
           <div>
             <span className="mono kissa-eyebrow">
-              {lang === 'id' ? '03 / SELANJUTNYA: PAMERAN BUNGA PROYEK' : '03 / NEXT: FLOWER EXHIBITION'}
+              {lang === 'id' ? '03 / SELANJUTNYA: TAMAN PROYEK' : '03 / NEXT: PROJECT GREENHOUSE'}
             </span>
             <h3 className="about-next-banner__title">{workInvitation.title}</h3>
           </div>
