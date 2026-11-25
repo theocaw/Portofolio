@@ -167,7 +167,17 @@ export default function Home() {
 
   const blooms = ORBIT_BLOOMS[lang] || ORBIT_BLOOMS.en;
   const [activeIdx, setActiveIdx] = useState(0);
-  const [photoIdx, setPhotoIdx] = useState(0);
+  const [[photoIdx, photoDir], setPhotoState] = useState([0, 1]);
+  const draggedRef = useRef(false);
+
+  const stepPhoto = (dir) => {
+    if (profilePhotos.length <= 1) return;
+    setPhotoState(([prev]) => [(prev + dir + profilePhotos.length) % profilePhotos.length, dir]);
+  };
+
+  const jumpPhoto = (nextIdx) => {
+    setPhotoState(([prev]) => [nextIdx, nextIdx >= prev ? 1 : -1]);
+  };
 
   const manifestoRef = useRef(null);
   const { scrollYProgress: manifestoProgress } = useScroll({
@@ -254,27 +264,60 @@ export default function Home() {
 
               <figure
                 className="alpine-arch-window"
-                onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
+                onClick={() => {
+                  if (draggedRef.current) {
+                    draggedRef.current = false;
+                    return;
+                  }
+                  stepPhoto(1);
+                }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
+                  if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowRight') {
                     e.preventDefault();
-                    setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
+                    stepPhoto(1);
+                  } else if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    stepPhoto(-1);
                   }
                 }}
               >
-                <AnimatePresence mode="wait">
+                <AnimatePresence initial={false} custom={photoDir} mode="popLayout">
                   <motion.img
                     key={currentPhoto.src}
                     src={currentPhoto.src}
                     alt={currentPhoto.alt}
                     className="alpine-arch-img"
                     draggable="false"
-                    initial={{ opacity: 0, scale: 1.07 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                    custom={photoDir}
+                    variants={{
+                      enter: (dir) => ({ x: dir > 0 ? '100%' : '-100%', opacity: 0.4 }),
+                      center: { x: 0, opacity: 1 },
+                      exit: (dir) => ({ x: dir > 0 ? '-100%' : '100%', opacity: 0.4 }),
+                    }}
+                    initial="enter"
+                    animate="center"
+                    exit="exit"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.32}
+                    onDragStart={() => {
+                      draggedRef.current = true;
+                    }}
+                    onDragEnd={(_, info) => {
+                      const swipeThreshold = 42;
+                      const velocityThreshold = 260;
+                      if (info.offset.x < -swipeThreshold || info.velocity.x < -velocityThreshold) {
+                        stepPhoto(1);
+                      } else if (info.offset.x > swipeThreshold || info.velocity.x > velocityThreshold) {
+                        stepPhoto(-1);
+                      }
+                      window.setTimeout(() => {
+                        draggedRef.current = false;
+                      }, 80);
+                    }}
                   />
                 </AnimatePresence>
 
@@ -295,7 +338,7 @@ export default function Home() {
                     role="tab"
                     aria-selected={idx === photoIdx}
                     className={`alpine-portrait-dot ${idx === photoIdx ? 'is-active' : ''}`}
-                    onClick={() => setPhotoIdx(idx)}
+                    onClick={() => jumpPhoto(idx)}
                     aria-label={ph.label}
                   />
                 ))}
