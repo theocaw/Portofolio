@@ -286,10 +286,19 @@
 .gh-stage-title {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(28px, 3vw, 36px);
-  line-height: 1.06;
+  font-size: clamp(32px, 3.4vw, 44px);
+  line-height: 1.04;
   color: var(--ink);
   text-align: center;
+}
+
+.gh-stage-sub {
+  font-size: 10.5px;
+  letter-spacing: 0.6px;
+  color: var(--blue);
+  text-align: center;
+  font-weight: 600;
+  margin-top: -8px;
 }
 
 .gh-stage-tagline {

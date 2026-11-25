@@ -216,7 +216,12 @@ export default function Work() {
                     <FlowerEmblem species={stageSpec.species} size={146} />
                   </motion.div>
 
-                  <h2 className="gh-stage-title">{stageProject.title}</h2>
+                  <h2 className="gh-stage-title">{stageProject.title.split(':')[0]}</h2>
+                  {stageProject.title.includes(':') && (
+                    <span className="mono gh-stage-sub">
+                      {stageProject.title.split(':').slice(1).join(':').trim()}
+                    </span>
+                  )}
                   <p className="gh-stage-tagline">{stageProject.tagline}</p>
 
                   {stageProject.metrics && (
@@ -280,7 +285,11 @@ export default function Work() {
                       </motion.span>
                       <div>
                         <h3 className="gh-index-item__title">{project.title.split(':')[0]}</h3>
-                        <p className="gh-index-item__desc">{project.tagline}</p>
+                        <p className="gh-index-item__desc">
+                          {project.title.includes(':')
+                            ? `${project.title.split(':').slice(1).join(':').trim()} — ${project.tagline}`
+                            : project.tagline}
+                        </p>
                       </div>
                       <span className="mono gh-index-item__arrow">↗</span>
                     </div>

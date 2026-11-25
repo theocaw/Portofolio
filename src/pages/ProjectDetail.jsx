@@ -82,7 +82,7 @@ export default function ProjectDetail() {
                   animate={{ y: '0%' }}
                   transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {project.title}
+                  {project.title.split(':')[0]}
                 </motion.h1>
               </div>
 
@@ -92,7 +92,9 @@ export default function ProjectDetail() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.16 }}
               >
-                {project.tagline}
+                {project.title.includes(':')
+                  ? `${project.title.split(':').slice(1).join(':').trim()} — ${project.tagline}`
+                  : project.tagline}
               </motion.p>
             </div>
 
@@ -443,7 +445,7 @@ export default function ProjectDetail() {
               <span className="mono bloom-pager-dir">
                 ← {lang === 'id' ? 'Bunga Sebelumnya' : 'Previous Bloom'}
               </span>
-              <strong>{prevProject.title}</strong>
+              <strong>{prevProject.title.split(':')[0]}</strong>
             </Link>
           ) : (
             <div aria-hidden="true" />
@@ -454,7 +456,7 @@ export default function ProjectDetail() {
               <span className="mono bloom-pager-dir">
                 {lang === 'id' ? 'Bunga Selanjutnya' : 'Next Bloom'} →
               </span>
-              <strong>{nextProject.title}</strong>
+              <strong>{nextProject.title.split(':')[0]}</strong>
             </Link>
           ) : (
             <div aria-hidden="true" />
