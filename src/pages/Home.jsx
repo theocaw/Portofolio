@@ -29,9 +29,9 @@ const ORBIT_BLOOMS = {
       species: 'rose',
       flowerName: 'Alpine Rose',
       tag: '02 / DATA & ML',
-      title: 'Geospatial ETL, regression modeling & K-Means segmentation.',
-      body: '30,903 normalized Jabodetabek healthcare records for Medigo & 81.94% R² validated property valuation on Ames Housing.',
-      stat: 'Python · R · SQL',
+      title: 'Statistical modeling, ETL pipelines & market segmentation.',
+      body: 'Transforming raw multi-source datasets into clean relational schemas, predictive models, and clear visual insights that support real decisions.',
+      stat: 'Python · R · SQL · ML',
       to: '/work',
       cta: 'Inspect Data Work ↗',
     },
@@ -41,11 +41,11 @@ const ORBIT_BLOOMS = {
       species: 'buttercup',
       flowerName: 'Buttercup',
       tag: '03 / WEB & SYSTEMS',
-      title: 'Layered architectures & responsive full-stack experiences.',
-      body: 'From 4-tier IEEE 830 specifications and 3NF ERDs to Laravel 13 APIs, Gemini AI assistants, and React motion UIs.',
-      stat: 'React · Laravel · Tailwind',
+      title: 'Structured software architectures & responsive web craft.',
+      body: 'Engineering clean full-stack applications from database design and layered blueprints to smooth, interactive user interfaces.',
+      stat: 'React · Full-Stack · UI',
       to: '/work',
-      cta: 'Enter Flower Exhibition ↗',
+      cta: 'Explore Projects ↗',
     },
     {
       id: 'education',
@@ -54,7 +54,7 @@ const ORBIT_BLOOMS = {
       flowerName: 'Blue Gentian',
       tag: '04 / EDUCATION',
       title: '3.63 / 4.00 GPA in Software Engineering Technology (IPB).',
-      body: 'Vocational School of IPB University — grounded in databases, data mining, full-stack engineering, and 3D AR.',
+      body: 'Vocational School of IPB University — grounded in databases, data mining, software architecture, and 3D spatial prototyping.',
       stat: 'GPA 3.63 / 4.00',
       to: '/about',
       cta: 'Visit Conservatory ↗',
@@ -65,11 +65,11 @@ const ORBIT_BLOOMS = {
       species: 'lavender',
       flowerName: 'Lavender',
       tag: '05 / EXPERIENCE',
-      title: 'Industry web delivery & transparent treasury governance.',
-      body: 'Shipped live corporate site kctjakarta.com during PT KCT internship and audited 280+ transactions (Rp 26.19M).',
-      stat: 'PT KCT · 5 Campus Roles',
+      title: 'Industry web delivery & transparent financial governance.',
+      body: 'Delivered live corporate web solutions and commercial workflows in logistics while leading multi-organization treasury audits.',
+      stat: 'Industry & 5 Campus Roles',
       to: '/journey',
-      cta: 'Walk Alpine Trail ↗',
+      cta: 'View Journey ↗',
     },
     {
       id: 'honors',
@@ -77,9 +77,9 @@ const ORBIT_BLOOMS = {
       species: 'poppy',
       flowerName: 'Alpine Poppy',
       tag: '06 / HONORS',
-      title: 'International competition awards & Google Gemini AI Cert.',
-      body: '2× 2nd Place Short Movie (Portal 7 Intl & SEMNASA National), Business Plan Semifinalist & Google Gemini Certified.',
-      stat: 'Google Gemini Certified',
+      title: 'Competition honors & verified generative AI credentials.',
+      body: 'Recognized across international and national creative competitions alongside official Google Gemini AI certification.',
+      stat: 'Awards & Gemini Certified',
       to: '/journey',
       cta: 'See All Honors ↗',
     },
@@ -103,9 +103,9 @@ const ORBIT_BLOOMS = {
       species: 'rose',
       flowerName: 'Mawar Alpen',
       tag: '02 / DATA & ML',
-      title: 'ETL geospasial, pemodelan regresi & segmentasi K-Means.',
-      body: '30.903 baris data faskes Jabodetabek untuk Medigo & akurasi R² 81,94% pada valuasi properti Ames Housing.',
-      stat: 'Python · R · SQL',
+      title: 'Pemodelan statistik, pipeline ETL & segmentasi data.',
+      body: 'Mengolah dataset mentah multi-sumber menjadi struktur data bersih, model prediktif tervalidasi, dan visualisasi yang membantu pengambilan keputusan.',
+      stat: 'Python · R · SQL · ML',
       to: '/work',
       cta: 'Lihat Studi Kasus ↗',
     },
@@ -115,11 +115,11 @@ const ORBIT_BLOOMS = {
       species: 'buttercup',
       flowerName: 'Buttercup',
       tag: '03 / WEB & SISTEM',
-      title: 'Arsitektur berlapis & aplikasi web full-stack responsif.',
-      body: 'Dari spesifikasi DPPL 4-tier dan ERD 3NF hingga API Laravel 13, asisten Gemini AI, dan UI interaktif React.',
-      stat: 'React · Laravel · Tailwind',
+      title: 'Arsitektur perangkat lunak terstruktur & antarmuka responsif.',
+      body: 'Membangun aplikasi web full-stack dari perancangan basis data dan cetak biru sistem hingga antarmuka pengguna yang halus dan interaktif.',
+      stat: 'React · Full-Stack · UI',
       to: '/work',
-      cta: 'Masuk Pameran Proyek ↗',
+      cta: 'Jelajahi Proyek ↗',
     },
     {
       id: 'education',
@@ -128,7 +128,7 @@ const ORBIT_BLOOMS = {
       flowerName: 'Gentian Biru',
       tag: '04 / PENDIDIKAN',
       title: 'IPK 3,63 / 4,00 Teknologi Rekayasa Perangkat Lunak (IPB).',
-      body: 'Sekolah Vokasi IPB University — mendalami basis data, data mining, rekayasa perangkat lunak, dan 3D AR.',
+      body: 'Sekolah Vokasi IPB University — mendalami basis data, data mining, arsitektur perangkat lunak, dan prototipe spasial 3D.',
       stat: 'IPK 3,63 / 4,00',
       to: '/about',
       cta: 'Buka Paviliun Profil ↗',
@@ -139,11 +139,11 @@ const ORBIT_BLOOMS = {
       species: 'lavender',
       flowerName: 'Lavender',
       tag: '05 / PENGALAMAN',
-      title: 'Pengembangan web industri & audit tata kelola keuangan.',
-      body: 'Merilis website live kctjakarta.com saat magang PT KCT serta mengaudit 280+ transaksi (Rp 26,19 Juta).',
-      stat: 'PT KCT · 5 Organisasi',
+      title: 'Pengembangan web industri & tata kelola keuangan transparan.',
+      body: 'Merilis solusi web korporat dan operasional komersial di industri logistik sekaligus memimpin audit keuangan di berbagai organisasi kampus.',
+      stat: 'Industri & 5 Organisasi',
       to: '/journey',
-      cta: 'Susuri Jalur Alpen ↗',
+      cta: 'Lihat Perjalanan ↗',
     },
     {
       id: 'honors',
@@ -151,9 +151,9 @@ const ORBIT_BLOOMS = {
       species: 'poppy',
       flowerName: 'Poppy Alpen',
       tag: '06 / PRESTASI',
-      title: 'Penghargaan kompetisi internasional & Sertifikasi Gemini AI.',
-      body: '2× Juara 2 Film Pendek (Portal 7 Intl & SEMNASA), Semifinalis Business Plan & Google Gemini Certified Student.',
-      stat: 'Google Gemini Certified',
+      title: 'Penghargaan kompetisi & sertifikasi AI generatif terverifikasi.',
+      body: 'Meraih penghargaan di kompetisi kreatif tingkat internasional maupun nasional serta sertifikasi resmi Google Gemini AI.',
+      stat: 'Prestasi & Gemini Certified',
       to: '/journey',
       cta: 'Lihat Prestasi ↗',
     },
@@ -183,7 +183,7 @@ export default function Home() {
     target: portraitRef,
     offset: ['start end', 'end start'],
   });
-  const archScale = useTransform(portraitProgress, [0, 0.5, 1], [0.92, 1.03, 0.96]);
+  const archScale = useTransform(portraitProgress, [0, 0.5, 1], [0.94, 1.03, 0.97]);
 
   const activeBloom = blooms[activeIdx] || blooms[0];
   const currentPhoto = profilePhotos[photoIdx] || profilePhotos[0];
@@ -208,18 +208,90 @@ export default function Home() {
       <BotanicalHeroCanvas availability={home.availability} />
 
       {/* =========================================================
-          SCENE 2: SCROLL-SCRUBBED KINETIC MANIFESTO + DRAGGABLE BLOOMS
-          (Reel 1 & Reel 2 Motion-Graphic Sequence — ZERO Boxed Grid)
+          SCENE 2: INTRODUCTION FIRST — "HI, I'M OSANNA PATRICIA LIMBONG."
+         ========================================================= */}
+      <section ref={portraitRef} className="container alpine-arch-section">
+        <div className="alpine-arch-grid">
+          <motion.div
+            className="alpine-arch-copy"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="mono kissa-eyebrow">
+              {lang === 'id' ? 'PERKENALAN · OSANNA' : 'INTRODUCTION'}
+            </span>
+            <h2 className="alpine-arch-title">{home.greeting}</h2>
+            <p className="alpine-arch-text">{home.intro}</p>
+
+            <div className="alpine-arch-links">
+              <Link to="/about" className="mono alpine-arch-pill">
+                02 · {lang === 'id' ? 'Profil & Keahlian ↗' : 'About & Toolkit ↗'}
+              </Link>
+              <Link to="/work" className="mono alpine-arch-pill">
+                03 · {lang === 'id' ? 'Taman Proyek ↗' : 'Project Greenhouse ↗'}
+              </Link>
+              <Link to="/journey" className="mono alpine-arch-pill">
+                04 · {lang === 'id' ? 'Tiga Musim Perjalanan ↗' : 'Seasons of Journey ↗'}
+              </Link>
+            </div>
+          </motion.div>
+
+          {currentPhoto && (
+            <motion.figure
+              className="alpine-arch-frame-wrap"
+              style={{ scale: archScale }}
+              onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
+                }
+              }}
+              title={lang === 'id' ? 'Klik untuk ganti potret' : 'Click arch to cycle portrait'}
+            >
+              <div className="alpine-arch-corner alpine-arch-corner--tl" aria-hidden="true">
+                <FlowerEmblem species="rose" size={48} />
+              </div>
+              <div className="alpine-arch-corner alpine-arch-corner--br" aria-hidden="true">
+                <FlowerEmblem species="edelweiss" size={56} />
+              </div>
+
+              <div className="alpine-arch-window">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentPhoto.src}
+                    src={currentPhoto.src}
+                    alt={currentPhoto.alt}
+                    className="alpine-arch-img"
+                    draggable="false"
+                    initial={{ opacity: 0, scale: 1.08 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </AnimatePresence>
+              </div>
+
+              <figcaption className="mono alpine-arch-caption">
+                <span>
+                  0{photoIdx + 1} / 0{profilePhotos.length}
+                </span>
+                <span>{currentPhoto.label}</span>
+              </figcaption>
+            </motion.figure>
+          )}
+        </div>
+      </section>
+
+      {/* =========================================================
+          SCENE 3: SCROLL-SCRUBBED KINETIC MANIFESTO + DRAGGABLE BLOOMS
          ========================================================= */}
       <section ref={manifestoRef} className="alpine-manifesto">
-        <div className="alpine-manifesto__hint mono">
-          {lang === 'id'
-            ? 'TARIK & LEMPAR BUNGA-BUNGA DI BAWAH INI — MEREKA MEMBAL DENGAN FISIKA PEGAS'
-            : 'GRAB & FLING ANY FLOATING BLOOM BELOW — ELASTIC SPRING PHYSICS'}
-        </div>
-
         <div className="alpine-manifesto__stage">
-          {/* Draggable Interactive Floating Botanical Chips (Reel 1 playful motion) */}
           <motion.div
             className="alpine-float-chip alpine-float-chip--1"
             drag
@@ -230,7 +302,7 @@ export default function Home() {
             transition={{ type: 'spring', stiffness: 320, damping: 18 }}
           >
             <FlowerEmblem species="rose" size={32} />
-            <span className="mono">3,069 Faskes ETL</span>
+            <span className="mono">Data &amp; Analytics</span>
           </motion.div>
 
           <motion.div
@@ -243,7 +315,7 @@ export default function Home() {
             transition={{ type: 'spring', stiffness: 320, damping: 18 }}
           >
             <FlowerEmblem species="buttercup" size={32} />
-            <span className="mono">81.94% R² Ames</span>
+            <span className="mono">Front-End Craft</span>
           </motion.div>
 
           <motion.div
@@ -272,7 +344,6 @@ export default function Home() {
             <span className="mono">Gemini AI Certified</span>
           </motion.div>
 
-          {/* Giant Scroll-Scrubbed Kinetic Serif Lines */}
           <motion.div className="alpine-manifesto__line" style={{ x: mRow1X }}>
             {lang === 'id' ? 'MERANGKAI' : 'CULTIVATING'} <em>{lang === 'id' ? 'DATA' : 'DATA'}</em>
           </motion.div>
@@ -286,16 +357,13 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          SCENE 3: INTERACTIVE ROTATING SWISS BOUQUET ORBIT
-          (Open-Air Orbital Flower Wheel — Zero Rectangular Card Wall)
+          SCENE 4: INTERACTIVE ROTATING SWISS BOUQUET ORBIT (Zero Tutorial Hint)
          ========================================================= */}
       <section className="container alpine-orbit-section">
         <div className="alpine-orbit-grid">
-          {/* Left: Rotating 6-Flower Botanical Orbit Wheel */}
           <div className="alpine-orbit-stage" aria-label="Interactive Rotating Swiss Wildflower Wheel">
             <div className="alpine-orbit-ring-bg" aria-hidden="true" />
 
-            {/* Rotating Orbit of 6 Flowers */}
             <motion.div
               className="alpine-orbit-rotor"
               animate={{ rotate: ringRotation }}
@@ -321,7 +389,6 @@ export default function Home() {
               })}
             </motion.div>
 
-            {/* Center Blooming Emblem */}
             <div className="alpine-orbit-center">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -339,14 +406,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: Open Editorial Typography Reveal (No heavy boxed frame) */}
           <div className="alpine-orbit-copy">
-            <span className="mono alpine-orbit-eyebrow">
-              {lang === 'id'
-                ? 'PUTAR RODA BUNGA ALPEN · KLIK ATAU TEKAN ← / →'
-                : 'SPIN THE ALPINE FLOWER WHEEL · CLICK OR PRESS ← / →'}
-            </span>
-
             <AnimatePresence mode="wait">
               <motion.div
                 key={`${lang}-${activeBloom.id}`}
@@ -398,88 +458,10 @@ export default function Home() {
       </section>
 
       {/* =========================================================
-          SCENE 4: KINETIC ANIME.JS STUDIO & LIVING FLOWER DATA CHART
+          SCENE 5: HOW I WORK & GENERAL BLOOMING STEM OVERVIEW
          ========================================================= */}
       <KineticGardenWidgets />
       <AnalyticsGardenChart />
-
-      {/* =========================================================
-          SCENE 5: ARCHED CONSERVATORY WINDOW PORTRAIT & STORY
-         ========================================================= */}
-      <section ref={portraitRef} className="container alpine-arch-section">
-        <div className="alpine-arch-grid">
-          <motion.div
-            className="alpine-arch-copy"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'PENJAGA TAMAN · OSANNA' : 'MEET THE GARDEN KEEPER'}
-            </span>
-            <h2 className="alpine-arch-title">{home.greeting}</h2>
-            <p className="alpine-arch-text">{home.intro}</p>
-
-            <div className="alpine-arch-links">
-              <Link to="/about" className="mono alpine-arch-pill">
-                02 · {lang === 'id' ? 'Paviliun Profil ↗' : 'Conservatory Profile ↗'}
-              </Link>
-              <Link to="/work" className="mono alpine-arch-pill">
-                03 · {lang === 'id' ? 'Pameran Proyek ↗' : 'Flower Exhibition ↗'}
-              </Link>
-              <Link to="/journey" className="mono alpine-arch-pill">
-                04 · {lang === 'id' ? 'Jalur Alpen ↗' : 'Alpine Trail ↗'}
-              </Link>
-            </div>
-          </motion.div>
-
-          {currentPhoto && (
-            <motion.figure
-              className="alpine-arch-frame-wrap"
-              style={{ scale: archScale }}
-              onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
-                }
-              }}
-              title={lang === 'id' ? 'Klik untuk ganti potret' : 'Click arch to cycle portrait'}
-            >
-              <div className="alpine-arch-corner alpine-arch-corner--tl" aria-hidden="true">
-                <FlowerEmblem species="rose" size={48} />
-              </div>
-              <div className="alpine-arch-corner alpine-arch-corner--br" aria-hidden="true">
-                <FlowerEmblem species="edelweiss" size={56} />
-              </div>
-
-              <div className="alpine-arch-window">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentPhoto.src}
-                    src={currentPhoto.src}
-                    alt={currentPhoto.alt}
-                    className="alpine-arch-img"
-                    draggable="false"
-                    initial={{ opacity: 0, scale: 1.08 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.96 }}
-                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                  />
-                </AnimatePresence>
-              </div>
-
-              <figcaption className="mono alpine-arch-caption">
-                <span>0{photoIdx + 1} / 0{profilePhotos.length}</span>
-                <span>{currentPhoto.label}</span>
-              </figcaption>
-            </motion.figure>
-          )}
-        </div>
-      </section>
     </div>
   );
 }

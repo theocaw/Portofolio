@@ -163,6 +163,10 @@
   flex-wrap: wrap;
 }
 
+.meadow-fullhero__hud--end {
+  justify-content: flex-end;
+}
+
 .meadow-fullhero__hint {
   font-size: 9.5px;
   letter-spacing: 0.9px;

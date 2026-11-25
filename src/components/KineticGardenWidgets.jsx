@@ -227,7 +227,7 @@ export default function KineticGardenWidgets() {
           </p>
         </motion.article>
 
-        {/* Tile 2: Multidisciplinary Adaptability */}
+        {/* Tile 2: Multidisciplinary Adaptability (Prominent Label Below Bloom) */}
         <motion.article
           className="kw-card kw-card--clickable"
           whileHover={{ y: -4 }}
@@ -235,10 +235,7 @@ export default function KineticGardenWidgets() {
           onClick={() => setMorphIdx((i) => (i + 1) % MORPH_SHAPES.length)}
         >
           <div className="mono kw-card__top">
-            <span>02 / {lang === 'id' ? 'ADAPTIF' : 'VERSATILITY'}</span>
-            <span className="kw-pill kw-pill--sage">
-              {lang === 'id' ? activeShape.id : activeShape.en}
-            </span>
+            <span>02 / {lang === 'id' ? 'MULTIDISIPLIN' : 'VERSATILITY'}</span>
           </div>
           <div className="kw-morph-stage">
             <svg viewBox="0 0 120 120" className="kw-morph-svg" aria-hidden="true">
@@ -258,14 +255,29 @@ export default function KineticGardenWidgets() {
               <circle cx="60" cy="60" r="10" fill="var(--card-bg)" opacity="0.9" />
             </svg>
           </div>
-          <p className="kw-card__caption">
-            {lang === 'id'
-              ? 'Klik bunga untuk melihat 3 bidang utama yang saya gabungkan.'
-              : 'Click bloom to cycle the 3 disciplines I bridge on cross-functional teams.'}
-          </p>
+
+          <div className="kw-morph-label-area">
+            <AnimatePresence mode="wait">
+              <motion.strong
+                key={`${lang}-${morphIdx}`}
+                className="kw-morph-discipline"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                transition={{ duration: 0.22 }}
+              >
+                {lang === 'id' ? activeShape.id : activeShape.en}
+              </motion.strong>
+            </AnimatePresence>
+            <div className="kw-morph-dots" aria-hidden="true">
+              {MORPH_SHAPES.map((s, idx) => (
+                <span key={s.en} className={idx === morphIdx ? 'is-active' : ''} />
+              ))}
+            </div>
+          </div>
         </motion.article>
 
-        {/* Tile 3: Interactive Dual-Track Role Switcher */}
+        {/* Tile 3: Interactive Dual-Track Role Switcher (Clean, Zero Instruction Caption) */}
         <motion.article
           className="kw-card"
           whileHover={{ y: -4 }}
@@ -278,7 +290,7 @@ export default function KineticGardenWidgets() {
             </span>
           </div>
 
-          <div className="kw-spring-demo">
+          <div className="kw-spring-demo kw-spring-demo--tall">
             <button
               type="button"
               className="kw-spring-track"
@@ -302,12 +314,6 @@ export default function KineticGardenWidgets() {
               </span>
             </div>
           </div>
-
-          <p className="kw-card__caption">
-            {lang === 'id'
-              ? 'Geser switch untuk melihat fokus stack Data Analyst vs Front-End.'
-              : 'Toggle to inspect my core toolkit for Data Analyst vs Front-End roles.'}
-          </p>
         </motion.article>
 
         {/* Tile 4: End-to-End Delivery Process */}

@@ -45,8 +45,10 @@
 .alpine-brand-pill {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 15px 6px 8px;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   text-decoration: none;
   color: var(--ink);
   transition: transform 220ms cubic-bezier(0.22, 1, 0.36, 1);

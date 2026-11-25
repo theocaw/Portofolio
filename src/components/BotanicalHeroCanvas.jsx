@@ -736,18 +736,8 @@ export default function BotanicalHeroCanvas({ availability }) {
         />
       </motion.svg>
 
-      {/* Center Giant Scroll-Splitting Motion-Graphic Typography */}
+      {/* Center Giant Scroll-Splitting Motion-Graphic Typography (Pure & Uncluttered) */}
       <motion.div className="meadow-fullhero__type" style={{ opacity: typeOpacity }}>
-        <motion.div
-          className="meadow-fullhero__pill mono"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <span className="garden-live-dot" aria-hidden="true" />
-          <span>{availability}</span>
-        </motion.div>
-
         <div className="meadow-fullhero__lines">
           <div className="meadow-mask-line">
             <motion.h1
@@ -772,30 +762,13 @@ export default function BotanicalHeroCanvas({ availability }) {
             </motion.div>
           </div>
         </div>
-
-        <motion.p
-          className="meadow-fullhero__sub"
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.38 }}
-        >
-          {lang === 'id'
-            ? 'Osanna Patricia Limbong — Analis Data & Front-End Developer (IPB University).'
-            : 'Osanna Patricia Limbong — Data Analyst & Front-End Developer (IPB University).'}
-        </motion.p>
       </motion.div>
 
       {/* 60fps Wind-Reactive Flowers + Butterflies ABOVE Typography */}
       <canvas ref={canvasRef} className="garden-hero__canvas" aria-hidden="true" />
 
-      {/* Bottom Floating Frosted HUD Controls */}
-      <div className="meadow-fullhero__hud">
-        <span className="mono meadow-fullhero__hint">
-          {lang === 'id'
-            ? 'SAPU RUMPUT DENGAN KURSOR · KLIK UNTUK TANAM BUNGA · SCROLL ↓'
-            : 'BRUSH THE MEADOW · CLICK TO PLANT A FLOWER · SCROLL TO WANDER ↓'}
-        </span>
-
+      {/* Bottom Floating Frosted Controls (Clean, Zero Instruction Text) */}
+      <div className="meadow-fullhero__hud meadow-fullhero__hud--end">
         <div className="garden-hero__controls">
           <button
             type="button"

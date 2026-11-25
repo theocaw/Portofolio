@@ -20,12 +20,11 @@ export default function SiteHeader() {
   return (
     <header className="alpine-dock-wrap">
       <div className="alpine-dock">
-        {/* Left Floating Brand Pill */}
+        {/* Left Floating Flower Mark (Icon Only) */}
         <Link to="/" className="alpine-brand-pill" aria-label="Osanna Patricia Limbong — Home">
           <span className="alpine-brand-pill__flower" aria-hidden="true">
-            <FlowerEmblem species="edelweiss" size={24} />
+            <FlowerEmblem species="edelweiss" size={26} />
           </span>
-          <span className="alpine-brand-pill__name">Osanna</span>
         </Link>
 
         {/* Center Floating Translucent Navigation Pill (Reel 3 inspired) */}
