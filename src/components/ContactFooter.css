@@ -164,3 +164,32 @@
   letter-spacing: 1px;
   color: var(--muted);
 }
+
+@media (max-width: 560px) {
+  .meadow-footer__actions {
+    width: 100%;
+  }
+
+  .meadow-footer__email-pill {
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 8px 12px;
+    gap: 8px;
+    border-radius: 20px;
+  }
+
+  .meadow-footer__email-addr {
+    font-size: 10.5px;
+    word-break: break-all;
+  }
+
+  .meadow-footer__socials {
+    gap: 10px;
+  }
+
+  .meadow-footer__bottom {
+    justify-content: center;
+    text-align: center;
+  }
+}

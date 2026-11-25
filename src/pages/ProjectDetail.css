@@ -554,6 +554,10 @@
 }
 
 @media (max-width: 960px) {
+  .bloom-detail-banner {
+    padding-top: 126px;
+  }
+
   .bloom-detail-hero,
   .bloom-dossier-strip__grid,
   .bloom-metrics-grid,

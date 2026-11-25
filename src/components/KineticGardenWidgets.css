@@ -369,8 +369,14 @@
   }
 
   .kw-prompt-bar {
-    border-radius: 16px;
-    padding: 12px;
+    border-radius: 18px;
+    padding: 12px 14px;
+  }
+
+  .kw-prompt-text {
+    white-space: normal;
+    line-height: 1.45;
+    font-size: 14.5px;
   }
 
   .kw-prompt-badge {

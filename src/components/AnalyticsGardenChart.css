@@ -262,12 +262,47 @@
 }
 
 @media (max-width: 640px) {
+  .agc-card {
+    padding: 16px 12px;
+    gap: 18px;
+  }
+
+  .agc-tabs {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .agc-tab {
+    padding: 7px 11px;
+    font-size: 9.5px;
+  }
+
   .agc-plot {
-    gap: 6px;
+    gap: 4px;
+  }
+
+  .agc-col {
+    padding: 6px 2px;
+    gap: 8px;
   }
 
   .agc-col__track {
-    height: 135px;
+    height: 145px;
+    padding: 20px 3px 4px;
+  }
+
+  .agc-col__flower-top {
+    transform: scale(0.8);
+    margin-bottom: -12px;
+  }
+
+  .agc-col__bar {
+    width: 12px;
+  }
+
+  .agc-col.is-focused .agc-col__bar {
+    width: 16px;
   }
 
   .agc-col__val {
@@ -276,5 +311,6 @@
 
   .agc-col__label {
     font-size: 8.5px;
+    word-break: break-word;
   }
 }

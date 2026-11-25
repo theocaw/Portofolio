@@ -424,9 +424,22 @@
 }
 
 @media (max-width: 960px) {
+  .about-walk {
+    padding-top: 126px;
+  }
+
   .about-walk__story-grid,
   .about-edu-ribbon,
   .about-domain-row {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .about-gpa-rose {
+    width: 280px;
+    height: 280px;
+    transform: scale(0.84);
+    margin-block: -16px;
   }
 }

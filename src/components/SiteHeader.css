@@ -169,19 +169,47 @@
 }
 
 @media (max-width: 860px) {
+  .alpine-dock-wrap {
+    top: 10px;
+    padding-inline: 12px;
+  }
+
   .alpine-dock {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .alpine-brand-pill {
+    width: 36px;
+    height: 36px;
+  }
+
+  .alpine-controls-pill {
+    padding: 3px 4px 3px 6px;
+  }
+
+  .alpine-mini-btn {
+    font-size: 10px;
+    padding: 5px 7px;
+  }
+
+  .alpine-contact-pill {
+    padding: 6px 11px;
+    font-size: 10px;
   }
 
   .alpine-nav-pill {
     order: 3;
     width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 3px;
   }
 
   .alpine-nav-link {
-    padding: 6px 10px;
+    flex: 1;
+    justify-content: center;
+    padding: 6px 8px;
     font-size: 12px;
   }
 

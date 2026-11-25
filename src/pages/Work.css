@@ -435,6 +435,10 @@
 }
 
 @media (max-width: 1020px) {
+  .greenhouse-work {
+    padding-top: 126px;
+  }
+
   .gh-split-grid,
   .gh-seedling-capsules {
     grid-template-columns: 1fr;
@@ -442,6 +446,15 @@
 
   .gh-stage-col {
     position: static;
+  }
+
+  .gh-index-item {
+    padding: 18px;
+  }
+
+  .gh-index-item:hover,
+  .gh-index-item.is-focused {
+    transform: none;
   }
 
   .gh-index-item__tags {

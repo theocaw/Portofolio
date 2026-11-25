@@ -72,12 +72,12 @@ export default function SiteHeader() {
             type="button"
             className="mono alpine-mini-btn"
             onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'Switch to dusk mode' : 'Switch to daylight mode'}
+            aria-label={theme === 'light' ? 'Switch to night mode' : 'Switch to day mode'}
           >
             {theme === 'light'
               ? lang === 'id'
                 ? 'Malam'
-                : 'Dusk'
+                : 'Night'
               : lang === 'id'
                 ? 'Siang'
                 : 'Day'}

@@ -119,8 +119,8 @@
 .meadow-fullhero__word {
   font-family: var(--font-serif);
   font-weight: 400;
-  font-size: clamp(64px, 13vw, 178px);
-  line-height: 0.88;
+  font-size: clamp(46px, 13vw, 178px);
+  line-height: 0.9;
   letter-spacing: -0.025em;
   color: #152920;
   text-shadow: 0 12px 34px rgba(255, 255, 255, 0.72);
@@ -293,6 +293,31 @@
 }
 
 @media (max-width: 720px) {
+  .meadow-fullhero {
+    min-height: 92svh;
+    padding: 118px 14px 20px;
+  }
+
+  .meadow-fullhero__type {
+    padding-bottom: 48px;
+  }
+
+  .meadow-fullhero__hud,
+  .meadow-fullhero__hud--end {
+    justify-content: center;
+  }
+
+  .garden-hero__controls {
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .garden-glass-btn,
+  .garden-glass-counter {
+    font-size: 9.5px;
+    padding: 5px 10px;
+  }
+
   .meadow-fullhero__hint {
     display: none;
   }

@@ -535,6 +535,10 @@
 }
 
 @media (max-width: 960px) {
+  .seasons-journey {
+    padding-top: 126px;
+  }
+
   .seasons-switcher,
   .spring-metrics-row,
   .spring-deliverables-grid,
