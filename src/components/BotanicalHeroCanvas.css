@@ -1,69 +1,58 @@
 /* =========================================================
-   SWISS ALPINE FLOWER MEADOW 60FPS HERO STAGE
-   Bright glacial sky, snow-capped Alps, swaying wildflower meadow,
-   and 60fps butterflies flying ABOVE giant editorial serif type
+   100VW × 100SVH FULL-BLEED WIND-REACTIVE SWISS ALPINE MEADOW
+   Edge-to-Edge Living Canvas — ZERO Boxed Container
    ========================================================= */
 
-.garden-hero-wrap {
-  padding-top: clamp(16px, 2.5vw, 28px);
-  padding-bottom: clamp(28px, 4vw, 48px);
-}
-
-.garden-hero-stage {
+.meadow-fullhero {
   --alps-cloud: #ffffff;
-  --alps-peak-top: #cfe2f2;
-  --alps-peak-bot: #9ec0d9;
+  --alps-peak-top: #cbe0f3;
+  --alps-peak-bot: #9bc0dc;
   --alps-snow: #ffffff;
-  --alps-hill-top: #9ad1ab;
-  --alps-hill-bot: #5ea57c;
-  --alps-meadow-top: #6ab985;
-  --alps-meadow-bot: #3c8c5e;
+  --alps-hill-top: #96d2aa;
+  --alps-hill-bot: #5ba479;
+  --alps-meadow-top: #65b983;
+  --alps-meadow-bot: #37875a;
 
   position: relative;
-  min-height: clamp(530px, 76vh, 700px);
-  border-radius: 22px;
+  width: 100%;
+  min-height: 100svh;
   overflow: hidden;
   cursor: crosshair;
   background: linear-gradient(
     180deg,
-    #b9dff7 0%,
-    #def0fc 36%,
-    #f9f8ee 66%,
-    #dff0de 100%
+    #b2dcf7 0%,
+    #dbf0fd 38%,
+    #f9f9ef 68%,
+    #dcf0dc 100%
   );
-  border: 1px solid rgba(37, 107, 75, 0.18);
-  box-shadow:
-    0 30px 64px -22px rgba(24, 62, 46, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.85);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(18px, 2.6vw, 30px);
+  justify-content: center;
+  align-items: center;
+  padding: 104px clamp(16px, 3vw, 40px) 28px;
   user-select: none;
 }
 
-[data-theme='dark'] .garden-hero-stage {
-  --alps-cloud: rgba(162, 207, 240, 0.16);
-  --alps-peak-top: #1c3547;
-  --alps-peak-bot: #122430;
+[data-theme='dark'] .meadow-fullhero {
+  --alps-cloud: rgba(162, 207, 240, 0.14);
+  --alps-peak-top: #1a3548;
+  --alps-peak-bot: #102330;
   --alps-snow: rgba(235, 246, 255, 0.45);
-  --alps-hill-top: #1b4234;
-  --alps-hill-bot: #122c23;
-  --alps-meadow-top: #204f3c;
-  --alps-meadow-bot: #133125;
+  --alps-hill-top: #1a4335;
+  --alps-hill-bot: #102c22;
+  --alps-meadow-top: #1e503c;
+  --alps-meadow-bot: #112f23;
 
   background: linear-gradient(
     180deg,
-    #0e2030 0%,
-    #163242 38%,
-    #193632 68%,
-    #122b21 100%
+    #0c1e2e 0%,
+    #143042 40%,
+    #173530 70%,
+    #102920 100%
   );
-  border-color: rgba(244, 248, 242, 0.14);
-  box-shadow: 0 32px 68px -20px rgba(0, 0, 0, 0.65);
 }
 
-.garden-alps-backdrop {
+.meadow-fullhero__alps {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -81,10 +70,92 @@
   z-index: 3;
 }
 
-.garden-hero__topbar,
-.garden-hero__bottombar {
+/* Center Giant Motion-Graphic Typography */
+.meadow-fullhero__type {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  margin-block: auto;
+  padding-bottom: clamp(56px, 10vh, 110px);
+  pointer-events: none;
+}
+
+.meadow-fullhero__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(23, 41, 32, 0.12);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+[data-theme='dark'] .meadow-fullhero__pill {
+  background: rgba(16, 36, 29, 0.72);
+  border-color: rgba(244, 248, 242, 0.18);
+  color: #f4f8f2;
+}
+
+.meadow-fullhero__lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.meadow-mask-line {
+  overflow: hidden;
+  padding-inline: 12px;
+}
+
+.meadow-fullhero__word {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(64px, 13vw, 178px);
+  line-height: 0.88;
+  letter-spacing: -0.025em;
+  color: #152920;
+  text-shadow: 0 12px 34px rgba(255, 255, 255, 0.72);
+}
+
+[data-theme='dark'] .meadow-fullhero__word {
+  color: #f6faf4;
+  text-shadow: 0 12px 36px rgba(0, 0, 0, 0.48);
+}
+
+.meadow-fullhero__word--italic {
+  font-style: italic;
+  color: var(--pink-hot);
+}
+
+.meadow-fullhero__sub {
+  font-size: clamp(14px, 1.45vw, 17px);
+  color: #1f3b2e;
+  background: rgba(255, 255, 255, 0.56);
+  padding: 7px 18px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+[data-theme='dark'] .meadow-fullhero__sub {
+  color: rgba(244, 248, 242, 0.88);
+  background: rgba(14, 28, 24, 0.55);
+}
+
+/* Bottom Floating Frosted HUD */
+.meadow-fullhero__hud {
   position: relative;
   z-index: 5;
+  width: 100%;
+  max-width: 1380px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -92,26 +163,15 @@
   flex-wrap: wrap;
 }
 
-/* Sunlit Frosted Alpine Glass Controls */
-.garden-glass-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
+.meadow-fullhero__hint {
+  font-size: 9.5px;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  background: rgba(22, 56, 39, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   padding: 7px 14px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(23, 41, 32, 0.12);
-  backdrop-filter: blur(12px);
-  color: var(--ink);
-  font-size: 10px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-}
-
-[data-theme='dark'] .garden-glass-pill {
-  background: rgba(18, 36, 29, 0.72);
-  border-color: rgba(244, 248, 242, 0.2);
-  color: #f4f8f2;
+  backdrop-filter: blur(10px);
 }
 
 .garden-live-dot {
@@ -154,7 +214,7 @@
   gap: 8px;
   padding: 6px 13px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.78);
   border: 1px solid rgba(23, 41, 32, 0.14);
   backdrop-filter: blur(12px);
   color: var(--ink);
@@ -166,7 +226,7 @@
 
 [data-theme='dark'] .garden-glass-btn,
 [data-theme='dark'] .garden-glass-counter {
-  background: rgba(18, 36, 29, 0.72);
+  background: rgba(16, 34, 28, 0.78);
   border-color: rgba(244, 248, 242, 0.2);
   color: #f4f8f2;
 }
@@ -177,10 +237,6 @@
   transform: translateY(-1px);
 }
 
-[data-theme='dark'] .garden-glass-btn:hover {
-  background: rgba(28, 54, 44, 0.92);
-}
-
 .garden-glass-btn.is-active {
   background: var(--pink-soft);
   border-color: var(--pink-hot);
@@ -189,7 +245,7 @@
 }
 
 .garden-glass-btn--accent {
-  background: rgba(255, 246, 218, 0.88);
+  background: rgba(255, 246, 218, 0.9);
   border-color: rgba(229, 169, 47, 0.55);
   color: #7d5307;
   font-weight: 600;
@@ -232,123 +288,8 @@
   color: var(--pink-hot);
 }
 
-/* Center Giant Editorial Serif Headline */
-.garden-hero__type {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-  padding-top: clamp(18px, 3.5vw, 38px);
-  padding-bottom: clamp(44px, 6vw, 74px);
-  pointer-events: none;
-}
-
-.garden-hero__eyebrow {
-  font-size: 10.5px;
-  letter-spacing: 2px;
-  color: var(--blue);
-  background: rgba(255, 255, 255, 0.65);
-  padding: 4px 12px;
-  border-radius: 999px;
-}
-
-[data-theme='dark'] .garden-hero__eyebrow {
-  background: rgba(16, 36, 29, 0.65);
-  color: #f2c252;
-}
-
-.garden-hero__headline {
-  font-family: var(--font-serif);
-  font-weight: 400;
-  font-size: clamp(56px, 10.6vw, 142px);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  color: #162a20;
-  text-shadow: 0 8px 28px rgba(255, 255, 255, 0.65);
-}
-
-[data-theme='dark'] .garden-hero__headline {
-  color: #f6faf4;
-  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-}
-
-.garden-hero__headline em {
-  font-style: italic;
-  color: var(--pink-hot);
-}
-
-.garden-hero__sub {
-  max-width: 590px;
-  font-size: clamp(14px, 1.4vw, 16.5px);
-  line-height: 1.65;
-  color: #254032;
-  background: rgba(255, 255, 255, 0.55);
-  padding: 8px 18px;
-  border-radius: 14px;
-  backdrop-filter: blur(8px);
-}
-
-[data-theme='dark'] .garden-hero__sub {
-  color: rgba(244, 248, 242, 0.88);
-  background: rgba(14, 28, 24, 0.55);
-}
-
-.garden-hero__hint {
-  font-size: 9.5px;
-  letter-spacing: 0.9px;
-  color: #ffffff;
-  background: rgba(23, 56, 40, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  padding: 6px 13px;
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-}
-
-.garden-hero__actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.garden-hero__cta {
-  padding: 9px 18px;
-  border-radius: 999px;
-  background: #172920;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1), background-color 200ms ease;
-}
-
-.garden-hero__cta:hover {
-  background: var(--pink-hot);
-  color: #ffffff;
-  transform: translateY(-2px);
-}
-
-.garden-hero__cta--ghost {
-  background: rgba(255, 255, 255, 0.82);
-  border: 1px solid rgba(23, 41, 32, 0.18);
-  color: #172920;
-  backdrop-filter: blur(10px);
-}
-
-.garden-hero__cta--ghost:hover {
-  background: #ffffff;
-  color: var(--blue);
-}
-
 @media (max-width: 720px) {
-  .garden-hero-stage {
-    min-height: 500px;
-  }
-
-  .garden-hero__hint {
+  .meadow-fullhero__hint {
     display: none;
   }
 }

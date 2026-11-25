@@ -16,12 +16,12 @@ const PROJECT_CATEGORIES = {
 };
 
 const BLOOM_SPECS = {
-  'ames-housing': { species: 'edelweiss', season: 'DATA & ML', tint: '#e4f2eb' },
-  medigo: { species: 'rose', season: 'HEALTHCARE ETL & AI', tint: '#fdeef2' },
-  canvar: { species: 'buttercup', season: 'AR & 3D SPATIAL', tint: '#fdf5dd' },
-  cafier: { species: 'gentian', season: 'MOBILE & FULL-STACK', tint: '#e4f1fc' },
-  'dthanasha-kost': { species: 'lavender', season: 'SYSTEM & MVC', tint: '#eeeafb' },
-  'alumni-portal': { species: 'poppy', season: '4-TIER ARCHITECTURE', tint: '#fcece9' },
+  'ames-housing': { species: 'edelweiss', label: 'EDELWEISS' },
+  medigo: { species: 'rose', label: 'ALPINE ROSE' },
+  canvar: { species: 'buttercup', label: 'BUTTERCUP' },
+  cafier: { species: 'gentian', label: 'BLUE GENTIAN' },
+  'dthanasha-kost': { species: 'lavender', label: 'LAVENDER' },
+  'alumni-portal': { species: 'poppy', label: 'ALPINE POPPY' },
 };
 
 const FILTERS = {
@@ -45,10 +45,7 @@ export default function Work() {
   const { ongoingSection, projects } = work;
 
   const [activeFilter, setActiveFilter] = useState('all');
-  const [selectedIdx, setSelectedIdx] = useState(0);
-
-  const activeProject = projects[selectedIdx] || projects[0];
-  const activeSpec = BLOOM_SPECS[activeProject.id] || BLOOM_SPECS['ames-housing'];
+  const [expandedId, setExpandedId] = useState('medigo');
 
   const visibleProjects =
     activeFilter === 'all'
@@ -56,327 +53,227 @@ export default function Work() {
       : projects.filter((p) => PROJECT_CATEGORIES[p.id] === activeFilter);
 
   return (
-    <div className="meadow-work">
+    <div className="exhibit-work">
       {/* =========================================================
-          STAGE 1 (TOP): GROWING SEEDLINGS — ON-GOING PROJECTS (2026)
+          TOP: GROWING SEEDLINGS — ON-GOING PROJECTS (VERIFACE & SIREN)
          ========================================================= */}
       {ongoingSection && ongoingSection.items?.length > 0 && (
-        <section className="band band--paper-2 kissa-ongoing-top-band">
-          <div className="container kissa-ongoing-top">
-            <div className="kissa-ongoing__head">
-              <span className="mono kissa-eyebrow">
-                {lang === 'id'
-                  ? '03 / PROYEK · TUNAS SEDANG TUMBUH (ON-GOING 2026)'
-                  : '03 / WORK · GROWING SEEDLINGS (ON-GOING 2026)'}
-              </span>
-              <h1 className="kissa-work-hero__title">{ongoingSection.title}</h1>
-              <p className="kissa-ongoing__sub">{ongoingSection.subtitle}</p>
+        <section className="container exhibit-ongoing">
+          <div className="exhibit-ongoing__head">
+            <motion.span
+              className="mono kissa-eyebrow"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+            >
+              {lang === 'id'
+                ? '03 / PROYEK · TUNAS SEDANG TUMBUH (ON-GOING 2026)'
+                : '03 / WORK · GROWING SEEDLINGS (ON-GOING 2026)'}
+            </motion.span>
+            <div className="exhibit-mask">
+              <motion.h1
+                className="exhibit-hero-title"
+                initial={{ y: '100%' }}
+                animate={{ y: '0%' }}
+                transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {ongoingSection.title}
+              </motion.h1>
             </div>
+            <p className="exhibit-hero-sub">{ongoingSection.subtitle}</p>
+          </div>
 
-            <div className="kissa-ongoing__grid">
-              {ongoingSection.items.map((item, idx) => (
-                <article key={item.id} className="kissa-ongoing-card kissa-spotlight">
-                  <div className="mono kissa-ongoing-card__top">
-                    <span>SEEDLING · {item.index}</span>
-                    <span className="kissa-ongoing-card__status">
-                      <span className="kissa-live-dot" aria-hidden="true" />
-                      {item.status}
-                    </span>
-                  </div>
+          <div className="exhibit-seedlings">
+            {ongoingSection.items.map((item, idx) => (
+              <motion.article
+                key={item.id}
+                className="exhibit-seedling"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.1 + idx * 0.1 }}
+                whileHover={{ y: -4 }}
+              >
+                <div className="exhibit-seedling__top mono">
+                  <span className="exhibit-seedling__live">
+                    <i className="exhibit-live-dot" aria-hidden="true" />
+                    {item.status}
+                  </span>
+                  <span>{item.category}</span>
+                </div>
 
-                  <div className="meadow-ongoing-head">
-                    <div>
-                      <span className="mono kissa-ongoing-card__cat">{item.category}</span>
-                      <h2 className="kissa-ongoing-card__title">{item.title}</h2>
-                    </div>
-                    <FlowerEmblem species={idx === 0 ? 'gentian' : 'poppy'} size={42} />
-                  </div>
+                <div className="exhibit-seedling__title-row">
+                  <h2 className="exhibit-seedling__title">{item.title}</h2>
+                  <FlowerEmblem species={idx === 0 ? 'gentian' : 'poppy'} size={44} />
+                </div>
 
-                  <p className="kissa-ongoing-card__tagline">{item.tagline}</p>
-                  <p className="kissa-ongoing-card__desc">{item.description}</p>
+                <p className="exhibit-seedling__tagline">{item.tagline}</p>
+                <p className="exhibit-seedling__desc">{item.description}</p>
 
-                  {item.metrics && (
-                    <div className="kissa-ongoing-card__metrics">
-                      {item.metrics.map((m) => (
-                        <div key={m.label}>
-                          <span className="mono">{m.label}</span>
-                          <strong>{m.value}</strong>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="kissa-jcard__tags">
-                    {item.tags.map((t) => (
-                      <span key={t} className="tag">
-                        {t}
-                      </span>
+                {item.metrics && (
+                  <div className="exhibit-seedling__stats">
+                    {item.metrics.map((m) => (
+                      <div key={m.label}>
+                        <span className="mono">{m.label}</span>
+                        <strong>{m.value}</strong>
+                      </div>
                     ))}
                   </div>
-                </article>
-              ))}
-            </div>
+                )}
+
+                <div className="exhibit-tags">
+                  {item.tags.map((t) => (
+                    <span key={t} className="tag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.article>
+            ))}
           </div>
         </section>
       )}
 
       {/* =========================================================
-          STAGE 2: INTERACTIVE SWISS WILDFLOWER SHOWCASE PEDESTAL
+          MAIN: INTERACTIVE EXPANDING FLOWER EXHIBITION (6 COMPLETED)
+          Full-width kinetic accordion rows — Zero static card wall!
          ========================================================= */}
-      <section className="container kissa-work-hero" id="bloom-pedestal">
-        <div className="kissa-work-hero__head">
+      <section className="container exhibit-gallery">
+        <div className="exhibit-gallery__head">
           <div>
             <span className="mono kissa-eyebrow">
               {lang === 'id'
-                ? 'TAMAN KARYA SELESAI · 06 STUDI KASUS MEKAR'
-                : 'FULL-BLOOM GARDEN · 06 COMPLETED CASE STUDIES'}
+                ? 'PAMERAN BUNGA SELESAI · 06 STUDI KASUS MEKAR'
+                : 'FULL-BLOOM EXHIBITION · 06 COMPLETED CASE STUDIES'}
             </span>
-            <h2 className="kissa-catalog__title">
+            <h2 className="exhibit-gallery__title">
               {lang === 'id'
-                ? 'Pilih bunga proyek untuk membuka catatan studi kasusnya.'
-                : 'Pick a project wildflower to inspect its complete case study.'}
+                ? 'Klik baris proyek mana saja untuk memekarkan detailnya.'
+                : 'Click any project bloom below to unfurl its case study.'}
             </h2>
           </div>
-          <span className="mono kissa-work-hero__count">
-            BLOOM 0{selectedIdx + 1} / 0{projects.length}
-          </span>
-        </div>
 
-        <div className="meadow-showcase-desk">
-          {/* Left: Interactive Blooming Botanical Pedestal */}
-          <div className="meadow-pedestal kissa-spotlight">
-            <div className="mono meadow-pedestal__top">
-              <span>SPECIMEN 0{selectedIdx + 1}</span>
-              <span>{activeSpec.season}</span>
-            </div>
-
-            <div className="meadow-pedestal__stage">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeProject.id}
-                  className="meadow-pedestal__emblem"
-                  initial={{ scale: 0.65, rotate: -28, opacity: 0 }}
-                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                  exit={{ scale: 0.72, rotate: 24, opacity: 0 }}
-                  transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-                >
-                  <FlowerEmblem species={activeSpec.species} size={142} />
-                </motion.div>
-              </AnimatePresence>
-
-              <span className="mono meadow-pedestal__short">
-                {activeProject.title.split(':')[0]}
-              </span>
-            </div>
-
-            {/* 6 Quick Wildflower Selector Pills */}
-            <div className="meadow-pedestal__selector" role="tablist" aria-label="Select project flower">
-              {projects.map((p, idx) => {
-                const sp = BLOOM_SPECS[p.id] || BLOOM_SPECS['ames-housing'];
-                const active = idx === selectedIdx;
-                return (
-                  <button
-                    key={p.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={active}
-                    className={`meadow-pedestal__chip ${active ? 'is-active' : ''}`}
-                    onClick={() => setSelectedIdx(idx)}
-                  >
-                    <FlowerEmblem species={sp.species} size={22} />
-                    <span className="mono">{p.title.split(':')[0]}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            <div className="meadow-pedestal__nav">
-              <button
-                type="button"
-                className="mono meadow-step-btn"
-                onClick={() => setSelectedIdx((selectedIdx - 1 + projects.length) % projects.length)}
-              >
-                ← PREV
-              </button>
-              <button
-                type="button"
-                className="mono meadow-step-btn"
-                onClick={() => setSelectedIdx((selectedIdx + 1) % projects.length)}
-              >
-                NEXT →
-              </button>
-            </div>
-          </div>
-
-          {/* Right: Sunlit Botanical Specimen Sheet */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeProject.id}
-              className="kissa-jcard kissa-spotlight"
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 26 }}
-            >
-              <div className="mono kissa-jcard__top">
-                <span>
-                  BLOOM {activeProject.num} · {activeProject.label}
-                </span>
-                <span>{activeProject.meta}</span>
-              </div>
-
-              <h3 className="kissa-jcard__title">{activeProject.title}</h3>
-              <p className="kissa-jcard__tagline">{activeProject.tagline}</p>
-              <p className="kissa-jcard__desc">{activeProject.description}</p>
-
-              {activeProject.metrics && (
-                <div className="kissa-jcard__metrics">
-                  {activeProject.metrics.map((m) => (
-                    <div key={m.label} className="kissa-jcard__metric">
-                      <span className="mono kissa-jcard__metric-k">{m.label}</span>
-                      <strong className="kissa-jcard__metric-v">{m.value}</strong>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div className="kissa-jcard__footer">
-                <div className="kissa-jcard__tags">
-                  {activeProject.tags.slice(0, 6).map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <Link to={`/work/${activeProject.id}`} className="mono kissa-jcard__cta">
-                  {lang === 'id' ? 'Buka Studi Kasus Lengkap ↗' : 'Open Full Case Study ↗'}
-                </Link>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
-
-      {/* =========================================================
-          STAGE 3: COMPLETE FULL-BLOOM GARDEN CATALOG (ALL 6 COMPLETED)
-         ========================================================= */}
-      <section className="band band--paper-2 kissa-catalog-band">
-        <div className="container kissa-catalog">
-          <div className="kissa-catalog__head">
-            <div>
-              <span className="mono kissa-eyebrow">
-                {lang === 'id' ? 'KOLEKSI LENGKAP TAMAN KARYA' : 'COMPLETE WILDFLOWER CATALOG'}
-              </span>
-              <h2 className="kissa-catalog__title">
-                {lang === 'id'
-                  ? 'Enam studi kasus lengkap lintas data, kesehatan, sistem & 3D.'
-                  : 'Six completed case studies across data, healthcare, systems & 3D.'}
-              </h2>
-            </div>
-
-            <div className="kissa-filters" role="tablist">
-              {(FILTERS[lang] || FILTERS.en).map((f) => {
-                const isSelected = activeFilter === f.id;
-                return (
-                  <button
-                    key={f.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isSelected}
-                    className={`mono kissa-filter-btn ${isSelected ? 'is-active' : ''}`}
-                    onClick={() => setActiveFilter(f.id)}
-                  >
-                    {isSelected && (
-                      <motion.span
-                        layoutId="garden-work-filter-pill"
-                        className="kissa-filter-btn__bg"
-                        transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-                      />
-                    )}
-                    <span className="kissa-filter-btn__label">{f.label}</span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="kissa-tapes-grid">
-            {visibleProjects.map((project) => {
-              const origIdx = projects.findIndex((p) => p.id === project.id);
-              const spec = BLOOM_SPECS[project.id] || BLOOM_SPECS['ames-housing'];
-              const isLoaded = origIdx === selectedIdx;
-
+          <div className="exhibit-filters" role="tablist">
+            {(FILTERS[lang] || FILTERS.en).map((f) => {
+              const isSelected = activeFilter === f.id;
               return (
-                <motion.article
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-                  className={`kissa-tape-card kissa-spotlight ${isLoaded ? 'is-loaded' : ''}`}
+                <button
+                  key={f.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  className={`mono exhibit-filter ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => setActiveFilter(f.id)}
                 >
-                  {/* Sunlit Botanical Specimen Crest Header (Zero Cassette) */}
-                  <div
-                    className="meadow-card-banner"
-                    onClick={() => {
-                      setSelectedIdx(origIdx);
-                      document.getElementById('bloom-pedestal')?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        setSelectedIdx(origIdx);
-                        document.getElementById('bloom-pedestal')?.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                    title={
-                      lang === 'id'
-                        ? 'Klik untuk tampilkan di Pedestal Bunga'
-                        : 'Click to inspect on Flower Pedestal'
-                    }
-                  >
-                    <div className="meadow-card-banner__meta mono">
-                      <span>BLOOM {project.num}</span>
-                      <span>{spec.season}</span>
-                    </div>
-                    <div className="meadow-card-banner__flower">
-                      <FlowerEmblem species={spec.species} size={74} />
-                    </div>
-                  </div>
-
-                  <div className="kissa-tape-card__body">
-                    <div className="mono kissa-tape-card__meta">
-                      <span>{project.label}</span>
-                      <span>{project.role}</span>
-                    </div>
-
-                    <h3 className="kissa-tape-card__title">{project.title}</h3>
-                    <p className="kissa-tape-card__tagline">{project.tagline}</p>
-
-                    {project.metrics && (
-                      <div className="kissa-tape-card__metrics">
-                        {project.metrics.slice(0, 2).map((m) => (
-                          <div key={m.label} className="kissa-tape-card__metric">
-                            <span className="mono">{m.label}</span>
-                            <strong>{m.value}</strong>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    <div className="kissa-tape-card__actions">
-                      <Link to={`/work/${project.id}`} className="mono kissa-tape-card__open-btn">
-                        {lang === 'id' ? 'Buka Studi Kasus Lengkap ↗' : 'Open Full Case Study ↗'}
-                      </Link>
-                    </div>
-                  </div>
-                </motion.article>
+                  {isSelected && (
+                    <motion.span
+                      layoutId="exhibit-work-filter-pill"
+                      className="exhibit-filter__bg"
+                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                    />
+                  )}
+                  <span className="exhibit-filter__lbl">{f.label}</span>
+                </button>
               );
             })}
           </div>
+        </div>
+
+        <div className="exhibit-list">
+          {visibleProjects.map((project) => {
+            const spec = BLOOM_SPECS[project.id] || BLOOM_SPECS['ames-housing'];
+            const isOpen = expandedId === project.id;
+
+            return (
+              <motion.article
+                key={project.id}
+                layout
+                className={`exhibit-row ${isOpen ? 'is-open' : ''}`}
+              >
+                <button
+                  type="button"
+                  className="exhibit-row__trigger"
+                  onClick={() => setExpandedId(isOpen ? null : project.id)}
+                  aria-expanded={isOpen}
+                >
+                  <span className="mono exhibit-row__num">{project.num}</span>
+
+                  <motion.span
+                    className="exhibit-row__flower"
+                    animate={{
+                      rotate: isOpen ? 36 : 0,
+                      scale: isOpen ? 1.18 : 0.95,
+                    }}
+                    transition={{ type: 'spring', stiffness: 280, damping: 18 }}
+                  >
+                    <FlowerEmblem species={spec.species} size={50} />
+                  </motion.span>
+
+                  <div className="exhibit-row__heading">
+                    <h3 className="exhibit-row__title">{project.title}</h3>
+                    <span className="mono exhibit-row__meta">
+                      {spec.label} · {project.role} · {project.meta}
+                    </span>
+                  </div>
+
+                  <span className="mono exhibit-row__toggle">
+                    {isOpen
+                      ? lang === 'id'
+                        ? 'TUTUP −'
+                        : 'CLOSE −'
+                      : lang === 'id'
+                        ? 'MEKAR +'
+                        : 'BLOOM +'}
+                  </span>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key={`${project.id}-body`}
+                      className="exhibit-row__expand"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.42, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <div className="exhibit-row__content">
+                        <div className="exhibit-row__copy">
+                          <p className="exhibit-row__tagline">{project.tagline}</p>
+                          <p className="exhibit-row__desc">{project.description}</p>
+
+                          <div className="exhibit-tags">
+                            {project.tags.map((t) => (
+                              <span key={t} className="tag">
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+
+                          <div className="exhibit-row__cta-wrap">
+                            <Link to={`/work/${project.id}`} className="mono alpine-orbit-cta">
+                              {lang === 'id'
+                                ? 'Buka Studi Kasus Lengkap ↗'
+                                : 'Open Full Case Study ↗'}
+                            </Link>
+                          </div>
+                        </div>
+
+                        {project.metrics && (
+                          <div className="exhibit-row__metrics">
+                            {project.metrics.map((m) => (
+                              <div key={m.label} className="exhibit-metric-pill">
+                                <span className="mono">{m.label}</span>
+                                <strong>{m.value}</strong>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.article>
+            );
+          })}
         </div>
       </section>
     </div>

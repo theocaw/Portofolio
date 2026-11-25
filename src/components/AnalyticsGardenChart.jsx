@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
+import FlowerEmblem from './FlowerEmblem.jsx';
 import './AnalyticsGardenChart.css';
+
+const BAR_SPECIES = ['edelweiss', 'rose', 'buttercup', 'gentian', 'lavender'];
 
 const CHART_DATASETS = {
   medigo: {
@@ -238,19 +241,32 @@ export default function AnalyticsGardenChart() {
                   <div className="agc-col__track">
                     <motion.div
                       key={`${datasetKey}-${bar.key}-bar`}
-                      className="agc-col__bar"
-                      style={{ background: `var(${bar.colorVar})` }}
-                      initial={{ scaleY: 0, opacity: 0.35 }}
-                      whileInView={{ scaleY: 1, opacity: 1 }}
+                      className="agc-col__stem-wrap"
+                      initial={{ height: '14%', opacity: 0.4 }}
+                      whileInView={{ height: `${bar.pct}%`, opacity: 1 }}
                       viewport={{ once: true, amount: 0.35 }}
-                      animate={{ height: `${bar.pct}%` }}
                       transition={{
                         type: 'spring',
-                        stiffness: 220,
-                        damping: 22,
-                        delay: idx * 0.065,
+                        stiffness: 180,
+                        damping: 20,
+                        delay: idx * 0.075,
                       }}
-                    />
+                    >
+                      <motion.span
+                        className="agc-col__flower-top"
+                        animate={{
+                          scale: isFocused ? 1.25 : 0.96,
+                          rotate: isFocused ? 18 : 0,
+                        }}
+                        transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                      >
+                        <FlowerEmblem species={BAR_SPECIES[idx % BAR_SPECIES.length]} size={38} />
+                      </motion.span>
+                      <div
+                        className="agc-col__bar"
+                        style={{ background: `var(${bar.colorVar})` }}
+                      />
+                    </motion.div>
                   </div>
                   <span className="mono agc-col__label">
                     {lang === 'id' ? bar.labelId : bar.labelEn}

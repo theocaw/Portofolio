@@ -6,21 +6,6 @@ import { getAboutContent } from '../content/about.js';
 import FlowerEmblem from '../components/FlowerEmblem.jsx';
 import './About.css';
 
-const SEAL_STAMPS = {
-  en: [
-    'EDELWEISS RECORD · CLICK TO BLOOM',
-    'VERIFIED · CUM LAUDE TRACK',
-    'VERIFIED · DATA & SOFTWARE ENG.',
-    'VERIFIED · VOCATIONAL IPB UNIVERSITY',
-  ],
-  id: [
-    'CATATAN EDELWEISS · KLIK UNTUK MEKAR',
-    'TERVERIFIKASI · JALUR CUM LAUDE',
-    'TERVERIFIKASI · DATA & RPL',
-    'TERVERIFIKASI · SEKOLAH VOKASI IPB',
-  ],
-};
-
 const BED_FLOWERS = ['rose', 'buttercup', 'lavender'];
 
 export default function About() {
@@ -28,11 +13,9 @@ export default function About() {
   const about = getAboutContent(lang);
   const { intro, profile, education, toolkit, workInvitation } = about;
 
-  const [stampIdx, setStampIdx] = useState(0);
-  const [activeBed, setActiveBed] = useState(0); // 0, 1, 2, or 'all'
+  const [bloomOpen, setBloomOpen] = useState(false);
+  const [activeBed, setActiveBed] = useState('all'); // 'all' | 0 | 1 | 2
   const [selectedTool, setSelectedTool] = useState(null);
-
-  const stamps = SEAL_STAMPS[lang] || SEAL_STAMPS.en;
 
   const visibleDomains =
     activeBed === 'all'
@@ -40,242 +23,241 @@ export default function About() {
       : [{ ...toolkit.domains[activeBed], idx: activeBed }];
 
   return (
-    <div className="meadow-about">
-      {/* Header */}
-      <section className="container meadow-about-hero">
-        <span className="mono kissa-eyebrow">
-          {lang === 'id'
-            ? '02 / TENTANG · PAVILIUN BOTANI & PROFIL'
-            : '02 / ABOUT · ALPINE GLASSHOUSE PAVILION'}
-        </span>
-        <h1 className="meadow-about-hero__title">{intro.headline}</h1>
-        <p className="meadow-about-hero__desc">{intro.description}</p>
+    <div className="about-walk">
+      {/* Open-Air Kinetic Opening */}
+      <section className="container about-walk__hero">
+        <motion.span
+          className="mono kissa-eyebrow"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {lang === 'id' ? '02 / TENTANG · KONSERVATORI ALPEN' : '02 / ABOUT · THE ALPINE CONSERVATORY'}
+        </motion.span>
+
+        <div className="about-walk__headline-mask">
+          <motion.h1
+            className="about-walk__title"
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {intro.headline}
+          </motion.h1>
+        </div>
+
+        <motion.p
+          className="about-walk__desc"
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, delay: 0.18 }}
+        >
+          {intro.description}
+        </motion.p>
       </section>
 
-      {/* =========================================================
-          CENTERPIECE 1: SUNLIT ALPINE GLASSHOUSE PAVILION (2 Botanical Cards)
-         ========================================================= */}
-      <section className="band band--paper-2 meadow-pavilion-band">
-        <div className="container">
-          <div className="meadow-pavilion">
-            {/* Left Pavilion Wing: Profile & Focus */}
-            <article className="meadow-wing kissa-spotlight">
-              <div className="meadow-wing__head">
-                <span className="mono">
-                  {lang === 'id' ? 'TAMAN I · PROFIL & ARAH' : `GARDEN WING I · ${profile.label}`}
-                </span>
-                <FlowerEmblem species="rose" size={34} />
-              </div>
+      {/* Open Asymmetric Editorial Story + Interactive Sculptural Blooming GPA Ring */}
+      <section className="container about-walk__story-band">
+        <div className="about-walk__story-grid">
+          <motion.div
+            className="about-walk__prose-col"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="mono about-walk__sub-label">{profile.label}</span>
+            <h2 className="about-walk__section-h2">{profile.title}</h2>
+            <div className="about-walk__paragraphs">
+              {profile.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
 
-              <h2 className="meadow-wing__title">{profile.title}</h2>
-
-              <div className="meadow-wing__prose">
-                {profile.paragraphs.map((p) => (
-                  <p key={p}>{p}</p>
-                ))}
-              </div>
-
-              <div className="meadow-focus-row">
-                {profile.focus.map((f) => (
-                  <div key={f.label} className="meadow-focus-box">
-                    <span className="mono meadow-focus-box__k">{f.label}</span>
-                    <strong className="meadow-focus-box__v">{f.value}</strong>
+            <div className="about-walk__focus-pills">
+              {profile.focus.map((f, idx) => (
+                <motion.div
+                  key={f.label}
+                  className="about-walk__focus-pill"
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 320, damping: 20 }}
+                >
+                  <FlowerEmblem species={idx === 0 ? 'rose' : 'gentian'} size={34} />
+                  <div>
+                    <span className="mono">{f.label}</span>
+                    <strong>{f.value}</strong>
                   </div>
-                ))}
-              </div>
-            </article>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-            {/* Right Pavilion Wing: IPB Education & Interactive Blooming Edelweiss GPA */}
-            <article className="meadow-wing kissa-spotlight">
-              <div className="meadow-wing__head">
-                <span className="mono">
-                  {lang === 'id' ? 'TAMAN II · PENDIDIKAN' : `GARDEN WING II · ${education.label}`}
-                </span>
-                <FlowerEmblem species="gentian" size={34} />
-              </div>
-
-              <div className="meadow-edu-block">
-                <span className="mono meadow-edu-block__period">{education.period}</span>
-                <h2 className="meadow-wing__title">{education.school}</h2>
-                <p className="meadow-edu-block__degree">{education.degree.join(' — ')}</p>
-
-                <div className="meadow-lang-grid">
-                  {education.languages.map((l) => (
-                    <div key={l.name} className="meadow-lang-item">
-                      <strong>{l.name}</strong>
-                      <span className="mono">{l.level}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Interactive Blooming Edelweiss GPA Medallion */}
-              <motion.div
-                className="meadow-gpa-card kissa-gpa-plate"
-                onClick={() => setStampIdx((prev) => (prev + 1) % stamps.length)}
-                whileHover={{ y: -3 }}
-                whileTap={{ scale: 0.985 }}
-                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setStampIdx((prev) => (prev + 1) % stamps.length);
-                  }
+          {/* Interactive Sculptural Blooming GPA Ring (Click/Hover blooms petals outward!) */}
+          <motion.div
+            className={`about-gpa-orbit ${bloomOpen ? 'is-bloomed' : ''}`}
+            onClick={() => setBloomOpen((b) => !b)}
+            onMouseEnter={() => setBloomOpen(true)}
+            onMouseLeave={() => setBloomOpen(false)}
+            role="button"
+            tabIndex={0}
+            aria-label="Interactive Blooming GPA Medallion — click to bloom petals"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setBloomOpen((b) => !b);
+              }
+            }}
+          >
+            {/* 6 Animated Petals Radiating Outward on Hover/Click */}
+            {[0, 60, 120, 180, 240, 300].map((deg, i) => (
+              <motion.span
+                key={deg}
+                className="about-gpa-orbit__petal"
+                animate={{
+                  rotate: deg + (bloomOpen ? 18 : 0),
+                  scale: bloomOpen ? 1.15 : 0.85,
+                  opacity: bloomOpen ? 0.92 : 0.45,
                 }}
-              >
-                <div className="meadow-gpa-card__top">
-                  <div className="mono meadow-gpa-card__meta">
-                    <span>{education.gpa.label}</span>
-                    <span className="meadow-gpa-card__badge">{stamps[stampIdx]}</span>
-                  </div>
-                  <motion.div
-                    key={stampIdx}
-                    initial={{ rotate: -35, scale: 0.8 }}
-                    animate={{ rotate: 0, scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 280, damping: 16 }}
-                  >
-                    <FlowerEmblem species="edelweiss" size={44} />
-                  </motion.div>
-                </div>
+                transition={{
+                  type: 'spring',
+                  stiffness: 200,
+                  damping: 18,
+                  delay: i * 0.03,
+                }}
+                aria-hidden="true"
+              />
+            ))}
 
-                <div className="meadow-gpa-card__val">
-                  <span className="meadow-gpa-card__num">{education.gpa.value}</span>
-                  <span className="meadow-gpa-card__scale">{education.gpa.scale}</span>
-                </div>
-                <p className="meadow-gpa-card__note">{education.gpa.note}</p>
-              </motion.div>
-            </article>
+            <div className="about-gpa-orbit__core">
+              <span className="mono about-gpa-orbit__label">{education.gpa.label}</span>
+              <div className="about-gpa-orbit__val">
+                <span>{education.gpa.value}</span>
+                <small className="mono">{education.gpa.scale}</small>
+              </div>
+              <span className="mono about-gpa-orbit__school">{education.school}</span>
+              <span className="mono about-gpa-orbit__period">{education.period}</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Clean Horizontal Education & Languages Strip */}
+        <div className="about-edu-ribbon">
+          <div className="about-edu-ribbon__item">
+            <span className="mono">DEGREE</span>
+            <strong>{education.degree.join(' — ')}</strong>
           </div>
+          {education.languages.map((l) => (
+            <div key={l.name} className="about-edu-ribbon__item">
+              <span className="mono">LANGUAGE</span>
+              <strong>
+                {l.name} · <em>{l.level}</em>
+              </strong>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* =========================================================
-          CENTERPIECE 2: 3-BED BOTANICAL SEED PACKET TOOLKIT
-         ========================================================= */}
-      <section className="container meadow-toolkit-section">
-        <div className="meadow-toolkit-header">
+      {/* Interactive Floating Seed-Cloud Botanical Skill Constellation */}
+      <section className="container about-constellation">
+        <div className="about-constellation__head">
           <div>
-            <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'KEBUN KEAHLIAN · 03 PETAK BUNGA' : `BOTANICAL TOOLKIT · ${toolkit.label}`}
-            </span>
-            <h2 className="meadow-toolkit-title">{toolkit.title}</h2>
+            <span className="mono kissa-eyebrow">{toolkit.label}</span>
+            <h2 className="about-walk__section-h2">{toolkit.title}</h2>
           </div>
 
-          <div className="meadow-bed-tabs" role="tablist" aria-label="Toolkit botanical beds">
+          <div className="about-constellation__tabs" role="tablist">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activeBed === 'all'}
+              className={`mono about-tab ${activeBed === 'all' ? 'is-active' : ''}`}
+              onClick={() => setActiveBed('all')}
+            >
+              {activeBed === 'all' && (
+                <motion.span
+                  layoutId="about-constellation-pill"
+                  className="about-tab__bg"
+                  transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                />
+              )}
+              <span className="about-tab__lbl">{lang === 'id' ? 'Semua' : 'All Flora'}</span>
+            </button>
+
             {toolkit.domains.map((d, idx) => {
-              const isSelected = activeBed === idx;
+              const selected = activeBed === idx;
               return (
                 <button
                   key={d.title}
                   type="button"
                   role="tab"
-                  aria-selected={isSelected}
-                  className={`mono meadow-bed-tab ${isSelected ? 'is-active' : ''}`}
+                  aria-selected={selected}
+                  className={`mono about-tab ${selected ? 'is-active' : ''}`}
                   onClick={() => setActiveBed(idx)}
                 >
-                  {isSelected && (
+                  {selected && (
                     <motion.span
-                      layoutId="about-garden-bed-pill"
-                      className="meadow-bed-tab__bg"
+                      layoutId="about-constellation-pill"
+                      className="about-tab__bg"
                       transition={{ type: 'spring', stiffness: 420, damping: 30 }}
                     />
                   )}
-                  <span className="meadow-bed-tab__label">0{idx + 1} · {d.title}</span>
+                  <span className="about-tab__lbl">{d.title}</span>
                 </button>
               );
             })}
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activeBed === 'all'}
-              className={`mono meadow-bed-tab ${activeBed === 'all' ? 'is-active' : ''}`}
-              onClick={() => setActiveBed('all')}
-            >
-              {activeBed === 'all' && (
-                <motion.span
-                  layoutId="about-garden-bed-pill"
-                  className="meadow-bed-tab__bg"
-                  transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-                />
-              )}
-              <span className="meadow-bed-tab__label">
-                {lang === 'id' ? 'Semua (3)' : 'All Beds (3)'}
-              </span>
-            </button>
           </div>
         </div>
 
         <AnimatePresence mode="wait">
           <motion.div
             key={String(activeBed)}
-            className={`meadow-seed-grid ${activeBed === 'all' ? 'is-multi' : ''}`}
-            initial={{ opacity: 0, y: 14 }}
+            className="about-constellation__rows"
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ type: 'spring', stiffness: 280, damping: 24 }}
           >
             {visibleDomains.map((d) => (
-              <article key={d.title} className="meadow-seed-card kissa-spotlight">
-                <div className="meadow-seed-card__top">
-                  <div className="meadow-seed-card__species">
-                    <FlowerEmblem species={BED_FLOWERS[d.idx % BED_FLOWERS.length]} size={42} />
-                    <div>
-                      <span className="mono meadow-seed-card__code">
-                        GARDEN BED 0{d.idx + 1} · {d.tools.length} TOOLS
-                      </span>
-                      <h3 className="meadow-seed-card__title">{d.title}</h3>
-                    </div>
+              <div key={d.title} className="about-domain-row">
+                <div className="about-domain-row__left">
+                  <FlowerEmblem species={BED_FLOWERS[d.idx % BED_FLOWERS.length]} size={46} />
+                  <div>
+                    <h3 className="about-domain-row__title">{d.title}</h3>
+                    <p className="about-domain-row__desc">{d.description}</p>
                   </div>
-
-                  {selectedTool && d.tools.includes(selectedTool) && (
-                    <button
-                      type="button"
-                      className="mono meadow-seed-clear"
-                      onClick={() => setSelectedTool(null)}
-                    >
-                      {selectedTool} ×
-                    </button>
-                  )}
                 </div>
 
-                <p className="meadow-seed-card__desc">{d.description}</p>
-
-                <div className="meadow-seed-pills">
+                <div className="about-domain-row__cloud">
                   {d.tools.map((tool, tIdx) => (
                     <motion.button
                       key={tool}
                       type="button"
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      className={`mono about-seed-chip ${selectedTool === tool ? 'is-selected' : ''}`}
+                      initial={{ opacity: 0, scale: 0.86 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{
-                        type: 'spring',
-                        stiffness: 340,
-                        damping: 22,
-                        delay: tIdx * 0.03,
-                      }}
-                      className={`mono meadow-seed-pill ${selectedTool === tool ? 'is-selected' : ''}`}
+                      whileHover={{ y: -4, scale: 1.06 }}
+                      whileTap={{ scale: 0.94 }}
+                      transition={{ type: 'spring', stiffness: 360, damping: 20, delay: tIdx * 0.025 }}
                       onClick={() => setSelectedTool((prev) => (prev === tool ? null : tool))}
                     >
                       {tool}
                     </motion.button>
                   ))}
                 </div>
-              </article>
+              </div>
             ))}
           </motion.div>
         </AnimatePresence>
 
-        {/* Next-Garden Invitation */}
-        <div className="meadow-next-bar">
+        {/* Open Horizon Next Link */}
+        <div className="about-next-banner">
           <div>
             <span className="mono kissa-eyebrow">
-              {lang === 'id' ? '03 / SELANJUTNYA: TAMAN PROYEK' : '03 / NEXT: PROJECT FLOWER GARDEN'}
+              {lang === 'id' ? '03 / SELANJUTNYA: PAMERAN BUNGA PROYEK' : '03 / NEXT: FLOWER EXHIBITION'}
             </span>
-            <h3 className="meadow-next-bar__title">{workInvitation.title}</h3>
+            <h3 className="about-next-banner__title">{workInvitation.title}</h3>
           </div>
-          <Link to={workInvitation.action.to} className="mono meadow-next-bar__cta">
+          <Link to={workInvitation.action.to} className="mono alpine-orbit-cta">
             {workInvitation.action.label} ↗
           </Link>
         </div>

@@ -3,6 +3,7 @@
    ========================================================= */
 
 .project-detail-page {
+  padding-top: 96px;
   padding-bottom: clamp(60px, 8vw, 100px);
 }
 

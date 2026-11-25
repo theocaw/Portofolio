@@ -2,6 +2,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
+import FlowerEmblem from './FlowerEmblem.jsx';
 import './SiteHeader.css';
 
 export default function SiteHeader() {
@@ -17,16 +18,18 @@ export default function SiteHeader() {
   ];
 
   return (
-    <header className="kissa-header">
-      <div className="container kissa-header__inner">
-        <Link to="/" className="kissa-brand" aria-label="Osanna Patricia Limbong — Home">
-          <span className="kissa-brand__name">Osanna Patricia Limbong</span>
-          <span className="mono kissa-brand__sub">
-            {lang === 'id' ? 'TAMAN BUNGA ALPEN' : 'ALPINE FLOWER GARDEN'}
+    <header className="alpine-dock-wrap">
+      <div className="alpine-dock">
+        {/* Left Floating Brand Pill */}
+        <Link to="/" className="alpine-brand-pill" aria-label="Osanna Patricia Limbong — Home">
+          <span className="alpine-brand-pill__flower" aria-hidden="true">
+            <FlowerEmblem species="edelweiss" size={24} />
           </span>
+          <span className="alpine-brand-pill__name">Osanna</span>
         </Link>
 
-        <nav className="kissa-nav" aria-label="Main Navigation">
+        {/* Center Floating Translucent Navigation Pill (Reel 3 inspired) */}
+        <nav className="alpine-nav-pill" aria-label="Main Navigation">
           {navItems.map((item) => {
             const active =
               item.to === '/'
@@ -37,57 +40,51 @@ export default function SiteHeader() {
                 key={item.to}
                 to={item.to}
                 end={item.to === '/'}
-                className={`kissa-nav__link ${active ? 'is-active' : ''}`}
+                className={`alpine-nav-link ${active ? 'is-active' : ''}`}
               >
-                <span className="mono kissa-nav__idx">{item.index}</span>
-                <span>{item.label}</span>
                 {active && (
                   <motion.span
-                    layoutId="garden-nav-active-bar"
-                    className="kissa-nav__active-bar"
+                    layoutId="alpine-dock-active-pill"
+                    className="alpine-nav-link__bg"
                     transition={{ type: 'spring', stiffness: 420, damping: 32 }}
                   />
                 )}
+                <span className="alpine-nav-link__text">
+                  <span className="mono alpine-nav-link__idx">{item.index}</span>
+                  {item.label}
+                </span>
               </NavLink>
             );
           })}
         </nav>
 
-        <div className="kissa-controls">
-          <div className="kissa-lang" role="group" aria-label="Language">
-            <button
-              type="button"
-              className={`mono kissa-lang__btn ${lang === 'en' ? 'is-active' : ''}`}
-              onClick={() => setLang('en')}
-            >
-              EN
-            </button>
-            <span className="mono kissa-lang__sep">/</span>
-            <button
-              type="button"
-              className={`mono kissa-lang__btn ${lang === 'id' ? 'is-active' : ''}`}
-              onClick={() => setLang('id')}
-            >
-              ID
-            </button>
-          </div>
+        {/* Right Floating Controls Pill */}
+        <div className="alpine-controls-pill">
+          <button
+            type="button"
+            className="mono alpine-mini-btn"
+            onClick={() => setLang(lang === 'en' ? 'id' : 'en')}
+            aria-label="Toggle language"
+          >
+            {lang === 'en' ? 'EN' : 'ID'}
+          </button>
 
           <button
             type="button"
-            className="mono kissa-theme-btn"
+            className="mono alpine-mini-btn"
             onClick={toggleTheme}
-            aria-label={theme === 'light' ? 'Switch to moonlit dark mode' : 'Switch to sunlit light mode'}
+            aria-label={theme === 'light' ? 'Switch to dusk mode' : 'Switch to daylight mode'}
           >
             {theme === 'light'
               ? lang === 'id'
                 ? 'Malam'
-                : 'Moonlit'
+                : 'Dusk'
               : lang === 'id'
                 ? 'Siang'
-                : 'Sunlit'}
+                : 'Day'}
           </button>
 
-          <a href="#contact" className="mono kissa-contact-link" title={site.email}>
+          <a href="#contact" className="mono alpine-contact-pill" title={site.email}>
             {lang === 'id' ? 'Kontak ↗' : 'Contact ↗'}
           </a>
         </div>

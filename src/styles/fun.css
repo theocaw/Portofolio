@@ -1,28 +1,18 @@
-/* Swiss Alpine Flower Meadow Atmosphere Layer */
+/* Swiss Alpine Flower Meadow Atmosphere & Motion-Graphic Layer */
 
 body {
   background-color: var(--paper);
   background-image:
-    radial-gradient(at 10% 2%, rgba(164, 212, 247, 0.34) 0px, transparent 48%),
-    radial-gradient(at 88% 6%, rgba(243, 166, 184, 0.24) 0px, transparent 46%),
+    radial-gradient(at 10% 2%, rgba(164, 212, 247, 0.32) 0px, transparent 48%),
+    radial-gradient(at 88% 6%, rgba(243, 166, 184, 0.22) 0px, transparent 46%),
     radial-gradient(at 50% 94%, rgba(229, 169, 47, 0.14) 0px, transparent 52%),
     radial-gradient(at 14% 72%, rgba(78, 168, 123, 0.14) 0px, transparent 48%);
   background-attachment: fixed;
   color: var(--ink);
+  overflow-x: hidden;
   transition:
     background-color var(--transition),
     color var(--transition);
-}
-
-/* Subtle botanical paper texture */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9990;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 [data-theme='dark'] body {
@@ -32,65 +22,25 @@ body::before {
     radial-gradient(at 50% 94%, rgba(104, 201, 152, 0.09) 0px, transparent 50%);
 }
 
-/* Clean Architectural Buttons */
-.button-link {
-  border: 1px solid var(--ink);
-  border-radius: var(--radius-button);
-  box-shadow: none;
-  font-weight: 500;
-  transition:
-    background-color var(--transition),
-    color var(--transition),
-    border-color var(--transition),
-    transform var(--transition);
+/* Top 2.5px Spring-Smoothed Meadow Scroll Progress Thread */
+.alpine-scroll-thread {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--sky), var(--blue), var(--pink-hot), var(--lime));
+  transform-origin: left center;
+  z-index: 90;
+  pointer-events: none;
 }
 
-.button-link:hover {
-  transform: translateY(-1px);
+.alpine-main {
+  position: relative;
+  z-index: 2;
 }
 
-.button-link--primary {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-.button-link--primary:hover {
-  background: var(--blue);
-  border-color: var(--blue);
-  color: #faf8f4;
-}
-
-.button-link--secondary {
-  background: transparent;
-  color: var(--ink);
-  border-color: var(--rule-strong);
-}
-
-.button-link--secondary:hover {
-  background: var(--paper-2);
-  border-color: var(--ink);
-}
-
-/* Refined Tags */
-.tag {
-  border: 1px solid var(--rule);
-  border-radius: 4px;
-  background: var(--paper-2);
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  padding: 3px 9px;
-  transition: border-color var(--transition), color var(--transition);
-}
-
-.tag:hover {
-  border-color: var(--ink);
-  color: var(--ink);
-}
-
-/* =========================================================
-   AMBIENT SUNLIT LIBRARY DUST MOTES & PRECISION BRASS CURSOR
-   ========================================================= */
+/* Floating Ambient Wildflower Petals & Precision Cursor Ring */
 .kissa-dust-canvas {
   position: fixed;
   inset: 0;
@@ -115,25 +65,18 @@ body::before {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  border: 1px solid rgba(184, 74, 39, 0.52);
-  background: radial-gradient(circle, rgba(217, 178, 95, 0.08) 0%, transparent 72%);
-  transition:
-    opacity 220ms ease,
-    border-color 220ms ease,
-    background-color 220ms ease;
+  border: 1px solid rgba(217, 79, 110, 0.5);
+  background: radial-gradient(circle, rgba(243, 166, 184, 0.12) 0%, transparent 72%);
+  transition: opacity 200ms ease, border-color 200ms ease;
 }
 
 .kissa-cursor-ring.is-visible {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .kissa-cursor-ring.is-hover {
-  border-color: rgba(217, 178, 95, 0.9);
-  background: radial-gradient(circle, rgba(217, 178, 95, 0.16) 0%, transparent 72%);
-}
-
-.kissa-cursor-ring.is-pressed {
-  border-color: var(--pink-hot);
+  border-color: var(--blue);
+  background: radial-gradient(circle, rgba(78, 168, 123, 0.16) 0%, transparent 72%);
 }
 
 .kissa-cursor-dot {
@@ -141,219 +84,53 @@ body::before {
   height: 5px;
   border-radius: 50%;
   background: var(--pink-hot);
-  transition: opacity 180ms ease, background-color 180ms ease;
+  transition: opacity 180ms ease;
 }
 
 .kissa-cursor-dot.is-visible {
   opacity: 0.9;
 }
 
-.kissa-cursor-dot.is-hover {
-  background: var(--lime);
+/* Shared Organic Pills & Tags */
+.tag {
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  padding: 4px 11px;
+  transition: border-color var(--transition), color var(--transition), transform var(--transition);
 }
 
-[data-theme='dark'] .kissa-cursor-ring {
-  border-color: rgba(224, 184, 101, 0.55);
+.tag:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-1px);
 }
 
-/* Silky Editorial Curtain Page Transition & Staggered Panel Reveal */
-.kissa-page-transition {
-  position: relative;
-  z-index: 2;
-  animation: kissaPageEnter 560ms cubic-bezier(0.22, 1, 0.36, 1) both;
+.button-link {
+  border: 1px solid var(--blue);
+  border-radius: 999px;
+  font-weight: 500;
+  transition: background-color var(--transition), color var(--transition), transform var(--transition);
 }
 
-@keyframes kissaPageEnter {
-  0% {
-    opacity: 0;
-    transform: translate3d(0, 18px, 0);
-    filter: blur(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-    filter: blur(0);
-  }
+.button-link--primary {
+  background: var(--blue);
+  color: #ffffff;
 }
 
-.kissa-panel-reveal {
-  animation: kissaPanelGlide 440ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.kissa-panel-reveal > * {
-  animation: kissaChildCascade 480ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.kissa-panel-reveal > *:nth-child(2) {
-  animation-delay: 60ms;
-}
-
-.kissa-panel-reveal > *:nth-child(3) {
-  animation-delay: 110ms;
-}
-
-@keyframes kissaPanelGlide {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 14px, 0) scale(0.992);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes kissaChildCascade {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 10px, 0);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/* Tactile 3D Perspective Card Tilt & Magnetic Editorial CTAs */
-.kissa-tilt {
-  transition: transform 340ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 260ms ease, border-color 220ms ease;
-  transform-style: preserve-3d;
-}
-
-.kissa-tilt.is-tilting {
-  transition: transform 110ms ease-out, box-shadow 220ms ease, border-color 220ms ease;
-  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(-4px) !important;
-  box-shadow: 0 22px 42px -16px rgba(20, 16, 12, 0.32);
-}
-
-.kissa-magnetic {
-  transition:
-    transform 360ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color var(--transition),
-    color var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
-}
-
-.kissa-magnetic.is-magnetic {
-  transition:
-    transform 90ms ease-out,
-    background-color var(--transition),
-    color var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
-  transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0) !important;
-}
-
-/* Smooth 60fps Warm Reading-Lamp Cursor Spotlight */
-.kissa-spotlight {
-  position: relative;
-}
-
-.kissa-spotlight::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  opacity: 0;
-  background: radial-gradient(
-    420px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(217, 178, 95, 0.14),
-    transparent 65%
-  );
-  transition: opacity 280ms ease;
-  z-index: 2;
-}
-
-.kissa-spotlight.is-lit::after {
-  opacity: 1;
-}
-
-[data-theme='dark'] .kissa-spotlight::after {
-  background: radial-gradient(
-    420px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(224, 184, 101, 0.11),
-    transparent 65%
-  );
-}
-
-/* Bidirectional Editorial Scroll Animations (Scroll Down & Scroll Up) */
-.jump-target {
-  will-change: opacity, transform;
-}
-
-.jump-target[data-jump='idle'] {
-  opacity: 0;
-  transform: translate3d(0, 34px, 0) scale(0.96);
-  pointer-events: none;
-}
-
-.jump-target[data-jump='in-bottom'] {
-  animation: kissaGlideInBottom 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--jump-delay, 0ms) both;
-}
-
-.jump-target[data-jump='in-top'] {
-  animation: kissaGlideInTop 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--jump-delay, 0ms) both;
-}
-
-.jump-target[data-jump='out-top'] {
-  animation: kissaGlideOutTop 420ms cubic-bezier(0.4, 0, 0.2, 1) both;
-  pointer-events: none;
-}
-
-.jump-target[data-jump='out-bottom'] {
-  animation: kissaGlideOutBottom 420ms cubic-bezier(0.4, 0, 0.2, 1) both;
-  pointer-events: none;
-}
-
-@keyframes kissaGlideInBottom {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 42px, 0) scale(0.965);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes kissaGlideInTop {
-  from {
-    opacity: 0;
-    transform: translate3d(0, -42px, 0) scale(0.965);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-}
-
-@keyframes kissaGlideOutTop {
-  from {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, -34px, 0) scale(0.965);
-  }
-}
-
-@keyframes kissaGlideOutBottom {
-  from {
-    opacity: 1;
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  to {
-    opacity: 0;
-    transform: translate3d(0, 34px, 0) scale(0.965);
-  }
+.button-link--primary:hover {
+  background: var(--pink-hot);
+  border-color: var(--pink-hot);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 ::selection {
-  background: var(--lime);
-  color: #1c1917;
+  background: var(--pink);
+  color: #172920;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -361,16 +138,5 @@ body::before {
   .kissa-cursor-ring,
   .kissa-cursor-dot {
     display: none !important;
-  }
-
-  .jump-target,
-  .jump-target[data-jump],
-  .kissa-page-transition,
-  .kissa-panel-reveal,
-  .kissa-panel-reveal > * {
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-    animation: none !important;
   }
 }

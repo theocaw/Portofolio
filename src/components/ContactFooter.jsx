@@ -1,6 +1,8 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getSiteContent } from '../content/site.js';
+import FlowerEmblem from './FlowerEmblem.jsx';
 import './ContactFooter.css';
 
 export default function ContactFooter() {
@@ -20,72 +22,79 @@ export default function ContactFooter() {
   };
 
   return (
-    <footer className="kissa-footer" id="contact">
-      <div className="container kissa-footer__inner">
-        <div className="kissa-footer__grid">
-          <div className="kissa-footer__pitch">
-            <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'HUBUNGI LANGSUNG' : 'DIRECT CORRESPONDENCE'}
+    <footer className="meadow-footer" id="contact">
+      {/* Organic Curved Alpine Meadow Hill Horizon Divider */}
+      <svg
+        className="meadow-footer__curve"
+        viewBox="0 0 1440 90"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M0 90 Q 360 10 720 48 T 1440 24 L 1440 90 Z"
+          fill="var(--footer-hill)"
+        />
+      </svg>
+
+      <div className="meadow-footer__body">
+        <div className="container meadow-footer__inner">
+          <motion.div
+            className="meadow-footer__center"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="meadow-footer__bouquet" aria-hidden="true">
+              <FlowerEmblem species="rose" size={40} />
+              <FlowerEmblem species="edelweiss" size={54} />
+              <FlowerEmblem species="buttercup" size={40} />
+            </div>
+
+            <span className="mono meadow-footer__eyebrow">
+              {lang === 'id' ? 'MARI BERTUMBUH BERSAMA' : 'LET’S GROW SOMETHING TOGETHER'}
             </span>
-            <h2 className="kissa-footer__title">{contact.title}</h2>
-            <p className="kissa-footer__sub">
+
+            <h2 className="meadow-footer__title">{contact.title}</h2>
+
+            <p className="meadow-footer__sub">
               {lang === 'id'
                 ? 'Terbuka untuk peluang magang Data Analyst & Front-End Developer (Bogor / Jakarta / Remote).'
                 : 'Open for Data Analyst & Front-End Developer internship opportunities (Bogor / Jakarta / Remote).'}
             </p>
 
-            <div className="kissa-footer__actions">
-              <a href={`mailto:${site.email}`} className="mono kissa-footer__primary">
+            <div className="meadow-footer__actions">
+              <a href={`mailto:${site.email}`} className="mono meadow-footer__primary">
                 {lang === 'id' ? 'Kirim Email ↗' : 'Email Osanna ↗'}
               </a>
-              <button
-                type="button"
-                className="mono kissa-footer__copy"
-                onClick={copyEmail}
-              >
+              <button type="button" className="mono meadow-footer__copy" onClick={copyEmail}>
                 {copied
                   ? lang === 'id'
-                    ? 'Email Tersalin'
-                    : 'Copied to Clipboard'
+                    ? 'Email Tersalin ✓'
+                    : 'Copied to Clipboard ✓'
                   : site.email}
               </button>
             </div>
-          </div>
 
-          <div className="kissa-footer__directory">
-            <span className="mono kissa-footer__dir-head">
-              {lang === 'id' ? 'TAUTAN TAMAN' : 'GARDEN LINKS'}
-            </span>
-            <ul className="kissa-footer__links">
+            <div className="meadow-footer__socials">
               {site.github && (
-                <li>
-                  <a href={site.github.url} target="_blank" rel="noreferrer">
-                    <span>GitHub</span>
-                    <span className="mono">{site.github.label} ↗</span>
-                  </a>
-                </li>
+                <a href={site.github.url} target="_blank" rel="noreferrer" className="mono">
+                  GitHub ↗
+                </a>
               )}
-              <li>
-                <a href={site.linkedin.url} target="_blank" rel="noreferrer">
-                  <span>LinkedIn</span>
-                  <span className="mono">{site.linkedin.label} ↗</span>
-                </a>
-              </li>
-              <li>
-                <a href={site.instagram.url} target="_blank" rel="noreferrer">
-                  <span>Instagram</span>
-                  <span className="mono">{site.instagram.label} ↗</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+              <a href={site.linkedin.url} target="_blank" rel="noreferrer" className="mono">
+                LinkedIn ↗
+              </a>
+              <a href={site.instagram.url} target="_blank" rel="noreferrer" className="mono">
+                Instagram ↗
+              </a>
+            </div>
+          </motion.div>
 
-        <div className="kissa-footer__colophon">
-          <span className="mono">
-            OSANNA PATRICIA LIMBONG · ALPINE FLOWER GARDEN
-          </span>
-          <span className="mono">© {site.year}</span>
+          <div className="meadow-footer__bottom mono">
+            <span>OSANNA PATRICIA LIMBONG · SWISS ALPINE FLOWER GARDEN</span>
+            <span>© {site.year}</span>
+          </div>
         </div>
       </div>
     </footer>

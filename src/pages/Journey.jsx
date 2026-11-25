@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useSpring } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getJourneyContent } from '../content/journey.js';
 import FlowerEmblem from '../components/FlowerEmblem.jsx';
@@ -125,11 +125,20 @@ const ACHIEVEMENT_FILTERS = {
   ],
 };
 
+const ORG_SPECIES = ['edelweiss', 'rose', 'buttercup', 'gentian', 'lavender'];
+
 export default function Journey() {
   const { lang } = useApp();
   const journey = getJourneyContent(lang);
   const { intro, professional, organizations, achievements } = journey;
   const { internship } = professional;
+
+  const trailContainerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: trailContainerRef,
+    offset: ['start 20%', 'end 80%'],
+  });
+  const vineProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
 
   const waypoints = TRAIL_WAYPOINTS[lang] || TRAIL_WAYPOINTS.en;
   const [trailIdx, setTrailIdx] = useState(1);
@@ -146,55 +155,52 @@ export default function Journey() {
         : achievements.entries.filter((a) => a.badgeType !== 'verified');
 
   return (
-    <div className="kissa-journey">
-      {/* Header + Interactive Swiss Alpine Flower Trail */}
-      <section className="container kissa-journey-hero">
-        <div className="kissa-journey-hero__head">
-          <div>
-            <span className="mono kissa-eyebrow">
-              {lang === 'id'
-                ? '04 / PERJALANAN · JALUR ALPEN & KREDENSIAL'
-                : '04 / JOURNEY · SWISS ALPINE TRAIL & CREDENTIALS'}
-            </span>
-            <h1 className="kissa-journey-hero__title">{intro.headline}</h1>
-            <p className="kissa-journey-hero__desc">{intro.description}</p>
-          </div>
+    <div ref={trailContainerRef} className="trail-journey">
+      {/* Scroll-Drawn Living Alpine Botanical Vine Running Down the Left Margin */}
+      <div className="trail-vine-rail" aria-hidden="true">
+        <svg viewBox="0 0 40 1200" preserveAspectRatio="none" className="trail-vine-svg">
+          <path
+            d="M 20 0 C 34 150, 6 300, 20 450 C 34 600, 6 750, 20 900 C 34 1050, 12 1140, 20 1200"
+            fill="none"
+            stroke="var(--rule)"
+            strokeWidth="2"
+          />
+          <motion.path
+            d="M 20 0 C 34 150, 6 300, 20 450 C 34 600, 6 750, 20 900 C 34 1050, 12 1140, 20 1200"
+            fill="none"
+            stroke="var(--blue)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            style={{ pathLength: vineProgress }}
+          />
+        </svg>
+      </div>
+
+      {/* Header + Interactive 5-Bloom Swiss Alpine Trail */}
+      <section className="container trail-hero">
+        <motion.span
+          className="mono kissa-eyebrow"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          {lang === 'id'
+            ? '04 / PERJALANAN · JALUR BUNGA ALPEN (2024 — 2026)'
+            : '04 / JOURNEY · SWISS ALPINE BLOOMING TRAIL (2024 — 2026)'}
+        </motion.span>
+        <div className="trail-mask">
+          <motion.h1
+            className="trail-hero__title"
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+          >
+            {intro.headline}
+          </motion.h1>
         </div>
+        <p className="trail-hero__desc">{intro.description}</p>
 
-        {/* =========================================================
-            INTERACTIVE CENTERPIECE: SWISS ALPINE FLOWER TRAIL (5 BLOOMS)
-           ========================================================= */}
-        <div className="alpine-trail kissa-spotlight">
-          <div className="alpine-trail__topbar">
-            <div className="alpine-trail__brand">
-              <span className="alpine-trail__dot" />
-              <span className="mono">
-                {lang === 'id'
-                  ? 'JALUR MEKAR ALPEN · 2024 — 2026'
-                  : 'ALPINE BLOOMING TRAIL · 2024 — 2026'}
-              </span>
-            </div>
-
-            <div className="alpine-trail__step">
-              <button
-                type="button"
-                className="mono alpine-trail__btn"
-                onClick={() => setTrailIdx((prev) => (prev - 1 + waypoints.length) % waypoints.length)}
-              >
-                ← PREV
-              </button>
-              <span className="mono alpine-trail__elev">{activePoint.elevation}</span>
-              <button
-                type="button"
-                className="mono alpine-trail__btn"
-                onClick={() => setTrailIdx((prev) => (prev + 1) % waypoints.length)}
-              >
-                NEXT →
-              </button>
-            </div>
-          </div>
-
-          {/* Sunlit Curved Meadow Path + 5 Clickable Blooming Wildflower Waypoints */}
+        {/* Interactive 5-Flower Elevation Waypoints */}
+        <div className="alpine-trail">
           <div className="alpine-trail__meadow">
             <div className="alpine-trail__path-line" aria-hidden="true">
               <motion.div
@@ -218,7 +224,7 @@ export default function Journey() {
                   >
                     <motion.div
                       className="alpine-trail__flower"
-                      animate={{ scale: isActive ? 1.22 : 0.88, y: isActive ? -6 : 0 }}
+                      animate={{ scale: isActive ? 1.24 : 0.88, y: isActive ? -6 : 0 }}
                       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
                     >
                       <FlowerEmblem species={wp.species} size={46} />
@@ -231,19 +237,18 @@ export default function Journey() {
             </div>
           </div>
 
-          {/* Active Waypoint Milestone Note */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activePoint.label}
               className="alpine-trail__readout"
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ type: 'spring', stiffness: 300, damping: 26 }}
             >
               <div className="alpine-trail__readout-main">
                 <span className="mono alpine-trail__tag">
-                  WAYPOINT {activePoint.elevation} · {activePoint.year} · {activePoint.label}
+                  ALTITUDE {activePoint.elevation} · {activePoint.year} · {activePoint.label}
                 </span>
                 <h2 className="alpine-trail__title">{activePoint.title}</h2>
                 <p className="alpine-trail__detail">{activePoint.detail}</p>
@@ -257,215 +262,194 @@ export default function Journey() {
         </div>
       </section>
 
-      {/* Chapter 01: Industry Internship Dossier */}
-      <section className="band band--paper-2 kissa-journey-band" id="intern-section">
-        <div className="container kissa-journey-section">
-          <div className="kissa-section-head">
-            <span className="mono kissa-eyebrow">{professional.label}</span>
-            <h2 className="kissa-section-title">{professional.title}</h2>
+      {/* Chapter 01: Open Editorial PT KCT Industry Internship */}
+      <section className="container trail-chapter" id="intern-section">
+        <span className="mono kissa-eyebrow">{professional.label}</span>
+        <h2 className="trail-chapter__h2">{professional.title}</h2>
+
+        <motion.div
+          className="trail-intern-grid"
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="trail-intern-main">
+            <div className="mono trail-intern-meta">
+              <span>{internship.period}</span>
+              <span>·</span>
+              <span>{internship.location}</span>
+            </div>
+            <h3 className="trail-intern-company">{internship.company}</h3>
+            <div className="trail-intern-roles">
+              <span className="mono trail-role-pill">{internship.role}</span>
+              <a
+                href={internship.website.url}
+                target="_blank"
+                rel="noreferrer"
+                className="mono trail-live-link"
+              >
+                {internship.website.label}
+              </a>
+            </div>
+            <p className="trail-intern-desc">{internship.description}</p>
+
+            <ul className="trail-deliverables">
+              {internship.deliverables.map((item, idx) => (
+                <li key={idx}>
+                  <span className="mono">0{idx + 1}</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+
+            <div className="trail-tags">
+              {internship.skills.map((skill) => (
+                <span key={skill} className="tag">
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
 
-          <article className="kissa-intern-dossier">
-            <div className="kissa-intern-dossier__main">
-              <div className="mono kissa-intern-dossier__meta">
-                <span>{internship.period}</span>
-                <span>{internship.location}</span>
+          <aside className="trail-intern-metrics">
+            {internship.metrics.map((m) => (
+              <div key={m.label} className="trail-metric-item">
+                <span className="mono">{m.label}</span>
+                <strong>{m.value}</strong>
+                <small>{m.note}</small>
               </div>
-
-              <h3 className="kissa-intern-dossier__company">{internship.company}</h3>
-
-              <div className="kissa-intern-dossier__role-row">
-                <span className="mono kissa-role-tag">{internship.role}</span>
-                <a
-                  href={internship.website.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="mono kissa-live-link"
-                >
-                  {internship.website.label}
-                </a>
-              </div>
-
-              <p className="kissa-intern-dossier__desc">{internship.description}</p>
-
-              <div className="kissa-deliverables">
-                <span className="mono kissa-deliverables__head">
-                  {lang === 'id'
-                    ? 'KONTRIBUSI & DELIVERABLES'
-                    : 'KEY RESPONSIBILITIES & DELIVERABLES'}
-                </span>
-                <ul>
-                  {internship.deliverables.map((item, idx) => (
-                    <li key={idx}>
-                      <span className="mono kissa-deliverables__num">0{idx + 1}</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="kissa-tags-row">
-                {internship.skills.map((skill) => (
-                  <span key={skill} className="tag">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <aside className="kissa-intern-dossier__metrics">
-              <span className="mono kissa-intern-dossier__metrics-head">
-                {lang === 'id' ? 'RINGKASAN DAMPAK' : 'MEASURED OUTCOMES'}
-              </span>
-              {internship.metrics.map((m) => (
-                <div key={m.label} className="kissa-intern-metric">
-                  <span className="mono kissa-intern-metric__k">{m.label}</span>
-                  <strong className="kissa-intern-metric__v">{m.value}</strong>
-                  <span className="kissa-intern-metric__note">{m.note}</span>
-                </div>
-              ))}
-            </aside>
-          </article>
-        </div>
+            ))}
+          </aside>
+        </motion.div>
       </section>
 
-      {/* Chapter 02: Organizations & Leadership */}
-      <section
-        className="container kissa-journey-section kissa-journey-section--padded"
-        id="orgs-section"
-      >
-        <div className="kissa-section-head">
-          <span className="mono kissa-eyebrow">{organizations.label}</span>
-          <h2 className="kissa-section-title">{organizations.title}</h2>
-          <p className="kissa-section-desc">{organizations.description}</p>
-        </div>
+      {/* Chapter 02: Open Editorial Campus Leadership Rows */}
+      <section className="container trail-chapter" id="orgs-section">
+        <span className="mono kissa-eyebrow">{organizations.label}</span>
+        <h2 className="trail-chapter__h2">{organizations.title}</h2>
+        <p className="trail-chapter__desc">{organizations.description}</p>
 
-        <div className="kissa-orgs-grid">
-          {organizations.entries.map((entry) => (
-            <article key={entry.name} className="kissa-org-card">
-              <div className="mono kissa-org-card__top">
-                <span>{entry.period}</span>
-                <span className="kissa-org-card__badge">{entry.badge}</span>
+        <div className="trail-org-rows">
+          {organizations.entries.map((entry, idx) => (
+            <motion.article
+              key={entry.name}
+              className="trail-org-row"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.5, delay: idx * 0.05 }}
+            >
+              <div className="trail-org-row__left">
+                <FlowerEmblem species={ORG_SPECIES[idx % ORG_SPECIES.length]} size={42} />
+                <div>
+                  <span className="mono trail-org-row__period">
+                    {entry.period} · {entry.badge}
+                  </span>
+                  <h3 className="trail-org-row__name">{entry.name}</h3>
+                  <span className="mono trail-org-row__role">{entry.role}</span>
+                </div>
               </div>
 
-              <h3 className="kissa-org-card__name">{entry.name}</h3>
-              <span className="mono kissa-org-card__role">{entry.role}</span>
-              <p className="kissa-org-card__desc">{entry.description}</p>
-
-              {entry.metrics && (
-                <div className="kissa-org-card__metrics">
-                  {entry.metrics.map((m) => (
-                    <div key={m.label}>
-                      <span className="mono">{m.label}</span>
-                      <strong>{m.value}</strong>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              {entry.highlights && (
-                <ul className="kissa-org-card__highlights">
-                  {entry.highlights.map((h, i) => (
-                    <li key={i}>
-                      <span>—</span>
-                      <span>{h}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </article>
+              <div className="trail-org-row__right">
+                <p className="trail-org-row__desc">{entry.description}</p>
+                {entry.metrics && (
+                  <div className="trail-org-row__metrics">
+                    {entry.metrics.map((m) => (
+                      <div key={m.label}>
+                        <span className="mono">{m.label}</span>
+                        <strong>{m.value}</strong>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.article>
           ))}
         </div>
       </section>
 
       {/* Chapter 03: Achievements & Certifications */}
-      <section className="band band--paper-2 kissa-journey-band" id="awards-section">
-        <div className="container kissa-journey-section">
-          <div className="kissa-achievements-head">
-            <div>
-              <span className="mono kissa-eyebrow">{achievements.label}</span>
-              <h2 className="kissa-section-title">{achievements.title}</h2>
-            </div>
-
-            <div className="kissa-filters" role="tablist">
-              {filterList.map((f) => {
-                const isSelected = achFilter === f.id;
-                return (
-                  <button
-                    key={f.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isSelected}
-                    className={`mono kissa-filter-btn ${isSelected ? 'is-active' : ''}`}
-                    onClick={() => setAchFilter(f.id)}
-                  >
-                    {isSelected && (
-                      <motion.span
-                        layoutId="journey-ach-filter-pill"
-                        className="kissa-filter-btn__bg"
-                        transition={{ type: 'spring', stiffness: 420, damping: 30 }}
-                      />
-                    )}
-                    <span className="kissa-filter-btn__label">{f.label}</span>
-                  </button>
-                );
-              })}
-            </div>
+      <section className="container trail-chapter" id="awards-section">
+        <div className="trail-ach-head">
+          <div>
+            <span className="mono kissa-eyebrow">{achievements.label}</span>
+            <h2 className="trail-chapter__h2">{achievements.title}</h2>
           </div>
 
-          <div className="kissa-awards-grid">
-            {visibleAchievements.map((entry) => (
-              <motion.article
-                key={entry.name}
-                layout
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ type: 'spring', stiffness: 280, damping: 24 }}
-                className="kissa-award-card"
-              >
-                <div className="mono kissa-award-card__top">
-                  <span
-                    className={`kissa-award-pill kissa-award-pill--${entry.badgeType || 'award'}`}
-                  >
-                    {entry.result}
-                  </span>
-                  <span className="kissa-award-card__cat">{entry.category}</span>
-                </div>
-
-                <h3 className="kissa-award-card__name">{entry.name}</h3>
-                <span className="mono kissa-award-card__org">{entry.organizer}</span>
-                <p className="kissa-award-card__desc">{entry.description}</p>
-
-                <div className="kissa-award-card__foot">
-                  <div className="kissa-award-card__meta-row">
-                    {entry.validity && (
-                      <span className="mono kissa-award-card__valid">{entry.validity}</span>
-                    )}
-                    {entry.certificateUrl && (
-                      <a
-                        href={entry.certificateUrl}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mono kissa-award-card__pdf"
-                      >
-                        {lang === 'id' ? 'Lihat Sertifikat (PDF) ↗' : 'View Certificate (PDF) ↗'}
-                      </a>
-                    )}
-                  </div>
-
-                  {entry.skills && (
-                    <div className="kissa-tags-row">
-                      {entry.skills.map((s) => (
-                        <span key={s} className="tag">
-                          {s}
-                        </span>
-                      ))}
-                    </div>
+          <div className="exhibit-filters" role="tablist">
+            {filterList.map((f) => {
+              const isSelected = achFilter === f.id;
+              return (
+                <button
+                  key={f.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={isSelected}
+                  className={`mono exhibit-filter ${isSelected ? 'is-active' : ''}`}
+                  onClick={() => setAchFilter(f.id)}
+                >
+                  {isSelected && (
+                    <motion.span
+                      layoutId="journey-ach-filter-pill"
+                      className="exhibit-filter__bg"
+                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                    />
                   )}
-                </div>
-              </motion.article>
-            ))}
+                  <span className="exhibit-filter__lbl">{f.label}</span>
+                </button>
+              );
+            })}
           </div>
+        </div>
+
+        <div className="trail-awards-list">
+          {visibleAchievements.map((entry, idx) => (
+            <motion.article
+              key={entry.name}
+              layout
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+              className="trail-award-row"
+            >
+              <div className="trail-award-row__head">
+                <span className="mono trail-award-pill">{entry.result}</span>
+                <span className="mono trail-award-cat">{entry.category}</span>
+              </div>
+
+              <div className="trail-award-row__main">
+                <FlowerEmblem species={ORG_SPECIES[(idx + 2) % ORG_SPECIES.length]} size={40} />
+                <div>
+                  <h3 className="trail-award-name">{entry.name}</h3>
+                  <span className="mono trail-award-org">{entry.organizer}</span>
+                  <p className="trail-award-desc">{entry.description}</p>
+                </div>
+              </div>
+
+              <div className="trail-award-row__foot">
+                {entry.certificateUrl && (
+                  <a
+                    href={entry.certificateUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mono trail-live-link"
+                  >
+                    {lang === 'id' ? 'Lihat Sertifikat (PDF) ↗' : 'View Certificate (PDF) ↗'}
+                  </a>
+                )}
+                {entry.skills && (
+                  <div className="trail-tags">
+                    {entry.skills.map((s) => (
+                      <span key={s} className="tag">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.article>
+          ))}
         </div>
       </section>
     </div>

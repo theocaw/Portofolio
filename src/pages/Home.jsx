@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'motion/react';
 import { useApp } from '../context/AppContext.jsx';
 import { getHomeContent } from '../content/home.js';
 import BotanicalHeroCanvas from '../components/BotanicalHeroCanvas.jsx';
@@ -9,115 +9,79 @@ import AnalyticsGardenChart from '../components/AnalyticsGardenChart.jsx';
 import FlowerEmblem from '../components/FlowerEmblem.jsx';
 import './Home.css';
 
-const MEADOW_BLOOMS = {
+const ORBIT_BLOOMS = {
   en: [
     {
       id: 'intro',
       num: '01',
       species: 'edelweiss',
-      flowerName: 'EDELWEISS',
-      stemHeight: 118,
-      tag: '01 / OVERVIEW & DIRECTION',
+      flowerName: 'Edelweiss',
+      tag: '01 / OVERVIEW',
       title: 'Turning complex data into clear stories & living web systems.',
-      subtitle: 'Osanna Patricia Limbong — Data Analyst & Front-End Developer',
-      body:
-        'Software Engineering student at IPB University blending analytical rigor with tactile front-end craft. Pick any Swiss alpine wildflower above—or press ← / → arrow keys—to explore each pillar.',
-      metrics: [
-        { k: 'PRIMARY FOCUS', v: 'Data Analyst & Front-End' },
-        { k: 'EDUCATION', v: 'IPB University (TPL)' },
-        { k: 'AVAILABILITY', v: 'Open for Internship' },
-      ],
-      cta: { label: 'Read Full Profile (/about) ↗', to: '/about' },
+      body: 'Software Engineering student at IPB University blending analytical rigor with tactile front-end motion craft.',
+      stat: 'Data Analyst & Front-End',
+      to: '/about',
+      cta: 'Read Profile ↗',
     },
     {
       id: 'analytics',
       num: '02',
       species: 'rose',
-      flowerName: 'ALPINE ROSE',
-      stemHeight: 102,
-      tag: '02 / DATA ANALYSIS & MODELING',
-      title: 'Statistical modeling, geospatial ETL & market segmentation.',
-      subtitle: 'Exploratory Data Analysis · Linear Regression · Decision Trees · K-Means',
-      body:
-        'Cultivating raw multi-source datasets into normalized 3NF schemas, validated predictive models, and actionable business segments using Python, R, SQL, and interactive charts.',
-      metrics: [
-        { k: 'CORE STACK', v: 'Python · R · SQL' },
-        { k: 'GEOSPATIAL ETL', v: '30,903 Verified Rows' },
-        { k: 'PEAK MODEL', v: '81.94% R² Validated' },
-      ],
-      cta: { label: 'Explore Data Case Studies (/work) ↗', to: '/work' },
+      flowerName: 'Alpine Rose',
+      tag: '02 / DATA & ML',
+      title: 'Geospatial ETL, regression modeling & K-Means segmentation.',
+      body: '30,903 normalized Jabodetabek healthcare records for Medigo & 81.94% R² validated property valuation on Ames Housing.',
+      stat: 'Python · R · SQL',
+      to: '/work',
+      cta: 'Inspect Data Work ↗',
     },
     {
       id: 'frontend',
       num: '03',
       species: 'buttercup',
-      flowerName: 'BUTTERCUP',
-      stemHeight: 112,
-      tag: '03 / FRONT-END & SYSTEM ARCHITECTURE',
-      title: 'Designing layered architectures & responsive web applications.',
-      subtitle: 'React · Laravel 13 · Tailwind CSS · IEEE 830 SDD · Normalized ERD',
-      body:
-        'Growing structured software systems from blueprint to interface—spanning 4-tier layered specifications, AI function-calling platforms, payment integrations, and operational dashboards.',
-      metrics: [
-        { k: 'WEB STACK', v: 'React · Laravel · Tailwind' },
-        { k: 'ARCHITECTURE', v: '4-Tier SDD & 3NF ERD' },
-        { k: 'COMPLETED WORK', v: '6 Documented Projects' },
-      ],
-      cta: { label: 'Visit Project Garden (/work) ↗', to: '/work' },
+      flowerName: 'Buttercup',
+      tag: '03 / WEB & SYSTEMS',
+      title: 'Layered architectures & responsive full-stack experiences.',
+      body: 'From 4-tier IEEE 830 specifications and 3NF ERDs to Laravel 13 APIs, Gemini AI assistants, and React motion UIs.',
+      stat: 'React · Laravel · Tailwind',
+      to: '/work',
+      cta: 'Enter Flower Exhibition ↗',
     },
     {
       id: 'education',
       num: '04',
       species: 'gentian',
-      flowerName: 'BLUE GENTIAN',
-      stemHeight: 96,
-      tag: '04 / ACADEMIC FOUNDATION & TOOLKIT',
-      title: '3.63 / 4.00 Cumulative GPA in Software Engineering Technology.',
-      subtitle: 'Vocational School of IPB University · Bilingual (ID & EN)',
-      body:
-        'Rooted in software engineering fundamentals, database design, machine learning, and 3D spatial prototyping—backed by an organized technical toolkit sharpened across hands-on coursework.',
-      metrics: [
-        { k: 'CUMULATIVE GPA', v: '3.63 / 4.00' },
-        { k: 'PROGRAM', v: 'Software Engineering (TPL)' },
-        { k: 'LANGUAGES', v: 'Indonesian · English' },
-      ],
-      cta: { label: 'Visit Botanical Pavilion (/about) ↗', to: '/about' },
+      flowerName: 'Blue Gentian',
+      tag: '04 / EDUCATION',
+      title: '3.63 / 4.00 GPA in Software Engineering Technology (IPB).',
+      body: 'Vocational School of IPB University — grounded in databases, data mining, full-stack engineering, and 3D AR.',
+      stat: 'GPA 3.63 / 4.00',
+      to: '/about',
+      cta: 'Visit Conservatory ↗',
     },
     {
       id: 'experience',
       num: '05',
       species: 'lavender',
-      flowerName: 'LAVENDER',
-      stemHeight: 108,
-      tag: '05 / INDUSTRY & LEADERSHIP',
-      title: 'Industry web delivery, logistics operations & treasury governance.',
-      subtitle: 'PT KCT Logistics Internship · 5 Campus Leadership & Treasury Roles',
-      body:
-        'Shipped a live corporate website and commercial quotations during industry immersion, while leading financial audits across 280+ transactions and coordinating student organizations.',
-      metrics: [
-        { k: 'INDUSTRY SITE', v: 'kctjakarta.com (Live)' },
-        { k: 'TREASURY AUDIT', v: '280+ Tx (Rp 26.19M)' },
-        { k: 'LEADERSHIP', v: '5 Active Organizations' },
-      ],
-      cta: { label: 'Walk Alpine Trail (/journey) ↗', to: '/journey' },
+      flowerName: 'Lavender',
+      tag: '05 / EXPERIENCE',
+      title: 'Industry web delivery & transparent treasury governance.',
+      body: 'Shipped live corporate site kctjakarta.com during PT KCT internship and audited 280+ transactions (Rp 26.19M).',
+      stat: 'PT KCT · 5 Campus Roles',
+      to: '/journey',
+      cta: 'Walk Alpine Trail ↗',
     },
     {
       id: 'honors',
       num: '06',
       species: 'poppy',
-      flowerName: 'ALPINE POPPY',
-      stemHeight: 100,
-      tag: '06 / AWARDS & VERIFIED CREDENTIALS',
-      title: 'International competition honors & verified AI certifications.',
-      subtitle: 'Google Gemini Certified Student · 2× 2nd Place Short Movie · Business Plan',
-      body:
-        'Recognized across international and national creative competitions alongside formal Google Gemini AI certification—balancing analytical precision with expressive storytelling.',
-      metrics: [
-        { k: 'CERTIFICATION', v: 'Google Gemini Certified' },
-        { k: 'COMPETITIONS', v: '2× 2nd Place Awards' },
-        { k: 'STRATEGY', v: 'Business Plan Semifinalist' },
-      ],
-      cta: { label: 'View Credentials (/journey) ↗', to: '/journey' },
+      flowerName: 'Alpine Poppy',
+      tag: '06 / HONORS',
+      title: 'International competition awards & Google Gemini AI Cert.',
+      body: '2× 2nd Place Short Movie (Portal 7 Intl & SEMNASA National), Business Plan Semifinalist & Google Gemini Certified.',
+      stat: 'Google Gemini Certified',
+      to: '/journey',
+      cta: 'See All Honors ↗',
     },
   ],
   id: [
@@ -125,109 +89,73 @@ const MEADOW_BLOOMS = {
       id: 'intro',
       num: '01',
       species: 'edelweiss',
-      flowerName: 'EDELWEISS',
-      stemHeight: 118,
-      tag: '01 / RINGKASAN & ARAH KARYA',
-      title: 'Mengubah data rumit menjadi cerita jernih & sistem web yang hidup.',
-      subtitle: 'Osanna Patricia Limbong — Data Analyst & Front-End Developer',
-      body:
-        'Mahasiswi Rekayasa Perangkat Lunak IPB University yang memadukan ketajaman analisis data dengan rekayasa antarmuka interaktif. Pilih salah satu bunga Alpen di atas—atau tekan panah ← / →—untuk membuka tiap pilar.',
-      metrics: [
-        { k: 'FOKUS UTAMA', v: 'Data Analyst & Front-End' },
-        { k: 'PENDIDIKAN', v: 'IPB University (TPL)' },
-        { k: 'STATUS', v: 'Terbuka untuk Magang' },
-      ],
-      cta: { label: 'Baca Profil Lengkap (/about) ↗', to: '/about' },
+      flowerName: 'Edelweiss',
+      tag: '01 / RINGKASAN',
+      title: 'Mengubah data rumit menjadi cerita jernih & web yang hidup.',
+      body: 'Mahasiswi Rekayasa Perangkat Lunak IPB University yang memadukan analisis data presisi dengan animasi antarmuka.',
+      stat: 'Data Analyst & Front-End',
+      to: '/about',
+      cta: 'Baca Profil ↗',
     },
     {
       id: 'analytics',
       num: '02',
       species: 'rose',
-      flowerName: 'MAWAR ALPEN',
-      stemHeight: 102,
-      tag: '02 / ANALISIS DATA & PEMODELAN',
-      title: 'Pemodelan statistik, ETL geospasial & segmentasi pasar.',
-      subtitle: 'Exploratory Data Analysis · Regresi Linear · Decision Tree · K-Means',
-      body:
-        'Mengolah dataset multi-sumber menjadi skema 3NF ternormalisasi, model prediksi tervalidasi, dan segmen bisnis terukur menggunakan Python, R, SQL, serta grafik interaktif.',
-      metrics: [
-        { k: 'TEKNOLOGI INTI', v: 'Python · R · SQL' },
-        { k: 'ETL GEOSPASIAL', v: '30.903 Baris Valid' },
-        { k: 'VALIDASI MODEL', v: '81,94% R² Teruji' },
-      ],
-      cta: { label: 'Lihat Studi Kasus Data (/work) ↗', to: '/work' },
+      flowerName: 'Mawar Alpen',
+      tag: '02 / DATA & ML',
+      title: 'ETL geospasial, pemodelan regresi & segmentasi K-Means.',
+      body: '30.903 baris data faskes Jabodetabek untuk Medigo & akurasi R² 81,94% pada valuasi properti Ames Housing.',
+      stat: 'Python · R · SQL',
+      to: '/work',
+      cta: 'Lihat Studi Kasus ↗',
     },
     {
       id: 'frontend',
       num: '03',
       species: 'buttercup',
-      flowerName: 'BUTTERCUP',
-      stemHeight: 112,
-      tag: '03 / FRONT-END & ARSITEKTUR SISTEM',
-      title: 'Merancang arsitektur berlapis & aplikasi web yang responsif.',
-      subtitle: 'React · Laravel 13 · Tailwind CSS · DPPL IEEE 830 · ERD 3NF',
-      body:
-        'Menumbuhkan sistem perangkat lunak terstruktur dari cetak biru hingga antarmuka—mencakup spesifikasi 4-tier, platform AI function calling, integrasi pembayaran, dan dashboard operasional.',
-      metrics: [
-        { k: 'WEB STACK', v: 'React · Laravel · Tailwind' },
-        { k: 'ARSITEKTUR', v: '4-Tier SDD & ERD 3NF' },
-        { k: 'PROYEK SELESAI', v: '6 Studi Kasus Lengkap' },
-      ],
-      cta: { label: 'Masuk Taman Proyek (/work) ↗', to: '/work' },
+      flowerName: 'Buttercup',
+      tag: '03 / WEB & SISTEM',
+      title: 'Arsitektur berlapis & aplikasi web full-stack responsif.',
+      body: 'Dari spesifikasi DPPL 4-tier dan ERD 3NF hingga API Laravel 13, asisten Gemini AI, dan UI interaktif React.',
+      stat: 'React · Laravel · Tailwind',
+      to: '/work',
+      cta: 'Masuk Pameran Proyek ↗',
     },
     {
       id: 'education',
       num: '04',
       species: 'gentian',
-      flowerName: 'GENTIAN BIRU',
-      stemHeight: 96,
-      tag: '04 / FONDASI AKADEMIK & KEAHLIAN',
-      title: 'IPK Kumulatif 3,63 / 4,00 Teknologi Rekayasa Perangkat Lunak.',
-      subtitle: 'Sekolah Vokasi IPB University · Bilingual (ID & EN)',
-      body:
-        'Berakar pada fondasi rekayasa perangkat lunak, desain basis data, machine learning, dan prototipe 3D AR—didukung rangkaian keahlian teknis yang diasah lewat proyek nyata.',
-      metrics: [
-        { k: 'IPK KUMULATIF', v: '3,63 / 4,00' },
-        { k: 'PROGRAM STUDI', v: 'Rekayasa Perangkat Lunak' },
-        { k: 'BAHASA', v: 'Indonesia · Inggris' },
-      ],
-      cta: { label: 'Buka Paviliun Profil (/about) ↗', to: '/about' },
+      flowerName: 'Gentian Biru',
+      tag: '04 / PENDIDIKAN',
+      title: 'IPK 3,63 / 4,00 Teknologi Rekayasa Perangkat Lunak (IPB).',
+      body: 'Sekolah Vokasi IPB University — mendalami basis data, data mining, rekayasa perangkat lunak, dan 3D AR.',
+      stat: 'IPK 3,63 / 4,00',
+      to: '/about',
+      cta: 'Buka Paviliun Profil ↗',
     },
     {
       id: 'experience',
       num: '05',
       species: 'lavender',
-      flowerName: 'LAVENDER',
-      stemHeight: 108,
-      tag: '05 / INDUSTRI & KEPEMIMPINAN',
-      title: 'Pengembangan web industri, operasional logistik & tata kelola keuangan.',
-      subtitle: 'Magang PT KCT · 5 Peran Kepemimpinan & Bendahara Organisasi',
-      body:
-        'Merilis website perusahaan live dan dokumen kuotasi komersial selama magang industri, sekaligus memimpin audit keuangan 280+ transaksi serta koordinasi organisasi kampus.',
-      metrics: [
-        { k: 'WEBSITE INDUSTRI', v: 'kctjakarta.com (Live)' },
-        { k: 'AUDIT ANGGARAN', v: '280+ Tx (Rp 26,19Jt)' },
-        { k: 'ORGANISASI', v: '5 Peran Aktif' },
-      ],
-      cta: { label: 'Susuri Jalur Alpen (/journey) ↗', to: '/journey' },
+      flowerName: 'Lavender',
+      tag: '05 / PENGALAMAN',
+      title: 'Pengembangan web industri & audit tata kelola keuangan.',
+      body: 'Merilis website live kctjakarta.com saat magang PT KCT serta mengaudit 280+ transaksi (Rp 26,19 Juta).',
+      stat: 'PT KCT · 5 Organisasi',
+      to: '/journey',
+      cta: 'Susuri Jalur Alpen ↗',
     },
     {
       id: 'honors',
       num: '06',
       species: 'poppy',
-      flowerName: 'POPPY ALPEN',
-      stemHeight: 100,
-      tag: '06 / PENGHARGAAN & SERTIFIKASI',
-      title: 'Prestasi kompetisi internasional & sertifikasi AI terverifikasi.',
-      subtitle: 'Google Gemini Certified Student · 2× Juara 2 Film Pendek · Business Plan',
-      body:
-        'Meraih penghargaan pada kompetisi kreatif tingkat internasional maupun nasional serta sertifikasi resmi Google Gemini AI—memadukan presisi analitis dengan penceritaan visual.',
-      metrics: [
-        { k: 'SERTIFIKASI', v: 'Google Gemini Certified' },
-        { k: 'KOMPETISI', v: '2× Juara 2 Film Pendek' },
-        { k: 'STRATEGI', v: 'Semifinalis Business Plan' },
-      ],
-      cta: { label: 'Lihat Kredensial (/journey) ↗', to: '/journey' },
+      flowerName: 'Poppy Alpen',
+      tag: '06 / PRESTASI',
+      title: 'Penghargaan kompetisi internasional & Sertifikasi Gemini AI.',
+      body: '2× Juara 2 Film Pendek (Portal 7 Intl & SEMNASA), Semifinalis Business Plan & Google Gemini Certified Student.',
+      stat: 'Google Gemini Certified',
+      to: '/journey',
+      cta: 'Lihat Prestasi ↗',
     },
   ],
 };
@@ -237,9 +165,25 @@ export default function Home() {
   const home = getHomeContent(lang);
   const { profilePhotos = [] } = home;
 
-  const blooms = MEADOW_BLOOMS[lang] || MEADOW_BLOOMS.en;
+  const blooms = ORBIT_BLOOMS[lang] || ORBIT_BLOOMS.en;
   const [activeIdx, setActiveIdx] = useState(0);
   const [photoIdx, setPhotoIdx] = useState(0);
+
+  const manifestoRef = useRef(null);
+  const { scrollYProgress: manifestoProgress } = useScroll({
+    target: manifestoRef,
+    offset: ['start end', 'end start'],
+  });
+  const mRow1X = useTransform(manifestoProgress, [0, 1], [-70, 80]);
+  const mRow2X = useTransform(manifestoProgress, [0, 1], [80, -70]);
+  const mRow3X = useTransform(manifestoProgress, [0, 1], [-50, 60]);
+
+  const portraitRef = useRef(null);
+  const { scrollYProgress: portraitProgress } = useScroll({
+    target: portraitRef,
+    offset: ['start end', 'end start'],
+  });
+  const archScale = useTransform(portraitProgress, [0, 0.5, 1], [0.92, 1.03, 0.96]);
 
   const activeBloom = blooms[activeIdx] || blooms[0];
   const currentPhoto = profilePhotos[photoIdx] || profilePhotos[0];
@@ -247,228 +191,253 @@ export default function Home() {
   useEffect(() => {
     const onKeyDown = (e) => {
       if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
-      if (e.key === 'ArrowRight') {
-        setActiveIdx((prev) => (prev + 1) % blooms.length);
-      } else if (e.key === 'ArrowLeft') {
-        setActiveIdx((prev) => (prev - 1 + blooms.length) % blooms.length);
-      }
+      if (e.key === 'ArrowRight') setActiveIdx((prev) => (prev + 1) % blooms.length);
+      if (e.key === 'ArrowLeft') setActiveIdx((prev) => (prev - 1 + blooms.length) % blooms.length);
     };
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [blooms.length]);
 
+  const ringRotation = -activeIdx * 60;
+
   return (
-    <div className="meadow-home">
+    <div className="alpine-home">
       {/* =========================================================
-          STAGE 1: 60FPS INTERACTIVE SWISS ALPINE FLOWER MEADOW HERO
+          SCENE 1: 100SVH FULL-BLEED WIND-REACTIVE SWISS MEADOW
          ========================================================= */}
       <BotanicalHeroCanvas availability={home.availability} />
 
       {/* =========================================================
-          STAGE 2: INTERACTIVE 6-FLOWER SWISS MEADOW BED (Replaces Bookshelf)
+          SCENE 2: SCROLL-SCRUBBED KINETIC MANIFESTO + DRAGGABLE BLOOMS
+          (Reel 1 & Reel 2 Motion-Graphic Sequence — ZERO Boxed Grid)
          ========================================================= */}
-      <section className="container meadow-bed-section">
-        <div className="meadow-bed-section__top">
-          <div className="mono meadow-status-line">
-            <span className="meadow-status-dot" />
-            <span>
-              {lang === 'id'
-                ? 'PADANG BUNGA ALPEN · 06 PILAR UTAMA'
-                : 'SWISS WILDFLOWER BED · 06 CORE PILLARS'}
-            </span>
-          </div>
-          <span className="mono meadow-bed-section__hint">
-            {lang === 'id'
-              ? 'KLIK BUNGA ATAU TEKAN ← / → UNTUK MEKARKAN TOPIK'
-              : 'PICK ANY WILDFLOWER OR PRESS ← / → TO BLOOM'}
-          </span>
+      <section ref={manifestoRef} className="alpine-manifesto">
+        <div className="alpine-manifesto__hint mono">
+          {lang === 'id'
+            ? 'TARIK & LEMPAR BUNGA-BUNGA DI BAWAH INI — MEREKA MEMBAL DENGAN FISIKA PEGAS'
+            : 'GRAB & FLING ANY FLOATING BLOOM BELOW — ELASTIC SPRING PHYSICS'}
         </div>
 
-        {/* Sunlit Alpine Meadow Flowerbed with 6 Swaying Interactive Wildflowers */}
-        <div className="meadow-bed" role="tablist" aria-label="Interactive Swiss Wildflower Bed">
-          <div className="meadow-bed__backdrop" aria-hidden="true">
-            MEADOW
-          </div>
-
-          <div className="meadow-bed__row">
-            {blooms.map((item, idx) => {
-              const isSelected = idx === activeIdx;
-              return (
-                <motion.button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={isSelected}
-                  className={`meadow-flower-btn ${isSelected ? 'is-bloomed' : ''}`}
-                  onClick={() => setActiveIdx(idx)}
-                  whileHover={{ y: -8 }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ type: 'spring', stiffness: 340, damping: 20 }}
-                >
-                  <motion.div
-                    className="meadow-flower-btn__head"
-                    animate={{
-                      scale: isSelected ? 1.24 : 0.94,
-                      rotate: isSelected ? [0, 6, -4, 0] : 0,
-                    }}
-                    transition={{ type: 'spring', stiffness: 260, damping: 18 }}
-                  >
-                    {isSelected && (
-                      <motion.span
-                        layoutId="meadow-sun-halo"
-                        className="meadow-flower-btn__halo"
-                        transition={{ type: 'spring', stiffness: 320, damping: 26 }}
-                      />
-                    )}
-                    <FlowerEmblem species={item.species} size={68} />
-                  </motion.div>
-
-                  <span
-                    className="meadow-flower-btn__stem"
-                    style={{ height: `${item.stemHeight}px` }}
-                    aria-hidden="true"
-                  >
-                    <i className="meadow-leaf meadow-leaf--l" />
-                    <i className="meadow-leaf meadow-leaf--r" />
-                  </span>
-
-                  <span className="meadow-flower-btn__label-plate">
-                    <span className="mono meadow-flower-btn__num">{item.num}</span>
-                    <span className="mono meadow-flower-btn__name">{item.flowerName}</span>
-                  </span>
-                </motion.button>
-              );
-            })}
-          </div>
-
-          {/* Lush Alpine Clover Ground Strip */}
-          <div className="meadow-bed__turf" aria-hidden="true">
-            <span className="mono">
-              SWISS ALPINE WILDFLOWER COLLECTION · EDELWEISS · ROSE · BUTTERCUP · GENTIAN · LAVENDER · POPPY
-            </span>
-          </div>
-        </div>
-
-        {/* Open Sunlit Meadow Field Note Card */}
-        <AnimatePresence mode="wait">
+        <div className="alpine-manifesto__stage">
+          {/* Draggable Interactive Floating Botanical Chips (Reel 1 playful motion) */}
           <motion.div
-            key={`${lang}-${activeBloom.id}`}
-            className="meadow-field-note kissa-spotlight"
-            initial={{ opacity: 0, y: 14, scale: 0.99 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.99 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 26 }}
+            className="alpine-float-chip alpine-float-chip--1"
+            drag
+            dragSnapToOrigin
+            dragElastic={0.45}
+            whileHover={{ scale: 1.08 }}
+            whileDrag={{ scale: 1.15, cursor: 'grabbing' }}
+            transition={{ type: 'spring', stiffness: 320, damping: 18 }}
           >
-            <div className="meadow-field-note__main">
-              <div className="mono meadow-field-note__head">
-                <span>{activeBloom.tag}</span>
-                <span>
-                  {activeBloom.flowerName} · {activeBloom.num} / 0{blooms.length}
-                </span>
-              </div>
-
-              <h2 className="meadow-field-note__title">{activeBloom.title}</h2>
-              <p className="meadow-field-note__subtitle">{activeBloom.subtitle}</p>
-              <p className="meadow-field-note__body">{activeBloom.body}</p>
-
-              <div className="meadow-field-note__footer">
-                <Link to={activeBloom.cta.to} className="mono meadow-field-note__cta">
-                  {activeBloom.cta.label}
-                </Link>
-
-                <div className="meadow-field-note__steppers">
-                  <button
-                    type="button"
-                    className="mono meadow-step-btn"
-                    onClick={() => setActiveIdx((activeIdx - 1 + blooms.length) % blooms.length)}
-                    aria-label="Previous Wildflower"
-                  >
-                    ← PREV
-                  </button>
-                  <button
-                    type="button"
-                    className="mono meadow-step-btn"
-                    onClick={() => setActiveIdx((activeIdx + 1) % blooms.length)}
-                    aria-label="Next Wildflower"
-                  >
-                    NEXT →
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <aside className="meadow-field-note__plate">
-              <div className="meadow-field-note__plate-top">
-                <span className="mono">
-                  {lang === 'id' ? 'CATATAN BOTANI' : 'MEADOW SPECIMEN NOTE'}
-                </span>
-                <FlowerEmblem species={activeBloom.species} size={34} />
-              </div>
-              <div className="meadow-field-note__metrics">
-                {activeBloom.metrics.map((m) => (
-                  <div key={m.k} className="meadow-plate-metric">
-                    <span className="mono meadow-plate-metric__k">{m.k}</span>
-                    <strong className="meadow-plate-metric__v">{m.v}</strong>
-                  </div>
-                ))}
-              </div>
-            </aside>
+            <FlowerEmblem species="rose" size={32} />
+            <span className="mono">3,069 Faskes ETL</span>
           </motion.div>
-        </AnimatePresence>
+
+          <motion.div
+            className="alpine-float-chip alpine-float-chip--2"
+            drag
+            dragSnapToOrigin
+            dragElastic={0.45}
+            whileHover={{ scale: 1.08 }}
+            whileDrag={{ scale: 1.15, cursor: 'grabbing' }}
+            transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+          >
+            <FlowerEmblem species="buttercup" size={32} />
+            <span className="mono">81.94% R² Ames</span>
+          </motion.div>
+
+          <motion.div
+            className="alpine-float-chip alpine-float-chip--3"
+            drag
+            dragSnapToOrigin
+            dragElastic={0.45}
+            whileHover={{ scale: 1.08 }}
+            whileDrag={{ scale: 1.15, cursor: 'grabbing' }}
+            transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+          >
+            <FlowerEmblem species="edelweiss" size={32} />
+            <span className="mono">IPB · GPA 3.63</span>
+          </motion.div>
+
+          <motion.div
+            className="alpine-float-chip alpine-float-chip--4"
+            drag
+            dragSnapToOrigin
+            dragElastic={0.45}
+            whileHover={{ scale: 1.08 }}
+            whileDrag={{ scale: 1.15, cursor: 'grabbing' }}
+            transition={{ type: 'spring', stiffness: 320, damping: 18 }}
+          >
+            <FlowerEmblem species="gentian" size={32} />
+            <span className="mono">Gemini AI Certified</span>
+          </motion.div>
+
+          {/* Giant Scroll-Scrubbed Kinetic Serif Lines */}
+          <motion.div className="alpine-manifesto__line" style={{ x: mRow1X }}>
+            {lang === 'id' ? 'MERANGKAI' : 'CULTIVATING'} <em>{lang === 'id' ? 'DATA' : 'DATA'}</em>
+          </motion.div>
+          <motion.div className="alpine-manifesto__line" style={{ x: mRow2X }}>
+            <em>{lang === 'id' ? 'MENJADI' : 'INTO LIVING'}</em> {lang === 'id' ? 'KARYA' : 'BLOOMS'}
+          </motion.div>
+          <motion.div className="alpine-manifesto__line" style={{ x: mRow3X }}>
+            {lang === 'id' ? 'YANG BERGERAK' : '& TACTILE'} <em>{lang === 'id' ? 'HIDUP' : 'CRAFT'}</em>
+          </motion.div>
+        </div>
       </section>
 
       {/* =========================================================
-          STAGE 3: KINETIC PROMPT & ANIME.JS SPRING MICRO-WIDGETS
+          SCENE 3: INTERACTIVE ROTATING SWISS BOUQUET ORBIT
+          (Open-Air Orbital Flower Wheel — Zero Rectangular Card Wall)
          ========================================================= */}
-      <KineticGardenWidgets />
+      <section className="container alpine-orbit-section">
+        <div className="alpine-orbit-grid">
+          {/* Left: Rotating 6-Flower Botanical Orbit Wheel */}
+          <div className="alpine-orbit-stage" aria-label="Interactive Rotating Swiss Wildflower Wheel">
+            <div className="alpine-orbit-ring-bg" aria-hidden="true" />
 
-      {/* =========================================================
-          STAGE 4: INTERACTIVE STAGGERED DATA CHARTS
-         ========================================================= */}
-      <AnalyticsGardenChart />
+            {/* Rotating Orbit of 6 Flowers */}
+            <motion.div
+              className="alpine-orbit-rotor"
+              animate={{ rotate: ringRotation }}
+              transition={{ type: 'spring', stiffness: 120, damping: 18 }}
+            >
+              {blooms.map((item, idx) => {
+                const angleDeg = idx * 60;
+                const isSelected = idx === activeIdx;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`alpine-orbit-node ${isSelected ? 'is-active' : ''}`}
+                    style={{
+                      transform: `rotate(${angleDeg}deg) translate(var(--orbit-r, 152px)) rotate(${-angleDeg - ringRotation}deg)`,
+                    }}
+                    onClick={() => setActiveIdx(idx)}
+                    aria-label={`${item.flowerName} — ${item.tag}`}
+                  >
+                    <FlowerEmblem species={item.species} size={isSelected ? 74 : 52} />
+                  </button>
+                );
+              })}
+            </motion.div>
 
-      {/* =========================================================
-          STAGE 5: SUNLIT BOTANICAL RIBBON & AUTHOR'S NOTE
-         ========================================================= */}
-      <div className="kissa-ticker" aria-hidden="true">
-        <div className="kissa-ticker__track">
-          {[0, 1].map((dup) => (
-            <div key={dup} className="mono kissa-ticker__group">
-              {home.marquee.map((phrase) => (
-                <span key={phrase} className="kissa-ticker__item">
-                  <span>{phrase}</span>
-                  <span className="kissa-ticker__sep">✿</span>
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <section className="container kissa-author-section">
-        <div className="kissa-author-grid">
-          <div className="kissa-author-copy">
-            <span className="mono kissa-eyebrow">
-              {lang === 'id' ? 'CATATAN PENULIS TAMAN' : 'GARDEN KEEPER’S NOTE'}
-            </span>
-            <h2 className="kissa-author-title">{home.greeting}</h2>
-            <p className="kissa-author-text">{home.intro}</p>
-            <div className="kissa-author-links">
-              <Link to="/about" className="mono kissa-author-link">
-                02 / {lang === 'id' ? 'Paviliun Profil & Keahlian ↗' : 'About Pavilion & Toolkit ↗'}
-              </Link>
-              <Link to="/work" className="mono kissa-author-link">
-                03 / {lang === 'id' ? 'Jelajahi Taman Proyek ↗' : 'Explore Project Garden ↗'}
-              </Link>
-              <Link to="/journey" className="mono kissa-author-link">
-                04 / {lang === 'id' ? 'Jalur Alpen & Prestasi ↗' : 'Alpine Trail & Honors ↗'}
-              </Link>
+            {/* Center Blooming Emblem */}
+            <div className="alpine-orbit-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeBloom.id}
+                  className="alpine-orbit-center__inner"
+                  initial={{ scale: 0.6, rotate: -25, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  exit={{ scale: 0.65, rotate: 20, opacity: 0 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+                >
+                  <FlowerEmblem species={activeBloom.species} size={96} />
+                  <span className="mono alpine-orbit-center__name">{activeBloom.flowerName}</span>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
 
+          {/* Right: Open Editorial Typography Reveal (No heavy boxed frame) */}
+          <div className="alpine-orbit-copy">
+            <span className="mono alpine-orbit-eyebrow">
+              {lang === 'id'
+                ? 'PUTAR RODA BUNGA ALPEN · KLIK ATAU TEKAN ← / →'
+                : 'SPIN THE ALPINE FLOWER WHEEL · CLICK OR PRESS ← / →'}
+            </span>
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${lang}-${activeBloom.id}`}
+                className="alpine-orbit-panel"
+                initial={{ opacity: 0, y: 18, filter: 'blur(4px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                exit={{ opacity: 0, y: -12, filter: 'blur(4px)' }}
+                transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+              >
+                <div className="mono alpine-orbit-tag">
+                  <span>{activeBloom.tag}</span>
+                  <span>·</span>
+                  <span>{activeBloom.stat}</span>
+                </div>
+
+                <h2 className="alpine-orbit-title">{activeBloom.title}</h2>
+                <p className="alpine-orbit-body">{activeBloom.body}</p>
+
+                <div className="alpine-orbit-actions">
+                  <Link to={activeBloom.to} className="mono alpine-orbit-cta">
+                    {activeBloom.cta}
+                  </Link>
+                  <div className="alpine-orbit-steppers">
+                    <button
+                      type="button"
+                      className="mono"
+                      onClick={() => setActiveIdx((activeIdx - 1 + blooms.length) % blooms.length)}
+                      aria-label="Previous flower"
+                    >
+                      ←
+                    </button>
+                    <span className="mono">
+                      0{activeIdx + 1} / 0{blooms.length}
+                    </span>
+                    <button
+                      type="button"
+                      className="mono"
+                      onClick={() => setActiveIdx((activeIdx + 1) % blooms.length)}
+                      aria-label="Next flower"
+                    >
+                      →
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+      </section>
+
+      {/* =========================================================
+          SCENE 4: KINETIC ANIME.JS STUDIO & LIVING FLOWER DATA CHART
+         ========================================================= */}
+      <KineticGardenWidgets />
+      <AnalyticsGardenChart />
+
+      {/* =========================================================
+          SCENE 5: ARCHED CONSERVATORY WINDOW PORTRAIT & STORY
+         ========================================================= */}
+      <section ref={portraitRef} className="container alpine-arch-section">
+        <div className="alpine-arch-grid">
+          <motion.div
+            className="alpine-arch-copy"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="mono kissa-eyebrow">
+              {lang === 'id' ? 'PENJAGA TAMAN · OSANNA' : 'MEET THE GARDEN KEEPER'}
+            </span>
+            <h2 className="alpine-arch-title">{home.greeting}</h2>
+            <p className="alpine-arch-text">{home.intro}</p>
+
+            <div className="alpine-arch-links">
+              <Link to="/about" className="mono alpine-arch-pill">
+                02 · {lang === 'id' ? 'Paviliun Profil ↗' : 'Conservatory Profile ↗'}
+              </Link>
+              <Link to="/work" className="mono alpine-arch-pill">
+                03 · {lang === 'id' ? 'Pameran Proyek ↗' : 'Flower Exhibition ↗'}
+              </Link>
+              <Link to="/journey" className="mono alpine-arch-pill">
+                04 · {lang === 'id' ? 'Jalur Alpen ↗' : 'Alpine Trail ↗'}
+              </Link>
+            </div>
+          </motion.div>
+
           {currentPhoto && (
-            <figure
-              className="kissa-portrait"
+            <motion.figure
+              className="alpine-arch-frame-wrap"
+              style={{ scale: archScale }}
               onClick={() => setPhotoIdx((prev) => (prev + 1) % profilePhotos.length)}
               role="button"
               tabIndex={0}
@@ -478,26 +447,36 @@ export default function Home() {
                   setPhotoIdx((prev) => (prev + 1) % profilePhotos.length);
                 }
               }}
-              title={
-                lang === 'id' ? 'Klik foto untuk ganti frame potret' : 'Click print to cycle portrait'
-              }
+              title={lang === 'id' ? 'Klik untuk ganti potret' : 'Click arch to cycle portrait'}
             >
-              <div className="kissa-portrait__frame">
-                <img
-                  key={currentPhoto.src}
-                  src={currentPhoto.src}
-                  alt={currentPhoto.alt}
-                  className="kissa-portrait__img"
-                  draggable="false"
-                />
+              <div className="alpine-arch-corner alpine-arch-corner--tl" aria-hidden="true">
+                <FlowerEmblem species="rose" size={48} />
               </div>
-              <figcaption className="mono kissa-portrait__caption">
-                <span>
-                  BLOOM 0{photoIdx + 1} / 0{profilePhotos.length}
-                </span>
+              <div className="alpine-arch-corner alpine-arch-corner--br" aria-hidden="true">
+                <FlowerEmblem species="edelweiss" size={56} />
+              </div>
+
+              <div className="alpine-arch-window">
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={currentPhoto.src}
+                    src={currentPhoto.src}
+                    alt={currentPhoto.alt}
+                    className="alpine-arch-img"
+                    draggable="false"
+                    initial={{ opacity: 0, scale: 1.08 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.96 }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </AnimatePresence>
+              </div>
+
+              <figcaption className="mono alpine-arch-caption">
+                <span>0{photoIdx + 1} / 0{profilePhotos.length}</span>
                 <span>{currentPhoto.label}</span>
               </figcaption>
-            </figure>
+            </motion.figure>
           )}
         </div>
       </section>
